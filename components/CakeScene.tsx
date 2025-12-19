@@ -28,19 +28,59 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state }) => {
     if (state.candleType === CandleType.CLASSIC) {
       const count = Math.max(1, Math.min(state.candleCount, 100));
       
-      // Calculate adaptive radius: if fewer candles, cluster them tighter in the center
-      const clusterFactor = Math.min(1, count / 10 + 0.3); 
-      const adaptiveWidth = baseWidth * clusterFactor;
+      // Calculate number of circles: approximately sqrt(count/6) for natural distribution
+      const numCircles = Math.max(1, Math.floor(Math.sqrt(count / 6)));
       
-      return Array.from({ length: count }).map((_, i) => {
-        // Use a spiral or layered distribution for large counts, circular for small
-        const angle = (i / count) * Math.PI * 2;
-        // Add slight randomness for a more natural "hand-placed" feel
-        const randomShift = (Math.random() - 0.5) * 2;
-        const x = Math.cos(angle) * (adaptiveWidth / 2) + randomShift;
-        const y = Math.sin(angle) * 8; // Vertical perspective depth
-        return { id: `c-${i}`, x: 50 + x, y: baseY + y, label: '' };
+      // Calculate candles per circle: inner circles have fewer, outer circles more
+      const candlesPerCircle = [];
+      let remainingCandles = count;
+      
+      for (let circle = 0; circle < numCircles; circle++) {
+        // First circle has 1-2 candles, others have approximately 6*circle
+        const circleCandles = circle === 0 
+          ? Math.min(2, remainingCandles) 
+          : Math.min(Math.round(6 * circle), remainingCandles);
+        candlesPerCircle.push(circleCandles);
+        remainingCandles -= circleCandles;
+        
+        // Add any remaining candles to the last circle
+        if (circle === numCircles - 1 && remainingCandles > 0) {
+          candlesPerCircle[circle] += remainingCandles;
+          remainingCandles = 0;
+        }
+      }
+      
+      const result = [];
+      let candleIndex = 0;
+      
+      candlesPerCircle.forEach((circleCount, circleIndex) => {
+        // Calculate circle radius: inner circles are smaller, outer circles larger
+        const circleRadiusFactor = 0.3 + 0.4 * circleIndex;
+        const circleRadius = (baseWidth / 2) * circleRadiusFactor;
+        
+        // Calculate vertical perspective depth: inner circles appear slightly higher
+        const verticalOffset = circleIndex * 2;
+        
+        for (let i = 0; i < circleCount; i++) {
+          const angle = (i / circleCount) * Math.PI * 2;
+          // Add slight randomness for natural feel
+          const randomShiftX = (Math.random() - 0.5) * 1.5;
+          const randomShiftY = (Math.random() - 0.5) * 1.5;
+          
+          const x = Math.cos(angle) * circleRadius + randomShiftX;
+          const y = verticalOffset + randomShiftY;
+          
+          result.push({ 
+            id: `c-${candleIndex}`, 
+            x: 50 + x, 
+            y: baseY + y, 
+            label: '' 
+          });
+          candleIndex++;
+        }
       });
+      
+      return result;
     } else {
       const digits = state.digits || '0';
       return digits.split('').map((char, i) => {
