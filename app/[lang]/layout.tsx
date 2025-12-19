@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Language } from '../../types';
 import { Analytics } from '@vercel/analytics/next';
+import { getTranslation } from '@/i18n';
 
 interface LangLayoutProps {
   children: ReactNode;
@@ -8,6 +9,16 @@ interface LangLayoutProps {
     lang: Language;
   }>;
 }
+
+export const generateMetadata = async ({ params }: LangLayoutProps) => {
+  const lang = await (await params).lang;
+  const t = getTranslation(lang);
+  return {
+    title: `${t.seoTitle} - ${t.seoSubtitle1} | ${t.seoSubtitle2}`,
+    description: t.description,
+    keywords: t.keywords,
+  };
+};
 
 export const LangLayout: React.FC<LangLayoutProps> = async ({ children, params }) => {
   const lang = await (await params).lang;
