@@ -18,7 +18,7 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
         name: 'Custom Cake',
         customImage: state.customCakes[state.selectedCakeId],
         candleBaseY: 40,
-        candleBaseWidth: 50
+        candleBaseWidth: 30
       };
     }
     return CAKES.find(c => c.id === state.selectedCakeId) || CAKES[0];
@@ -91,13 +91,13 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
       const digits = state.digits || '0';
       return digits.split('').map((char, i) => {
         const offset = (i - (digits.length - 1) / 2) * 12;
-        return { id: `d-${i}`, x: 50 + offset, y: baseY, label: char };
+        return { id: `d-${i}`, x: 50 + offset, y: baseY - 4, label: char };
       });
     }
   }, [state.candleType, state.candleCount, state.digits, selectedCake]);
 
   return (
-    <div className="relative w-full max-w-5xl aspect-square sm:aspect-[4/3] mx-auto overflow-hidden rounded-[4rem] shadow-2xl group transition-all duration-1000">
+    <div className="relative w-full max-w-5xl aspect-square mx-auto overflow-hidden rounded-[4rem] shadow-2xl group transition-all duration-1000">
       {/* Background Ambience */}
       <div className={`absolute inset-0 transition-all duration-1000 ${state.isExtinguished ? 'bg-[#0f172a]' : 'bg-gradient-to-br from-rose-50 to-amber-50 dark:from-slate-900 dark:to-slate-800'}`}></div>
       
@@ -130,7 +130,7 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
                   left: `${candle.x}%`, 
                   top: `${candle.y}%`,
                   transform: 'translate(-50%, -100%)',
-                  zIndex: Math.floor(candle.y * 10) // Improved z-sorting based on vertical depth
+                  // zIndex: Math.max(10, Math.floor(candle.y * 2)) // Improved z-sorting based on vertical depth.
                 }}
               >
                 {/* Flame */}
@@ -142,11 +142,11 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
                 {/* Candle Body */}
                 <div className="relative animate-sway">
                   {candle.label ? (
-                    <div className="text-6xl font-serif font-black text-pink-500 drop-shadow-2xl bg-white/95 backdrop-blur-md rounded-[2rem] px-5 py-2 min-w-[75px] text-center border-b-[12px] border-pink-200">
+                    <div className="text-2xl lg:text-6xl font-serif font-black text-pink-500 drop-shadow-2xl bg-white/95 backdrop-blur-md rounded-2xl px-2 py-2 w-10 lg:w-16 text-center border-b-4 border-pink-200">
                       {candle.label}
                     </div>
                   ) : (
-                    <div className="w-4 h-28 bg-gradient-to-t from-pink-400 via-pink-300 to-pink-200 rounded-full shadow-2xl border border-white/40">
+                    <div className="w-3 h-16 lg:w-5 lg:h-24 bg-gradient-to-t from-pink-400 via-pink-300 to-pink-200 rounded-full shadow-2xl border border-white/40">
                       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-full bg-pink-100/50"></div>
                       <div className="absolute inset-0 opacity-40 bg-[repeating-linear-gradient(45deg,transparent,transparent_8px,white_8px,white_16px)]"></div>
                     </div>
