@@ -18,14 +18,17 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     lang: initialLang || 'en',
     selectedCakeId: 'elegant-strawberry',
     candleType: CandleType.CLASSIC,
-    candleCount: 1,
-    digits: '23',
+    candleCount: 18,
+    digits: '18',
     isExtinguished: false,
     isBlowing: false,
     customCakes: {},
     userName: '', // 默认空姓名
     customMessage: '' // 默认空祝福语
   });
+
+  // 移动端配置完成状态管理
+  const [isConfigCompleted, setIsConfigCompleted] = useState(false);
 
   const updateState = (updates: Partial<AppState>) => setState(prev => ({ ...prev, ...updates }));
   const t = getTranslation(state.lang);
@@ -80,6 +83,18 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     }
   }, [state.isExtinguished]);
 
+  // 监听配置完成事件
+  useEffect(() => {
+    const handleConfigCompleted = () => {
+      setIsConfigCompleted(true);
+    };
+
+    window.addEventListener('configCompleted', handleConfigCompleted);
+    return () => {
+      window.removeEventListener('configCompleted', handleConfigCompleted);
+    };
+  }, []);
+
   useEffect(() => {
     initMic();
     return () => { if (audioContextRef.current) audioContextRef.current.close(); };
@@ -118,9 +133,10 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
         </p>
       </header>
 
-      <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-12 max-w-7xl">
-        <div className="flex-1 w-full max-w-3xl relative">
-          <CakeScene state={state} />
+      <div className="w-full flex flex-col-reverse lg:flex-row items-center justify-center gap-12 max-w-7xl">
+        {/* 蛋糕场景 - 移动端默认隐藏，配置完成后显示 */}
+        <div className={`flex-1 w-full max-w-3xl relative transition-all duration-700 cubic-bezier(0.4, 0, 0.2, 1) ${isConfigCompleted ? 'block opacity-100 animate-in fade-in slide-in-from-bottom-4 duration-700' : 'lg:block lg:opacity-100 hidden opacity-0'}`}>
+          <CakeScene state={state} t={t} />
           
           {!state.isExtinguished && (
             <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 animate-bounce">
@@ -129,10 +145,31 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
               </div>
             </div>
           )}
+          
+          {/* 配置完成后返回配置的小字提示 */}
+          {isConfigCompleted && (
+            <div className="absolute -bottom-24 left-1/2 -translate-x-1/2">
+              <button 
+                onClick={() => setIsConfigCompleted(false)}
+                className="text-xs text-pink-500 hover:text-pink-600 font-medium transition-colors"
+              >
+                {t.backToConfig}
+              </button>
+            </div>
+          )}
         </div>
 
-        <div className="w-full lg:w-auto shrink-0 flex items-start justify-center">
-          <Controls state={state} updateState={updateState} t={t} />
+        {/* 控制面板 - 保持在DOM流中以利于SEO */}
+        <div className="w-full lg:w-auto shrink-0 flex flex-col items-center justify-center gap-4">
+          {/* 控制面板容器 - 移动端默认展开直到配置完成 */}
+          <div 
+            id="controls-panel"
+            className={`w-full max-w-xl lg:max-w-none transition-all duration-700 cubic-bezier(0.4, 0, 0.2, 1) ${!isConfigCompleted ? 'block opacity-100' : 'lg:block lg:opacity-100 hidden opacity-0'}`}
+            role="region"
+            aria-hidden={isConfigCompleted}
+          >
+            <Controls state={state} updateState={updateState} t={t} />
+          </div>
         </div>
       </div>
 

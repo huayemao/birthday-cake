@@ -44,6 +44,11 @@ export interface Translation {
   celebrate: string;
   reset: string;
   uploadCustom: string;
+  openControls: string;
+  closeControls: string;
+  completeConfig: string;
+  backToConfig: string;
+  restartPrompt: string;
   // SEO相关字段
   keywords: string;
   description: string;
@@ -51,4 +56,4 @@ export interface Translation {
   seoTitle: string;
   seoSubtitle1: string;
   seoSubtitle2: string;
-}
+}

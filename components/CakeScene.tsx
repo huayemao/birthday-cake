@@ -1,14 +1,15 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { AppState, CandleType } from '../types';
+import { AppState, CandleType, Translation } from '../types';
 import { CAKES, FlameSVG } from '../constants';
 
 interface CakeSceneProps {
   state: AppState;
+  t: Translation;
 }
 
-const CakeScene: React.FC<CakeSceneProps> = ({ state }) => {
+const CakeScene: React.FC<CakeSceneProps> = ({ state, t }) => {
   const selectedCake = useMemo(() => {
     if (state.selectedCakeId.startsWith('custom-')) {
       return {
@@ -128,7 +129,7 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state }) => {
                   left: `${candle.x}%`, 
                   top: `${candle.y}%`,
                   transform: 'translate(-50%, -100%)',
-                  zIndex: Math.floor(candle.y * 100) // Improved z-sorting based on vertical depth
+                  zIndex: Math.floor(candle.y * 10) // Improved z-sorting based on vertical depth
                 }}
               >
                 {/* Flame */}
@@ -162,6 +163,15 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state }) => {
       {/* Light Glow */}
       {!state.isExtinguished && (
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] h-[95%] bg-amber-200/15 blur-[180px] rounded-full animate-pulse pointer-events-none"></div>
+      )}
+      
+      {/* Restart Prompt when candles are extinguished */}
+      {state.isExtinguished && (
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
+          <div className="text-xs text-pink-300 font-medium transition-colors animate-pulse">
+            {t.restartPrompt}
+          </div>
+        </div>
       )}
     </div>
   );
