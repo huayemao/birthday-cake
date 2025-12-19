@@ -141,6 +141,35 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
         </div>
       </section>
 
+      {/* Customization Section */}
+      <section>
+        <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400 dark:text-slate-500 mb-6">{state.lang === 'zh' ? '个性化设置' : 'Customize'}</h3>
+        
+        {/* Name Input */}
+        <div className="mb-6">
+          <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-4">{state.lang === 'zh' ? '姓名' : 'Name'}</label>
+          <input 
+            type="text" 
+            value={state.userName}
+            onChange={(e) => updateState({ userName: e.target.value })}
+            placeholder={state.lang === 'zh' ? '输入姓名' : 'Enter name'}
+            className="w-full px-8 py-4 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[2rem] focus:border-pink-400 focus:outline-none text-center text-xl font-serif font-black text-pink-500 shadow-inner"
+          />
+        </div>
+        
+        {/* Custom Message Input */}
+        <div>
+          <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-4">{state.lang === 'zh' ? '祝福语' : 'Message'}</label>
+          <input 
+            type="text" 
+            value={state.customMessage}
+            onChange={(e) => updateState({ customMessage: e.target.value })}
+            placeholder={state.lang === 'zh' ? '输入祝福语' : 'Enter message'}
+            className="w-full px-8 py-4 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[2rem] focus:border-pink-400 focus:outline-none text-center text-xl font-serif font-black text-pink-500 shadow-inner"
+          />
+        </div>
+      </section>
+
       {/* Reset State Button */}
       {state.isExtinguished && (
         <button 

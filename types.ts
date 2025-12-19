@@ -27,6 +27,8 @@ export interface AppState {
   isExtinguished: boolean;
   isBlowing: boolean;
   customCakes: Record<string, string>; // ID to DataURL
+  userName: string; // 用户姓名
+  customMessage: string; // 自定义祝福语
 }
 
 export interface Translation {
@@ -44,3 +46,4 @@ export interface Translation {
   reset: string;
   uploadCustom: string;
 }
+

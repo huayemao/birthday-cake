@@ -19,7 +19,9 @@ const App: React.FC = () => {
       digits: '23',
       isExtinguished: false,
       isBlowing: false,
-      customCakes: {}
+      customCakes: {},
+      userName: '', // 默认空姓名
+      customMessage: '' // 默认空祝福语
     };
   });
 
@@ -114,10 +116,16 @@ const App: React.FC = () => {
 
       <header className="text-center space-y-4 z-10 max-w-2xl mt-8">
         <h1 className={`text-6xl sm:text-8xl font-serif font-black tracking-tighter transition-all duration-1000 ${state.isExtinguished ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
-          {state.isExtinguished ? t.celebrate : t.title}
+          {state.isExtinguished ? 
+            (state.userName ? `${t.celebrate} ${state.userName}!` : t.celebrate) : 
+            (state.userName ? `${state.userName}` : t.title)
+          }
         </h1>
         <p className={`text-xl sm:text-2xl font-medium transition-all duration-1000 ${state.isExtinguished ? 'text-amber-400' : 'text-slate-500'}`}>
-          {state.isExtinguished ? '✧ 🎂 🎊 🎉 ✨ ✧' : t.subtitle}
+          {state.isExtinguished ? 
+            (state.customMessage ? state.customMessage : '✧ 🎂 🎊 🎉 ✨ ✧') : 
+            (state.customMessage ? state.customMessage : t.subtitle)
+          }
         </p>
       </header>
 
