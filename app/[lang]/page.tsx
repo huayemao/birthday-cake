@@ -16,7 +16,7 @@ const Page: React.FC<PageProps> = async ({ params }) => {
 
   // 动态导入客户端组件
 
-  return <html lang={lang}><ClientPage initialLang={lang} /></html>;
+  return <ClientPage initialLang={lang} />;
 };
 
 
