@@ -1,0 +1,8 @@
+
+{
+  "name": "Lumina Birthday - Magical Cake & Candles",
+  "description": "An exquisite, modern birthday celebration app where you can choose stunning cakes, set custom candles, and blow them out using your microphone for a magical experience.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
