@@ -40,10 +40,15 @@ export interface Translation {
   digits: string;
   numberOfCandles: string;
   digitValue: string;
-  吹灭提示?: string; // Additional translation fields if needed
   blowPrompt: string;
   celebrate: string;
   reset: string;
   uploadCustom: string;
-}
-
+  // SEO相关字段
+  keywords: string;
+  description: string;
+  // 拆分成不同字段的标题
+  seoTitle: string;
+  seoSubtitle1: string;
+  seoSubtitle2: string;
+}

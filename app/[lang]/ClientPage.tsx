@@ -1,28 +1,30 @@
+// 客户端组件来处理交互状态
+'use client';
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { AppState, Language, CandleType } from './types';
-import { getTranslation } from './i18n';
-import CakeScene from './components/CakeScene';
-import Controls from './components/Controls';
-import Celebrate from './components/Celebrate';
+import CakeScene from "@/components/CakeScene";
+import Celebrate from "@/components/Celebrate";
+import Controls from "@/components/Controls";
+import { getTranslation } from "@/i18n";
+import { Language, AppState, CandleType } from "@/types";
+import { useState, useRef, useCallback, useEffect } from "react";
 
-const App: React.FC = () => {
-  const [state, setState] = useState<AppState>(() => {
-    const hash = window.location.hash.replace('#/', '');
-    const validLangs: Language[] = ['zh', 'en', 'ja', 'fr', 'ar'];
-    const lang = validLangs.includes(hash as Language) ? (hash as Language) : 'en';
-    return {
-      lang,
-      selectedCakeId: 'elegant-strawberry',
-      candleType: CandleType.CLASSIC,
-      candleCount: 1,
-      digits: '23',
-      isExtinguished: false,
-      isBlowing: false,
-      customCakes: {},
-      userName: '', // 默认空姓名
-      customMessage: '' // 默认空祝福语
-    };
+interface ClientPageProps {
+  initialLang: Language;
+}
+
+export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
+  // 初始状态不依赖window
+  const [state, setState] = useState<AppState>({
+    lang: initialLang || 'en',
+    selectedCakeId: 'elegant-strawberry',
+    candleType: CandleType.CLASSIC,
+    candleCount: 1,
+    digits: '23',
+    isExtinguished: false,
+    isBlowing: false,
+    customCakes: {},
+    userName: '', // 默认空姓名
+    customMessage: '' // 默认空祝福语
   });
 
   const updateState = (updates: Partial<AppState>) => setState(prev => ({ ...prev, ...updates }));
@@ -32,21 +34,8 @@ const App: React.FC = () => {
   const blowThreshold = 0.35;
   const blowDurationRef = useRef<number>(0);
 
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#/', '');
-      const validLangs: Language[] = ['zh', 'en', 'ja', 'fr', 'ar'];
-      if (validLangs.includes(hash as Language)) {
-        updateState({ lang: hash as Language });
-      }
-    };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
   const changeLanguage = (l: Language) => {
-    window.location.hash = `#/${l}`;
-    updateState({ lang: l });
+    window.location.href = `/${l}`;
   };
 
   const initMic = useCallback(async () => {
@@ -153,10 +142,8 @@ const App: React.FC = () => {
       </div>
 
       <footer className="mt-auto py-12 text-[10px] font-black uppercase tracking-[0.5em] text-gray-400 dark:text-slate-600">
-        Lumina Magical Experience &copy; {new Date().getFullYear()}
+        花野猫匠心制作❤ &copy; {new Date().getFullYear()}
       </footer>
     </main>
   );
 };
-
-export default App;

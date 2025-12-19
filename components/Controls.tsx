@@ -1,3 +1,4 @@
+'use client';
 
 import React, { useRef } from 'react';
 import { AppState, CandleType, Translation } from '../types';

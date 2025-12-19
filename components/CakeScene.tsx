@@ -1,3 +1,4 @@
+'use client';
 
 import React, { useMemo } from 'react';
 import { AppState, CandleType } from '../types';
@@ -63,9 +64,12 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state }) => {
         
         for (let i = 0; i < circleCount; i++) {
           const angle = (i / circleCount) * Math.PI * 2;
-          // Add slight randomness for natural feel
-          const randomShiftX = (Math.random() - 0.5) * 1.5;
-          const randomShiftY = (Math.random() - 0.5) * 1.5;
+          // 使用确定性的偏移量计算，基于索引和圆圈位置
+          // 这样在服务器和客户端渲染时会得到一致的结果
+          const offsetX = (i * circleIndex) % 2 - 1;
+          const offsetY = (circleIndex - i) % 2 - 1;
+          const randomShiftX = offsetX * 0.75;
+          const randomShiftY = offsetY * 0.75;
           
           const x = Math.cos(angle) * circleRadius + randomShiftX;
           const y = verticalOffset + randomShiftY;
