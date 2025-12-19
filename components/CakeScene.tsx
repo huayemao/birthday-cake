@@ -7,9 +7,10 @@ import { CAKES, FlameSVG } from '../constants';
 interface CakeSceneProps {
   state: AppState;
   t: Translation;
+  updateState: (updates: Partial<AppState>) => void;
 }
 
-const CakeScene: React.FC<CakeSceneProps> = ({ state, t }) => {
+const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
   const selectedCake = useMemo(() => {
     if (state.selectedCakeId.startsWith('custom-')) {
       return {
@@ -171,6 +172,18 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t }) => {
           <div className="text-xs text-pink-300 font-medium transition-colors animate-pulse">
             {t.restartPrompt}
           </div>
+        </div>
+      )}
+      
+      {/* Reset Button when candles are extinguished */}
+      {state.isExtinguished && (
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 w-full max-w-xs px-8">
+          <button 
+            onClick={() => updateState({ isExtinguished: false })}
+            className="w-full py-6 bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:scale-[1.02] text-white font-black rounded-[2rem] shadow-2xl shadow-pink-200/50 transition-all active:scale-95 animate-in zoom-in duration-500 uppercase tracking-[0.3em] text-xs"
+          >
+            {t.reset}
+          </button>
         </div>
       )}
     </div>

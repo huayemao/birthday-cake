@@ -12,6 +12,15 @@ interface ClientPageProps {
   initialLang: Language;
 }
 
+// 语言名称映射，使用对应语言的名称
+export const LANGUAGE_NAMES: Record<Language, string> = {
+  en: "English",
+  zh: "中文",
+  ja: "日本語",
+  fr: "Français",
+  ar: "العربية"
+};
+
 export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   // 初始状态不依赖window
   const [state, setState] = useState<AppState>({
@@ -29,6 +38,8 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
 
   // 移动端配置完成状态管理
   const [isConfigCompleted, setIsConfigCompleted] = useState(false);
+  // 语言下拉菜单状态
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
 
   const updateState = (updates: Partial<AppState>) => setState(prev => ({ ...prev, ...updates }));
   const t = getTranslation(state.lang);
@@ -106,16 +117,37 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     <main className={`min-h-screen relative flex flex-col items-center py-8 px-4 sm:px-8 gap-12 transition-all duration-1000 ${state.isExtinguished ? 'bg-[#020617]' : 'bg-orange-50 dark:bg-slate-950'}`} dir={isRTL ? 'rtl' : 'ltr'}>
       <Celebrate active={state.isExtinguished} />
 
-      <nav className="fixed top-8 right-8 z-50 flex gap-1.5 glass-panel p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50">
-        {(['en', 'zh', 'ja', 'fr', 'ar'] as Language[]).map(l => (
-          <button 
-            key={l}
-            onClick={() => changeLanguage(l)}
-            className={`px-4 py-1.5 rounded-[0.8rem] text-[10px] font-black transition-all uppercase ${state.lang === l ? 'bg-pink-500 text-white shadow-lg' : 'text-gray-500 hover:text-pink-500'}`}
+      <nav className="fixed top-4 right-4 md:top-8 md:right-4 z-20 glass-panel p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50">
+        {/* 语言下拉菜单 */}
+        <div className="relative">
+          <button
+            onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+            className="px-4 py-1.5 rounded-[0.8rem] text-[10px] font-black uppercase transition-all flex items-center gap-2 bg-pink-500 text-white shadow-lg"
+            aria-expanded={isLangMenuOpen}
+            aria-haspopup="true"
           >
-            {l}
+            {LANGUAGE_NAMES[state.lang]}
+            <span className="text-sm">▼</span>
           </button>
-        ))}
+          
+          {/* 下拉菜单 */}
+          {isLangMenuOpen && (
+            <div className="absolute right-0 mt-1 w-40 rounded-[0.8rem] overflow-hidden shadow-xl glass-panel dark:bg-slate-900/80 z-50">
+              {(['en', 'zh', 'ja', 'fr', 'ar'] as Language[]).map(l => (
+                <button
+                  key={l}
+                  onClick={() => {
+                    changeLanguage(l);
+                    setIsLangMenuOpen(false);
+                  }}
+                  className={`w-full text-left px-4 py-2 text-[10px] font-black uppercase transition-all ${state.lang === l ? 'bg-pink-500 text-white' : 'text-gray-500 hover:bg-pink-100 dark:hover:bg-slate-800'}`}
+                >
+                  {LANGUAGE_NAMES[l]}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </nav>
 
       <header className="text-center space-y-4 z-10 max-w-2xl mt-8">
@@ -136,7 +168,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
       <div className="w-full flex flex-col-reverse lg:flex-row items-center justify-center gap-12 max-w-7xl">
         {/* 蛋糕场景 - 移动端默认隐藏，配置完成后显示 */}
         <div className={`flex-1 w-full max-w-3xl relative transition-all duration-700 cubic-bezier(0.4, 0, 0.2, 1) ${isConfigCompleted ? 'block opacity-100 animate-in fade-in slide-in-from-bottom-4 duration-700' : 'lg:block lg:opacity-100 hidden opacity-0'}`}>
-          <CakeScene state={state} t={t} />
+          <CakeScene state={state} t={t} updateState={updateState} />
           
           {!state.isExtinguished && (
             <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 animate-bounce">
