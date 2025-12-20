@@ -69,9 +69,9 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   const t = getTranslation(lang);
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
-  const blowThreshold = 0.5; // 提高阈值，降低灵敏度
+  const blowThreshold = 0.4; // 提高阈值，降低灵敏度
   const blowDurationRef = useRef<number>(0);
-  const blowRequiredDuration = 8; // 增加所需持续时间
+  const blowRequiredDuration = 20; // 增加所需持续时间
 
   // 生成分享链接
   const generateShareLink = () => {
@@ -152,16 +152,32 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
           lowSum += dataArray[i];
         }
 
-        for (let i = midFreqStart; i < midFreqEnd; i++) {
+        for (
+          let i = midFreqStart;
+          i < midFreqEnd && i < dataArray.length;
+          i++
+        ) {
           midSum += dataArray[i];
         }
 
         const lowAverage = lowSum / (lowFreqEnd - lowFreqStart) / 255;
-        const midAverage = midSum / (midFreqEnd - midFreqStart) / 255;
+        const midAverage =
+          midSum /
+          (midFreqEnd - midFreqStart) /
+          (Math.min(dataArray.length, midFreqEnd) - midFreqStart);
 
         // 吹气特征：低频能量高，中频能量相对较低
         const isBlowingSound =
           lowAverage > blowThreshold && midAverage < lowAverage * 0.7;
+
+        if (blowDurationRef.current > 2) {
+          console.log(
+            isBlowingSound,
+            lowAverage,
+            midAverage,
+            blowDurationRef.current
+          );
+        }
 
         if (isBlowingSound) {
           blowDurationRef.current += 1;
