@@ -38,12 +38,12 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
   return (
     <div 
       onPaste={onPaste}
-      className={`glass-panel p-6 sm:p-10 rounded-[3.5rem] shadow-2xl w-full max-w-xl flex flex-col gap-10 transition-all duration-700 dark:bg-slate-900/80 dark:border-slate-700 ${isRTL ? 'text-right' : 'text-left'}`} 
+      className={`glass-panel p-5 sm:p-8 rounded-[3.5rem] shadow-2xl w-full max-w-xl flex flex-col gap-6 transition-all duration-700 dark:bg-slate-900/80 dark:border-slate-700 ${isRTL ? 'text-right' : 'text-left'}`} 
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       {/* Cake Selection */}
       <section>
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-4">
           <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400 dark:text-slate-500">{t.chooseCake}</h3>
           <button 
             onClick={() => fileInputRef.current?.click()}
@@ -94,7 +94,7 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
       </section>
 
       {/* Candle Settings */}
-      <section className="space-y-8">
+      <section className="space-y-6">
         <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400 dark:text-slate-500">{t.chooseCandle}</h3>
         <div className="flex bg-gray-100/50 dark:bg-slate-800/50 p-1.5 rounded-3xl">
           <button
@@ -147,26 +147,38 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
         <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400 dark:text-slate-500 mb-6">{state.lang === 'zh' ? '个性化设置' : 'Customize'}</h3>
         
         {/* Name Input */}
-        <div className="mb-6">
-          <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-4">{state.lang === 'zh' ? '姓名' : 'Name'}</label>
+        <div className="mb-5">
+          <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-3">{state.lang === 'zh' ? '姓名' : 'Name'}</label>
           <input 
             type="text" 
             value={state.userName}
             onChange={(e) => updateState({ userName: e.target.value })}
             placeholder={state.lang === 'zh' ? '输入姓名' : 'Enter name'}
-            className="w-full px-8 py-4 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[2rem] focus:border-pink-400 focus:outline-none text-center text-xl font-serif font-black text-pink-500 shadow-inner"
+            className="w-full px-6 py-3 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[2rem] focus:border-pink-400 focus:outline-none text-center text-xl font-serif font-black text-pink-500 shadow-inner"
+          />
+        </div>
+        
+        {/* Giver Name Input */}
+        <div className="mb-5">
+          <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-3">{state.lang === 'zh' ? '赠送人' : 'From'}</label>
+          <input 
+            type="text" 
+            value={state.giverName}
+            onChange={(e) => updateState({ giverName: e.target.value })}
+            placeholder={state.lang === 'zh' ? '输入赠送人姓名' : 'Enter giver name'}
+            className="w-full px-6 py-3 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[2rem] focus:border-pink-400 focus:outline-none text-center text-xl font-serif font-black text-pink-500 shadow-inner"
           />
         </div>
         
         {/* Custom Message Input */}
         <div>
-          <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-4">{state.lang === 'zh' ? '祝福语' : 'Message'}</label>
+          <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-3">{state.lang === 'zh' ? '祝福语' : 'Message'}</label>
           <input 
             type="text" 
             value={state.customMessage}
             onChange={(e) => updateState({ customMessage: e.target.value })}
             placeholder={state.lang === 'zh' ? '输入祝福语' : 'Enter message'}
-            className="w-full px-8 py-4 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[2rem] focus:border-pink-400 focus:outline-none text-center text-xl font-serif font-black text-pink-500 shadow-inner"
+            className="w-full px-6 py-3 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[2rem] focus:border-pink-400 focus:outline-none text-center text-xl font-serif font-black text-pink-500 shadow-inner"
           />
         </div>
       </section>
@@ -174,8 +186,8 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
       {/* 移动端配置完成按钮 */}
       <div>
         <button 
-          onClick={() => window.dispatchEvent(new CustomEvent('configCompleted'))}
-          className="w-full py-6 bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:scale-[1.02] text-white font-black rounded-[2rem] shadow-2xl shadow-pink-200/50 transition-all active:scale-95 animate-in zoom-in duration-500 uppercase tracking-[0.3em] text-xs"
+          onClick={() => {updateState({ configCompleted: true })}}
+          className="w-full py-5 bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:scale-[1.02] text-white font-black rounded-[2rem] shadow-2xl shadow-pink-200/50 transition-all active:scale-95 animate-in zoom-in duration-500 uppercase tracking-[0.3em] text-xs"
         >
           {t.completeConfig}
         </button>

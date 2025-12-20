@@ -25,10 +25,12 @@ export interface AppState {
   candleCount: number;
   digits: string;
   isExtinguished: boolean;
+  configCompleted: boolean;
   isBlowing: boolean;
   customCakes: Record<string, string>; // ID to DataURL
   userName: string; // 用户姓名
   customMessage: string; // 自定义祝福语
+  giverName: string; // 赠送人姓名
 }
 
 export interface Translation {
@@ -51,6 +53,7 @@ export interface Translation {
   restartPrompt: string;
   share: string;
   copyLink: string;
+  configCompleteToBlow: string;
   // SEO相关字段
   keywords: string;
   description: string;

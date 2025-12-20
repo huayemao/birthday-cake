@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const Home: React.FC = () => {
-  return <html lang="en"><body><ClientPage initialLang="en" /></body></html>
+  return <html lang="en"><body className='bg-slate-950'><ClientPage initialLang="en" /></body></html>
 }
 
 export default Home;
