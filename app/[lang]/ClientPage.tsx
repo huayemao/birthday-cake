@@ -5,9 +5,10 @@ import CakeScene from "@/components/CakeScene";
 import Celebrate from "@/components/Celebrate";
 import Controls from "@/components/Controls";
 import { getTranslation } from "@/i18n";
-import { Language, AppState, CandleType } from "@/types";
+import { Language, CandleType } from "@/types";
 import { useState, useRef, useCallback, useEffect } from "react";
 import * as LZString from "lz-string";
+import { useAppStore } from "@/store/useAppStore";
 
 interface ClientPageProps {
   initialLang: Language;
@@ -23,30 +24,49 @@ export const LANGUAGE_NAMES: Record<Language, string> = {
 };
 
 export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
-  // 初始状态不依赖window
-  const [state, setState] = useState<AppState>({
-    lang: initialLang || "en",
-    selectedCakeId: "elegant-strawberry",
-    configCompleted: false,
-    candleType: CandleType.CLASSIC,
-    candleCount: 18,
-    digits: "18",
-    isExtinguished: false,
-    isBlowing: false,
-    customCakes: {},
-    userName: "", // 默认空姓名
-    customMessage: "", // 默认空祝福语
-    giverName: "", // 默认空赠送人姓名
-  });
-
   // 移动端配置完成状态管理
   // 语言下拉菜单状态
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const controlsRef = useRef<HTMLDivElement>(null);
 
-  const updateState = (updates: Partial<AppState>) =>
-    setState((prev) => ({ ...prev, ...updates }));
-  const t = getTranslation(state.lang);
+  // 使用 Zustand store
+  const {
+    lang,
+    selectedCakeId,
+    configCompleted,
+    candleType,
+    candleCount,
+    digits,
+    isExtinguished,
+    isBlowing,
+    customCakes,
+    userName,
+    customMessage,
+    giverName,
+    updateState,
+    resetState,
+  } = useAppStore();
+
+  const state = {
+    lang,
+    selectedCakeId,
+    configCompleted,
+    candleType,
+    candleCount,
+    digits,
+    isExtinguished,
+    isBlowing,
+    customCakes,
+    userName,
+    customMessage,
+    giverName,
+  };
+  // 设置初始语言
+  useEffect(() => {
+    useAppStore.setState({ lang: initialLang });
+  }, [initialLang]);
+
+  const t = getTranslation(lang);
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const blowThreshold = 0.5; // 提高阈值，降低灵敏度
@@ -57,9 +77,18 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   const generateShareLink = () => {
     // 创建要分享的状态对象，排除不需要分享的临时状态
     const shareState = {
-      ...state,
+      lang,
+      selectedCakeId,
+      configCompleted: true,
+      candleType,
+      candleCount,
+      digits,
       isExtinguished: false, // 重置蜡烛状态，让分享的人可以重新吹蜡烛
       isBlowing: false,
+      customCakes,
+      userName,
+      customMessage,
+      giverName,
     };
 
     // 将状态转换为 JSON 字符串，然后使用 lz-string 压缩
@@ -89,7 +118,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   };
 
   const initMic = useCallback(async () => {
-    if (state.isExtinguished || !state.configCompleted) return;
+    if (isExtinguished || !configCompleted) return;
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const audioContext = new (window.AudioContext ||
@@ -105,9 +134,9 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
       const dataArray = new Uint8Array(bufferLength);
 
       const checkBlow = () => {
-        if (!analyserRef.current || state.isExtinguished) return;
+        if (!analyserRef.current || isExtinguished) return;
         analyserRef.current.getByteFrequencyData(dataArray);
-        
+
         // 改进的吹气识别算法：
         // 1. 分析低频区域（10-100Hz），这是吹气声音的主要频率范围
         // 2. 同时分析中频区域，避免误识别其他声音
@@ -115,23 +144,24 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
         const lowFreqEnd = 50;
         const midFreqStart = 50;
         const midFreqEnd = 150;
-        
+
         let lowSum = 0;
         let midSum = 0;
-        
+
         for (let i = lowFreqStart; i < lowFreqEnd; i++) {
           lowSum += dataArray[i];
         }
-        
+
         for (let i = midFreqStart; i < midFreqEnd; i++) {
           midSum += dataArray[i];
         }
-        
+
         const lowAverage = lowSum / (lowFreqEnd - lowFreqStart) / 255;
         const midAverage = midSum / (midFreqEnd - midFreqStart) / 255;
-        
+
         // 吹气特征：低频能量高，中频能量相对较低
-        const isBlowingSound = lowAverage > blowThreshold && midAverage < lowAverage * 0.7;
+        const isBlowingSound =
+          lowAverage > blowThreshold && midAverage < lowAverage * 0.7;
 
         if (isBlowingSound) {
           blowDurationRef.current += 1;
@@ -151,7 +181,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     } catch (err) {
       console.warn("Mic access denied:", err);
     }
-  }, [state.isExtinguished, state.configCompleted]);
+  }, [isExtinguished, configCompleted]);
 
   // 从 URL 参数恢复配置
   useEffect(() => {
@@ -164,7 +194,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
         const decompressedConfig =
           LZString.decompressFromEncodedURIComponent(configParam);
         if (decompressedConfig) {
-          const parsedConfig = JSON.parse(decompressedConfig) as AppState;
+          const parsedConfig = JSON.parse(decompressedConfig);
           // 应用配置到状态
           updateState({ ...parsedConfig, configCompleted: true });
           // 直接显示配置完成状态
@@ -173,7 +203,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
         console.error("Failed to parse config from URL:", err);
       }
     }
-  }, []);
+  }, [updateState]);
 
   useEffect(() => {
     initMic();
@@ -184,7 +214,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
 
   // 蛋糕吹灭时禁止页面滚动
   useEffect(() => {
-    if (state.isExtinguished) {
+    if (configCompleted) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
@@ -193,11 +223,11 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     return () => {
       document.body.classList.remove("overflow-hidden");
     };
-  }, [state.isExtinguished]);
+  }, [configCompleted]);
 
   // 配置完成后打开全屏
   useEffect(() => {
-    if (state.configCompleted) {
+    if (configCompleted) {
       // 尝试进入全屏模式
       const enterFullscreen = async () => {
         const elem = document.documentElement;
@@ -209,27 +239,27 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
           await (elem as any).msRequestFullscreen();
         }
       };
-      enterFullscreen().catch(err => {
+      enterFullscreen().catch((err) => {
         console.warn("无法进入全屏模式:", err);
       });
     }
-  }, [state.configCompleted]);
+  }, [configCompleted]);
 
-  const isRTL = state.lang === "ar";
+  const isRTL = lang === "ar";
 
   return (
     <>
       <main
         className={`min-h-screen relative flex flex-col md:flex-row py-8 px-4 sm:px-8 gap-12 transition-all duration-1500 ease-in-out ${
-          state.isExtinguished ? "bg-[#020617]" : "bg-slate-950"
-        } ${state.configCompleted ? "py-4 gap-4" : ""}`}
+          isExtinguished ? "bg-[#020617]" : "bg-slate-950"
+        } ${configCompleted ? "py-4 gap-4" : ""}`}
         dir={isRTL ? "rtl" : "ltr"}
       >
-        <Celebrate active={state.isExtinguished} />
+        <Celebrate active={isExtinguished} />
 
         <nav
           className={`fixed top-4 right-4 md:top-8 md:right-4 z-20 glass-panel p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50 transition-all duration-1000 ease-in-out ${
-            state.configCompleted ? "scale-90 opacity-80" : ""
+            configCompleted ? "scale-90 opacity-80" : ""
           }`}
         >
           {/* 语言下拉菜单 */}
@@ -240,7 +270,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
               aria-expanded={isLangMenuOpen}
               aria-haspopup="true"
             >
-              {LANGUAGE_NAMES[state.lang]}
+              {LANGUAGE_NAMES[lang]}
               <span className="text-sm">▼</span>
             </button>
 
@@ -255,7 +285,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
                       setIsLangMenuOpen(false);
                     }}
                     className={`w-full text-left px-4 py-2 text-[10px] font-black uppercase transition-all ${
-                      state.lang === l
+                      lang === l
                         ? "bg-pink-500 text-white"
                         : "text-gray-500 hover:bg-pink-100 dark:hover:bg-slate-800"
                     }`}
@@ -270,40 +300,42 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
 
         {/* 核心内容区域 - 组合 header 和蛋糕场景 */}
         <div
-          className={`w-full flex flex-col items-center mt-8 justify-around gap-8 transition-all duration-1800 ease-in-out ${state.configCompleted ? "fixed inset-0 animate-fade-in-up" : ""}`}
+          className={`w-full flex flex-col items-center mt-8 justify-around gap-8 transition-all duration-1800 ease-in-out ${
+            configCompleted ? "fixed inset-0 animate-fade-in-up" : ""
+          }`}
         >
           {/* Header - 与蛋糕场景组合 */}
           <header
             className={`flex-1 text-center flex flex-col justify-around gap-3 transition-all duration-1800 ease-in-out z-10 max-w-3xl ${
-              state.configCompleted
+              configCompleted
                 ? "transform opacity-95 translate-y-2"
                 : "opacity-100"
             }`}
           >
             <h1
               className={`text-4xl md:text-6xl font-serif font-black tracking-tighter transition-all duration-1800 ease-in-out ${
-                state.isExtinguished ? "text-white/80" : "text-white"
+                isExtinguished ? "text-white/80" : "text-white"
               }`}
             >
-              {state.isExtinguished
-                ? state.userName
-                  ? `${t.celebrate} ${state.userName}!`
+              {isExtinguished
+                ? userName
+                  ? `${t.celebrate} ${userName}!`
                   : t.celebrate
-                : state.userName
-                ? `${state.userName}`
+                : userName
+                ? `${userName}`
                 : t.title}
             </h1>
             <p
               className={`text-lg sm:text-xl md:text-2xl font-medium transition-all duration-1800 ease-in-out delay-300 ${
-                state.isExtinguished ? "text-amber-400" : "text-slate-500"
+                isExtinguished ? "text-amber-400" : "text-slate-500"
               }`}
             >
-              {state.isExtinguished
-                ? state.customMessage
-                  ? state.customMessage
+              {isExtinguished
+                ? customMessage
+                  ? customMessage
                   : "✧ 🎂 🎊 🎉 ✨ ✧"
-                : state.customMessage
-                ? state.customMessage
+                : customMessage
+                ? customMessage
                 : t.subtitle}
             </p>
           </header>
@@ -317,32 +349,33 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
           </div>
           <div className="flex-1">
             {/* 吹蜡烛提示 */}
-            {!state.isExtinguished && (
+            {!isExtinguished && (
               <div className="flex flex-col items-center gap-4 animate-bounce transition-all duration-1000">
                 <div
                   className={`px-8 py-3 rounded-full glass-panel shadow-2xl border-2 transition-all duration-500 ${
-                    state.isBlowing
+                    isBlowing
                       ? "scale-125 bg-pink-50 border-pink-400 text-pink-600"
-                      : state.configCompleted
+                      : configCompleted
                       ? "border-white text-slate-500 dark:text-slate-400"
                       : "border-amber-400 bg-amber-50 text-amber-600"
                   }`}
-                onClick={() => {
-                  if (!state.configCompleted && controlsRef.current) {
-                    controlsRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                  }
-                }}
-              >
-                <span className="text-xs font-black uppercase tracking-widest cursor-pointer">
-                  {state.configCompleted
-                    ? t.blowPrompt
-                    : t.configCompleteToBlow}
-                </span>
-              </div>
+                  onClick={() => {
+                    if (!configCompleted && controlsRef.current) {
+                      controlsRef.current.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center",
+                      });
+                    }
+                  }}
+                >
+                  <span className="text-xs font-black uppercase tracking-widest cursor-pointer">
+                    {configCompleted ? t.blowPrompt : t.configCompleteToBlow}
+                  </span>
+                </div>
               </div>
             )}
             {/* 配置完成后的操作按钮 - 更优雅的设计 */}
-            {state.configCompleted && (
+            {configCompleted && (
               <div className="flex justify-center gap-6 items-center transition-all duration-1200 ease-in-out opacity-100">
                 <button
                   onClick={() => updateState({ configCompleted: false })}
@@ -362,10 +395,10 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
         </div>
 
         {/* 控制面板 - 保持在DOM流中以利于SEO，但在配置完成后隐藏 */}
-        {!state.configCompleted && (
+        {!configCompleted && (
           <div
             className={`w-full flex flex-col items-center justify-center gap-6 transition-all duration-1200 ease-in-out ${
-              state.configCompleted
+              configCompleted
                 ? "opacity-0 pointer-events-none transform translate-y-0"
                 : "opacity-100 transform -translate-y-24 md:translate-y-0"
             }`}
@@ -374,9 +407,11 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
             <div
               id="controls-panel"
               ref={controlsRef}
-              className={`w-full max-w-xl lg:max-w-none transition-all duration-1200 ease-in-out block opacity-100 ${!state.configCompleted ? "block opacity-100" : "hidden opacity-0"}`}
+              className={`w-full max-w-xl lg:max-w-none transition-all duration-1200 ease-in-out block opacity-100 ${
+                !configCompleted ? "block opacity-100" : "hidden opacity-0"
+              }`}
               role="region"
-              aria-hidden={state.configCompleted}
+              aria-hidden={configCompleted}
             >
               <Controls state={state} updateState={updateState} t={t} />
             </div>
@@ -385,19 +420,17 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
         )}
         <div
           className={`fixed inset-0 pointer-events-none -z-10 overflow-hidden transition-all duration-1500 ease-in-out ${
-            state.configCompleted ? "opacity-60" : "opacity-40"
+            configCompleted ? "opacity-60" : "opacity-40"
           }`}
         >
           <div
             className={`absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-pink-300/30 blur-[180px] rounded-full transition-all duration-1500 ease-in-out ${
-              state.configCompleted ? "scale-125 animate-pulse-slow" : ""
+              configCompleted ? "scale-125 animate-pulse-slow" : ""
             }`}
           ></div>
           <div
             className={`absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-amber-200/30 blur-[180px] rounded-full transition-all duration-1500 ease-in-out ${
-              state.configCompleted
-                ? "scale-125 animate-pulse-slow delay-700"
-                : ""
+              configCompleted ? "scale-125 animate-pulse-slow delay-700" : ""
             }`}
           ></div>
         </div>
