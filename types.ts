@@ -49,6 +49,8 @@ export interface Translation {
   completeConfig: string;
   backToConfig: string;
   restartPrompt: string;
+  share: string;
+  copyLink: string;
   // SEO相关字段
   keywords: string;
   description: string;

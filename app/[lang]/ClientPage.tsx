@@ -7,6 +7,7 @@ import Controls from "@/components/Controls";
 import { getTranslation } from "@/i18n";
 import { Language, AppState, CandleType } from "@/types";
 import { useState, useRef, useCallback, useEffect } from "react";
+import * as LZString from "lz-string";
 
 interface ClientPageProps {
   initialLang: Language;
@@ -47,6 +48,37 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   const analyserRef = useRef<AnalyserNode | null>(null);
   const blowThreshold = 0.35;
   const blowDurationRef = useRef<number>(0);
+
+  // 生成分享链接
+  const generateShareLink = () => {
+    // 创建要分享的状态对象，排除不需要分享的临时状态
+    const shareState = {
+      ...state,
+      isExtinguished: false, // 重置蜡烛状态，让分享的人可以重新吹蜡烛
+      isBlowing: false
+    };
+    
+    // 将状态转换为 JSON 字符串，然后使用 lz-string 压缩
+    const jsonState = JSON.stringify(shareState);
+    const compressedState = LZString.compressToEncodedURIComponent(jsonState);
+    
+    // 构建分享链接
+    const url = new URL(window.location.href);
+    url.searchParams.set('config', compressedState);
+    return url.toString();
+  };
+
+  // 复制分享链接到剪贴板
+  const copyShareLink = async () => {
+    try {
+      const shareLink = generateShareLink();
+      await navigator.clipboard.writeText(shareLink);
+      // 可以添加一个成功提示
+      alert(t.copyLink + ' ✓');
+    } catch (err) {
+      console.error('Failed to copy link:', err);
+    }
+  };
 
   const changeLanguage = (l: Language) => {
     window.location.href = `/${l}`;
@@ -93,6 +125,28 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
       console.warn("Mic access denied:", err);
     }
   }, [state.isExtinguished]);
+
+  // 从 URL 参数恢复配置
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const configParam = urlParams.get('config');
+    
+    if (configParam) {
+      try {
+        // 解压并解析配置
+        const decompressedConfig = LZString.decompressFromEncodedURIComponent(configParam);
+        if (decompressedConfig) {
+          const parsedConfig = JSON.parse(decompressedConfig) as AppState;
+          // 应用配置到状态
+          setState(parsedConfig);
+          // 直接显示配置完成状态
+          setIsConfigCompleted(true);
+        }
+      } catch (err) {
+        console.error('Failed to parse config from URL:', err);
+      }
+    }
+  }, []);
 
   // 监听配置完成事件
   useEffect(() => {
@@ -178,14 +232,20 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
             </div>
           )}
           
-          {/* 配置完成后返回配置的小字提示 */}
+          {/* 配置完成后的操作按钮 */}
           {isConfigCompleted && (
-            <div className="absolute -bottom-24 left-1/2 -translate-x-1/2">
+            <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 flex gap-8 items-center">
               <button 
                 onClick={() => setIsConfigCompleted(false)}
                 className="text-xs text-pink-500 hover:text-pink-600 font-medium transition-colors"
               >
                 {t.backToConfig}
+              </button>
+              <button 
+                onClick={copyShareLink}
+                className="px-3 py-1.5 bg-pink-500 text-white text-xs rounded-full hover:bg-pink-600 transition-all shadow-lg"
+              >
+                {t.share}
               </button>
             </div>
           )}

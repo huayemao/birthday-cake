@@ -172,7 +172,7 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
       </section>
 
       {/* 移动端配置完成按钮 */}
-      <div className="lg:hidden">
+      <div>
         <button 
           onClick={() => window.dispatchEvent(new CustomEvent('configCompleted'))}
           className="w-full py-6 bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:scale-[1.02] text-white font-black rounded-[2rem] shadow-2xl shadow-pink-200/50 transition-all active:scale-95 animate-in zoom-in duration-500 uppercase tracking-[0.3em] text-xs"
