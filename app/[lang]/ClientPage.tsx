@@ -9,6 +9,7 @@ import { Language, CandleType } from "@/types";
 import { useState, useRef, useCallback, useEffect } from "react";
 import * as LZString from "lz-string";
 import { useAppStore } from "@/store/useAppStore";
+import { detectBlow, DEFAULT_BLOW_CONFIG, cleanupAudioResources } from "@/utils/blowDetection";
 
 interface ClientPageProps {
   initialLang: Language;
@@ -70,14 +71,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const rafIdRef = useRef<number | null>(null);
-  const blowThreshold = 0.5; // 提高阈值，降低灵敏度
-  const blowDurationRef = useRef<number>(0);
-  const blowRequiredDuration = 20; // 增加所需持续时间
-  const lowFreqStart = 0; // 降低低频起始点，更好地捕捉吹气声
-  const lowFreqEnd = 30; // 缩小低频范围，减少正常说话的干扰
-  const midFreqStart = 50;
-  const midFreqEnd = 200;
-  const midHighRatio = 0.6; // 调整中低频比率，进一步减少误触发
+  const blowDurationRef = useRef<number>(0); // 吹气持续时间状态
 
   // 生成分享链接
   const generateShareLink = () => {
@@ -138,74 +132,33 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
       audioContextRef.current = audioContext;
       analyserRef.current = analyser;
 
-      const bufferLength = analyser.frequencyBinCount;
-      const dataArray = new Uint8Array(bufferLength);
+      const blowState = { blowDuration: 0 };
 
       const checkBlow = () => {
         // 如果不再需要检测（熄灭或未配置），停止检测
         if (!analyserRef.current || isExtinguished || !configCompleted) {
           // 确保停止isBlowing状态
-          if (audioContextRef.current) {
-            audioContextRef.current.close();
-            audioContextRef.current = null;
-            analyserRef.current = null;
-          }
+          cleanupAudioResources(audioContextRef.current);
+          audioContextRef.current = null;
+          analyserRef.current = null;
           updateState({ isBlowing: false });
           return;
         }
         
-        analyserRef.current.getByteFrequencyData(dataArray);
+        // 使用detectBlow函数进行吹气检测
+        const result = detectBlow(analyserRef.current, DEFAULT_BLOW_CONFIG, blowState);
 
-        // 改进的吹气识别算法：
-        // 1. 分析低频区域（0-30Hz），这是吹气声音的主要频率范围
-        // 2. 分析中频区域（50-200Hz），正常说话在这个区域有较高能量
-        // 3. 计算能量比率，确保只有吹气模式才能触发
-        let lowSum = 0;
-        let midSum = 0;
-
-        // 计算低频能量
-        for (let i = lowFreqStart; i < lowFreqEnd && i < dataArray.length; i++) {
-          lowSum += dataArray[i];
-        }
-
-        // 计算中频能量
-        for (let i = midFreqStart; i < midFreqEnd && i < dataArray.length; i++) {
-          midSum += dataArray[i];
-        }
-
-        const lowBandWidth = Math.min(dataArray.length, lowFreqEnd) - lowFreqStart;
-        const midBandWidth = Math.min(dataArray.length, midFreqEnd) - midFreqStart;
-        
-        // 避免除以零
-        if (lowBandWidth === 0 || midBandWidth === 0) {
-          rafIdRef.current = requestAnimationFrame(checkBlow);
-          return;
-        }
-
-        const lowAverage = lowSum / lowBandWidth / 255;
-        const midAverage = midSum / midBandWidth / 255;
-
-        // 吹气特征：低频能量高，中频能量相对较低
-        // 同时要求低频能量必须达到一定阈值，减少误触发
-        const isBlowingSound = 
-          lowAverage > blowThreshold && 
-          midAverage < lowAverage * midHighRatio;
-
-        if (isBlowingSound) {
-          blowDurationRef.current += 1;
+        if (result.isBlowing) {
           updateState({ isBlowing: true });
-          if (blowDurationRef.current > blowRequiredDuration) {
+          if (result.isExtinguished) {
             updateState({ isExtinguished: true, isBlowing: false });
             // 成功后关闭音频上下文
-            if (audioContextRef.current) {
-              audioContextRef.current.close();
-              audioContextRef.current = null;
-              analyserRef.current = null;
-            }
+            cleanupAudioResources(audioContextRef.current);
+            audioContextRef.current = null;
+            analyserRef.current = null;
             return;
           }
         } else {
-          blowDurationRef.current = 0;
           updateState({ isBlowing: false });
         }
         
