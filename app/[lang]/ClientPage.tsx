@@ -42,14 +42,16 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   // 移动端配置完成状态管理
   // 语言下拉菜单状态
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const controlsRef = useRef<HTMLDivElement>(null);
 
   const updateState = (updates: Partial<AppState>) =>
     setState((prev) => ({ ...prev, ...updates }));
   const t = getTranslation(state.lang);
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
-  const blowThreshold = 0.35;
+  const blowThreshold = 0.5; // 提高阈值，降低灵敏度
   const blowDurationRef = useRef<number>(0);
+  const blowRequiredDuration = 8; // 增加所需持续时间
 
   // 生成分享链接
   const generateShareLink = () => {
@@ -105,14 +107,36 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
       const checkBlow = () => {
         if (!analyserRef.current || state.isExtinguished) return;
         analyserRef.current.getByteFrequencyData(dataArray);
-        let sum = 0;
-        for (let i = 0; i < 20; i++) sum += dataArray[i];
-        const average = sum / 20 / 255;
+        
+        // 改进的吹气识别算法：
+        // 1. 分析低频区域（10-100Hz），这是吹气声音的主要频率范围
+        // 2. 同时分析中频区域，避免误识别其他声音
+        const lowFreqStart = 5;
+        const lowFreqEnd = 50;
+        const midFreqStart = 50;
+        const midFreqEnd = 150;
+        
+        let lowSum = 0;
+        let midSum = 0;
+        
+        for (let i = lowFreqStart; i < lowFreqEnd; i++) {
+          lowSum += dataArray[i];
+        }
+        
+        for (let i = midFreqStart; i < midFreqEnd; i++) {
+          midSum += dataArray[i];
+        }
+        
+        const lowAverage = lowSum / (lowFreqEnd - lowFreqStart) / 255;
+        const midAverage = midSum / (midFreqEnd - midFreqStart) / 255;
+        
+        // 吹气特征：低频能量高，中频能量相对较低
+        const isBlowingSound = lowAverage > blowThreshold && midAverage < lowAverage * 0.7;
 
-        if (average > blowThreshold) {
+        if (isBlowingSound) {
           blowDurationRef.current += 1;
           updateState({ isBlowing: true });
-          if (blowDurationRef.current > 6) {
+          if (blowDurationRef.current > blowRequiredDuration) {
             updateState({ isExtinguished: true, isBlowing: false });
             if (audioContextRef.current) audioContextRef.current.close();
             return;
@@ -171,6 +195,26 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     };
   }, [state.isExtinguished]);
 
+  // 配置完成后打开全屏
+  useEffect(() => {
+    if (state.configCompleted) {
+      // 尝试进入全屏模式
+      const enterFullscreen = async () => {
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+          await elem.requestFullscreen();
+        } else if ((elem as any).webkitRequestFullscreen) {
+          await (elem as any).webkitRequestFullscreen();
+        } else if ((elem as any).msRequestFullscreen) {
+          await (elem as any).msRequestFullscreen();
+        }
+      };
+      enterFullscreen().catch(err => {
+        console.warn("无法进入全屏模式:", err);
+      });
+    }
+  }, [state.configCompleted]);
+
   const isRTL = state.lang === "ar";
 
   return (
@@ -226,9 +270,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
 
         {/* 核心内容区域 - 组合 header 和蛋糕场景 */}
         <div
-          className={`w-full flex flex-col items-center mt-8 justify-around  gap-8 transition-all duration-1800 ease-in-out ${
-            state.configCompleted ? "fixed inset-0" : ""
-          }`}
+          className={`w-full flex flex-col items-center mt-8 justify-around gap-8 transition-all duration-1800 ease-in-out ${state.configCompleted ? "fixed inset-0 animate-fade-in-up" : ""}`}
         >
           {/* Header - 与蛋糕场景组合 */}
           <header
@@ -285,13 +327,18 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
                       ? "border-white text-slate-500 dark:text-slate-400"
                       : "border-amber-400 bg-amber-50 text-amber-600"
                   }`}
-                >
-                  <span className="text-xs font-black uppercase tracking-widest">
-                    {state.configCompleted
-                      ? t.blowPrompt
-                      : t.configCompleteToBlow}
-                  </span>
-                </div>
+                onClick={() => {
+                  if (!state.configCompleted && controlsRef.current) {
+                    controlsRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }}
+              >
+                <span className="text-xs font-black uppercase tracking-widest cursor-pointer">
+                  {state.configCompleted
+                    ? t.blowPrompt
+                    : t.configCompleteToBlow}
+                </span>
+              </div>
               </div>
             )}
             {/* 配置完成后的操作按钮 - 更优雅的设计 */}
@@ -326,11 +373,8 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
             {/* 控制面板容器 - 移动端默认展开直到配置完成 */}
             <div
               id="controls-panel"
-              className={`w-full max-w-xl lg:max-w-none transition-all duration-1200 ease-in-out block opacity-100 ${
-                !state.configCompleted
-                  ? "block opacity-100"
-                  : "hidden opacity-0"
-              }`}
+              ref={controlsRef}
+              className={`w-full max-w-xl lg:max-w-none transition-all duration-1200 ease-in-out block opacity-100 ${!state.configCompleted ? "block opacity-100" : "hidden opacity-0"}`}
               role="region"
               aria-hidden={state.configCompleted}
             >

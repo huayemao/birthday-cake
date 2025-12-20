@@ -96,16 +96,16 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
       {/* Candle Settings */}
       <section className="space-y-6">
         <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400 dark:text-slate-500">{t.chooseCandle}</h3>
-        <div className="flex bg-gray-100/50 dark:bg-slate-800/50 p-1.5 rounded-3xl">
+        <div className="flex bg-gray-100/50 dark:bg-slate-800/50 p-1 rounded-2xl">
           <button
             onClick={() => updateState({ candleType: CandleType.CLASSIC })}
-            className={`flex-1 py-3.5 rounded-[1.2rem] text-sm font-black transition-all ${state.candleType === CandleType.CLASSIC ? 'bg-white dark:bg-slate-700 shadow-xl text-pink-600' : 'text-gray-400'}`}
+            className={`flex-1 py-2.5 rounded-[1rem] text-xs font-black transition-all ${state.candleType === CandleType.CLASSIC ? 'bg-white dark:bg-slate-700 shadow-xl text-pink-600' : 'text-gray-400'}`}
           >
             {t.classic}
           </button>
           <button
             onClick={() => updateState({ candleType: CandleType.DIGITS })}
-            className={`flex-1 py-3.5 rounded-[1.2rem] text-sm font-black transition-all ${state.candleType === CandleType.DIGITS ? 'bg-white dark:bg-slate-700 shadow-xl text-pink-600' : 'text-gray-400'}`}
+            className={`flex-1 py-2.5 rounded-[1rem] text-xs font-black transition-all ${state.candleType === CandleType.DIGITS ? 'bg-white dark:bg-slate-700 shadow-xl text-pink-600' : 'text-gray-400'}`}
           >
             {t.digits}
           </button>
@@ -115,7 +115,10 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
           {state.candleType === CandleType.CLASSIC ? (
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="flex justify-between items-end mb-6">
-                <label className="text-gray-400 text-[10px] font-black uppercase tracking-widest">{t.numberOfCandles}</label>
+                <div className="flex items-center gap-2">
+                  <label className="text-gray-400 text-[10px] font-black uppercase tracking-widest">{t.numberOfCandles}</label>
+                  <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{state.lang === 'zh' ? '非必填' : 'optional'}</span>
+                </div>
                 <span className="text-4xl font-serif font-black text-pink-500">{state.candleCount}</span>
               </div>
               <input 
@@ -129,14 +132,17 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
             </div>
           ) : (
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-4">{t.digitValue}</label>
+              <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-4 flex items-center gap-2">
+                {t.digitValue}
+                <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{state.lang === 'zh' ? '非必填' : 'optional'}</span>
+              </label>
               <input 
-                type="text" 
-                value={state.digits}
-                maxLength={4}
-                onChange={(e) => updateState({ digits: e.target.value.replace(/[^0-9]/g, '') })}
-                className="w-full px-8 py-5 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[2rem] focus:border-pink-400 focus:outline-none text-center text-5xl tracking-[0.2em] font-serif font-black text-pink-500 shadow-inner"
-              />
+                  type="text" 
+                  value={state.digits}
+                  maxLength={4}
+                  onChange={(e) => updateState({ digits: e.target.value.replace(/[^0-9]/g, '') })}
+                  className="w-full px-6 py-4 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[1.5rem] focus:border-pink-400 focus:outline-none text-center text-3xl tracking-[0.15em] font-serif font-black text-pink-500 shadow-inner"
+                />
             </div>
           )}
         </div>
@@ -148,38 +154,47 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
         
         {/* Name Input */}
         <div className="mb-5">
-          <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-3">{state.lang === 'zh' ? '姓名' : 'Name'}</label>
+          <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-3 flex items-center gap-2">
+            {state.lang === 'zh' ? '姓名' : 'Name'}
+            <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{state.lang === 'zh' ? '非必填' : 'optional'}</span>
+          </label>
           <input 
-            type="text" 
-            value={state.userName}
-            onChange={(e) => updateState({ userName: e.target.value })}
-            placeholder={state.lang === 'zh' ? '输入姓名' : 'Enter name'}
-            className="w-full px-6 py-3 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[2rem] focus:border-pink-400 focus:outline-none text-center text-xl font-serif font-black text-pink-500 shadow-inner"
-          />
+                  type="text" 
+                  value={state.userName}
+                  onChange={(e) => updateState({ userName: e.target.value })}
+                  placeholder={state.lang === 'zh' ? '输入姓名' : 'Enter name'}
+                  className="w-full px-6 py-2.5 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[1.5rem] focus:border-pink-400 focus:outline-none text-center text-lg font-serif font-black text-pink-500 shadow-inner"
+                />
         </div>
         
         {/* Giver Name Input */}
         <div className="mb-5">
-          <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-3">{state.lang === 'zh' ? '赠送人' : 'From'}</label>
+          <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-3 flex items-center gap-2">
+            {state.lang === 'zh' ? '赠送人' : 'From'}
+            <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{state.lang === 'zh' ? '非必填' : 'optional'}</span>
+          </label>
           <input 
-            type="text" 
-            value={state.giverName}
-            onChange={(e) => updateState({ giverName: e.target.value })}
-            placeholder={state.lang === 'zh' ? '输入赠送人姓名' : 'Enter giver name'}
-            className="w-full px-6 py-3 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[2rem] focus:border-pink-400 focus:outline-none text-center text-xl font-serif font-black text-pink-500 shadow-inner"
-          />
+                  type="text" 
+                  value={state.giverName}
+                  onChange={(e) => updateState({ giverName: e.target.value })}
+                  placeholder={state.lang === 'zh' ? '输入赠送人姓名' : 'Enter giver name'}
+                  className="w-full px-6 py-2.5 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[1.5rem] focus:border-pink-400 focus:outline-none text-center text-lg font-serif font-black text-pink-500 shadow-inner"
+                />
         </div>
         
         {/* Custom Message Input */}
         <div>
-          <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-3">{state.lang === 'zh' ? '祝福语' : 'Message'}</label>
+          <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-3 flex items-center gap-2">
+            {state.lang === 'zh' ? '祝福语' : 'Message'}
+            <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{state.lang === 'zh' ? '非必填' : 'optional'}</span>
+          </label>
           <input 
-            type="text" 
-            value={state.customMessage}
-            onChange={(e) => updateState({ customMessage: e.target.value })}
-            placeholder={state.lang === 'zh' ? '输入祝福语' : 'Enter message'}
-            className="w-full px-6 py-3 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[2rem] focus:border-pink-400 focus:outline-none text-center text-xl font-serif font-black text-pink-500 shadow-inner"
-          />
+                  type="text" 
+                  value={state.customMessage}
+                  onChange={(e) => updateState({ customMessage: e.target.value })}
+                  placeholder={state.lang === 'zh' ? '输入祝福语' : 'Enter message'}
+                  className="w-full px-6 py-2.5 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[1.5rem] focus:border-pink-400 focus:outline-none text-center text-lg font-serif font-black text-pink-500 shadow-inner"
+                />
         </div>
       </section>
 
@@ -187,7 +202,7 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
       <div>
         <button 
           onClick={() => {updateState({ configCompleted: true })}}
-          className="w-full py-5 bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:scale-[1.02] text-white font-black rounded-[2rem] shadow-2xl shadow-pink-200/50 transition-all active:scale-95 animate-in zoom-in duration-500 uppercase tracking-[0.3em] text-xs"
+          className="w-full py-4 bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:scale-[1.02] text-white font-black rounded-[1.5rem] shadow-2xl shadow-pink-200/50 transition-all active:scale-95 animate-in zoom-in duration-500 uppercase tracking-[0.25em] text-xs"
         >
           {t.completeConfig}
         </button>
