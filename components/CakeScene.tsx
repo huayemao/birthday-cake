@@ -143,7 +143,7 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
                 }}
               >
                 {/* Flame */}
-                <FlameSVG isExtinguished={state.isExtinguished} />
+                <FlameSVG isExtinguished={state.isExtinguished} isBlowing={state.isBlowing} />
 
                 {/* Candle Integration Shadow (Ambient Occlusion) */}
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-3 bg-black/15 blur-[3px] rounded-full -z-10"></div>

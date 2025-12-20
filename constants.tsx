@@ -166,19 +166,23 @@ export const CAKES: CakeOption[] = [
   }
 ];
 
-export const FlameSVG: React.FC<{ isExtinguished: boolean }> = ({ isExtinguished }) => (
+export const FlameSVG: React.FC<{ isExtinguished: boolean; isBlowing?: boolean }> = ({ isExtinguished, isBlowing = false }) => (
   <svg 
     viewBox="0 0 20 30" 
-    className={`w-5 h-8 lg:w-6 lg:h-10 transition-all duration-700 absolute -top-8 lg:-top-10 left-1/2 -translate-x-1/2   animate-flicker ${isExtinguished ? 'opacity-0 scale-0 translate-y-4' : 'opacity-100 scale-100'}`}
+    className={`w-5 h-8 lg:w-6 lg:h-10 transition-all duration-700 absolute -top-8 lg:-top-10 left-1/2 -translate-x-1/2 ${isExtinguished ? 'opacity-0 scale-0 translate-y-4' : 'opacity-100 scale-100'} ${isBlowing ? 'animate-blowing' : 'animate-flicker'}`}
+    style={{ transformStyle: 'preserve-3d' }}
   >
     <path 
       className="flame"
       d="M10 0C10 0 16 10 16 20C16 25.5228 13.3137 30 10 30C6.68629 30 4 25.5228 4 20C4 10 10 0 10 0Z" 
       fill="#ffb347"
+      style={{ animationDelay: '0s' }}
     />
     <path 
       className="flame"
-      style={{ animationDelay: '0.1s' }}
+      style={{ 
+        animationDelay: '0.1s',
+      }}
       d="M10 8C10 8 14 15 14 22C14 26 12 29 10 29C8 29 6 26 6 22C6 15 10 8 10 8Z" 
       fill="#ff6b6b"
     />

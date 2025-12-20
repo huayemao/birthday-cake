@@ -8,6 +8,7 @@
 
 @theme {
   --animate-flicker: flicker 1s ease-in-out infinite;
+  --animate-blowing: blowing 0.2s ease-in-out infinite;
 
   @keyframes flicker {
 
@@ -30,6 +31,17 @@
 
     100% {
       transform: rotate(0.5deg);
+    }
+  }
+
+  @keyframes blowing {
+    0%, 100% {
+      transform: rotateX(10deg) rotateY(5deg) scaleX(0.9) scaleY(0.8);
+      opacity: 0.8;
+    }
+    50% {
+      transform: rotateX(15deg) rotateY(8deg) scaleX(0.85) scaleY(0.7);
+      opacity: 0.7;
     }
   }
 }
