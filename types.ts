@@ -27,6 +27,7 @@ export interface AppState {
   isExtinguished: boolean;
   configCompleted: boolean;
   isBlowing: boolean;
+  blowingProgress: number; // 吹气进度百分比 (0-100)
   customCakes: Record<string, string>; // ID to DataURL
   userName: string; // 用户姓名
   customMessage: string; // 自定义祝福语

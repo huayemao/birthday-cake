@@ -9,7 +9,11 @@ import { Language, CandleType } from "@/types";
 import { useState, useRef, useCallback, useEffect } from "react";
 import * as LZString from "lz-string";
 import { useAppStore } from "@/store/useAppStore";
-import { detectBlow, DEFAULT_BLOW_CONFIG, cleanupAudioResources } from "@/utils/blowDetection";
+import {
+  detectBlow,
+  DEFAULT_BLOW_CONFIG,
+  cleanupAudioResources,
+} from "@/utils/blowDetection";
 
 interface ClientPageProps {
   initialLang: Language;
@@ -40,6 +44,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     digits,
     isExtinguished,
     isBlowing,
+    blowingProgress,
     customCakes,
     userName,
     customMessage,
@@ -57,6 +62,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     digits,
     isExtinguished,
     isBlowing,
+    blowingProgress,
     customCakes,
     userName,
     customMessage,
@@ -85,6 +91,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
       digits,
       isExtinguished: false, // 重置蜡烛状态，让分享的人可以重新吹蜡烛
       isBlowing: false,
+      blowingProgress: 0, // 重置吹气进度
       customCakes,
       userName,
       customMessage,
@@ -120,7 +127,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   const initMic = useCallback(async () => {
     // 如果已经熄灭或者未完成配置，不初始化麦克风
     if (isExtinguished || !configCompleted) return;
-    
+
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const audioContext = new (window.AudioContext ||
@@ -141,17 +148,34 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
           cleanupAudioResources(audioContextRef.current);
           audioContextRef.current = null;
           analyserRef.current = null;
-          updateState({ isBlowing: false });
+          updateState({ isBlowing: false, blowingProgress: 0 });
           return;
         }
-        
+
         // 使用detectBlow函数进行吹气检测
-        const result = detectBlow(analyserRef.current, DEFAULT_BLOW_CONFIG, blowState);
+        const result = detectBlow(
+          analyserRef.current,
+          DEFAULT_BLOW_CONFIG,
+          blowState
+        );
 
         if (result.isBlowing) {
-          updateState({ isBlowing: true });
+          // 计算吹气进度百分比
+          const progress = Math.min(
+            Math.round(
+              (blowState.blowDuration /
+                DEFAULT_BLOW_CONFIG.blowRequiredDuration) *
+                100
+            ),
+            100
+          );
+          updateState({ isBlowing: true, blowingProgress: progress });
           if (result.isExtinguished) {
-            updateState({ isExtinguished: true, isBlowing: false });
+            updateState({
+              isExtinguished: true,
+              isBlowing: false,
+              blowingProgress: 100,
+            });
             // 成功后关闭音频上下文
             cleanupAudioResources(audioContextRef.current);
             audioContextRef.current = null;
@@ -159,13 +183,13 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
             return;
           }
         } else {
-          updateState({ isBlowing: false });
+          updateState({ isBlowing: false, blowingProgress: 0 });
         }
-        
+
         // 保存raf ID以便后续取消
         rafIdRef.current = requestAnimationFrame(checkBlow);
       };
-      
+
       // 开始检测
       checkBlow();
     } catch (err) {
@@ -349,13 +373,16 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
           >
             {/* 蛋糕场景 - 核心内容 */}
             <CakeScene state={state} t={t} updateState={updateState} />
+            {/* 垂直进度条 - 侧边位置 */}
+
           </div>
           <div className="flex-1">
-            {/* 吹蜡烛提示 */}
+            {/* 吹蜡烛提示和进度条 */}
             {!isExtinguished && (
-              <div className="flex flex-col items-center gap-4 animate-bounce transition-all duration-1000">
+              <div className="flex flex-col items-center gap-6 transition-all duration-1000">
+                {/* 吹蜡烛提示文字 */}
                 <div
-                  className={`px-8 py-3 rounded-full glass-panel shadow-2xl border-2 transition-all duration-500 ${
+                  className={`max-w-xs lg:max-w-lg px-8 py-3 rounded-full glass-panel shadow-2xl border-2 transition-all duration-500 ${
                     isBlowing
                       ? "scale-125 bg-pink-50 border-pink-400 text-pink-600"
                       : configCompleted
@@ -377,6 +404,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
                 </div>
               </div>
             )}
+
             {/* 配置完成后的操作按钮 - 更优雅的设计 */}
             {configCompleted && (
               <div className="flex justify-center gap-6 items-center transition-all duration-1200 ease-in-out opacity-100">

@@ -16,6 +16,7 @@ const defaultState = (initialLang: Language): AppState => ({
   isExtinguished: false,
   configCompleted: false,
   isBlowing: false,
+  blowingProgress: 0,
   customCakes: {},
   userName: '',
   customMessage: '',

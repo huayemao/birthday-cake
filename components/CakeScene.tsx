@@ -11,6 +11,8 @@ interface CakeSceneProps {
 }
 
 const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
+  const { blowingProgress, configCompleted, isExtinguished, isBlowing } = state;
+
   const selectedCake = useMemo(() => {
     if (state.selectedCakeId.startsWith("custom-")) {
       return {
@@ -127,6 +129,47 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
                   : `From: ${state.giverName}`}
               </p>
             )}
+
+            {configCompleted && !isExtinguished && blowingProgress > 0 && (
+              <div className="absolute left-0  w-6 md:w-10 top-4 bottom-4 z-10">
+                {/* 背景轨道 */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-800/50 to-slate-700/30 rounded-full shadow-inner overflow-hidden">
+                  {/* 进度条 */}
+                  <div
+                    className="w-full bg-gradient-to-t from-pink-500 via-pink-400 to-pink-300 rounded-full transition-all duration-300 ease-out"
+                    style={{
+                      height: `${100 - blowingProgress}%`,
+                      transform: `translateY(${100 - blowingProgress}%)`,
+                      boxShadow: isBlowing
+                        ? "0 0 20px rgba(244, 114, 182, 0.8)"
+                        : "0 0 10px rgba(244, 114, 182, 0.4)",
+                    }}
+                  ></div>
+                </div>
+                {/* 进度指示器 */}
+                <div className="absolute w-full text-center -bottom-6 text-white font-bold text-lg">
+                  {blowingProgress}%
+                </div>
+                {/* 动画粒子效果 */}
+                {isBlowing && (
+                  <div className="absolute inset-0 pointer-events-none">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute w-2 h-2 bg-pink-300/80 rounded-full"
+                        style={{
+                          left: `${Math.random() * 100}%`,
+                          bottom: `${blowingProgress + Math.random() * 20}%`,
+                          animation: `float-up-${i} ${
+                            1 + Math.random() * 2
+                          }s ease-in-out infinite`,
+                        }}
+                      ></div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Candle Overlay */}
@@ -143,7 +186,10 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
                 }}
               >
                 {/* Flame */}
-                <FlameSVG isExtinguished={state.isExtinguished} isBlowing={state.isBlowing} />
+                <FlameSVG
+                  isExtinguished={state.isExtinguished}
+                  isBlowing={state.isBlowing}
+                />
 
                 {/* Candle Integration Shadow (Ambient Occlusion) */}
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-3 bg-black/15 blur-[3px] rounded-full -z-10"></div>
