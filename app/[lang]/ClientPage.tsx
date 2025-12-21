@@ -431,7 +431,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
             className={`w-full flex flex-col items-center justify-center gap-6 transition-all duration-1200 ease-in-out ${
               configCompleted
                 ? "opacity-0 pointer-events-none transform translate-y-0"
-                : "opacity-100 transform -translate-y-24 md:translate-y-0"
+                : "opacity-100 transform -translate-y-16 md:translate-y-0"
             }`}
           >
             {/* 控制面板容器 - 移动端默认展开直到配置完成 */}
