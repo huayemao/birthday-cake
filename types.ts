@@ -2,7 +2,9 @@
 // Fix: Import React to provide the 'React' namespace for React.FC
 import React from 'react';
 
-export type Language = 'zh' | 'en' | 'ja' | 'fr' | 'ar';
+export const languages = ['zh', 'en', 'ja', 'fr', 'ar', 'ko'] as const;
+
+export type Language = 'zh' | 'en' | 'ja' | 'fr' | 'ar' | 'ko';
 
 export interface CakeOption {
   id: string;

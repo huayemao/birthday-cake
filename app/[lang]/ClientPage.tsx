@@ -26,6 +26,7 @@ export const LANGUAGE_NAMES: Record<Language, string> = {
   ja: "日本語",
   fr: "Français",
   ar: "العربية",
+  ko: "한국어",
 };
 
 export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {

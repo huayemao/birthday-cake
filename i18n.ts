@@ -23,11 +23,11 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     share: "Share",
     copyLink: "Copy Link",
     configCompleteToBlow: "Complete configuration to start blowing",
-    keywords: "Online Birthday Candle Blowing, Birthday Cake, Birthday Celebration, Blow Birthday Candles Online, Blow Candles, Exquisite Illustration Style Birthday Cake, Customizable Candle Count and Position, Number Shape Candles, Flame Animation, Blow Microphone Simulation Extinguish Effect, Dazzling Celebration Animation, Multi-device Compatible, Offline Access, Multilingual Experience",
-    description: "Online birthday candle blowing with exquisite illustration style birthday cakes. Support customizable candle count and position, number shape candles, flame animation, blow microphone simulation to extinguish flames, dazzling celebration animation. Compatible with multiple devices, supports offline access and multilingual experience.",
-    seoTitle: "Birthday Candle Blowing Web App",
+    keywords: "Blow Birthday Candles Online,virtual birthday cake,online birthday surprise,custom digital cake, interactive birthday wishes,creative birthday gift,Online Birthday Candle Blowing, online birthday cake, Birthday Celebration,Blow Birthday Candles, Blow Candles Online,Customizable Candle Count and Position, Number Shape Candles, Flame Animation, Blow Microphone Simulation Extinguish Effect, Dazzling Celebration Animation",
+    description: "Surprise your loved ones with a unique virtual birthday cake! Design, decorate, and let friends blow out candles online with their mic—fun, interactive, and perfect for remote celebrations!",
+    seoTitle: "Birthday Candle Blowing Web App - Create a Virtual Birthday Cake – Customize, Share & Blow Candles Online with Your Mic",
     seoSubtitle1: "Birthday Cake Candle Simulator",
-    seoSubtitle2: "Exquisite Birthday Cake Interactive Experience"
+    seoSubtitle2: "Create a Virtual Birthday Cake – Blow Candles Online with Your Mic & Share the Magic!"
   },
   zh: {
     title: "电子生日蛋糕",
@@ -50,11 +50,11 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     share: "分享",
     copyLink: "复制链接",
     configCompleteToBlow: "完成配置后才可以吹蜡烛哦",
-    keywords: "在线吹生日蜡烛，生日蛋糕，生日庆祝，在线吹生日蜡烛，吹蜡烛，精美插画风格的生日蛋糕，支持自定义蜡烛数量和位置，数字形状蜡烛，火苗动画，吹麦克风模拟熄灭效果，绚丽庆祝动画。适配多端，支持离线访问，多语言体验。",
-    description: "在线吹生日蜡烛，精美插画风格的生日蛋糕，支持自定义蜡烛数量和位置，数字形状蜡烛，火苗动画，吹麦克风模拟熄灭效果，绚丽庆祝动画。适配多端，支持离线访问，多语言体验。",
-    seoTitle: "过生日吹蜡烛网页应用",
-    seoSubtitle1: "生日蛋糕蜡烛模拟器",
-    seoSubtitle2: "精美生日蛋糕互动体验"
+    keywords: "在线吹生日蜡烛,虚拟生日蛋糕, 麦克风吹气吹蜡烛,生日庆祝,在线吹生日蜡烛,吹蜡烛,支持自定义蜡烛数量和位置,数字形状蜡烛,火苗动画,吹麦克风模拟熄灭效果,绚丽庆祝动画。",
+    description: "想送一份独特的生日惊喜？用我们的在线工具定制精美虚拟生日蛋糕,邀请亲朋好友通过麦克风吹气吹灭蜡烛！支持添加祝福语,自定义蜡烛数量、形状、逼真火焰动画,吹灭后还有炫目庆祝特效,让远程庆生也能温馨难忘！",
+    seoTitle: "过生日在线吹蜡烛网页应用—— 定制虚拟蛋糕、分享互动惊喜",
+    seoSubtitle1: "生日蛋糕蜡烛模拟器——麦克风吹气吹蜡烛,真实互动体验 ",
+    seoSubtitle2: "定制虚拟生日蛋糕 - 好友在线吹蜡烛,共同见证温馨时刻！"
   },
   ja: {
     title: "電子誕生日ケーキ",
@@ -77,11 +77,11 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     share: "共有",
     copyLink: "リンクをコピー",
     configCompleteToBlow: "設定が完了したら吹き始めてください",
-    keywords: "オンライン誕生日ろうそく吹き、誕生日ケーキ、誕生日お祝い、オンライン誕生日ろうそく吹き、ろうそく吹き、美しいイラストスタイルの誕生日ケーキ、ろうそくの数と位置のカスタマイズ可能、数字形状のろうそく、炎アニメーション、マイクを吹いて消火効果をシミュレート、華やかなお祝いアニメーション。マルチデバイス対応、オフラインアクセス対応、多言語対応。",
-    description: "オンラインで誕生日ろうそくを吹く、美しいイラストスタイルの誕生日ケーキ。ろうそくの数と位置のカスタマイズ、数字形状のろうそく、炎アニメーション、マイクを吹いて消火効果をシミュレート、華やかなお祝いアニメーションをサポート。マルチデバイス対応、オフラインアクセス対応、多言語対応。",
-    seoTitle: "誕生日ろうそく吹きウェブアプリ",
-    seoSubtitle1: "誕生日ケーキろうそくシミュレーター",
-    seoSubtitle2: "美しい誕生日ケーキインタラクティブ体験"
+    keywords: "オンラインで誕生日ロウソクを吹き消す,バーチャル誕生日ケーキ,マイクで息を吹きかけてロウソクを消す,誕生日祝い,ロウソクの数と位置をカスタマイズ可能,数字型ロウソク,炎のアニメーション,マイク息吹き模擬消灯効果,華やかな祝いアニメーション",
+    description: "特別な誕生日サプライズを贈ろう！オンラインツールでオリジナルのバーチャル誕生日ケーキを作成し、家族や友人にマイクで息を吹きかけてロウソクを消してもらおう！ロウソクの数や形をカスタマイズ、リアルな炎のアニメーション、消灯後の華やかな祝いエフェクトで、遠隔でも温かい誕生日を演出できます！",
+    seoTitle: "オンラインで誕生日ロウソクを吹き消すWebアプリ – バーチャルケーキをカスタマイズ、共有して驚きを贈ろう",
+    seoSubtitle1: "誕生日ケーキロウソクシミュレーター – マイクで息を吹きかけてロウソクを消す、リアルなインタラクティブ体験",
+    seoSubtitle2: "オリジナルバーチャル誕生日ケーキを作成 – 友達とオンラインでロウソクを吹き消し、温かい瞬間を共有しよう！"
   },
   fr: {
     title: "Gâteau d'anniversaire électronique",
@@ -104,11 +104,11 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     share: "Partager",
     copyLink: "Copier le lien",
     configCompleteToBlow: "Complétez la configuration pour commencer à souffler",
-    keywords: "Souffler des bougies d'anniversaire en ligne, Gâteau d'anniversaire, Célébration d'anniversaire, Souffler des bougies d'anniversaire en ligne, Souffler des bougies, Gâteau d'anniversaire avec style d'illustration exquis, Support de personnalisation du nombre et de la position des bougies, Bougies en forme de chiffres, Animation de flamme, Effet de simulation d'extinction en soufflant dans le micro, Animation de célébration éblouissante. Compatible multi-appareils, accès hors ligne, expérience multilingue.",
-    description: "Souffler des bougies d'anniversaire en ligne avec des gâteaux d'anniversaire dans un style d'illustration exquis. Prend en charge la personnalisation du nombre et de la position des bougies, les bougies en forme de chiffres, l'animation de flamme, la simulation d'extinction en soufflant dans le micro, et l'animation de célébration éblouissante. Compatible avec plusieurs appareils, prend en charge l'accès hors ligne et l'expérience multilingue.",
-    seoTitle: "Application Web de Soufflage de Bougies d'Anniversaire",
-    seoSubtitle1: "Simulateur de Bougies de Gâteau d'Anniversaire",
-    seoSubtitle2: "Expérience interactive de gâteau d'anniversaire exquis"
+    keywords: "Souffler les bougies d'anniversaire en ligne,gâteau d'anniversaire virtuel,souffler dans le micro pour éteindre les bougies,célébration d'anniversaire,personnalisation du nombre et de la position des bougies,bougies en forme de chiffres,animation de flammes,effet d'extinction par souffle dans le micro,animation de célébration éclatante",
+    description: "Offrez une surprise d'anniversaire unique à vos proches ! Personnalisez un magnifique gâteau d'anniversaire virtuel avec notre outil en ligne et invitez vos proches à souffler les bougies en soufflant dans leur micro ! Personnalisez le nombre et la forme des bougies, bénéficiez d'une animation de flammes réaliste et d'effets de célébration éblouissants après l'extinction pour une fête à distance inoubliable !",
+    seoTitle: "Application web pour souffler les bougies d'anniversaire en ligne – Personnalisez un gâteau virtuel, partagez des surprises interactives",
+    seoSubtitle1: "Simulateur de bougies de gâteau d'anniversaire – Soufflez dans le micro pour éteindre les bougies, expérience interactive réaliste",
+    seoSubtitle2: "Créez un gâteau d'anniversaire virtuel personnalisé - Vos amis soufflent les bougies en ligne, vivez ensemble un moment chaleureux !"
   },
   ar: {
     title: "كعكة عيد الميلاد الإلكترونية",
@@ -131,11 +131,38 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     share: "مشاركة",
     copyLink: "نسخ الرابط",
     configCompleteToBlow: "اكمل التكوين لبدء النفخ",
-    keywords: "نفخ شموع عيد الميلاد عبر الإنترنت، كعكة عيد الميلاد، احتفال بعيد الميلاد، نفخ شموع عيد الميلاد عبر الإنترنت، نفخ الشموع، كعكة عيد ميلاد بأسلوب رسم توضيحي رائع، دعم تعديل عدد الشموع وموقعتها، شموع على شكل أرقام، تركيب حركة للنار، تأثير محاكاة إطفاء الشموع عن طريق النفخ في الميكروفون، تركيب احتفالي مذهل. متوافق مع أجهزة متعددة، يدعم الوصول بدون إنترنت، تجربة متعددة اللغات.",
-    description: "نفخ شموع عيد الميلاد عبر الإنترنت مع كعكات عيد ميلاد بأسلوب رسم توضيحي رائع. يدعم تعديل عدد الشموع وموقعتها، شموع على شكل أرقام، تركيب حركة للنار، تأثير محاكاة إطفاء الشموع عن طريق النفخ في الميكروفون، تركيب احتفالي مذهل. متوافق مع أجهزة متعددة، يدعم الوصول بدون إنترنت وتجربة متعددة اللغات.",
-    seoTitle: "تطبيق ويب لنفخ شموع عيد الميلاد",
-    seoSubtitle1: "محاكي شموع كعكة عيد الميلاد",
-    seoSubtitle2: "تجربة تفاعلية كعكة عيد ميلاد رائعة"
+    keywords: "نفخ شموع عيد الميلاد عبر الإنترنت,كعكة عيد الميلاد افتراضية,نفخ في الميكروفون لإطفاء الشموع,احتفال بعيد الميلاد,تخصيص عدد وموضع الشموع,شموع على شكل أرقام,تحريك اللهب,تأثير محاكاة إطفاء الشموع بنفخ الميكروفون,تحريك احتفالي زاهي",
+    description: "تريد تقديم مفاجأة فريدة بعيد الميلاد؟ استخدم أداةنا عبر الإنترنت لتصميم كعكة عيد الميلاد افتراضية رائعة، ودع أقاربك وأصدقائك يطفئون الشموع بنفخ في الميكروفون! يدعم إضافة رسائل تهنئة، وتخصيص عدد وشكل الشموع، وتحريك اللهب الواقعي، وتأثيرات احتفالية لافتة بعد إطفاء الشموع، مما يجعل الاحتفال عن بعد دافئًا وغير قابل للنسى!",
+    seoTitle: "تطبيق ويب لنفخ شموع عيد الميلاد عبر الإنترنت – تصميم كعكة افتراضية، مشاركة مفاجآت تفاعلية",
+    seoSubtitle1: "محاكاة شموع كعكة عيد الميلاد – نفخ في الميكروفون لإطفاء الشموع، تجربة تفاعلية حقيقية",
+    seoSubtitle2: "صمم كعكة عيد الميلاد افتراضية مخصصة - أصدقائك ينفخون الشموع عبر الإنترنت، وشهدوا لحظة دافئة معًا!"
+  },
+  ko: {
+    title: "전자 생일 케이크",
+    subtitle: "소원을 빌고 촛불을 불어 끄세요",
+    chooseCake: "케이크 선택",
+    chooseCandle: "캔들 스타일",
+    classic: "클래식",
+    digits: "숫자",
+    numberOfCandles: "캔들 개수",
+    digitValue: "숫자 입력",
+    blowPrompt: "마이크에 불어 촛불을 끄세요!",
+    celebrate: "생일 축하합니다!",
+    reset: "다시 켜기",
+    uploadCustom: "케이크 업로드/붙여넣기",
+    openControls: "⚙️ 설정",
+    closeControls: "✕ 닫기",
+    completeConfig: "✨ 완료",
+    backToConfig: "설정 수정",
+    restartPrompt: "클릭하여 촛불을 다시 켜세요",
+    share: "공유",
+    copyLink: "링크 복사",
+    configCompleteToBlow: "설정을 완료하면 불을 불 수 있습니다",
+    keywords: "온라인으로 생일 촛불 불어 끄기,가상 생일 케이크,마이크로 불어 촛불 끄기,생일 축하,촛불 개수와 위치 맞춤 설정,숫자 모양 촛불,불꽃 애니메이션,마이크 불기 모사 소화 효과,화려한 축하 애니메이션",
+    description: "독특한 생일 선물로 사랑하는 사람에게 놀라움을 선물하세요! 온라인 도구로 멋진 가상 생일 케이크를 커스텀하고, 친구와 가족에게 마이크로 불어 촛불을 끄게 하세요! 축하 메시지 추가, 촛불 개수와 모양 커스텀, 사실적인 불꽃 애니메이션, 소화 후 화려한 축하 효과를 지원해 원격 생일 축하도 따뜻하고 잊지 못할 추억으로 만들어 드립니다!",
+    seoTitle: "온라인 생일 촛불 불어 끄기 웹앱 – 가상 케이크 커스텀, 상호작용 놀라움 공유",
+    seoSubtitle1: "생일 케이크 촛불 시뮬레이터 – 마이크로 불어 촛불 끄기, 실감 나는 상호작용 경험",
+    seoSubtitle2: "커스텀 가상 생일 케이크 만들기 - 친구들이 온라인으로 촛불 불어 끄고, 따뜻한 순간 함께 공유하세요!"
   }
 };
 

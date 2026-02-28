@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Language } from '../../types';
+import { Language, languages } from '../../types';
 import { Analytics } from '@vercel/analytics/next';
 import { getTranslation } from '@/i18n';
 
@@ -30,6 +30,9 @@ export const LangLayout: React.FC<LangLayoutProps> = async ({ children, params }
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        {languages.map((lng) => (
+          <link key={lng} rel="alternate" hrefLang={lng} href={`/${lng}`} />
+        ))}
       </head>
       <body className='bg-slate-950'>
         {children}

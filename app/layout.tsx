@@ -16,8 +16,8 @@ export async function generateMetadata(
   const t = getTranslation(lang);
   
   return {
-    title: `${t.seoTitle} - ${t.seoSubtitle1} | ${t.seoSubtitle2}`,
-    description: t.description,
+    title: `${t.seoTitle} - ${t.seoSubtitle1}`,
+    description: ` ${t.seoSubtitle2} ${t.description}`,
     keywords: t.keywords,
   };
 }
