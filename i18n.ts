@@ -23,11 +23,11 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     share: "Share",
     copyLink: "Copy Link",
     configCompleteToBlow: "Complete configuration to start blowing",
-    keywords: "Blow Birthday Candles Online,virtual birthday cake,online birthday surprise,custom digital cake, interactive birthday wishes,creative birthday gift,Online Birthday Candle Blowing, online birthday cake, Birthday Celebration,Blow Birthday Candles, Blow Candles Online,Customizable Candle Count and Position, Number Shape Candles, Flame Animation, Blow Microphone Simulation Extinguish Effect, Dazzling Celebration Animation",
-    description: "Surprise your loved ones with a unique virtual birthday cake! Design, decorate, and let friends blow out candles online with their mic—fun, interactive, and perfect for remote celebrations!",
-    seoTitle: "Birthday Candle Blowing Web App - Create a Virtual Birthday Cake – Customize, Share & Blow Candles Online with Your Mic",
-    seoSubtitle1: "Birthday Cake Candle Simulator",
-    seoSubtitle2: "Create a Virtual Birthday Cake – Blow Candles Online with Your Mic & Share the Magic!"
+    keywords: "Blow Birthday Candles Online,virtual birthday cake,online birthday surprise,custom digital cake, interactive birthday wishes,creative birthday gift,Online Birthday Candle Blowing, online birthday cake, Birthday Celebration,Blow Birthday Candles, Blow Candles Online,Customizable Candle Count and Position, Birthday Cake Candle Simulator, Flame Animation, Blow Microphone Simulation Extinguish Effect, Dazzling Celebration Animation",
+    description: "Light the candles and let your loved ones blow them out using the microphone!",
+    seoTitle: "Blow Out Birthday Candles Online",
+    seoSubtitle1: "Customize, Share & Blow out Candles Online with Your Mic",
+    seoSubtitle2: "Create a Virtual Birthday Cake – Blow Out Candles Online with Your Mic & Share the Magic!"
   },
   zh: {
     title: "电子生日蛋糕",

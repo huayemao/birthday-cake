@@ -14,11 +14,12 @@ export async function generateMetadata(
   // 默认语言为英语，因为根布局无法获取 params
   const lang = 'en';
   const t = getTranslation(lang);
-  
+
   return {
     title: `${t.seoTitle} - ${t.seoSubtitle1}`,
     description: ` ${t.seoSubtitle2} ${t.description}`,
     keywords: t.keywords,
+    manifest: '/site.webmanifest',
   };
 }
 
