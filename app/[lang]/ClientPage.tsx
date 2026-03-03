@@ -4,7 +4,7 @@
 import CakeScene from "@/components/CakeScene";
 import Celebrate from "@/components/Celebrate";
 import Controls from "@/components/Controls";
-import LanguageSelector from "@/components/LanguageSelector";
+import NavBar from "@/components/NavBar";
 import { FullscreenManager } from "@/src/components/FullscreenManager";
 import { ScrollManager } from "@/src/components/ScrollManager";
 import { getTranslation } from "@/i18n";
@@ -68,9 +68,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   const { copyShareLink } = useShareLink();
   useUrlConfig();
 
-  const changeLanguage = (l: Language) => {
-    window.location.href = `/${l}`;
-  };
+
 
   const isRTL = lang === "ar";
 
@@ -78,6 +76,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     <>
       <FullscreenManager />
       <ScrollManager />
+      <NavBar lang={lang} configCompleted={configCompleted} />
       <main
         className={`min-h-screen relative flex flex-col md:flex-row py-8 px-4 sm:px-8 gap-12 transition-all duration-1500 ease-in-out ${isExtinguished ? "bg-[#020617]" : "bg-slate-950"
           } ${configCompleted ? "py-4 gap-4" : ""}`}
@@ -85,12 +84,6 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
       >
         <Celebrate active={isExtinguished} />
 
-        <nav
-          className={`fixed top-4 right-4 md:top-8 md:right-4 z-20 glass-panel p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50 transition-all duration-1000 ease-in-out ${configCompleted ? "scale-90 opacity-80" : ""
-            }`}
-        >
-          <LanguageSelector currentLang={lang} onLanguageChange={changeLanguage} />
-        </nav>
 
         {/* 核心内容区域 - 组合 header 和蛋糕场景 */}
         <div

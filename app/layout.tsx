@@ -26,7 +26,9 @@ export async function generateMetadata(
 // 根布局不再需要异步，因为不需要访问 params
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
-    <>{children}</>
+    <>
+      {children}
+    </>
   );
 };
 

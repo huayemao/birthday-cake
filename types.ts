@@ -66,7 +66,7 @@ export interface Translation {
   share: string;
   copyLink: string;
   configCompleteToBlow: string;
-  // SEO相关字段
+  // SEO 相关字段
   keywords: string;
   description: string;
   // 拆分成不同字段的标题
@@ -83,4 +83,34 @@ export interface Translation {
   optional: string;
   footerText: string;
   author: string;
+  // 导航和页面相关字段
+  aboutTitle?: string;
+  guideTitle?: string;
+  backToHome?: string;
+  featuresTitle?: string;
+  feature1?: string;
+  feature2?: string;
+  feature3?: string;
+  feature4?: string;
+  feature5?: string;
+  feature6?: string;
+  aboutContent1?: string;
+  aboutContent2?: string;
+  step1Title?: string;
+  step1Content?: string;
+  step2Title?: string;
+  step2Content?: string;
+  step3Title?: string;
+  step3Content?: string;
+  step4Title?: string;
+  step4Content?: string;
+  step5Title?: string;
+  step5Content?: string;
+  step6Title?: string;
+  step6Content?: string;
+  tipsTitle?: string;
+  tip1?: string;
+  tip2?: string;
+  tip3?: string;
+  tip4?: string;
 }
