@@ -5,16 +5,15 @@ import CakeScene from "@/components/CakeScene";
 import Celebrate from "@/components/Celebrate";
 import Controls from "@/components/Controls";
 import LanguageSelector from "@/components/LanguageSelector";
+import { FullscreenManager } from "@/src/components/FullscreenManager";
+import { ScrollManager } from "@/src/components/ScrollManager";
 import { getTranslation } from "@/i18n";
 import { Language } from "@/types";
-import { useState, useRef, useCallback, useEffect } from "react";
-import * as LZString from "lz-string";
+import { useRef, useEffect } from "react";
 import { useAppStore } from "@/store/useAppStore";
-import {
-  detectBlow,
-  DEFAULT_BLOW_CONFIG,
-  cleanupAudioResources,
-} from "@/utils/blowDetection";
+import { useBlowDetection } from "@/src/hooks/useBlowDetection";
+import { useShareLink } from "@/src/hooks/useShareLink";
+import { useUrlConfig } from "@/src/hooks/useUrlConfig";
 
 interface ClientPageProps {
   initialLang: Language;
@@ -39,7 +38,6 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     customMessage,
     giverName,
     updateState,
-    resetState,
   } = useAppStore();
 
   const state = {
@@ -57,214 +55,29 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     customMessage,
     giverName,
   };
+  
   // 设置初始语言
   useEffect(() => {
     useAppStore.setState({ lang: initialLang });
   }, [initialLang]);
 
   const t = getTranslation(lang);
-  const audioContextRef = useRef<AudioContext | null>(null);
-  const analyserRef = useRef<AnalyserNode | null>(null);
-  const rafIdRef = useRef<number | null>(null);
-  const blowDurationRef = useRef<number>(0); // 吹气持续时间状态
-
-  // 生成分享链接
-  const generateShareLink = () => {
-    // 创建要分享的状态对象，排除不需要分享的临时状态
-    const shareState = {
-      lang,
-      selectedCakeId,
-      configCompleted: true,
-      candleType,
-      candleCount,
-      digits,
-      isExtinguished: false, // 重置蜡烛状态，让分享的人可以重新吹蜡烛
-      isBlowing: false,
-      blowingProgress: 0, // 重置吹气进度
-      customCakes,
-      userName,
-      customMessage,
-      giverName,
-    };
-
-    // 将状态转换为 JSON 字符串，然后使用 lz-string 压缩
-    const jsonState = JSON.stringify(shareState);
-    const compressedState = LZString.compressToEncodedURIComponent(jsonState);
-
-    // 构建分享链接
-    const url = new URL(window.location.href);
-    url.searchParams.set("config", compressedState);
-    return url.toString();
-  };
-
-  // 复制分享链接到剪贴板
-  const copyShareLink = async () => {
-    try {
-      const shareLink = generateShareLink();
-      await navigator.clipboard.writeText(shareLink);
-      // 可以添加一个成功提示
-      alert(t.copyLink + " ✓");
-    } catch (err) {
-      console.error("Failed to copy link:", err);
-    }
-  };
+  
+  // 使用自定义hooks
+  useBlowDetection();
+  const { copyShareLink } = useShareLink();
+  useUrlConfig();
 
   const changeLanguage = (l: Language) => {
     window.location.href = `/${l}`;
   };
 
-  const initMic = useCallback(async () => {
-    // 如果已经熄灭或者未完成配置，不初始化麦克风
-    if (isExtinguished || !configCompleted) return;
-
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const audioContext = new (window.AudioContext ||
-        (window as any).webkitAudioContext)();
-      const analyser = audioContext.createAnalyser();
-      const source = audioContext.createMediaStreamSource(stream);
-      analyser.fftSize = 256;
-      source.connect(analyser);
-      audioContextRef.current = audioContext;
-      analyserRef.current = analyser;
-
-      const blowState = { blowDuration: 0 };
-
-      const checkBlow = () => {
-        // 如果不再需要检测（熄灭或未配置），停止检测
-        if (!analyserRef.current || isExtinguished || !configCompleted) {
-          // 确保停止isBlowing状态
-          cleanupAudioResources(audioContextRef.current);
-          audioContextRef.current = null;
-          analyserRef.current = null;
-          updateState({ isBlowing: false, blowingProgress: 0 });
-          return;
-        }
-
-        // 使用detectBlow函数进行吹气检测
-        const result = detectBlow(
-          analyserRef.current,
-          DEFAULT_BLOW_CONFIG,
-          blowState
-        );
-
-        if (result.isBlowing) {
-          // 计算吹气进度百分比
-          const progress = Math.min(
-            Math.round(
-              (blowState.blowDuration /
-                DEFAULT_BLOW_CONFIG.blowRequiredDuration) *
-              100
-            ),
-            100
-          );
-          updateState({ isBlowing: true, blowingProgress: progress });
-          if (result.isExtinguished) {
-            updateState({
-              isExtinguished: true,
-              isBlowing: false,
-              blowingProgress: 100,
-            });
-            // 成功后关闭音频上下文
-            cleanupAudioResources(audioContextRef.current);
-            audioContextRef.current = null;
-            analyserRef.current = null;
-            return;
-          }
-        } else {
-          updateState({ isBlowing: false, blowingProgress: 0 });
-        }
-
-        // 保存raf ID以便后续取消
-        rafIdRef.current = requestAnimationFrame(checkBlow);
-      };
-
-      // 开始检测
-      checkBlow();
-    } catch (err) {
-      console.warn("Mic access denied:", err);
-    }
-  }, [isExtinguished, configCompleted, updateState]);
-
-  // 从 URL 参数恢复配置
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const configParam = urlParams.get("config");
-
-    if (configParam) {
-      try {
-        // 解压并解析配置
-        const decompressedConfig =
-          LZString.decompressFromEncodedURIComponent(configParam);
-        if (decompressedConfig) {
-          const parsedConfig = JSON.parse(decompressedConfig);
-          // 应用配置到状态
-          updateState({ ...parsedConfig, configCompleted: true });
-          // 直接显示配置完成状态
-        }
-      } catch (err) {
-        console.error("Failed to parse config from URL:", err);
-      }
-    }
-  }, [updateState]);
-
-  useEffect(() => {
-    initMic();
-    return () => {
-      // 停止requestAnimationFrame循环
-      if (rafIdRef.current !== null) {
-        cancelAnimationFrame(rafIdRef.current);
-        rafIdRef.current = null;
-      }
-      // 关闭音频上下文
-      if (audioContextRef.current) {
-        audioContextRef.current.close();
-        audioContextRef.current = null;
-        analyserRef.current = null;
-      }
-      // 重置吹气状态
-      updateState({ isBlowing: false });
-      blowDurationRef.current = 0;
-    };
-  }, [initMic, updateState]);
-
-  // 蛋糕吹灭时禁止页面滚动
-  useEffect(() => {
-    if (configCompleted) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-    // 组件卸载时恢复滚动
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
-  }, [configCompleted]);
-
-  // 配置完成后打开全屏
-  useEffect(() => {
-    if (configCompleted) {
-      // 尝试进入全屏模式
-      const enterFullscreen = async () => {
-        const elem = document.documentElement;
-        if (elem.requestFullscreen) {
-          await elem.requestFullscreen();
-        } else if ((elem as any).webkitRequestFullscreen) {
-          await (elem as any).webkitRequestFullscreen();
-        } else if ((elem as any).msRequestFullscreen) {
-          await (elem as any).msRequestFullscreen();
-        }
-      };
-      enterFullscreen().catch((err) => {
-        console.warn("无法进入全屏模式:", err);
-      });
-    }
-  }, [configCompleted]);
-
   const isRTL = lang === "ar";
 
   return (
     <>
+      <FullscreenManager />
+      <ScrollManager />
       <main
         className={`min-h-screen relative flex flex-col md:flex-row py-8 px-4 sm:px-8 gap-12 transition-all duration-1500 ease-in-out ${isExtinguished ? "bg-[#020617]" : "bg-slate-950"
           } ${configCompleted ? "py-4 gap-4" : ""}`}
