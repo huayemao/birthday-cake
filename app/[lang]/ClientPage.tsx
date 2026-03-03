@@ -4,8 +4,9 @@
 import CakeScene from "@/components/CakeScene";
 import Celebrate from "@/components/Celebrate";
 import Controls from "@/components/Controls";
+import LanguageSelector from "@/components/LanguageSelector";
 import { getTranslation } from "@/i18n";
-import { Language, CandleType } from "@/types";
+import { Language } from "@/types";
 import { useState, useRef, useCallback, useEffect } from "react";
 import * as LZString from "lz-string";
 import { useAppStore } from "@/store/useAppStore";
@@ -19,20 +20,7 @@ interface ClientPageProps {
   initialLang: Language;
 }
 
-// 语言名称映射，使用对应语言的名称
-export const LANGUAGE_NAMES: Record<Language, string> = {
-  en: "English",
-  zh: "中文",
-  ja: "日本語",
-  fr: "Français",
-  ar: "العربية",
-  ko: "한국어",
-};
-
 export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
-  // 移动端配置完成状态管理
-  // 语言下拉菜单状态
-  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const controlsRef = useRef<HTMLDivElement>(null);
 
   // 使用 Zustand store
@@ -166,7 +154,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
             Math.round(
               (blowState.blowDuration /
                 DEFAULT_BLOW_CONFIG.blowRequiredDuration) *
-                100
+              100
             ),
             100
           );
@@ -278,93 +266,54 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   return (
     <>
       <main
-        className={`min-h-screen relative flex flex-col md:flex-row py-8 px-4 sm:px-8 gap-12 transition-all duration-1500 ease-in-out ${
-          isExtinguished ? "bg-[#020617]" : "bg-slate-950"
-        } ${configCompleted ? "py-4 gap-4" : ""}`}
+        className={`min-h-screen relative flex flex-col md:flex-row py-8 px-4 sm:px-8 gap-12 transition-all duration-1500 ease-in-out ${isExtinguished ? "bg-[#020617]" : "bg-slate-950"
+          } ${configCompleted ? "py-4 gap-4" : ""}`}
         dir={isRTL ? "rtl" : "ltr"}
       >
         <Celebrate active={isExtinguished} />
 
         <nav
-          className={`fixed top-4 right-4 md:top-8 md:right-4 z-20 glass-panel p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50 transition-all duration-1000 ease-in-out ${
-            configCompleted ? "scale-90 opacity-80" : ""
-          }`}
+          className={`fixed top-4 right-4 md:top-8 md:right-4 z-20 glass-panel p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50 transition-all duration-1000 ease-in-out ${configCompleted ? "scale-90 opacity-80" : ""
+            }`}
         >
-          {/* 语言下拉菜单 */}
-          <div className="relative">
-            <button
-              onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-              className="px-4 py-1.5 rounded-[0.8rem] text-[10px] font-black uppercase transition-all flex items-center gap-2 bg-pink-500 text-white shadow-lg"
-              aria-expanded={isLangMenuOpen}
-              aria-haspopup="true"
-            >
-              {LANGUAGE_NAMES[lang]}
-              <span className="text-sm">▼</span>
-            </button>
-
-            {/* 下拉菜单 */}
-            {isLangMenuOpen && (
-              <div className="absolute right-0 mt-1 w-40 rounded-[0.8rem] overflow-hidden shadow-xl glass-panel dark:bg-slate-900/80 z-50">
-                {(["en", "zh", "ja", "fr", "ar"] as Language[]).map((l) => (
-                  <button
-                    key={l}
-                    onClick={() => {
-                      changeLanguage(l);
-                      setIsLangMenuOpen(false);
-                    }}
-                    className={`w-full text-left px-4 py-2 text-[10px] font-black uppercase transition-all ${
-                      lang === l
-                        ? "bg-pink-500 text-white"
-                        : "text-gray-500 hover:bg-pink-100 dark:hover:bg-slate-800"
-                    }`}
-                  >
-                    {LANGUAGE_NAMES[l]}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          <LanguageSelector currentLang={lang} onLanguageChange={changeLanguage} />
         </nav>
 
         {/* 核心内容区域 - 组合 header 和蛋糕场景 */}
         <div
-          className={`w-full flex flex-col items-center mt-8 justify-around gap-8 transition-all duration-1800 ease-in-out ${
-            configCompleted ? "fixed inset-0 animate-fade-in-up" : ""
-          }`}
+          className={`w-full flex flex-col items-center mt-8 justify-around gap-8 transition-all duration-1800 ease-in-out ${configCompleted ? "fixed inset-0 animate-fade-in-up" : ""
+            }`}
         >
           {/* Header - 与蛋糕场景组合 */}
           <header
-            className={`flex-1 text-center flex flex-col justify-around gap-3 transition-all duration-1800 ease-in-out z-10 max-w-3xl ${
-              configCompleted
-                ? "transform opacity-95 translate-y-2"
-                : "opacity-100"
-            }`}
+            className={`flex-1 text-center flex flex-col justify-around gap-3 transition-all duration-1800 ease-in-out z-10 max-w-3xl ${configCompleted
+              ? "transform opacity-95 translate-y-2"
+              : "opacity-100"
+              }`}
           >
             <h1
-              className={`text-4xl md:text-6xl font-serif font-black tracking-tighter transition-all duration-1800 ease-in-out ${
-                isExtinguished ? "text-white/80" : "text-white"
-              }`}
+              className={`text-4xl md:text-6xl font-serif font-black tracking-tighter transition-all duration-1800 ease-in-out ${isExtinguished ? "text-white/80" : "text-white"
+                }`}
             >
               {isExtinguished
                 ? userName
                   ? `${t.celebrate} ${userName}!`
                   : t.celebrate
                 : userName
-                ? `${userName}`
-                : t.title}
+                  ? `${userName}`
+                  : t.title}
             </h1>
             <p
-              className={`text-lg sm:text-xl md:text-2xl font-medium transition-all duration-1800 ease-in-out delay-300 ${
-                isExtinguished ? "text-amber-400" : "text-slate-500"
-              }`}
+              className={`text-lg sm:text-xl md:text-2xl font-medium transition-all duration-1800 ease-in-out delay-300 ${isExtinguished ? "text-amber-400" : "text-slate-500"
+                }`}
             >
               {isExtinguished
                 ? customMessage
                   ? customMessage
                   : "✧ 🎂 🎊 🎉 ✨ ✧"
                 : customMessage
-                ? customMessage
-                : t.subtitle}
+                  ? customMessage
+                  : t.subtitle}
             </p>
           </header>
 
@@ -383,13 +332,12 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
               <div className="flex flex-col items-center gap-6 transition-all duration-1000">
                 {/* 吹蜡烛提示文字 */}
                 <div
-                  className={`max-w-xs lg:max-w-lg px-8 py-3 rounded-full glass-panel shadow-2xl border-2 transition-all duration-500 ${
-                    isBlowing
-                      ? "scale-125 bg-pink-50 border-pink-400 text-pink-600"
-                      : configCompleted
+                  className={`max-w-xs lg:max-w-lg px-8 py-3 rounded-full glass-panel shadow-2xl border-2 transition-all duration-500 ${isBlowing
+                    ? "scale-125 bg-pink-50 border-pink-400 text-pink-600"
+                    : configCompleted
                       ? "border-white text-slate-500 dark:text-slate-400"
                       : "border-amber-400 bg-amber-50 text-amber-600"
-                  }`}
+                    }`}
                   onClick={() => {
                     if (!configCompleted && controlsRef.current) {
                       controlsRef.current.scrollIntoView({
@@ -429,19 +377,17 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
         {/* 控制面板 - 保持在DOM流中以利于SEO，但在配置完成后隐藏 */}
         {!configCompleted && (
           <div
-            className={`w-full flex flex-col items-center justify-center gap-6 transition-all duration-1200 ease-in-out ${
-              configCompleted
-                ? "opacity-0 pointer-events-none transform translate-y-0"
-                : "opacity-100 transform -translate-y-16 md:translate-y-0"
-            }`}
+            className={`w-full flex flex-col items-center justify-center gap-6 transition-all duration-1200 ease-in-out ${configCompleted
+              ? "opacity-0 pointer-events-none transform translate-y-0"
+              : "opacity-100 transform -translate-y-16 md:translate-y-0"
+              }`}
           >
             {/* 控制面板容器 - 移动端默认展开直到配置完成 */}
             <div
               id="controls-panel"
               ref={controlsRef}
-              className={`w-full max-w-xl lg:max-w-none transition-all duration-1200 ease-in-out block opacity-100 ${
-                !configCompleted ? "block opacity-100" : "hidden opacity-0"
-              }`}
+              className={`w-full max-w-xl lg:max-w-none transition-all duration-1200 ease-in-out block opacity-100 ${!configCompleted ? "block opacity-100" : "hidden opacity-0"
+                }`}
               role="region"
               aria-hidden={configCompleted}
             >
@@ -451,25 +397,25 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
           </div>
         )}
         <div
-          className={`fixed inset-0 pointer-events-none -z-10 overflow-hidden transition-all duration-1500 ease-in-out ${
-            configCompleted ? "opacity-60" : "opacity-40"
-          }`}
+          className={`fixed inset-0 pointer-events-none -z-10 overflow-hidden transition-all duration-1500 ease-in-out ${configCompleted ? "opacity-60" : "opacity-40"
+            }`}
         >
           <div
-            className={`absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-pink-300/30 blur-[180px] rounded-full transition-all duration-1500 ease-in-out ${
-              configCompleted ? "scale-125 animate-pulse-slow" : ""
-            }`}
+            className={`absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-pink-300/30 blur-[180px] rounded-full transition-all duration-1500 ease-in-out ${configCompleted ? "scale-125 animate-pulse-slow" : ""
+              }`}
           ></div>
           <div
-            className={`absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-amber-200/30 blur-[180px] rounded-full transition-all duration-1500 ease-in-out ${
-              configCompleted ? "scale-125 animate-pulse-slow delay-700" : ""
-            }`}
+            className={`absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-amber-200/30 blur-[180px] rounded-full transition-all duration-1500 ease-in-out ${configCompleted ? "scale-125 animate-pulse-slow delay-700" : ""
+              }`}
           ></div>
         </div>
       </main>
 
-      <footer className="mt-auto py-12  text-center text-[10px] font-black uppercase tracking-[0.5em] text-gray-400 dark:text-slate-600">
-        花野猫匠心制作❤ &copy; {new Date().getFullYear()}
+      <footer className="mt-auto py-12  text-center text-sm font-black   text-gray-400 dark:text-slate-600">
+        <a href="https://huayemao.run/" target="_blank" className="hover:text-pink-500 transition-colors">
+          {t.author}
+        </a>  {t.footerText} {' '}
+        &copy;{new Date().getFullYear()}
       </footer>
     </>
   );

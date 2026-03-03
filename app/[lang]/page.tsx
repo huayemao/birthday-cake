@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppState, Language, CandleType } from '../../types';
+import { AppState, Language, CandleType, languages, LANGUAGE_NAMES } from '../../types';
 import { ClientPage } from './ClientPage';
 
 
@@ -17,6 +17,12 @@ const Page: React.FC<PageProps> = async ({ params }) => {
   // 动态导入客户端组件
 
   return <ClientPage initialLang={lang} />;
+};
+
+export const generateStaticParams = async () => {
+  return Object.keys(LANGUAGE_NAMES).map((lang) => ({
+    lang,
+  }));
 };
 
 

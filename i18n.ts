@@ -27,7 +27,17 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     description: "Light the candles and let your loved ones blow them out using the microphone!",
     seoTitle: "Blow Out Birthday Candles Online",
     seoSubtitle1: "Customize, Share & Blow out Candles Online with Your Mic",
-    seoSubtitle2: "Create a Virtual Birthday Cake – Blow Out Candles Online with Your Mic & Share the Magic!"
+    seoSubtitle2: "Create a Virtual Birthday Cake – Blow Out Candles Online with Your Mic & Share the Magic!",
+    customize: "Customize",
+    name: "Name",
+    from: "From",
+    message: "Message",
+    enterName: "Enter name",
+    enterGiverName: "Enter giver name",
+    enterMessage: "Enter message",
+    optional: "optional",
+    footerText: "Crafted with ❤",
+    author: "huayemao"
   },
   zh: {
     title: "电子生日蛋糕",
@@ -54,7 +64,17 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     description: "想送一份独特的生日惊喜？用我们的在线工具定制精美虚拟生日蛋糕,邀请亲朋好友通过麦克风吹气吹灭蜡烛！支持添加祝福语,自定义蜡烛数量、形状、逼真火焰动画,吹灭后还有炫目庆祝特效,让远程庆生也能温馨难忘！",
     seoTitle: "过生日在线吹蜡烛网页应用—— 定制虚拟蛋糕、分享互动惊喜",
     seoSubtitle1: "生日蛋糕蜡烛模拟器——麦克风吹气吹蜡烛,真实互动体验 ",
-    seoSubtitle2: "定制虚拟生日蛋糕 - 好友在线吹蜡烛,共同见证温馨时刻！"
+    seoSubtitle2: "定制虚拟生日蛋糕 - 好友在线吹蜡烛,共同见证温馨时刻！",
+    customize: "个性化设置",
+    name: "姓名",
+    from: "赠送人",
+    message: "祝福语",
+    enterName: "输入姓名",
+    enterGiverName: "输入赠送人姓名",
+    enterMessage: "输入祝福语",
+    optional: "非必填",
+    footerText: "用❤制作 ",
+    author: "花野猫"
   },
   ja: {
     title: "電子誕生日ケーキ",
@@ -81,7 +101,17 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     description: "特別な誕生日サプライズを贈ろう！オンラインツールでオリジナルのバーチャル誕生日ケーキを作成し、家族や友人にマイクで息を吹きかけてロウソクを消してもらおう！ロウソクの数や形をカスタマイズ、リアルな炎のアニメーション、消灯後の華やかな祝いエフェクトで、遠隔でも温かい誕生日を演出できます！",
     seoTitle: "オンラインで誕生日ロウソクを吹き消すWebアプリ – バーチャルケーキをカスタマイズ、共有して驚きを贈ろう",
     seoSubtitle1: "誕生日ケーキロウソクシミュレーター – マイクで息を吹きかけてロウソクを消す、リアルなインタラクティブ体験",
-    seoSubtitle2: "オリジナルバーチャル誕生日ケーキを作成 – 友達とオンラインでロウソクを吹き消し、温かい瞬間を共有しよう！"
+    seoSubtitle2: "オリジナルバーチャル誕生日ケーキを作成 – 友達とオンラインでロウソクを吹き消し、温かい瞬間を共有しよう！",
+    customize: "カスタマイズ",
+    name: "名前",
+    from: "贈り主",
+    message: "メッセージ",
+    enterName: "名前を入力",
+    enterGiverName: "贈り主の名前を入力",
+    enterMessage: "メッセージを入力",
+    optional: "任意",
+    footerText: "Crafted with ❤",
+    author: "huayemao"
   },
   fr: {
     title: "Gâteau d'anniversaire électronique",
@@ -108,7 +138,17 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     description: "Offrez une surprise d'anniversaire unique à vos proches ! Personnalisez un magnifique gâteau d'anniversaire virtuel avec notre outil en ligne et invitez vos proches à souffler les bougies en soufflant dans leur micro ! Personnalisez le nombre et la forme des bougies, bénéficiez d'une animation de flammes réaliste et d'effets de célébration éblouissants après l'extinction pour une fête à distance inoubliable !",
     seoTitle: "Application web pour souffler les bougies d'anniversaire en ligne – Personnalisez un gâteau virtuel, partagez des surprises interactives",
     seoSubtitle1: "Simulateur de bougies de gâteau d'anniversaire – Soufflez dans le micro pour éteindre les bougies, expérience interactive réaliste",
-    seoSubtitle2: "Créez un gâteau d'anniversaire virtuel personnalisé - Vos amis soufflent les bougies en ligne, vivez ensemble un moment chaleureux !"
+    seoSubtitle2: "Créez un gâteau d'anniversaire virtuel personnalisé - Vos amis soufflent les bougies en ligne, vivez ensemble un moment chaleureux !",
+    customize: "Personnaliser",
+    name: "Nom",
+    from: "De",
+    message: "Message",
+    enterName: "Entrez le nom",
+    enterGiverName: "Entrez le nom de l'expéditeur",
+    enterMessage: "Entrez le message",
+    optional: "facultatif",
+    footerText: "Crafted with ❤",
+    author: "huayemao"
   },
   ar: {
     title: "كعكة عيد الميلاد الإلكترونية",
@@ -135,7 +175,17 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     description: "تريد تقديم مفاجأة فريدة بعيد الميلاد؟ استخدم أداةنا عبر الإنترنت لتصميم كعكة عيد الميلاد افتراضية رائعة، ودع أقاربك وأصدقائك يطفئون الشموع بنفخ في الميكروفون! يدعم إضافة رسائل تهنئة، وتخصيص عدد وشكل الشموع، وتحريك اللهب الواقعي، وتأثيرات احتفالية لافتة بعد إطفاء الشموع، مما يجعل الاحتفال عن بعد دافئًا وغير قابل للنسى!",
     seoTitle: "تطبيق ويب لنفخ شموع عيد الميلاد عبر الإنترنت – تصميم كعكة افتراضية، مشاركة مفاجآت تفاعلية",
     seoSubtitle1: "محاكاة شموع كعكة عيد الميلاد – نفخ في الميكروفون لإطفاء الشموع، تجربة تفاعلية حقيقية",
-    seoSubtitle2: "صمم كعكة عيد الميلاد افتراضية مخصصة - أصدقائك ينفخون الشموع عبر الإنترنت، وشهدوا لحظة دافئة معًا!"
+    seoSubtitle2: "صمم كعكة عيد الميلاد افتراضية مخصصة - أصدقائك ينفخون الشموع عبر الإنترنت، وشهدوا لحظة دافئة معًا!",
+    customize: "تخصيص",
+    name: "الاسم",
+    from: "من",
+    message: "الرسالة",
+    enterName: "أدخل الاسم",
+    enterGiverName: "أدخل اسم المرسل",
+    enterMessage: "أدخل الرسالة",
+    optional: "اختياري",
+    footerText: "Crafted with ❤",
+    author: "huayemao"
   },
   ko: {
     title: "전자 생일 케이크",
@@ -162,7 +212,17 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     description: "독특한 생일 선물로 사랑하는 사람에게 놀라움을 선물하세요! 온라인 도구로 멋진 가상 생일 케이크를 커스텀하고, 친구와 가족에게 마이크로 불어 촛불을 끄게 하세요! 축하 메시지 추가, 촛불 개수와 모양 커스텀, 사실적인 불꽃 애니메이션, 소화 후 화려한 축하 효과를 지원해 원격 생일 축하도 따뜻하고 잊지 못할 추억으로 만들어 드립니다!",
     seoTitle: "온라인 생일 촛불 불어 끄기 웹앱 – 가상 케이크 커스텀, 상호작용 놀라움 공유",
     seoSubtitle1: "생일 케이크 촛불 시뮬레이터 – 마이크로 불어 촛불 끄기, 실감 나는 상호작용 경험",
-    seoSubtitle2: "커스텀 가상 생일 케이크 만들기 - 친구들이 온라인으로 촛불 불어 끄고, 따뜻한 순간 함께 공유하세요!"
+    seoSubtitle2: "커스텀 가상 생일 케이크 만들기 - 친구들이 온라인으로 촛불 불어 끄고, 따뜻한 순간 함께 공유하세요!",
+    customize: "커스터마이징",
+    name: "이름",
+    from: "볼사람",
+    message: "메시지",
+    enterName: "이름을 입력하세요",
+    enterGiverName: "볼사람 이름을 입력하세요",
+    enterMessage: "메시지를 입력하세요",
+    optional: "선택사항",
+    footerText: "Crafted with ❤",
+    author: "huayemao"
   }
 };
 

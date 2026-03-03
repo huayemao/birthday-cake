@@ -6,6 +6,15 @@ export const languages = ['zh', 'en', 'ja', 'fr', 'ar', 'ko'] as const;
 
 export type Language = 'zh' | 'en' | 'ja' | 'fr' | 'ar' | 'ko';
 
+export const LANGUAGE_NAMES: Record<Language, string> = {
+  en: "English",
+  zh: "中文",
+  ja: "日本語",
+  fr: "Français",
+  ar: "العربية",
+  ko: "한국어",
+};
+
 export interface CakeOption {
   id: string;
   name: string;
@@ -64,4 +73,14 @@ export interface Translation {
   seoTitle: string;
   seoSubtitle1: string;
   seoSubtitle2: string;
+  customize: string;
+  name: string;
+  from: string;
+  message: string;
+  enterName: string;
+  enterGiverName: string;
+  enterMessage: string;
+  optional: string;
+  footerText: string;
+  author: string;
 }

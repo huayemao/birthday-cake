@@ -117,7 +117,7 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
               <div className="flex justify-between items-end mb-6">
                 <div className="flex items-center gap-2">
                   <label className="text-gray-400 text-[10px] font-black uppercase tracking-widest">{t.numberOfCandles}</label>
-                  <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{state.lang === 'zh' ? '非必填' : 'optional'}</span>
+                  <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{t.optional}</span>
                 </div>
                 <span className="text-4xl font-serif font-black text-pink-500">{state.candleCount}</span>
               </div>
@@ -134,7 +134,7 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
               <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-4 flex items-center gap-2">
                 {t.digitValue}
-                <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{state.lang === 'zh' ? '非必填' : 'optional'}</span>
+                <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{t.optional}</span>
               </label>
               <input 
                   type="text" 
@@ -150,49 +150,49 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
 
       {/* Customization Section */}
       <section>
-        <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400 dark:text-slate-500 mb-6">{state.lang === 'zh' ? '个性化设置' : 'Customize'}</h3>
-        
+        <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400 dark:text-slate-500 mb-6">{t.customize}</h3>
+
         {/* Name Input */}
         <div className="mb-5">
           <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-3 flex items-center gap-2">
-            {state.lang === 'zh' ? '姓名' : 'Name'}
-            <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{state.lang === 'zh' ? '非必填' : 'optional'}</span>
+            {t.name}
+            <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{t.optional}</span>
           </label>
-          <input 
-                  type="text" 
+          <input
+                  type="text"
                   value={state.userName}
                   onChange={(e) => updateState({ userName: e.target.value })}
-                  placeholder={state.lang === 'zh' ? '输入姓名' : 'Enter name'}
+                  placeholder={t.enterName}
                   className="w-full px-6 py-2.5 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[1.5rem] focus:border-pink-400 focus:outline-none text-center text-lg font-serif font-black text-pink-500 shadow-inner"
                 />
         </div>
-        
+
         {/* Giver Name Input */}
         <div className="mb-5">
           <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-3 flex items-center gap-2">
-            {state.lang === 'zh' ? '赠送人' : 'From'}
-            <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{state.lang === 'zh' ? '非必填' : 'optional'}</span>
+            {t.from}
+            <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{t.optional}</span>
           </label>
-          <input 
-                  type="text" 
+          <input
+                  type="text"
                   value={state.giverName}
                   onChange={(e) => updateState({ giverName: e.target.value })}
-                  placeholder={state.lang === 'zh' ? '输入赠送人姓名' : 'Enter giver name'}
+                  placeholder={t.enterGiverName}
                   className="w-full px-6 py-2.5 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[1.5rem] focus:border-pink-400 focus:outline-none text-center text-lg font-serif font-black text-pink-500 shadow-inner"
                 />
         </div>
-        
+
         {/* Custom Message Input */}
         <div>
           <label className="block text-gray-400 text-[10px] font-black uppercase tracking-widest mb-3 flex items-center gap-2">
-            {state.lang === 'zh' ? '祝福语' : 'Message'}
-            <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{state.lang === 'zh' ? '非必填' : 'optional'}</span>
+            {t.message}
+            <span className="text-[8px] text-gray-300 dark:text-gray-600 uppercase tracking-widest">{t.optional}</span>
           </label>
-          <input 
-                  type="text" 
+          <input
+                  type="text"
                   value={state.customMessage}
                   onChange={(e) => updateState({ customMessage: e.target.value })}
-                  placeholder={state.lang === 'zh' ? '输入祝福语' : 'Enter message'}
+                  placeholder={t.enterMessage}
                   className="w-full px-6 py-2.5 bg-white dark:bg-slate-800 border-2 border-gray-100 dark:border-slate-700 rounded-[1.5rem] focus:border-pink-400 focus:outline-none text-center text-lg font-serif font-black text-pink-500 shadow-inner"
                 />
         </div>
