@@ -21,6 +21,8 @@ const defaultState = (initialLang: Language): AppState => ({
   userName: '',
   customMessage: '',
   giverName: '',
+  isBlowLocked: false,
+  blowSensitivity: 60,
 });
 
 export const useAppStore = create<AppStore>((set) => ({

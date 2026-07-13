@@ -49,6 +49,8 @@ export interface AppState {
   userName: string; // 用户姓名
   customMessage: string; // 自定义祝福语
   giverName: string; // 赠送人姓名
+  isBlowLocked: boolean; // 吹气锁定状态，锁定时不会被吹灭
+  blowSensitivity: number; // 吹气灵敏度 (0-100)，值越高越敏感
 }
 
 export interface Translation {
@@ -72,7 +74,13 @@ export interface Translation {
   share: string;
   copyLink: string;
   configCompleteToBlow: string;
-  // SEO 相关字段
+  lockBlow: string;
+    unlockBlow: string;
+    sensitivity: string;
+    sensitivityLow: string;
+    sensitivityHigh: string;
+    cheatButton: string;
+    // SEO 相关字段
   keywords: string;
   description: string;
   // 拆分成不同字段的标题

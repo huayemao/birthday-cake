@@ -198,6 +198,26 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
         </div>
       </section>
 
+      {/* 灵敏度调节 */}
+      <section>
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400 dark:text-slate-500">{t.sensitivity}</h3>
+          <span className="text-xs font-black text-pink-500">{state.blowSensitivity}%</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-[10px] text-gray-400 dark:text-slate-500 font-black">{t.sensitivityLow}</span>
+          <input 
+            type="range" 
+            min="10" 
+            max="100" 
+            value={state.blowSensitivity}
+            onChange={(e) => updateState({ blowSensitivity: parseInt(e.target.value) })}
+            className="flex-1 accent-pink-500 cursor-none h-1.5 bg-gray-200 dark:bg-slate-700 rounded-full appearance-none transition-all"
+          />
+          <span className="text-[10px] text-gray-400 dark:text-slate-500 font-black">{t.sensitivityHigh}</span>
+        </div>
+      </section>
+
       {/* 移动端配置完成按钮 */}
       <div>
         <button 

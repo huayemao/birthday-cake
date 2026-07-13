@@ -9,7 +9,7 @@ import { FullscreenManager } from "@/src/components/FullscreenManager";
 import { ScrollManager } from "@/src/components/ScrollManager";
 import { getTranslation } from "@/i18n";
 import { Language } from "@/types";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import { useBlowDetection } from "@/src/hooks/useBlowDetection";
 import { useShareLink } from "@/src/hooks/useShareLink";
@@ -21,6 +21,8 @@ interface ClientPageProps {
 
 export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   const controlsRef = useRef<HTMLDivElement>(null);
+  const cheatTimerRef = useRef<number | null>(null);
+  const [isCheatPressed, setIsCheatPressed] = useState(false);
 
   // 使用 Zustand store
   const {
@@ -37,6 +39,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     userName,
     customMessage,
     giverName,
+    isBlowLocked,
     updateState,
   } = useAppStore();
 
@@ -54,6 +57,8 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     userName,
     customMessage,
     giverName,
+    isBlowLocked,
+    blowSensitivity: useAppStore.getState().blowSensitivity,
   };
   
   // 设置初始语言
@@ -71,6 +76,49 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
 
 
   const isRTL = lang === "ar";
+
+  const handleCheatStart = () => {
+    if (!configCompleted || isExtinguished || isBlowLocked) return;
+    setIsCheatPressed(true);
+    updateState({ isBlowing: true, blowingProgress: 0 });
+    
+    let progress = 0;
+    cheatTimerRef.current = window.setInterval(() => {
+      progress += 3;
+      if (progress >= 100) {
+        updateState({
+          isExtinguished: true,
+          isBlowing: false,
+          blowingProgress: 100,
+        });
+        if (cheatTimerRef.current) {
+          clearInterval(cheatTimerRef.current);
+          cheatTimerRef.current = null;
+        }
+        setIsCheatPressed(false);
+      } else {
+        updateState({ blowingProgress: progress });
+      }
+    }, 30);
+  };
+
+  const handleCheatEnd = () => {
+    setIsCheatPressed(false);
+    if (cheatTimerRef.current) {
+      clearInterval(cheatTimerRef.current);
+      cheatTimerRef.current = null;
+    }
+    updateState({ isBlowing: false, blowingProgress: 0 });
+  };
+
+  useEffect(() => {
+    return () => {
+      if (cheatTimerRef.current) {
+        clearInterval(cheatTimerRef.current);
+        cheatTimerRef.current = null;
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -140,9 +188,11 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
                 <div
                   className={`max-w-xs lg:max-w-lg px-8 py-3 rounded-full glass-panel shadow-2xl border-2 transition-all duration-500 ${isBlowing
                     ? "scale-125 bg-pink-50 border-pink-400 text-pink-600"
-                    : configCompleted
-                      ? "border-white text-slate-500 dark:text-slate-400"
-                      : "border-amber-400 bg-amber-50 text-amber-600"
+                    : configCompleted && isBlowLocked
+                      ? "border-amber-400 bg-amber-50 text-amber-600"
+                      : configCompleted
+                        ? "border-white text-slate-500 dark:text-slate-400"
+                        : "border-amber-400 bg-amber-50 text-amber-600"
                     }`}
                   onClick={() => {
                     if (!configCompleted && controlsRef.current) {
@@ -154,7 +204,11 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
                   }}
                 >
                   <span className="text-xs font-black uppercase tracking-widest cursor-pointer">
-                    {configCompleted ? t.blowPrompt : t.configCompleteToBlow}
+                    {configCompleted && isBlowLocked
+                      ? t.unlockBlow + " " + t.blowPrompt
+                      : configCompleted
+                        ? t.blowPrompt
+                        : t.configCompleteToBlow}
                   </span>
                 </div>
               </div>
@@ -162,12 +216,22 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
 
             {/* 配置完成后的操作按钮 - 更优雅的设计 */}
             {configCompleted && (
-              <div className="flex justify-center gap-6 items-center transition-all duration-1200 ease-in-out opacity-100">
+              <div className="flex justify-center gap-4 items-center transition-all duration-1200 ease-in-out opacity-100">
                 <button
                   onClick={() => updateState({ configCompleted: false })}
                   className="text-xs text-pink-500 hover:text-pink-600 font-medium transition-colors"
                 >
                   {t.backToConfig}
+                </button>
+                <button
+                  onClick={() => updateState({ isBlowLocked: !isBlowLocked })}
+                  className={`px-4 py-1.5 text-xs rounded-full transition-all shadow-lg transform hover:scale-105 ${
+                    isBlowLocked
+                      ? "bg-amber-500 hover:bg-amber-600 text-white"
+                      : "bg-slate-600 hover:bg-slate-700 text-white"
+                  }`}
+                >
+                  {isBlowLocked ? t.unlockBlow : t.lockBlow}
                 </button>
                 <button
                   onClick={copyShareLink}
@@ -223,6 +287,22 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
         </a>  {t.footerText} {' '}
         &copy;{new Date().getFullYear()}
       </footer>
+
+      {configCompleted && !isExtinguished && (
+        <button
+          onMouseDown={handleCheatStart}
+          onMouseUp={handleCheatEnd}
+          onMouseLeave={handleCheatEnd}
+          onTouchStart={(e) => { e.preventDefault(); handleCheatStart(); }}
+          onTouchEnd={handleCheatEnd}
+          className={`fixed bottom-20 right-6 md:right-12 z-50 text-4xl transition-all duration-300 ${
+            isCheatPressed ? "scale-150 rotate-12" : "scale-100 hover:scale-125"
+          }`}
+          title={t.cheatButton}
+        >
+          😊
+        </button>
+      )}
     </>
   );
 };

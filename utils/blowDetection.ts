@@ -22,6 +22,14 @@ export const DEFAULT_BLOW_CONFIG: BlowDetectionConfig = {
   midHighRatio: 0.6, // 中低频比率阈值
 };
 
+export const getBlowConfigWithSensitivity = (sensitivity: number): BlowDetectionConfig => {
+  const threshold = 0.8 - (sensitivity / 100) * 0.6;
+  return {
+    ...DEFAULT_BLOW_CONFIG,
+    blowThreshold: Math.max(0.1, Math.min(0.8, threshold)),
+  };
+};
+
 // 吹气检测结果
 export interface BlowDetectionResult {
   isBlowing: boolean;
