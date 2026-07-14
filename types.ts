@@ -82,6 +82,9 @@ export interface Translation {
     cheatButton: string;
     arrangeCake: string;
     startDirectly: string;
+    selectCake: string;
+    prevStep: string;
+    nextStep: string;
     // SEO 相关字段
   keywords: string;
   description: string;

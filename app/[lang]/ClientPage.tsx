@@ -3,7 +3,7 @@
 
 import CakeScene from "@/components/CakeScene";
 import Celebrate from "@/components/Celebrate";
-import Controls from "@/components/Controls";
+import ConfigModal from "@/components/ConfigModal";
 import NavBar from "@/components/NavBar";
 import { FullscreenManager } from "@/src/components/FullscreenManager";
 import { ScrollManager } from "@/src/components/ScrollManager";
@@ -23,6 +23,8 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   const controlsRef = useRef<HTMLDivElement>(null);
   const cheatTimerRef = useRef<number | null>(null);
   const [isCheatPressed, setIsCheatPressed] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
 
   // 使用 Zustand store
   const {
@@ -195,11 +197,9 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
                         : "border-amber-400 bg-amber-50 text-amber-600"
                     }`}
                   onClick={() => {
-                    if (!configCompleted && controlsRef.current) {
-                      controlsRef.current.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center",
-                      });
+                    if (!configCompleted) {
+                      setCurrentStep(1);
+                      setIsModalOpen(true);
                     }
                   }}
                 >
@@ -250,12 +250,8 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
             <div className="max-w-lg mx-auto w-full flex flex-col gap-3 pointer-events-auto animate-in slide-in-from-bottom-4 duration-700">
               <button
                 onClick={() => {
-                  if (controlsRef.current) {
-                    controlsRef.current.scrollIntoView({
-                      behavior: "smooth",
-                      block: "center",
-                    });
-                  }
+                  setCurrentStep(1);
+                  setIsModalOpen(true);
                 }}
                 className="w-full py-4 bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:scale-[1.02] text-white font-black rounded-[1.5rem] shadow-2xl shadow-pink-200/50 transition-all active:scale-95 uppercase tracking-[0.25em] text-xs"
               >
@@ -269,31 +265,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
               >
                 {t.startDirectly}
               </button>
-       
             </div>
-          </div>
-        )}
-
-        {/* 控制面板 - 保持在DOM流中以利于SEO，但在配置完成后隐藏 */}
-        {!configCompleted && (
-          <div
-            className={`w-full flex flex-col items-center justify-center gap-6 transition-all duration-1200 ease-in-out ${configCompleted
-              ? "opacity-0 pointer-events-none transform translate-y-0"
-              : "opacity-100 transform -translate-y-16 md:translate-y-0"
-              }`}
-          >
-            {/* 控制面板容器 - 移动端默认展开直到配置完成 */}
-            <div
-              id="controls-panel"
-              ref={controlsRef}
-              className={`w-full max-w-xl lg:max-w-none transition-all duration-1200 ease-in-out block opacity-100 ${!configCompleted ? "block opacity-100" : "hidden opacity-0"
-                }`}
-              role="region"
-              aria-hidden={configCompleted}
-            >
-              <Controls state={state} updateState={updateState} t={t} />
-            </div>
-            )
           </div>
         )}
         <div
@@ -333,6 +305,20 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
           😊
         </button>
       )}
+
+      <ConfigModal
+        state={state}
+        updateState={updateState}
+        t={t}
+        isOpen={isModalOpen}
+        currentStep={currentStep}
+        onClose={() => setIsModalOpen(false)}
+        onStepChange={setCurrentStep}
+        onComplete={() => {
+          setIsModalOpen(false);
+          updateState({ configCompleted: true });
+        }}
+      />
     </>
   );
 };
