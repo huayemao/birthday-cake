@@ -174,3 +174,29 @@ body {
     opacity: 0;
   }
 }
+
+@keyframes breathing-glow {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 30px rgba(251, 146, 60, 0.5));
+  }
+  50% {
+    filter: brightness(1.15) drop-shadow(0 0 50px rgba(244, 114, 182, 0.7));
+  }
+}
+
+@keyframes ambient-pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-breathing-glow {
+  animation: breathing-glow 3s ease-in-out infinite;
+}
+
+.animate-ambient-pulse {
+  animation: ambient-pulse 4s ease-in-out infinite;
+}

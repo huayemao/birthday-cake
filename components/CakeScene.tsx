@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { AppState, CandleType, Translation } from "../types";
 import { CAKES, FlameSVG } from "../constants";
+import Fireworks from "./Fireworks";
 
 interface CakeSceneProps {
   state: AppState;
@@ -12,6 +13,18 @@ interface CakeSceneProps {
 
 const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
   const { blowingProgress, configCompleted, isExtinguished, isBlowing } = state;
+  const [showFireworks, setShowFireworks] = useState(false);
+
+  useEffect(() => {
+    if (isExtinguished) {
+      const timer = setTimeout(() => {
+        setShowFireworks(true);
+      }, 500);
+      return () => clearTimeout(timer);
+    } else {
+      setShowFireworks(false);
+    }
+  }, [isExtinguished]);
 
   const selectedCake = useMemo(() => {
     if (state.selectedCakeId.startsWith("custom-")) {
@@ -100,15 +113,28 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
   }, [state.candleType, state.candleCount, state.digits, selectedCake]);
 
   return (
-    <div className="relative w-full max-w-xl aspect-square mx-auto overflow-hidden rounded-[4rem] shadow-2xl group transition-all duration-1000">
-      {/* Background Ambience */}
-      <div className={`absolute inset-0 transition-all duration-1000 `}></div>
+    <>
+      {/* Full-page Warm Ambient Lighting Overlay */}
+      <div
+        className={`fixed inset-0 pointer-events-none z-40 transition-all duration-[2000ms] ${
+          isExtinguished ? "opacity-100" : "opacity-0"
+        }`}
+        style={{
+          background: "radial-gradient(ellipse at center bottom, rgba(251, 146, 60, 0.35) 0%, rgba(244, 114, 182, 0.25) 40%, rgba(168, 85, 247, 0.15) 70%, transparent 100%)",
+        }}
+      ></div>
 
-      {/* Visual Canvas */}
+      <div className="relative w-full max-w-xl aspect-square mx-auto overflow-hidden rounded-[4rem] shadow-2xl group transition-all duration-1000">
+        {/* Background Ambience */}
+        <div className={`absolute inset-0 transition-all duration-1000 `}></div>
+
+        {/* Visual Canvas */}
       <div className="flex items-center justify-center p-4 sm:p-8">
         <div className="relative   w-full h-full flex items-center justify-center">
           {/* Cake Display - Scaled Up */}
-          <div className="w-full h-full max-w-[650px] transition-transform duration-1000 group-hover:scale-[1.02]">
+          <div className={`w-full h-full max-w-[650px] transition-transform duration-1000 group-hover:scale-[1.02] ${
+            isExtinguished ? "animate-breathing-glow" : ""
+          }`}>
             {selectedCake.Component ? (
               <selectedCake.Component />
             ) : (
@@ -238,14 +264,21 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
       {state.isExtinguished && (
         <div className="absolute bottom-24 left-1/2 -translate-x-1/2 w-full max-w-xs px-8">
           <button
-            onClick={() => updateState({ isExtinguished: false })}
+            onClick={() => {
+              setShowFireworks(false);
+              updateState({ isExtinguished: false });
+            }}
             className="w-full py-6 bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:scale-[1.02] text-white font-black rounded-[2rem] shadow-2xl shadow-pink-200/50 transition-all active:scale-95 animate-in zoom-in duration-500 uppercase tracking-[0.3em] text-xs"
           >
             {t.reset}
           </button>
         </div>
       )}
-    </div>
+      </div>
+
+      {/* Fireworks Effect */}
+      <Fireworks active={showFireworks} />
+    </>
   );
 };
 
