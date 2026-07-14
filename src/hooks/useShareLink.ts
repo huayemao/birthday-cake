@@ -29,7 +29,6 @@ export const useShareLink = () => {
     const compressedState = LZString.compressToEncodedURIComponent(jsonState);
 
     const url = new URL(window.location.href);
-    url.pathname = `/${lang}/scene`;
     url.searchParams.set("config", compressedState);
     return url.toString();
   }, [lang, selectedCakeId, candleType, candleCount, digits, customCakes, userName, customMessage, giverName]);

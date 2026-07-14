@@ -8,6 +8,8 @@ interface LanguageSelectorProps {
   onLanguageChange: (lang: Language) => void;
 }
 
+
+
 export default function LanguageSelector({
   currentLang,
   onLanguageChange,
@@ -37,7 +39,7 @@ export default function LanguageSelector({
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-        className="px-4 py-2 rounded-[1rem] text-[10px] font-black uppercase transition-all flex items-center gap-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+        className="px-4 py-1.5 rounded-[0.8rem] text-[10px] font-black uppercase transition-all flex items-center gap-2 bg-pink-500 text-white shadow-lg"
         aria-expanded={isLangMenuOpen}
         aria-haspopup="true"
       >
@@ -46,15 +48,15 @@ export default function LanguageSelector({
       </button>
 
       {isLangMenuOpen && (
-        <div className="absolute right-0 mt-2 w-44 rounded-[1.5rem] overflow-hidden shadow-2xl glass-panel dark:bg-slate-900/90 z-50 border border-white/10">
+        <div className="absolute right-0 mt-1 w-40 rounded-[0.8rem] overflow-hidden shadow-xl glass-panel dark:bg-slate-900/80 z-50">
           {(Object.keys(LANGUAGE_NAMES) as Language[]).map((l) => (
             <button
               key={l}
               onClick={() => handleLanguageSelect(l)}
-              className={`w-full text-left px-4 py-3 text-xs font-black uppercase tracking-wider transition-all duration-300 ${
+              className={`w-full text-left px-4 py-2 text-[10px] font-black uppercase transition-all ${
                 currentLang === l
-                  ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white"
-                  : "text-gray-300 hover:bg-white/10 hover:text-white"
+                  ? "bg-pink-500 text-white"
+                  : "text-gray-500 hover:bg-pink-100 dark:hover:bg-slate-800"
               }`}
             >
               {LANGUAGE_NAMES[l]}

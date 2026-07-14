@@ -73,7 +73,7 @@ const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-export default function NavBar({ lang }: NavBarProps) {
+export default function NavBar({ lang, configCompleted }: NavBarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const changeLanguage = (l: Language) => {
@@ -92,26 +92,27 @@ export default function NavBar({ lang }: NavBarProps) {
     };
   }, []);
 
+  if (configCompleted) {
+    return null;
+  }
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center transition-all duration-1000 ease-in-out p-4">
-      <Link
-        href={`/${lang}`}
-        className="text-xl font-serif font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-rose-400 to-amber-400 tracking-tight"
-      >
-        E-Cake & Candles
-      </Link>
-      <div className="p-2 rounded-[2rem] glass-panel shadow-xl dark:bg-slate-900/60 flex items-center gap-1 border border-white/10">
+    <nav className="flex justify-between transition-all duration-1000 ease-in-out p-4">
+      <div className="right-auto">E-Cake & Candles</div>
+      <div className="left-auto p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50 flex items-center gap-2">
         {NAV_ITEMS.map((item) => (
           <Link
             key={item.key}
             href={`/${lang}${item.href}`}
-            className="px-4 py-2 text-xs font-black uppercase tracking-widest text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-300"
+            className="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-all"
           >
             {item.label[lang]}
           </Link>
         ))}
-        <LanguageSelector currentLang={lang} onLanguageChange={changeLanguage} />
+                  <LanguageSelector currentLang={lang} onLanguageChange={changeLanguage} />
+
       </div>
+
     </nav>
   );
 }

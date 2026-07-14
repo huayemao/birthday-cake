@@ -51,7 +51,6 @@ export interface AppState {
   giverName: string; // 赠送人姓名
   isBlowLocked: boolean; // 吹气锁定状态，锁定时不会被吹灭
   blowSensitivity: number; // 吹气灵敏度 (0-100)，值越高越敏感
-  controlsOpen: boolean; // 控制面板是否打开
 }
 
 export interface Translation {
@@ -81,10 +80,6 @@ export interface Translation {
     sensitivityLow: string;
     sensitivityHigh: string;
     cheatButton: string;
-  welcomeTitle: string;
-  welcomeSubtitle: string;
-  welcomePersonalize: string;
-  welcomeStartNow: string;
     // SEO 相关字段
   keywords: string;
   description: string;
