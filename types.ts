@@ -80,6 +80,8 @@ export interface Translation {
     sensitivityLow: string;
     sensitivityHigh: string;
     cheatButton: string;
+    arrangeCake: string;
+    startDirectly: string;
     // SEO 相关字段
   keywords: string;
   description: string;

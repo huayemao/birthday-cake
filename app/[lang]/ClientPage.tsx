@@ -244,6 +244,36 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
           </div>
         </div>
 
+        {/* 底部开始按钮区域 - 使用背景遮罩 */}
+        {!configCompleted && (
+          <div className="fixed bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-slate-950/95 via-slate-950/80 to-transparent pointer-events-none flex flex-col justify-end pb-8 px-4 md:px-8 z-30">
+            <div className="max-w-lg mx-auto w-full flex flex-col gap-3 pointer-events-auto animate-in slide-in-from-bottom-4 duration-700">
+              <button
+                onClick={() => {
+                  if (controlsRef.current) {
+                    controlsRef.current.scrollIntoView({
+                      behavior: "smooth",
+                      block: "center",
+                    });
+                  }
+                }}
+                className="w-full py-4 bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:scale-[1.02] text-white font-black rounded-[1.5rem] shadow-2xl shadow-pink-200/50 transition-all active:scale-95 uppercase tracking-[0.25em] text-xs"
+              >
+                {t.arrangeCake}
+              </button>
+              <button
+                onClick={() => {
+                  updateState({ configCompleted: true });
+                }}
+                className="w-full py-3 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-medium rounded-[1.25rem] border border-white/20 transition-all active:scale-95 uppercase tracking-[0.2em] text-xs"
+              >
+                {t.startDirectly}
+              </button>
+       
+            </div>
+          </div>
+        )}
+
         {/* 控制面板 - 保持在DOM流中以利于SEO，但在配置完成后隐藏 */}
         {!configCompleted && (
           <div
