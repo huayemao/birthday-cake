@@ -14,15 +14,23 @@ interface CakeSceneProps {
 const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
   const { blowingProgress, configCompleted, isExtinguished, isBlowing } = state;
   const [showFireworks, setShowFireworks] = useState(false);
+  const [showResetUI, setShowResetUI] = useState(false);
 
   useEffect(() => {
     if (isExtinguished) {
-      const timer = setTimeout(() => {
+      const fireworksTimer = setTimeout(() => {
         setShowFireworks(true);
       }, 500);
-      return () => clearTimeout(timer);
+      const resetUITimer = setTimeout(() => {
+        setShowResetUI(true);
+      }, 3500);
+      return () => {
+        clearTimeout(fireworksTimer);
+        clearTimeout(resetUITimer);
+      };
     } else {
       setShowFireworks(false);
+      setShowResetUI(false);
     }
   }, [isExtinguished]);
 
@@ -200,7 +208,7 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
 
           {/* Candle Overlay */}
           <div className="absolute inset-0 pointer-events-none">
-            {candles.map((candle) => (
+            {candles.map((candle, index) => (
               <div
                 key={candle.id}
                 className="absolute"
@@ -215,6 +223,7 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
                 <FlameSVG
                   isExtinguished={state.isExtinguished}
                   isBlowing={state.isBlowing}
+                  delay={index * 30}
                 />
 
                 {/* Candle Integration Shadow (Ambient Occlusion) */}
@@ -252,7 +261,7 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
       )}
 
       {/* Restart Prompt when candles are extinguished */}
-      {state.isExtinguished && (
+      {showResetUI && (
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
           <div className="text-xs text-pink-300 font-medium transition-colors animate-pulse">
             {t.restartPrompt}
@@ -261,11 +270,12 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
       )}
 
       {/* Reset Button when candles are extinguished */}
-      {state.isExtinguished && (
+      {showResetUI && (
         <div className="absolute bottom-24 left-1/2 -translate-x-1/2 w-full max-w-xs px-8">
           <button
             onClick={() => {
               setShowFireworks(false);
+              setShowResetUI(false);
               updateState({ isExtinguished: false });
             }}
             className="w-full py-6 bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:scale-[1.02] text-white font-black rounded-[2rem] shadow-2xl shadow-pink-200/50 transition-all active:scale-95 animate-in zoom-in duration-500 uppercase tracking-[0.3em] text-xs"
