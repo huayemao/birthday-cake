@@ -155,7 +155,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
       <ScrollManager />
       <NavBar lang={lang} configCompleted={configCompleted} />
       <main
-        className={`min-h-screen relative flex flex-col md:flex-row py-8 px-4 sm:px-8 gap-12 transition-all duration-1500 ease-in-out ${isExtinguished ? "bg-[#020617]" : "bg-slate-950"
+        className={`relative flex flex-col md:flex-row px-4 sm:px-8 gap-12 transition-all duration-1500 ease-in-out ${isExtinguished ? "bg-[#020617]" : "bg-slate-950"
           } ${configCompleted ? "py-4 gap-4" : ""}`}
         dir={isRTL ? "rtl" : "ltr"}
       >
@@ -163,10 +163,10 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
         <div
           id="cake-stage"
           ref={stageRef}
-          className={`relative isolate overflow-hidden w-full flex flex-col items-center justify-around gap-8 transition-all duration-1800 ease-in-out bg-slate-950 ${isExtinguished ? "bg-[#020617]" : ""
+          className={`relative  py-8 pb-16 overflow-hidden w-full flex flex-col items-center justify-around gap-8 transition-all duration-1800 ease-in-out bg-slate-950 ${isExtinguished ? "bg-[#020617]" : ""
             } ${configCompleted
               ? "fixed inset-0 animate-fade-in-up"
-              : "mt-8 min-h-[calc(100vh_-_6rem)]"
+              : " min-h-[calc(100vh_-_10rem)]"
             }`}
         >
           {/* 庆祝特效（置于舞台内，保证全屏时仍可见） */}
@@ -189,7 +189,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
 
           {/* Header - 与蛋糕场景组合 */}
           <header
-            className={`relative z-10 flex-1 text-center flex flex-col justify-around gap-3 transition-all duration-1800 ease-in-out max-w-3xl ${configCompleted
+            className={`relative z-10  text-center flex flex-col justify-around gap-3 transition-all duration-1800 ease-in-out max-w-3xl ${configCompleted
               ? "transform opacity-95 translate-y-2"
               : "opacity-100"
               }`}
@@ -220,16 +220,17 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
             </p>
           </header>
 
+
           {/* 蛋糕场景容器 */}
           <div
-            className={`relative z-10 w-full flex-2 transition-all duration-1800 ease-in-out`}
+            className={`relative   z-10 w-full transition-all duration-1800 ease-in-out`}
           >
             {/* 蛋糕场景 - 核心内容 */}
             <CakeScene state={state} t={t} updateState={updateState} />
             {/* 垂直进度条 - 侧边位置 */}
 
           </div>
-          <div className="relative z-10 flex-1">
+          <div className="relative z-10">
             {/* 吹蜡烛提示和进度条 */}
             {!isExtinguished && (
               <div className="flex flex-col items-center gap-6 transition-all duration-1000">
@@ -260,73 +261,92 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
                 </div>
               </div>
             )}
-
-            {/* 配置完成后的操作按钮 - 更优雅的设计 */}
-            {configCompleted && (
-              <div className="flex flex-wrap justify-center gap-3 items-center transition-all duration-1200 ease-in-out opacity-100 px-2">
-                <button
-                  onClick={() => updateState({ configCompleted: false })}
-                  className="text-xs text-pink-500 hover:text-pink-600 font-medium transition-colors"
-                >
-                  {t.backToConfig}
-                </button>
-                <button
-                  onClick={() => updateState({ isBlowLocked: !isBlowLocked })}
-                  className={`px-4 py-1.5 text-xs rounded-full transition-all shadow-lg transform hover:scale-105 ${isBlowLocked
-                    ? "bg-amber-500 hover:bg-amber-600 text-white"
-                    : "bg-slate-600 hover:bg-slate-700 text-white"
-                    }`}
-                >
-                  {isBlowLocked ? t.unlockBlow : t.lockBlow}
-                </button>
-                <button
-                  onClick={copyShareLink}
-                  className="px-4 py-1.5 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs rounded-full hover:from-pink-600 hover:to-rose-600 transition-all shadow-lg transform hover:scale-105"
-                >
-                  {t.share}
-                </button>
-                {/* 全屏切换按钮：退出后可再次进入全屏 */}
-                <button
-                  onClick={toggleFullscreen}
-                  title={isFullscreen ? fsLabels.exit : fsLabels.enter}
-                  className="px-4 py-1.5 bg-slate-600 hover:bg-slate-700 text-white text-xs rounded-full transition-all shadow-lg transform hover:scale-105 flex items-center gap-1.5"
-                >
-                  {isFullscreen ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M8 3v3a2 2 0 0 1-2 2H3" />
-                      <path d="M21 8h-3a2 2 0 0 1-2-2V3" />
-                      <path d="M3 16h3a2 2 0 0 1 2 2v3" />
-                      <path d="M16 21v-3a2 2 0 0 1 2-2h3" />
-                    </svg>
-                  ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M8 3H5a2 2 0 0 0-2 2v3" />
-                      <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
-                      <path d="M3 16v3a2 2 0 0 0 2 2h3" />
-                      <path d="M16 21h3a2 2 0 0 0 2-2v-3" />
-                    </svg>
-                  )}
-                  <span className="hidden sm:inline">{isFullscreen ? fsLabels.exit : fsLabels.enter}</span>
-                </button>
-              </div>
-            )}
           </div>
 
-          {/* 作弊按钮（置于舞台内，全屏时仍可用） */}
-          {configCompleted && !isExtinguished && (
-            <button
-              onMouseDown={handleCheatStart}
-              onMouseUp={handleCheatEnd}
-              onMouseLeave={handleCheatEnd}
-              onTouchStart={(e) => { e.preventDefault(); handleCheatStart(); }}
-              onTouchEnd={handleCheatEnd}
-              className={`fixed bottom-20 right-6 md:right-12 z-50 text-4xl transition-all duration-300 ${
-                isCheatPressed ? "scale-150 rotate-12" : "scale-100 hover:scale-125"
-              }`}
-              title={t.cheatButton}
-            >
-              😊
-            </button>
+
+          {/* 配置完成后的操作按钮 - 右下角纵向排列 */}
+          {configCompleted && (
+            <div className="fixed bottom-12 right-6 md:right-12 z-50 flex flex-col gap-3 transition-all duration-1200 ease-in-out opacity-100">
+              <button
+                onClick={() => updateState({ configCompleted: false })}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-600 hover:bg-slate-500 text-white transition-all shadow-lg transform hover:scale-110"
+                title={t.backToConfig}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M3 12h18" />
+                  <path d="M9 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                onClick={() => updateState({ isBlowLocked: !isBlowLocked })}
+                className={`w-10 h-10 flex items-center justify-center rounded-full transition-all shadow-lg transform hover:scale-110 ${isBlowLocked
+                  ? "bg-amber-500 hover:bg-amber-400 text-white"
+                  : "bg-slate-600 hover:bg-slate-500 text-white"
+                  }`}
+                title={isBlowLocked ? t.unlockBlow : t.lockBlow}
+              >
+                {isBlowLocked ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    <path d="M15 15H9" />
+                  </svg>
+                )}
+              </button>
+              <button
+                onClick={copyShareLink}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-400 hover:to-rose-400 transition-all shadow-lg transform hover:scale-110"
+                title={t.share}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 5v14M5 12l7-7 7 7" />
+                </svg>
+              </button>
+              <button
+                onClick={toggleFullscreen}
+                title={isFullscreen ? fsLabels.exit : fsLabels.enter}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-600 hover:bg-slate-500 text-white transition-all shadow-lg transform hover:scale-110"
+              >
+                {isFullscreen ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M8 3v3a2 2 0 0 1-2 2H3" />
+                    <path d="M21 8h-3a2 2 0 0 1-2-2V3" />
+                    <path d="M3 16h3a2 2 0 0 1 2 2v3" />
+                    <path d="M16 21v-3a2 2 0 0 1 2-2h3" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3" />
+                    <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
+                    <path d="M3 16v3a2 2 0 0 0 2 2h3" />
+                    <path d="M16 21h3a2 2 0 0 0 2-2v-3" />
+                  </svg>
+                )}
+              </button>
+              {/* 作弊按钮 */}
+              {!isExtinguished && (
+                <button
+                  onMouseDown={handleCheatStart}
+                  onMouseUp={handleCheatEnd}
+                  onMouseLeave={handleCheatEnd}
+                  onTouchStart={(e) => { e.preventDefault(); handleCheatStart(); }}
+                  onTouchEnd={handleCheatEnd}
+                  className={`w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-pink-400 to-rose-400 text-white hover:from-pink-300 hover:to-rose-300 transition-all shadow-lg transform ${isCheatPressed ? "scale-150 rotate-12" : "hover:scale-110"
+                    }`}
+                  title={t.cheatButton}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M12 2a10 10 0 0 0-10 10c0 5 3.5 8.5 8 9.5V17a2 2 0 0 1 4 0v4.5c4.5-1 8-4.5 8-9.5a10 10 0 0 0-10-10z" />
+                    <path d="M10 15v-2a3 3 0 0 1 6 0v2" />
+                  </svg>
+                </button>
+              )}
+            </div>
           )}
 
           {/* 底部开始按钮区域 - 使用背景遮罩（绝对定位于舞台，滚动查看 FAQ 时随之上移） */}
@@ -353,6 +373,8 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
               </div>
             </div>
           )}
+
+
         </div>
       </main>
 
