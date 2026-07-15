@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<LangParams>
   de: 'Blog',
   it: 'Blog',
   ru: 'Блог',
+  vi: 'Bài viết',
  };
  const descriptions: Record<Language, string> = {
   en: 'Read our latest articles and updates',
@@ -44,6 +45,7 @@ export async function generateMetadata({ params }: { params: Promise<LangParams>
   de: 'Lesen Sie unsere neuesten Artikel und Updates',
   it: 'Leggi i nostri ultimi articoli e aggiornamenti',
   ru: 'Читайте наши последние статьи и обновления',
+  vi: 'Xem bài viết mới nhất của chúng tôi',
  };
 
  return {
@@ -73,11 +75,7 @@ function getBlogPosts(lang: Language): BlogPost[] {
  });
 }
 
-export default async function BlogPage({ params }: { params: Promise<LangParams> }) {
- const { lang } = await params;
- const posts = getBlogPosts(lang);
-
- const pageTitles: Record<Language, string> = {
+ export const blogPageTitles: Record<Language, string> = {
   en: 'Blog',
   zh: '博客',
   'zh-Hant': '博客',
@@ -90,12 +88,19 @@ export default async function BlogPage({ params }: { params: Promise<LangParams>
   de: 'Blog',
   it: 'Blog',
   ru: 'Блог',
+  vi: 'Bài viết',
  };
+
+export default async function BlogPage({ params }: { params: Promise<LangParams> }) {
+ const { lang } = await params;
+ const posts = getBlogPosts(lang);
+
+
 
  return (
   <main className="flex-1 container mx-auto px-6 py-12">
    <h1 className="text-6xl font-black tracking-tighter uppercase italic mb-12 border-b-4 border-black pb-8">
-    {pageTitles[lang]}
+    {blogPageTitles[lang]}
    </h1>
 
    <div className="space-y-8">

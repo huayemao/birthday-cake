@@ -32,6 +32,7 @@ const NAV_ITEMS: NavItem[] = [
       de: "Über",
       it: "Chi siamo",
       ru: "О нас",
+      vi: "Về chúng tôi",
     },
     href: "/about",
   },
@@ -50,6 +51,7 @@ const NAV_ITEMS: NavItem[] = [
       de: "Anleitung",
       it: "Guida",
       ru: "Руководство",
+      vi: "Hướng dẫn",
     },
     href: "/guide",
   },
@@ -68,6 +70,7 @@ const NAV_ITEMS: NavItem[] = [
       de: "Blog",
       it: "Blog",
       ru: "Блог",
+      vi: "Bài viết",
     },
     href: "/blog",
   },
@@ -99,7 +102,7 @@ export default function NavBar({ lang, configCompleted }: NavBarProps) {
   return (
     <nav className="flex justify-between transition-all duration-1000 ease-in-out p-4">
       <div className="right-auto">E-Cake & Candles</div>
-      <div className="left-auto p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50 flex items-center gap-2">
+      <div className="left-auto shrink-0 p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50 flex items-center gap-2">
         {NAV_ITEMS.map((item) => (
           <Link
             key={item.key}

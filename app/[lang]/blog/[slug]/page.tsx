@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { Language } from '@/types';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import { blogPageTitles } from '../page';
 
 interface Params {
  slug: string;
@@ -63,26 +64,12 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
  const content = await getBlogPost(slug, lang);
  if (!content) notFound();
 
- const pageTitles: Record<Language, string> = {
-  en: 'Blog',
-  zh: '博客',
-  'zh-Hant': '博客',
-  ja: 'ブログ',
-  fr: 'Blog',
-  ar: 'مدونة',
-  ko: '블로그',
-  es: 'Blog',
-  pt: 'Blog',
-  de: 'Blog',
-  it: 'Blog',
-  ru: 'Блог',
- };
 
  return (
   <main className="flex-1 container mx-auto px-6 py-12">
    <div className="mb-12 border-b-4 border-black pb-8">
     <h1 className="text-6xl font-black tracking-tighter uppercase italic">
-     {pageTitles[lang]}
+     {blogPageTitles[lang]}
     </h1>
    </div>
 
