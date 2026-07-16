@@ -69,13 +69,13 @@ const Page: React.FC<PageProps> = async ({ params }) => {
               </span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="text-pink-500 text-xl">✦</span>
-              <span>
-                {t.feature6 ||
-                  "一键分享链接给好友"}
-              </span>
-            </li>
-          </ul>
+                <span className="text-pink-500 text-xl">✦</span>
+                <span>
+                  {t.feature6 ||
+                    "一键分享链接给好友"}
+                </span>
+              </li>
+            </ul>
         </div>
       </div>
     </PageLayout>

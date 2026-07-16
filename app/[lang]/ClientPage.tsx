@@ -5,6 +5,7 @@ import CakeScene from "@/components/CakeScene";
 import Celebrate from "@/components/Celebrate";
 import ConfigModal from "@/components/ConfigModal";
 import FaqSection from "@/components/FaqSection";
+import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import { FullscreenManager } from "@/src/components/FullscreenManager";
 import { ScrollManager } from "@/src/components/ScrollManager";
@@ -144,14 +145,13 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   }, []);
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col" dir={isRTL ? "rtl" : "ltr"}>
       <FullscreenManager />
       <ScrollManager />
       <NavBar lang={lang} configCompleted={configCompleted} />
       <main
-        className={`relative flex flex-col md:flex-row px-4 sm:px-8 gap-12 transition-all duration-1500 ease-in-out ${isExtinguished ? "bg-[#020617]" : "bg-slate-950"
+        className={`relative flex flex-col md:flex-row px-4 sm:px-8 gap-12 transition-all duration-1500 ease-in-out flex-1 ${isExtinguished ? "bg-[#020617]" : "bg-slate-950"
           } ${configCompleted ? "py-4 gap-4" : ""}`}
-        dir={isRTL ? "rtl" : "ltr"}
       >
         {/* 蛋糕场景舞台：全屏目标容器，仅包含沉浸式蛋糕体验，FAQ/header/footer 均在此之外 */}
         <div
@@ -375,12 +375,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
       {/* 非功能区 / 文本区：FAQ，仅在未配置时展示，用户可向下滚动查看，内容随首屏 SSR 输出便于搜索引擎抓取 */}
       {!configCompleted && <FaqSection lang={lang} />}
 
-      <footer className="mt-auto py-12  text-center text-sm font-black   text-gray-400 dark:text-slate-600">
-        <a href="https://huayemao.run/" target="_blank" className="hover:text-pink-500 transition-colors">
-          {t.author}
-        </a>  {t.footerText} {' '}
-        &copy;{new Date().getFullYear()}
-      </footer>
+      {!configCompleted && <Footer lang={lang} />}
 
       <ConfigModal
         state={state}
@@ -396,6 +391,6 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
         }}
         lang={lang}
       />
-    </>
+    </div>
   );
 };

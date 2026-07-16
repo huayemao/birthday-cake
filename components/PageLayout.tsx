@@ -1,10 +1,11 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import { Language, languages } from "@/types";
+import { Language } from "@/types";
 import { getTranslation } from "@/i18n";
 import Link from "next/link";
 import LanguageSelector from "./LanguageSelector";
+import Footer from "./Footer";
 
 interface PageLayoutProps {
   lang: Language;
@@ -21,7 +22,7 @@ export default function PageLayout({ lang, title, children, currentPath }: PageL
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* 导航栏 */}
       <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-20">
         <div className="p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50 flex items-center gap-2">
@@ -54,22 +55,17 @@ export default function PageLayout({ lang, title, children, currentPath }: PageL
       </nav>
 
       {/* 主要内容 */}
-      <main className="container mx-auto px-4 py-24 max-w-4xl">
+      <main className="flex-1 container mx-auto px-4 py-24 max-w-4xl">
         <article className="rounded-3xl p-8 md:p-12 shadow-2xl">
           <h1 className="text-4xl md:text-5xl font-serif font-black text-white mb-8 text-center">
             {title}
           </h1>
 
           {children}
-
-          <div className="mt-12 pt-8 border-t border-slate-700">
-            <p className="text-center text-slate-400">
-              {t.footerText || "Crafted with ❤"}{" "}
-              <span className="text-pink-500">{t.author || "huayemao"}</span>
-            </p>
-          </div>
         </article>
       </main>
+
+      <Footer lang={lang} />
     </div>
   );
 }

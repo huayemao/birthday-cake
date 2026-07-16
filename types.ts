@@ -102,6 +102,8 @@ export interface Translation {
   optional: string;
   footerText: string;
   author: string;
+  contactAuthor?: string;
+  contactEmail?: string;
   // 导航和页面相关字段
   aboutTitle?: string;
   guideTitle?: string;
