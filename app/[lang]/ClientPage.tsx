@@ -30,9 +30,9 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  // 使用 Zustand store
+  const lang = initialLang;
+
   const {
-    lang,
     selectedCakeId,
     configCompleted,
     candleType,
@@ -50,7 +50,6 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   } = useAppStore();
 
   const state = {
-    lang,
     selectedCakeId,
     configCompleted,
     candleType,
@@ -66,11 +65,6 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
     isBlowLocked,
     blowSensitivity: useAppStore.getState().blowSensitivity,
   };
-
-  // 设置初始语言
-  useEffect(() => {
-    useAppStore.setState({ lang: initialLang });
-  }, [initialLang]);
 
   const t = getTranslation(lang);
   const fsLabels = FULLSCREEN_LABELS[lang] || FULLSCREEN_LABELS.en;
@@ -226,7 +220,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
             className={`relative   z-10 w-full transition-all duration-1800 ease-in-out`}
           >
             {/* 蛋糕场景 - 核心内容 */}
-            <CakeScene state={state} t={t} updateState={updateState} />
+            <CakeScene state={state} t={t} updateState={updateState} lang={lang} />
             {/* 垂直进度条 - 侧边位置 */}
 
           </div>
@@ -400,6 +394,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
           setIsModalOpen(false);
           updateState({ configCompleted: true });
         }}
+        lang={lang}
       />
     </>
   );

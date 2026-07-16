@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { AppState, CandleType, Translation } from '../types';
+import { AppState, CandleType, Translation, Language } from '../types';
 import { CAKES } from '../constants';
 
 interface ConfigModalProps {
@@ -13,6 +13,7 @@ interface ConfigModalProps {
   onClose: () => void;
   onStepChange: (step: number) => void;
   onComplete: () => void;
+  lang: Language;
 }
 
 const ConfigModal: React.FC<ConfigModalProps> = ({ 
@@ -23,9 +24,10 @@ const ConfigModal: React.FC<ConfigModalProps> = ({
   currentStep, 
   onClose, 
   onStepChange, 
-  onComplete 
+  onComplete,
+  lang
 }) => {
-  const isRTL = state.lang === 'ar';
+  const isRTL = lang === 'ar';
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFile = (file: File) => {

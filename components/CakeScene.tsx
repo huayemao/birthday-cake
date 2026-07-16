@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState, useEffect } from "react";
-import { AppState, CandleType, Translation } from "../types";
+import { AppState, CandleType, Translation, Language } from "../types";
 import { CAKES, FlameSVG } from "../constants";
 import Fireworks from "./Fireworks";
 
@@ -9,9 +9,10 @@ interface CakeSceneProps {
   state: AppState;
   t: Translation;
   updateState: (updates: Partial<AppState>) => void;
+  lang: Language;
 }
 
-const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
+const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState, lang }) => {
   const { blowingProgress, configCompleted, isExtinguished, isBlowing } = state;
   const [showFireworks, setShowFireworks] = useState(false);
   const [showResetUI, setShowResetUI] = useState(false);
@@ -158,7 +159,7 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState }) => {
             {/* Giver Name Display */}
             {state.giverName && (
               <p className="text-white/80 text-sm sm:text-base font-medium text-center">
-                {state.lang === "zh"
+                {lang === "zh"
                   ? `来自: ${state.giverName}`
                   : `From: ${state.giverName}`}
               </p>

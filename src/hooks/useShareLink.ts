@@ -2,12 +2,15 @@ import { useCallback } from "react";
 import * as LZString from "lz-string";
 import { useAppStore } from "@/store/useAppStore";
 import { getTranslation } from "@/i18n";
+import { usePathname } from "next/navigation";
+import { Language } from "@/types";
 
 export const useShareLink = () => {
-  const { lang, selectedCakeId, candleType, candleCount, digits, customCakes, userName, customMessage, giverName, updateState } = useAppStore();
+  const pathname = usePathname();
+  const lang = pathname.split("/")[1] as Language || "en";
+  const { selectedCakeId, candleType, candleCount, digits, customCakes, userName, customMessage, giverName } = useAppStore();
   const t = getTranslation(lang);
 
-  // 生成分享链接
   const generateShareLink = useCallback(() => {
     const shareState = {
       lang,
@@ -33,7 +36,6 @@ export const useShareLink = () => {
     return url.toString();
   }, [lang, selectedCakeId, candleType, candleCount, digits, customCakes, userName, customMessage, giverName]);
 
-  // 复制分享链接到剪贴板
   const copyShareLink = useCallback(async () => {
     try {
       const shareLink = generateShareLink();

@@ -1,17 +1,18 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { AppState, CandleType, Translation } from '../types';
+import { AppState, CandleType, Translation, Language } from '../types';
 import { CAKES } from '../constants';
 
 interface ControlsProps {
   state: AppState;
   updateState: (updates: Partial<AppState>) => void;
   t: Translation;
+  lang: Language;
 }
 
-const Controls: React.FC<ControlsProps> = ({ state, updateState, t }) => {
-  const isRTL = state.lang === 'ar';
+const Controls: React.FC<ControlsProps> = ({ state, updateState, t, lang }) => {
+  const isRTL = lang === 'ar';
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFile = (file: File) => {

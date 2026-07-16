@@ -37,7 +37,6 @@ export enum CandleType {
 }
 
 export interface AppState {
-  lang: Language;
   selectedCakeId: string;
   candleType: CandleType;
   candleCount: number;

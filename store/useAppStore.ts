@@ -3,12 +3,10 @@ import { AppState, CandleType, Language } from '@/types';
 
 export interface AppStore extends AppState {
   updateState: (updates: Partial<AppState>) => void;
-  resetState: (lang: Language) => void;
+  resetState: () => void;
 }
 
-// 默认状态值
-const defaultState = (initialLang: Language): AppState => ({
-  lang: initialLang,
+const defaultState = (): AppState => ({
   selectedCakeId: 'elegant-strawberry',
   candleType: CandleType.CLASSIC,
   candleCount: 18,
@@ -26,9 +24,9 @@ const defaultState = (initialLang: Language): AppState => ({
 });
 
 export const useAppStore = create<AppStore>((set) => ({
-  ...defaultState('en'), // 初始默认语言为英语
+  ...defaultState(),
   
   updateState: (updates) => set((state) => ({ ...state, ...updates })),
   
-  resetState: (lang: Language) => set(() => defaultState(lang)),
+  resetState: () => set(() => defaultState()),
 }));
