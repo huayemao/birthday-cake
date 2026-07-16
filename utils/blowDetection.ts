@@ -1,89 +1,112 @@
-// 吹气检测工具函数
-
 // 吹气检测配置常量
 export interface BlowDetectionConfig {
-  blowThreshold: number;
-  blowRequiredDuration: number;
-  lowFreqStart: number;
-  lowFreqEnd: number;
-  midFreqStart: number;
-  midFreqEnd: number;
-  midHighRatio: number;
+  blowThreshold: number;         // 吹气能量阈值 (0 ~ 1)
+  blowRequiredDuration: number;  // 触发熄灭所需的持续帧数
+  lowFreqStartHz: number;        // 超低频起点 (Hz)，捕获气流对麦克风的直接冲击
+  lowFreqEndHz: number;          // 超低频终点 (Hz)
+  noiseFreqStartHz: number;      // 噪音频带起点 (Hz)，用于检测吹气的摩擦声
+  noiseFreqEndHz: number;        // 噪音频带终点 (Hz)
+  maxPeakToAverageRatio: number; // 噪音频带内的“峰值/均值”比率上限。值越小，对人声/口哨过滤越严格
 }
 
-// 默认吹气检测配置
+// 默认吹气检测配置（基于物理声学特征微调）
 export const DEFAULT_BLOW_CONFIG: BlowDetectionConfig = {
-  blowThreshold: 0.5, // 吹气阈值，值越高越不敏感
-  blowRequiredDuration: 20, // 触发熄灭所需的持续帧数
-  lowFreqStart: 0, // 低频起始频率
-  lowFreqEnd: 30, // 低频结束频率
-  midFreqStart: 50, // 中频起始频率
-  midFreqEnd: 200, // 中频结束频率
-  midHighRatio: 0.6, // 中低频比率阈值
+  blowThreshold: 0.35,           // 降低阈值以提高灵敏度，因为我们引入了更精准的噪声过滤器
+  blowRequiredDuration: 12,      // 约 200ms (假设 60fps)，太长用户吹得累，太短容易误触发
+  lowFreqStartHz: 15,            // 接近直流的超低频
+  lowFreqEndHz: 150,             // 气流冲击主频段
+  noiseFreqStartHz: 1000,        // 吹气摩擦音平坦区起点
+  noiseFreqEndHz: 4000,          // 吹气摩擦音平坦区终点
+  maxPeakToAverageRatio: 1.8,    // 如果中高频的峰值超过均值的 1.8 倍，说明有特定声调（如人声/警报/口哨），排除掉
 };
 
+// 根据灵敏度（0-100）动态调整阈值
 export const getBlowConfigWithSensitivity = (sensitivity: number): BlowDetectionConfig => {
-  const threshold = 0.8 - (sensitivity / 100) * 0.6;
+  // 灵敏度越高，所需阈值越低（最灵敏 0.15，最迟钝 0.65）
+  const threshold = 0.65 - (sensitivity / 100) * 0.5;
   return {
     ...DEFAULT_BLOW_CONFIG,
-    blowThreshold: Math.max(0.1, Math.min(0.8, threshold)),
+    blowThreshold: Math.max(0.15, Math.min(0.65, threshold)),
   };
 };
 
-// 吹气检测结果
 export interface BlowDetectionResult {
   isBlowing: boolean;
   isExtinguished: boolean;
 }
 
-// 吹气检测状态
 export interface BlowDetectionState {
   blowDuration: number;
 }
 
 /**
- * 检测吹气动作
- * @param analyser AnalyserNode实例
- * @param config 吹气检测配置
- * @param state 吹气检测状态
- * @returns 吹气检测结果
+ * 辅助函数：将实际频率（Hz）转换为 AnalyserNode 的 Bin 索引
+ */
+const hzToBin = (hz: number, sampleRate: number, fftSize: number): number => {
+  const bin = Math.round((hz * fftSize) / sampleRate);
+  return Math.max(0, bin);
+};
+
+/**
+ * 优化后的吹气检测算法
  */
 export const detectBlow = (
   analyser: AnalyserNode,
   config: BlowDetectionConfig = DEFAULT_BLOW_CONFIG,
   state: BlowDetectionState
 ): BlowDetectionResult => {
+  const sampleRate = analyser.context.sampleRate;
+  const fftSize = analyser.fftSize;
   const bufferLength = analyser.frequencyBinCount;
   const dataArray = new Uint8Array(bufferLength);
+
   analyser.getByteFrequencyData(dataArray);
 
-  // 计算低频和中频能量
-  let lowSum = 0;
-  let midSum = 0;
+  // 1. 计算频段对应的 Bin 索引
+  const lowStartBin = hzToBin(config.lowFreqStartHz, sampleRate, fftSize);
+  const lowEndBin = Math.min(bufferLength, hzToBin(config.lowFreqEndHz, sampleRate, fftSize));
 
-  for (let i = config.lowFreqStart; i < config.lowFreqEnd && i < dataArray.length; i++) {
+  const noiseStartBin = hzToBin(config.noiseFreqStartHz, sampleRate, fftSize);
+  const noiseEndBin = Math.min(bufferLength, hzToBin(config.noiseFreqEndHz, sampleRate, fftSize));
+
+  // 2. 算超低频（气流冲击）的平均能量
+  let lowSum = 0;
+  const lowCount = lowEndBin - lowStartBin;
+  for (let i = lowStartBin; i < lowEndBin; i++) {
     lowSum += dataArray[i];
   }
+  const lowAverage = lowCount > 0 ? (lowSum / lowCount / 255) : 0;
 
-  for (let i = config.midFreqStart; i < config.midFreqEnd && i < dataArray.length; i++) {
-    midSum += dataArray[i];
+  // 3. 计算中高频（1k-4kHz）的平坦度，防止人声、环境乐器干扰
+  let noiseSum = 0;
+  let noiseMax = 0;
+  const noiseCount = noiseEndBin - noiseStartBin;
+
+  for (let i = noiseStartBin; i < noiseEndBin; i++) {
+    const val = dataArray[i];
+    noiseSum += val;
+    if (val > noiseMax) {
+      noiseMax = val;
+    }
   }
 
-  const lowBandWidth = Math.min(dataArray.length, config.lowFreqEnd) - config.lowFreqStart;
-  const midBandWidth = Math.min(dataArray.length, config.midFreqEnd) - config.midFreqStart;
+  const noiseAverage = noiseCount > 0 ? (noiseSum / noiseCount) : 0;
 
-  // 避免除以零
-  if (lowBandWidth === 0 || midBandWidth === 0) {
-    return { isBlowing: false, isExtinguished: false };
-  }
+  // 核心过滤器 1：如果噪声频段有声音，计算它的“峰值与均值比”（Peak-to-Average Ratio）
+  // 纯吹气（白噪音）的波形非常平缓，峰值和均值很接近。
+  // 人声、口哨、环境尖锐噪音会有明显的波峰，导致 noiseMax 远大于 noiseAverage。
+  const isFlatNoise = noiseAverage > 0
+    ? (noiseMax / noiseAverage) < config.maxPeakToAverageRatio
+    : true;
 
-  const lowAverage = lowSum / lowBandWidth / 255;
-  const midAverage = midSum / midBandWidth / 255;
+  // 核心过滤器 2：吹气时，中高频也应该有伴随的平坦摩擦声，但不应该比低频的冲击波还大
+  const hasFrictionSound = (noiseAverage / 255) < (lowAverage * 0.7);
 
-  // 吹气特征：低频能量高，中频能量相对较低
-  const isBlowingSound = 
-    lowAverage > config.blowThreshold && 
-    midAverage < lowAverage * config.midHighRatio;
+  // 4. 综合判断
+  const isBlowingSound =
+    lowAverage > config.blowThreshold && // 必须有足够强的超低频气流
+    isFlatNoise &&                       // 排除非平坦高频音（人声/口哨）
+    hasFrictionSound;                    // 排除异常的中高频啸叫
 
   if (isBlowingSound) {
     state.blowDuration += 1;
@@ -92,15 +115,12 @@ export const detectBlow = (
       isExtinguished: state.blowDuration > config.blowRequiredDuration
     };
   } else {
-    state.blowDuration = 0;
+    // 引入一点消退延迟（可选，这里保持立即清零，或者可以缓慢衰减提高手感）
+    state.blowDuration = Math.max(0, state.blowDuration - 1);
     return { isBlowing: false, isExtinguished: false };
   }
 };
 
-/**
- * 清理音频资源
- * @param audioContext AudioContext实例
- */
 export const cleanupAudioResources = (audioContext: AudioContext | null) => {
   if (audioContext) {
     audioContext.close();
