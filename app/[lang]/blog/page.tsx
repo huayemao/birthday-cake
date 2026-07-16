@@ -1,121 +1,94 @@
-import { readdirSync, readFileSync } from 'fs';
-import { join } from 'path';
-import { Metadata } from 'next';
-import Link from 'next/link';
-import { Language } from '@/types';
+import React from "react";
+import { readdirSync } from "fs";
+import { join } from "path";
+import Link from "next/link";
+import { Language } from "../../../types";
+import { getTranslation } from "@/i18n";
+import PageLayout from "../../../components/PageLayout";
 
 interface BlogPost {
- slug: string;
- title: string;
- date: string;
- description: string;
+  slug: string;
+  title: string;
+  date: string;
+  description: string;
 }
 
-interface LangParams {
- lang: Language;
-}
-
-export async function generateMetadata({ params }: { params: Promise<LangParams> }): Promise<Metadata> {
- const { lang } = await params;
- const titles: Record<Language, string> = {
-  en: 'Blog',
-  zh: '博客',
-  'zh-Hant': '博客',
-  ja: 'ブログ',
-  fr: 'Blog',
-  ar: 'مدونة',
-  ko: '블로그',
-  es: 'Blog',
-  pt: 'Blog',
-  de: 'Blog',
-  it: 'Blog',
-  ru: 'Блог',
-  vi: 'Bài viết',
- };
- const descriptions: Record<Language, string> = {
-  en: 'Read our latest articles and updates',
-  zh: '阅读最新的文章和更新',
-  'zh-Hant': '閱讀最新的文章和更新',
-  ja: '最新の記事とアップデートを読む',
-  fr: 'Lisez nos derniers articles et mises à jour',
-  ar: 'اقرأ أحدث مقالاتنا وتحديثاتنا',
-  ko: '최신 기사 및 업데이트 읽기',
-  es: 'Lea nuestros últimos artículos y actualizaciones',
-  pt: 'Leia nossos últimos artigos e atualizações',
-  de: 'Lesen Sie unsere neuesten Artikel und Updates',
-  it: 'Leggi i nostri ultimi articoli e aggiornamenti',
-  ru: 'Читайте наши последние статьи и обновления',
-  vi: 'Xem bài viết mới nhất của chúng tôi',
- };
-
- return {
-  title: titles[lang],
-  description: descriptions[lang],
- };
-}
-
-function getBlogPosts(lang: Language): BlogPost[] {
- const blogDir = join(process.cwd(), 'content', lang, 'blog');
- const files = readdirSync(blogDir).filter((file) => file.endsWith('.mdx'));
-
- return files.map((file) => {
-  const slug = file.replace('.mdx', '');
-  const content = readFileSync(join(blogDir, file), 'utf8');
-
-  const titleMatch = content.match(/^#\s+(.*)$/m);
-  const dateMatch = content.match(/^date:\s+(.*)$/m);
-  const descriptionMatch = content.match(/^description:\s+(.*)$/m);
-
-  return {
-   slug,
-   title: titleMatch ? titleMatch[1] : slug,
-   date: dateMatch ? dateMatch[1] : '',
-   description: descriptionMatch ? descriptionMatch[1] : '',
+interface PageProps {
+  params: {
+    lang: Language;
   };
- });
 }
 
- export const blogPageTitles: Record<Language, string> = {
-  en: 'Blog',
-  zh: '博客',
-  'zh-Hant': '博客',
-  ja: 'ブログ',
-  fr: 'Blog',
-  ar: 'مدونة',
-  ko: '블로그',
-  es: 'Blog',
-  pt: 'Blog',
-  de: 'Blog',
-  it: 'Blog',
-  ru: 'Блог',
-  vi: 'Bài viết',
- };
+async function getBlogPosts(lang: Language): Promise<BlogPost[]> {
+  const blogDir = join(process.cwd(), "content", lang, "blog");
+  try {
+    const files = readdirSync(blogDir).filter((file) => file.endsWith(".mdx"));
 
-export default async function BlogPage({ params }: { params: Promise<LangParams> }) {
- const { lang } = await params;
- const posts = getBlogPosts(lang);
+    const posts = await Promise.all(
+      files.map(async (file) => {
+        const slug = file.replace(".mdx", "");
+        const mod = await import(`../../../content/${lang}/blog/${slug}.mdx`);
+        const metadata = mod.metadata as {
+          title?: string;
+          date?: string;
+          description?: string;
+        };
 
+        return {
+          slug,
+          title: metadata.title || slug,
+          date: metadata.date || "",
+          description: metadata.description || "",
+        };
+      })
+    );
 
-
- return (
-  <main className="flex-1 container mx-auto px-6 py-12">
-   <h1 className="text-6xl font-black tracking-tighter uppercase italic mb-12 border-b-4 border-black pb-8">
-    {blogPageTitles[lang]}
-   </h1>
-
-   <div className="space-y-8">
-    {posts.length === 0 ? (
-     <p className="text-zinc-500">No posts yet.</p>
-    ) : (
-     posts.map((post) => (
-     <Link key={post.slug} href={`/${lang}/blog/${post.slug}`} className="block group">
-      <h2 className="text-2xl font-bold mb-2 group-hover:text-blue-600 transition-colors">{post.title}</h2>
-      <p className="text-zinc-500 text-sm mb-4">{post.date}</p>
-      <p className="text-zinc-700">{post.description}</p>
-     </Link>
-    ))
-    )}
-   </div>
-  </main>
- );
+    return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  } catch {
+    return [];
+  }
 }
+
+const Page: React.FC<PageProps> = async ({ params }) => {
+  const { lang } = await params;
+  const t = getTranslation(lang);
+  const posts = await getBlogPosts(lang);
+  const currentPath = `/blog`;
+
+  return (
+    <PageLayout lang={lang} title={t.blogTitle || "Blog"} currentPath={currentPath}>
+      <div className="space-y-8">
+        {posts.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-slate-400 text-lg">
+              No posts yet.
+            </p>
+          </div>
+        ) : (
+          posts.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/${lang}/blog/${post.slug}`}
+              className="block group p-6 bg-slate-800/30 rounded-2xl hover:bg-slate-800/50 transition-all duration-300 border border-slate-700/50 hover:border-pink-500/30"
+            >
+              <h2 className="text-2xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">
+                {post.title}
+              </h2>
+              <p className="text-slate-400 text-sm mb-3 flex items-center gap-2">
+                <span className="text-pink-500">📅</span>
+                {post.date}
+              </p>
+              <p className="text-slate-300">{post.description}</p>
+              <div className="mt-4 flex items-center text-pink-400 text-sm font-medium group-hover:translate-x-1 transition-transform">
+                <span>Read more</span>
+                <span className="ml-1">→</span>
+              </div>
+            </Link>
+          ))
+        )}
+      </div>
+    </PageLayout>
+  );
+};
+
+export default Page;

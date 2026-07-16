@@ -107,6 +107,7 @@ export interface Translation {
   // 导航和页面相关字段
   aboutTitle?: string;
   guideTitle?: string;
+  blogTitle?: string;
   backToHome?: string;
   featuresTitle?: string;
   feature1?: string;
