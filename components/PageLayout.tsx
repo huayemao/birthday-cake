@@ -56,7 +56,7 @@ export default function PageLayout({ lang, title, children, currentPath }: PageL
 
       {/* 主要内容 */}
       <main className="flex-1 container mx-auto px-4 py-24 max-w-4xl">
-        <article className="rounded-3xl p-8 md:p-12 shadow-2xl">
+        <article className="rounded-3xl p-8 px-4 md:p-12 shadow-2xl">
           <h1 className="text-4xl md:text-5xl font-serif font-black text-white mb-8 text-center">
             {title}
           </h1>
