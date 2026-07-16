@@ -101,7 +101,7 @@ export default function NavBar({ lang, configCompleted }: NavBarProps) {
 
   return (
     <nav className="flex justify-between transition-all duration-1000 ease-in-out p-4">
-      <div className="right-auto">E-Cake & Candles</div>
+      <div className="right-auto"></div>
       <div className="left-auto shrink-0 p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50 flex items-center gap-2">
         {NAV_ITEMS.map((item) => (
           <Link
