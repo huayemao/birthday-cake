@@ -6,6 +6,7 @@ const languages = Object.keys(TRANSLATIONS) as Language[];
 
 const staticPages = [
   { path: '', priority: 1.0 },
+  { path: 'configure', priority: 0.9 },
   { path: 'about', priority: 0.8 },
   { path: 'guide', priority: 0.8 },
   { path: 'blog', priority: 0.7 },

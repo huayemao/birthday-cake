@@ -289,9 +289,11 @@ export function buildCandlesController(options: {
     flameCenterY = surfaceY + digitH + 0.24;
 
     const sideGoldMat = new THREE.MeshStandardMaterial({
-      color: 0xfbbf24,
-      roughness: 0.22,
-      metalness: 0.78,
+      color: 0xf5d68e,
+      roughness: 0.52,
+      metalness: 0.12,
+      emissive: 0x3d2a08,
+      emissiveIntensity: 0.18,
     });
     const stickGeo = new THREE.CylinderGeometry(0.016, 0.016, 0.14, 10);
 
@@ -307,12 +309,13 @@ export function buildCandlesController(options: {
       stick.position.y = 0.07;
       dGroup.add(stick);
 
-      // 立体数字主体
+      // 立体数字主体（柔哑光抗眩光，数字清晰不发黑）
       const faceTex = createDigitFaceTexture(char, idx);
-      const faceMat = new THREE.MeshPhysicalMaterial({
+      const faceMat = new THREE.MeshStandardMaterial({
         map: faceTex,
-        roughness: 0.24,
-        clearcoat: 0.65,
+        roughness: 0.72,
+        metalness: 0.0,
+        envMapIntensity: 0.2,
       });
       const boxGeo = new THREE.BoxGeometry(digitW, digitH, digitD);
       const box = new THREE.Mesh(boxGeo, [

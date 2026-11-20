@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { SceneTheme } from '@/types';
 import { createSoftGlowTexture } from './cakeTextures';
 import { disposeObject3D } from './cakeModels';
 import { WebGLTier } from '@/utils/webglSupport';
@@ -20,6 +21,16 @@ interface ConfettiPiece {
   maxLife: number;
 }
 
+interface FloatingPetal {
+  mesh: THREE.Mesh;
+  angle: number;
+  radius: number;
+  y: number;
+  fallSpeed: number;
+  spinSpeed: number;
+  phase: number;
+}
+
 export interface AtmosphereController {
   group: THREE.Group;
   triggerCelebrationBurst: () => void;
@@ -28,127 +39,232 @@ export interface AtmosphereController {
 }
 
 /**
- * 蛋糕周围浪漫氛围场景：
- * 1. 背景弧形暖光串灯（Fairy String Lights）
- * 2. 漂浮星尘与焦外光斑（Floating Bokeh Dust）
- * 3. 桌面散落玫瑰花瓣与金色小星星
- * 4. 吹灭蜡烛瞬间的 3D 立体彩带与金星礼花爆发
+ * 可自由搭配的 3D 场景环境氛围系统：
+ * - fairy-lights: 浪漫暖光串灯 + 金色仙尘 + 桌面花瓣星饰
+ * - starry-night: 深邃星河秘境（无串灯线，满天 3D 闪烁星座星尘）
+ * - warm-candlelight: 温馨烛影萤火（漂浮柔暖焦外光斑，无串灯线）
+ * - cherry-blossom: 樱花漫舞（3D 粉色樱花花瓣轻盈飘落）
+ * - minimal-studio: 极简纯净影棚（无背景装饰，聚焦蛋糕本身）
  */
-export function buildAtmosphereController(tier: WebGLTier): AtmosphereController {
+export function buildAtmosphereController(
+  tier: WebGLTier,
+  theme: SceneTheme = 'fairy-lights'
+): AtmosphereController {
   const group = new THREE.Group();
   const isHigh = tier === 'high';
 
   const warmGlowTex = createSoftGlowTexture('#fffbeb', '#fde68a', 'rgba(251,191,36,0)');
   const roseGlowTex = createSoftGlowTexture('#fff1f2', '#f472b6', 'rgba(244,114,182,0)');
+  const starGlowTex = createSoftGlowTexture('#ffffff', '#c7d2fe', 'rgba(129,140,248,0)');
 
-  // 1. 远景弧形梦幻串灯 (Fairy Lights Arch)
-  const stringGroup = new THREE.Group();
-  const bulbCount = isHigh ? 13 : 9;
   const bulbSprites: Array<{ sprite: THREE.Sprite; phase: number; baseScale: number }> = [];
-  const curvePts: THREE.Vector3[] = [];
+  const floatingOrbs: Array<{ sprite: THREE.Sprite; angle: number; radius: number; baseY: number; speed: number; phase: number; baseScale: number }> = [];
+  const fallingPetals: FloatingPetal[] = [];
 
-  for (let i = 0; i < bulbCount; i++) {
-    const t = i / (bulbCount - 1);
-    const angle = (t - 0.5) * Math.PI * 0.92;
-    const radius = 4.4;
-    const x = Math.sin(angle) * radius;
-    const z = -Math.cos(angle) * radius * 0.85 - 0.4;
-    const sag = Math.sin(t * Math.PI) * 0.48;
-    const y = 2.65 - sag;
-    curvePts.push(new THREE.Vector3(x, y, z));
-
-    const mat = new THREE.SpriteMaterial({
-      map: i % 3 === 0 ? roseGlowTex : warmGlowTex,
-      color: i % 3 === 0 ? 0xf9a8d4 : 0xfde68a,
-      transparent: true,
-      opacity: 0.72,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-    });
-    const sprite = new THREE.Sprite(mat);
-    const baseScale = 0.42 + (i % 3) * 0.1;
-    sprite.position.set(x, y, z);
-    sprite.scale.set(baseScale, baseScale, 1);
-    stringGroup.add(sprite);
-    bulbSprites.push({ sprite, phase: i * 0.85, baseScale });
-  }
-
-  // 细优雅弧线串灯线
-  const curve = new THREE.CatmullRomCurve3(curvePts);
-  const wireGeo = new THREE.TubeGeometry(curve, 36, 0.008, 6, false);
-  const wireMat = new THREE.MeshBasicMaterial({
-    color: 0x94a3b8,
-    transparent: true,
-    opacity: 0.25,
-  });
-  stringGroup.add(new THREE.Mesh(wireGeo, wireMat));
-  group.add(stringGroup);
-
-  // 2. 环绕蛋糕缓缓升腾的金色仙尘粒子 (Fairy Dust Points)
-  const dustCount = isHigh ? 75 : 40;
-  const dustPositions = new Float32Array(dustCount * 3);
+  let dustGeo: THREE.BufferGeometry | null = null;
+  let dustMat: THREE.PointsMaterial | null = null;
   const dustMeta: Array<{ angle: number; radius: number; y: number; speed: number; phase: number }> = [];
 
-  for (let i = 0; i < dustCount; i++) {
-    const angle = Math.random() * Math.PI * 2;
-    const radius = 1.65 + Math.random() * 2.6;
-    const y = -0.6 + Math.random() * 3.8;
-    dustMeta.push({
-      angle,
-      radius,
-      y,
-      speed: 0.12 + Math.random() * 0.22,
-      phase: Math.random() * Math.PI * 2,
+  // ===== 主题 1：浪漫串灯 (fairy-lights) =====
+  if (theme === 'fairy-lights') {
+    const stringGroup = new THREE.Group();
+    const bulbCount = isHigh ? 13 : 9;
+    const curvePts: THREE.Vector3[] = [];
+
+    for (let i = 0; i < bulbCount; i++) {
+      const t = i / (bulbCount - 1);
+      const angle = (t - 0.5) * Math.PI * 0.92;
+      const radius = 4.6;
+      const x = Math.sin(angle) * radius;
+      const z = -Math.cos(angle) * radius * 0.82 - 0.5;
+      const sag = Math.sin(t * Math.PI) * 0.45;
+      const y = 2.85 - sag;
+      curvePts.push(new THREE.Vector3(x, y, z));
+
+      const mat = new THREE.SpriteMaterial({
+        map: i % 3 === 0 ? roseGlowTex : warmGlowTex,
+        color: i % 3 === 0 ? 0xf9a8d4 : 0xfde68a,
+        transparent: true,
+        opacity: 0.72,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+      const sprite = new THREE.Sprite(mat);
+      const baseScale = 0.42 + (i % 3) * 0.1;
+      sprite.position.set(x, y, z);
+      sprite.scale.set(baseScale, baseScale, 1);
+      stringGroup.add(sprite);
+      bulbSprites.push({ sprite, phase: i * 0.85, baseScale });
+    }
+
+    // 极细腻暖金色丝线（避免发白突兀）
+    const curve = new THREE.CatmullRomCurve3(curvePts);
+    const wireGeo = new THREE.TubeGeometry(curve, 36, 0.005, 6, false);
+    const wireMat = new THREE.MeshBasicMaterial({
+      color: 0xd9b36c,
+      transparent: true,
+      opacity: 0.16,
     });
-    dustPositions[i * 3] = Math.cos(angle) * radius;
-    dustPositions[i * 3 + 1] = y;
-    dustPositions[i * 3 + 2] = Math.sin(angle) * radius;
+    stringGroup.add(new THREE.Mesh(wireGeo, wireMat));
+    group.add(stringGroup);
   }
 
-  const dustGeo = new THREE.BufferGeometry();
-  dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPositions, 3));
-  const dustMat = new THREE.PointsMaterial({
-    map: warmGlowTex,
-    size: 0.16,
-    transparent: true,
-    opacity: 0.68,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false,
-    color: 0xfef08a,
-  });
-  const dustPoints = new THREE.Points(dustGeo, dustMat);
-  group.add(dustPoints);
-
-  // 3. 桌面优雅装饰：散落玫瑰花瓣与金色糖星
-  const petalGeo = new THREE.SphereGeometry(0.11, 10, 8);
-  petalGeo.scale(1.3, 0.12, 0.85);
-  const petalMat = new THREE.MeshStandardMaterial({
-    color: 0xfb7185,
-    roughness: 0.55,
-  });
-  const goldStarGeo = new THREE.OctahedronGeometry(0.055, 0);
-  goldStarGeo.scale(1, 0.22, 1);
-  const goldStarMat = new THREE.MeshStandardMaterial({
-    color: 0xfacc15,
-    roughness: 0.2,
-    metalness: 0.9,
-  });
-
-  for (let i = 0; i < 14; i++) {
-    const a = (i / 14) * Math.PI * 2 + 0.35;
-    const r = 1.35 + (i % 4) * 0.38;
-    const mesh = new THREE.Mesh(i % 2 === 0 ? petalGeo : goldStarGeo, i % 2 === 0 ? petalMat : goldStarMat);
-    mesh.position.set(Math.cos(a) * r, -0.805, Math.sin(a) * r);
-    mesh.rotation.y = a * 2.1;
-    group.add(mesh);
+  // ===== 主题 2：星河秘境 (starry-night) =====
+  if (theme === 'starry-night') {
+    const starCount = isHigh ? 120 : 70;
+    const starPos = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount; i++) {
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.random() * Math.PI * 0.52;
+      const r = 4.4 + Math.random() * 4.2;
+      starPos[i * 3] = Math.sin(phi) * Math.cos(theta) * r;
+      starPos[i * 3 + 1] = 0.5 + Math.cos(phi) * r * 0.75;
+      starPos[i * 3 + 2] = Math.sin(phi) * Math.sin(theta) * r;
+    }
+    const starGeo = new THREE.BufferGeometry();
+    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+    const starMat = new THREE.PointsMaterial({
+      map: starGlowTex,
+      size: 0.22,
+      transparent: true,
+      opacity: 0.82,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      color: 0xe0e7ff,
+    });
+    group.add(new THREE.Points(starGeo, starMat));
   }
 
-  // 4. 吹灭后的 3D 立体庆祝礼花彩带 (InstancedMesh)
+  // ===== 主题 3：暖光烛影萤火 (warm-candlelight) =====
+  if (theme === 'warm-candlelight') {
+    const orbCount = isHigh ? 18 : 11;
+    for (let i = 0; i < orbCount; i++) {
+      const angle = (i / orbCount) * Math.PI * 2 + Math.random() * 0.3;
+      const radius = 2.6 + Math.random() * 2.4;
+      const baseY = 0.4 + Math.random() * 2.8;
+      const baseScale = 0.28 + Math.random() * 0.36;
+      const mat = new THREE.SpriteMaterial({
+        map: warmGlowTex,
+        color: i % 2 === 0 ? 0xfbbf24 : 0xfb923c,
+        transparent: true,
+        opacity: 0.55,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+      const sprite = new THREE.Sprite(mat);
+      sprite.position.set(Math.cos(angle) * radius, baseY, Math.sin(angle) * radius);
+      sprite.scale.set(baseScale, baseScale, 1);
+      group.add(sprite);
+      floatingOrbs.push({
+        sprite,
+        angle,
+        radius,
+        baseY,
+        speed: 0.08 + Math.random() * 0.14,
+        phase: Math.random() * Math.PI * 2,
+        baseScale,
+      });
+    }
+  }
+
+  // ===== 主题 4：樱花漫舞 (cherry-blossom) =====
+  if (theme === 'cherry-blossom') {
+    const petalCount = isHigh ? 34 : 20;
+    const petalGeo = new THREE.SphereGeometry(0.085, 8, 6);
+    petalGeo.scale(1.35, 0.14, 0.85);
+    const petalMats = [
+      new THREE.MeshStandardMaterial({ color: 0xffc2d4, roughness: 0.55 }),
+      new THREE.MeshStandardMaterial({ color: 0xffa6c1, roughness: 0.55 }),
+      new THREE.MeshStandardMaterial({ color: 0xffe5ec, roughness: 0.5 }),
+    ];
+
+    for (let i = 0; i < petalCount; i++) {
+      const mesh = new THREE.Mesh(petalGeo, petalMats[i % petalMats.length]);
+      const angle = Math.random() * Math.PI * 2;
+      const radius = 1.9 + Math.random() * 2.5;
+      const y = Math.random() * 3.8;
+      mesh.position.set(Math.cos(angle) * radius, y, Math.sin(angle) * radius);
+      mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+      group.add(mesh);
+      fallingPetals.push({
+        mesh,
+        angle,
+        radius,
+        y,
+        fallSpeed: 0.25 + Math.random() * 0.28,
+        spinSpeed: 1.2 + Math.random() * 1.6,
+        phase: Math.random() * Math.PI * 2,
+      });
+    }
+  }
+
+  // ===== 通用柔和仙尘（极简纯净模式除外） =====
+  if (theme !== 'minimal-studio') {
+    const dustCount = isHigh ? 60 : 32;
+    const dustPositions = new Float32Array(dustCount * 3);
+    for (let i = 0; i < dustCount; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const radius = 1.9 + Math.random() * 2.5;
+      const y = 0.1 + Math.random() * 3.4;
+      dustMeta.push({
+        angle,
+        radius,
+        y,
+        speed: 0.12 + Math.random() * 0.2,
+        phase: Math.random() * Math.PI * 2,
+      });
+      dustPositions[i * 3] = Math.cos(angle) * radius;
+      dustPositions[i * 3 + 1] = y;
+      dustPositions[i * 3 + 2] = Math.sin(angle) * radius;
+    }
+
+    dustGeo = new THREE.BufferGeometry();
+    dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPositions, 3));
+    dustMat = new THREE.PointsMaterial({
+      map: theme === 'starry-night' ? starGlowTex : theme === 'cherry-blossom' ? roseGlowTex : warmGlowTex,
+      size: 0.15,
+      transparent: true,
+      opacity: 0.58,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      color: theme === 'starry-night' ? 0xc7d2fe : theme === 'cherry-blossom' ? 0xfbcfe8 : 0xfef08a,
+    });
+    group.add(new THREE.Points(dustGeo, dustMat));
+  }
+
+  // ===== 地面浪漫散落装饰（浪漫串灯 / 樱花主题） =====
+  if (theme === 'fairy-lights' || theme === 'cherry-blossom') {
+    const petalGeo = new THREE.SphereGeometry(0.095, 10, 8);
+    petalGeo.scale(1.3, 0.12, 0.85);
+    const petalMat = new THREE.MeshStandardMaterial({
+      color: theme === 'cherry-blossom' ? 0xffb3c6 : 0xf472b6,
+      roughness: 0.6,
+    });
+    const goldStarGeo = new THREE.OctahedronGeometry(0.05, 0);
+    goldStarGeo.scale(1, 0.22, 1);
+    const goldStarMat = new THREE.MeshStandardMaterial({
+      color: 0xf5cc5c,
+      roughness: 0.28,
+      metalness: 0.65,
+    });
+
+    for (let i = 0; i < 12; i++) {
+      const a = (i / 12) * Math.PI * 2 + 0.35;
+      const r = 1.82 + (i % 3) * 0.3;
+      const isPetal = theme === 'cherry-blossom' || i % 2 === 0;
+      const mesh = new THREE.Mesh(isPetal ? petalGeo : goldStarGeo, isPetal ? petalMat : goldStarMat);
+      mesh.position.set(Math.cos(a) * r, 0.0, Math.sin(a) * r);
+      mesh.rotation.y = a * 2.1;
+      group.add(mesh);
+    }
+  }
+
+  // ===== 吹灭后的 3D 立体庆祝礼花彩带（全主题保留） =====
   const confettiCount = isHigh ? 140 : 80;
   const confettiGeo = new THREE.PlaneGeometry(0.11, 0.22);
   const confettiMat = new THREE.MeshStandardMaterial({
-    roughness: 0.28,
-    metalness: 0.45,
+    roughness: 0.32,
+    metalness: 0.35,
     side: THREE.DoubleSide,
   });
   const confettiMesh = new THREE.InstancedMesh(confettiGeo, confettiMat, confettiCount);
@@ -202,36 +318,70 @@ export function buildAtmosphereController(tier: WebGLTier): AtmosphereController
   const update = (dt: number, elapsed: number, isExtinguished: boolean, soundLevel: number) => {
     const clampedDt = Math.min(dt, 0.06);
 
-    // 串灯柔和呼吸闪烁（吹灭庆祝时闪烁更欢快）
-    const twinkleSpeed = isExtinguished ? 4.2 : 1.8;
-    for (let i = 0; i < bulbSprites.length; i++) {
-      const b = bulbSprites[i];
-      const pulse = 0.72 + 0.28 * Math.sin(elapsed * twinkleSpeed + b.phase);
-      const scale = b.baseScale * (0.9 + pulse * 0.25 + soundLevel * 0.16);
-      b.sprite.scale.set(scale, scale, 1);
-      (b.sprite.material as THREE.SpriteMaterial).opacity = (isExtinguished ? 0.85 : 0.62) * pulse;
+    // 串灯呼吸闪烁
+    if (bulbSprites.length > 0) {
+      const twinkleSpeed = isExtinguished ? 4.2 : 1.8;
+      for (let i = 0; i < bulbSprites.length; i++) {
+        const b = bulbSprites[i];
+        const pulse = 0.72 + 0.28 * Math.sin(elapsed * twinkleSpeed + b.phase);
+        const scale = b.baseScale * (0.9 + pulse * 0.25 + soundLevel * 0.16);
+        b.sprite.scale.set(scale, scale, 1);
+        (b.sprite.material as THREE.SpriteMaterial).opacity = (isExtinguished ? 0.85 : 0.6) * pulse;
+      }
+    }
+
+    // 暖光萤火漂浮
+    for (let i = 0; i < floatingOrbs.length; i++) {
+      const o = floatingOrbs[i];
+      o.angle += clampedDt * o.speed;
+      const y = o.baseY + Math.sin(elapsed * 1.3 + o.phase) * 0.24;
+      o.sprite.position.set(Math.cos(o.angle) * o.radius, y, Math.sin(o.angle) * o.radius);
+      const pulse = 0.75 + 0.25 * Math.sin(elapsed * 2.2 + o.phase);
+      const sc = o.baseScale * pulse;
+      o.sprite.scale.set(sc, sc, 1);
+      (o.sprite.material as THREE.SpriteMaterial).opacity = 0.52 * pulse;
+    }
+
+    // 樱花花瓣飘落
+    for (let i = 0; i < fallingPetals.length; i++) {
+      const fp = fallingPetals[i];
+      fp.y -= clampedDt * fp.fallSpeed;
+      fp.angle += clampedDt * 0.18;
+      if (fp.y < 0.04) {
+        fp.y = 3.6 + Math.random() * 0.4;
+      }
+      const sway = Math.sin(elapsed * 1.8 + fp.phase) * 0.25;
+      fp.mesh.position.set(
+        Math.cos(fp.angle) * (fp.radius + sway),
+        fp.y,
+        Math.sin(fp.angle) * (fp.radius + sway)
+      );
+      fp.mesh.rotation.x += clampedDt * fp.spinSpeed;
+      fp.mesh.rotation.z += clampedDt * fp.spinSpeed * 0.7;
     }
 
     // 仙尘粒子盘旋上升
-    const posAttr = dustGeo.attributes.position as THREE.BufferAttribute;
-    for (let i = 0; i < dustCount; i++) {
-      const m = dustMeta[i];
-      m.angle += clampedDt * (isExtinguished ? 0.24 : 0.12);
-      m.y += clampedDt * m.speed * (isExtinguished ? 1.8 : 1.0);
-      if (m.y > 3.6) m.y = -0.65;
+    if (dustGeo && dustMat) {
+      const posAttr = dustGeo.attributes.position as THREE.BufferAttribute;
+      for (let i = 0; i < dustMeta.length; i++) {
+        const m = dustMeta[i];
+        m.angle += clampedDt * (isExtinguished ? 0.24 : 0.12);
+        m.y += clampedDt * m.speed * (isExtinguished ? 1.8 : 1.0);
+        if (m.y > 3.6) m.y = 0.05;
 
-      const wobble = Math.sin(elapsed * 1.6 + m.phase) * 0.12;
-      posAttr.setXYZ(
-        i,
-        Math.cos(m.angle) * (m.radius + wobble),
-        m.y,
-        Math.sin(m.angle) * (m.radius + wobble)
-      );
+        const wobble = Math.sin(elapsed * 1.6 + m.phase) * 0.12;
+        posAttr.setXYZ(
+          i,
+          Math.cos(m.angle) * (m.radius + wobble),
+          m.y,
+          Math.sin(m.angle) * (m.radius + wobble)
+        );
+      }
+      posAttr.needsUpdate = true;
+      dustMat.opacity = isExtinguished ? 0.82 : 0.52 + soundLevel * 0.24;
     }
-    posAttr.needsUpdate = true;
-    dustMat.opacity = isExtinguished ? 0.85 : 0.55 + soundLevel * 0.25;
 
-    // 更新 3D 礼花彩带物理轨迹
+    // 3D 礼花彩带物理轨迹
     if (confettiActive) {
       let alive = 0;
       for (let i = 0; i < confettiCount; i++) {
@@ -244,17 +394,15 @@ export function buildAtmosphereController(tier: WebGLTier): AtmosphereController
           continue;
         }
         alive++;
-        p.vy -= 3.6 * clampedDt; // 重力
+        p.vy -= 3.6 * clampedDt;
         p.vx *= 0.985;
         p.vz *= 0.985;
-        // 空气飘荡
         p.x += (p.vx + Math.sin(elapsed * 4 + i) * 0.35) * clampedDt;
         p.y += p.vy * clampedDt;
         p.z += (p.vz + Math.cos(elapsed * 3.5 + i) * 0.35) * clampedDt;
 
-        // 落到桌面停止
-        if (p.y < -0.78) {
-          p.y = -0.78;
+        if (p.y < 0.02) {
+          p.y = 0.02;
           p.vy = 0;
           p.vx *= 0.8;
           p.vz *= 0.8;

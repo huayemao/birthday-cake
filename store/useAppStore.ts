@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { AppState, CandleType } from '@/types';
+import { AppState, CandleType, CelebrationSfxStyle } from '@/types';
 import {
   BlowCalibrationProfile,
   saveBlowCalibrationProfile,
@@ -16,6 +16,7 @@ export interface AppStore extends AppState {
   musicEnabled: boolean;
   sfxEnabled: boolean;
   musicStyle: MusicStyle;
+  celebrationSfxStyle: CelebrationSfxStyle;
   updateState: (updates: Partial<AppState>) => void;
   setBlowCalibration: (profile: BlowCalibrationProfile | null) => void;
   hydrateBlowCalibration: (profile: BlowCalibrationProfile | null) => void;
@@ -24,6 +25,7 @@ export interface AppStore extends AppState {
   setMusicEnabled: (enabled: boolean) => void;
   setSfxEnabled: (enabled: boolean) => void;
   setMusicStyle: (style: MusicStyle) => void;
+  setCelebrationSfxStyle: (style: CelebrationSfxStyle) => void;
   resetState: () => void;
 }
 
@@ -42,6 +44,9 @@ const defaultState = (): AppState => ({
   giverName: '',
   isBlowLocked: false,
   blowSensitivity: 60,
+  cardStyle: 'cream-rose',
+  sceneTheme: 'fairy-lights',
+  celebrationSfxStyle: 'grand-party',
 });
 
 export const useAppStore = create<AppStore>((set) => ({
@@ -52,6 +57,7 @@ export const useAppStore = create<AppStore>((set) => ({
   musicEnabled: true,
   sfxEnabled: true,
   musicStyle: 'musicbox',
+  celebrationSfxStyle: 'grand-party',
 
   updateState: (updates) => set((state) => ({ ...state, ...updates })),
 
@@ -76,6 +82,8 @@ export const useAppStore = create<AppStore>((set) => ({
 
   setMusicStyle: (musicStyle) => set({ musicStyle }),
 
+  setCelebrationSfxStyle: (celebrationSfxStyle) => set({ celebrationSfxStyle }),
+
   resetState: () =>
     set((state) => ({
       ...defaultState(),
@@ -85,5 +93,6 @@ export const useAppStore = create<AppStore>((set) => ({
       musicEnabled: state.musicEnabled,
       sfxEnabled: state.sfxEnabled,
       musicStyle: state.musicStyle,
+      celebrationSfxStyle: state.celebrationSfxStyle,
     })),
 }));

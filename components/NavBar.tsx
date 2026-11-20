@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Language } from "@/types";
-import { useState, useEffect, useRef } from "react";
 import LanguageSelector from "./LanguageSelector";
 
 interface NavBarProps {
@@ -76,46 +75,33 @@ const NAV_ITEMS: NavItem[] = [
   },
 ];
 
+/**
+ * 顶部导航栏：悬浮在全屏主页首屏之上，确保主页核心视口严格为 100dvh，
+ * 同时保留完整的导航交互与 SEO 链接抓取。
+ */
 export default function NavBar({ lang, configCompleted }: NavBarProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
   const changeLanguage = (l: Language) => {
     window.location.href = `/${l}`;
   };
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   if (configCompleted) {
     return null;
   }
 
   return (
-    <nav className="flex justify-between transition-all duration-1000 ease-in-out p-4">
-      <div className="right-auto"></div>
-      <div className="left-auto shrink-0 p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50 flex items-center gap-2">
+    <nav className="absolute top-0 left-0 right-0 z-40 flex items-center justify-end p-3 sm:p-4 pointer-events-none">
+      <div className="pointer-events-auto shrink-0 p-1.5 rounded-2xl shadow-xl bg-slate-900/55 backdrop-blur-md border border-white/10 flex items-center gap-1 sm:gap-2">
         {NAV_ITEMS.map((item) => (
           <Link
             key={item.key}
             href={`/${lang}${item.href}`}
-            className="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-all"
+            className="px-2.5 sm:px-3 py-1.5 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/10 rounded-xl transition-all"
           >
             {item.label[lang]}
           </Link>
         ))}
-                  <LanguageSelector currentLang={lang} onLanguageChange={changeLanguage} />
-
+        <LanguageSelector currentLang={lang} onLanguageChange={changeLanguage} />
       </div>
-
     </nav>
   );
 }

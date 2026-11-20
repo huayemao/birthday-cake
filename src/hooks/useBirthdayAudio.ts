@@ -3,9 +3,18 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import { birthdayAudio, MusicStyle } from "@/utils/birthdayAudio";
+import { CelebrationSfxStyle } from "@/types";
+
+const CELEBRATION_STYLE_ORDER: CelebrationSfxStyle[] = [
+  "grand-party",
+  "fireworks-show",
+  "fairy-chimes",
+  "carnival-cheer",
+  "warm-applause",
+];
 
 /**
- * 协调生日背景音乐（未吹灭时播放《生日快乐歌》）与吹灭后庆祝音效套件，
+ * 协调生日背景音乐（未吹灭时播放《生日快乐歌》）与吹灭后多款庆祝音效套件，
  * 自动处理浏览器首次交互解锁，并在麦克风吹气校准期间自动静音避让。
  */
 export function useBirthdayAudio() {
@@ -16,16 +25,17 @@ export function useBirthdayAudio() {
     musicEnabled,
     sfxEnabled,
     musicStyle,
+    celebrationSfxStyle,
     setMusicEnabled,
     setSfxEnabled,
     setMusicStyle,
+    setCelebrationSfxStyle,
   } = useAppStore();
 
   const [audioUnlocked, setAudioUnlocked] = useState(false);
   const prevExtinguishedRef = useRef<boolean>(isExtinguished);
   const prevCalibratingRef = useRef<boolean>(isCalibratingBlow);
 
-  // 同步音乐/音效开关与风格
   useEffect(() => {
     birthdayAudio.setMusicStyle(musicStyle);
   }, [musicStyle]);
@@ -38,12 +48,11 @@ export function useBirthdayAudio() {
     birthdayAudio.setSfxEnabled(sfxEnabled && !isCalibratingBlow);
   }, [sfxEnabled, isCalibratingBlow]);
 
-  // 吹气时适度压低背景音乐音量，让体验更自然
   useEffect(() => {
     birthdayAudio.setDucked(isBlowing);
   }, [isBlowing]);
 
-  // 首次用户交互时自动解锁 AudioContext 并按当前状态启动音乐
+  // 首次用户交互解锁 AudioContext
   useEffect(() => {
     const handleFirstGesture = async () => {
       const ok = await birthdayAudio.unlock();
@@ -67,33 +76,31 @@ export function useBirthdayAudio() {
     };
   }, []);
 
-  // 监听吹灭/重新点亮状态变化，自动切换生日歌与庆祝音效交响
+  // 监听吹灭/重新点亮，切换生日快乐歌与当前选中的庆祝音效套件
   useEffect(() => {
     const wasExtinguished = prevExtinguishedRef.current;
     prevExtinguishedRef.current = isExtinguished;
 
     if (!wasExtinguished && isExtinguished) {
-      // 刚吹灭蜡烛 -> 淡出生日快乐歌并触发全套庆祝音效
-      birthdayAudio.playCelebrationSuite().then(() => {
-        if (birthdayAudio.isUnlocked()) setAudioUnlocked(true);
-      });
-    } else if (wasExtinguished && !isExtinguished) {
-      // 重新点亮 -> 点火音效 + 恢复生日快乐歌
-      birthdayAudio.playRelightSfx().then(() => {
-        if (birthdayAudio.isUnlocked()) setAudioUnlocked(true);
-      });
-      if (musicEnabled && !isCalibratingBlow) {
-        window.setTimeout(() => {
-          const s = useAppStore.getState();
-          if (!s.isExtinguished && s.musicEnabled && !s.isCalibratingBlow) {
-            birthdayAudio.startBirthdaySong();
-          }
-        }, 420);
+        const activeStyle = useAppStore.getState().celebrationSfxStyle;
+        birthdayAudio.playCelebrationSuite(activeStyle).then(() => {
+          if (birthdayAudio.isUnlocked()) setAudioUnlocked(true);
+        });
+      } else if (wasExtinguished && !isExtinguished) {
+        birthdayAudio.playRelightSfx().then(() => {
+          if (birthdayAudio.isUnlocked()) setAudioUnlocked(true);
+        });
+        if (musicEnabled && !isCalibratingBlow) {
+          window.setTimeout(() => {
+            const s = useAppStore.getState();
+            if (!s.isExtinguished && s.musicEnabled && !s.isCalibratingBlow) {
+              birthdayAudio.startBirthdaySong();
+            }
+          }, 420);
+        }
       }
-    }
-  }, [isExtinguished, musicEnabled, isCalibratingBlow]);
+    }, [isExtinguished, musicEnabled, isCalibratingBlow]);
 
-  // 校准麦克风时暂停音乐，结束后恢复
   useEffect(() => {
     const wasCalibrating = prevCalibratingRef.current;
     prevCalibratingRef.current = isCalibratingBlow;
@@ -105,7 +112,6 @@ export function useBirthdayAudio() {
     }
   }, [isCalibratingBlow, isExtinguished, musicEnabled, audioUnlocked]);
 
-  // 开关音乐时立即启停
   useEffect(() => {
     if (!audioUnlocked) return;
     if (musicEnabled && !isExtinguished && !isCalibratingBlow) {
@@ -115,7 +121,6 @@ export function useBirthdayAudio() {
     }
   }, [musicEnabled, audioUnlocked, isExtinguished, isCalibratingBlow]);
 
-  // 页面切后台时静音节能，回前台恢复
   useEffect(() => {
     const onVisibility = () => {
       if (document.hidden) {
@@ -131,6 +136,8 @@ export function useBirthdayAudio() {
     document.addEventListener("visibilitychange", onVisibility);
     return () => {
       document.removeEventListener("visibilitychange", onVisibility);
+      birthdayAudio.stopBirthdaySong(0.15);
+      birthdayAudio.clearCelebrationTimers();
     };
   }, []);
 
@@ -166,6 +173,19 @@ export function useBirthdayAudio() {
     }
   }, [musicStyle, musicEnabled, setMusicStyle, setMusicEnabled, isExtinguished, isCalibratingBlow]);
 
+  const cycleCelebrationSfxStyle = useCallback(async () => {
+    const next =
+      CELEBRATION_STYLE_ORDER[
+      (CELEBRATION_STYLE_ORDER.indexOf(celebrationSfxStyle) + 1) %
+      CELEBRATION_STYLE_ORDER.length
+      ];
+    setCelebrationSfxStyle(next);
+    if (!sfxEnabled) setSfxEnabled(true);
+    const ok = await birthdayAudio.unlock();
+    if (ok) setAudioUnlocked(true);
+    birthdayAudio.previewCelebrationStyle(next);
+  }, [celebrationSfxStyle, sfxEnabled, setCelebrationSfxStyle, setSfxEnabled]);
+
   const toggleSfx = useCallback(() => {
     setSfxEnabled(!sfxEnabled);
   }, [sfxEnabled, setSfxEnabled]);
@@ -174,7 +194,7 @@ export function useBirthdayAudio() {
     if (!sfxEnabled) setSfxEnabled(true);
     const ok = await birthdayAudio.unlock();
     if (ok) setAudioUnlocked(true);
-    birthdayAudio.playExtraCheerBurst();
+    birthdayAudio.playExtraCheerBurst(useAppStore.getState().celebrationSfxStyle);
   }, [sfxEnabled, setSfxEnabled]);
 
   return {
@@ -182,8 +202,10 @@ export function useBirthdayAudio() {
     musicEnabled,
     sfxEnabled,
     musicStyle,
+    celebrationSfxStyle,
     toggleMusic,
     cycleMusicStyle,
+    cycleCelebrationSfxStyle,
     toggleSfx,
     triggerCheerBurst,
   };

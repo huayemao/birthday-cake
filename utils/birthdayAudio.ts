@@ -12,6 +12,8 @@
  * 3. 重新点亮时：火柴微擦与点亮温暖呼声
  */
 
+import { CelebrationSfxStyle } from '@/types';
+
 export type MusicStyle = 'musicbox' | 'piano' | 'chimes';
 
 interface NoteEvent {
@@ -481,10 +483,14 @@ class BirthdayAudioEngine {
   }
 
   /**
-   * 吹灭蜡烛后的全方位庆祝音效交响！
-   * 包含：熄灭气流嘶声 -> 立体声礼花爆裂 -> 欢庆号角&竖琴 -> 鼓掌欢呼 -> 派对喇叭 -> 烟花群爆
+   * 吹灭蜡烛后的全方位庆祝音效（支持 5 种不同风格自由搭配）：
+   * - grand-party: 盛大派对（礼花 + 欢庆号角 + 鼓掌欢呼 + 派对喇叭 + 烟花）
+   * - fireworks-show: 璀璨烟花秀（连续 8 波立体声高空烟花升空、绽放与星火噼啪）
+   * - fairy-chimes: 梦幻星铃（空灵竖琴琶音 + 水晶八音盒和弦 + 仙女风铃微光）
+   * - carnival-cheer: 欢呼彩炮狂欢（三连彩炮 + 热烈欢呼拍手 + 俏皮派对喇叭 + 欢快马林巴旋律）
+   * - warm-applause: 温馨掌声（近场温暖室内掌声 + 柔情钢琴大七和弦收束）
    */
-  public async playCelebrationSuite(): Promise<void> {
+  public async playCelebrationSuite(style: CelebrationSfxStyle = 'grand-party'): Promise<void> {
     this.stopBirthdaySong(0.18);
     this.clearCelebrationTimers();
 
@@ -494,25 +500,87 @@ class BirthdayAudioEngine {
 
     const now = this.ctx.currentTime;
 
-    // 1. 蜡烛吹灭气流噗声 & 烛芯轻烟嘶响
+    // 所有风格均以自然的“吹熄烛火气流噗声”开场
     this.playCandleExtinguishSfx(now);
 
-    // 2. 左右立体声礼花筒爆破
+    if (style === 'fireworks-show') {
+      // 璀璨烟花秀
+      this.playSparkleGlissando(now + 0.16);
+      const schedule = [
+        { delayMs: 260, pan: -0.65, pitch: 1.05 },
+        { delayMs: 680, pan: 0.6, pitch: 1.18 },
+        { delayMs: 1120, pan: -0.25, pitch: 0.92 },
+        { delayMs: 1550, pan: 0.3, pitch: 1.12 },
+        { delayMs: 2050, pan: -0.55, pitch: 0.96 },
+        { delayMs: 2550, pan: 0.55, pitch: 1.24 },
+        { delayMs: 3150, pan: 0.0, pitch: 0.88 },
+        { delayMs: 3650, pan: -0.35, pitch: 1.15 },
+      ];
+      schedule.forEach((fw) => {
+        const id = window.setTimeout(() => {
+          if (!this.ctx || !this.sfxEnabled) return;
+          this.playFireworkBurst(this.ctx.currentTime, fw.pan, fw.pitch);
+        }, fw.delayMs);
+        this.celebrationTimers.push(id);
+      });
+      return;
+    }
+
+    if (style === 'fairy-chimes') {
+      // 梦幻星铃（空灵浪漫）
+      this.playWarmPadChord(now + 0.18, [53, 60, 65, 69, 72], 3.8);
+      this.playSparkleGlissando(now + 0.22);
+      const chimeTimes = [780, 1450, 2150, 2900];
+      chimeTimes.forEach((ms, idx) => {
+        const id = window.setTimeout(() => {
+          if (!this.ctx || !this.sfxEnabled) return;
+          this.playCrystalWindChime(this.ctx.currentTime, idx);
+        }, ms);
+        this.celebrationTimers.push(id);
+      });
+      return;
+    }
+
+    if (style === 'carnival-cheer') {
+      // 欢呼彩炮狂欢
+      this.playPartyPopper(now + 0.1, -0.6);
+      this.playPartyPopper(now + 0.24, 0.6);
+      this.playPartyPopper(now + 0.38, 0.0);
+      this.playCrowdApplauseAndCheer(now + 0.22, 4.6);
+      this.playPartyHorn(now + 0.52, 587.33, 0.42, -0.45);
+      this.playPartyHorn(now + 0.96, 659.25, 0.38, 0.45);
+      this.playPartyHorn(now + 1.38, 783.99, 0.62, 0.0);
+      this.playHappyMarimbaJingle(now + 0.45);
+      const id = window.setTimeout(() => {
+        if (!this.ctx || !this.sfxEnabled) return;
+        this.playPartyPopper(this.ctx.currentTime, -0.4);
+        this.playPartyPopper(this.ctx.currentTime + 0.14, 0.4);
+      }, 2100);
+      this.celebrationTimers.push(id);
+      return;
+    }
+
+    if (style === 'warm-applause') {
+      // 温馨家庭掌声 + 柔情钢琴大七和弦
+      this.playCrowdApplauseAndCheer(now + 0.22, 3.8);
+      this.playWarmPianoResolve(now + 0.32);
+      const id = window.setTimeout(() => {
+        if (!this.ctx || !this.sfxEnabled) return;
+        this.playSparkleGlissando(this.ctx.currentTime);
+      }, 1500);
+      this.celebrationTimers.push(id);
+      return;
+    }
+
+    // 默认：grand-party（盛大派对全套交响）
     this.playPartyPopper(now + 0.14, -0.55);
     this.playPartyPopper(now + 0.3, 0.55);
     this.playPartyPopper(now + 0.52, 0.0);
-
-    // 3. 欢庆华丽号角 + 闪耀竖琴琶音
     this.playCelebrationFanfare(now + 0.22);
-
-    // 4. 温暖人群鼓掌与欢呼声场
     this.playCrowdApplauseAndCheer(now + 0.36, 4.4);
-
-    // 5. 俏皮派对小喇叭嘟声
     this.playPartyHorn(now + 0.95, 587.33, 0.45, -0.35);
     this.playPartyHorn(now + 1.48, 783.99, 0.55, 0.35);
 
-    // 6. 多波次烟花升空与炸裂音效（配合 Fireworks 动画节奏）
     const fireworkSchedule = [
       { delayMs: 550, pan: -0.5, pitch: 1.0 },
       { delayMs: 1150, pan: 0.45, pitch: 1.15 },
@@ -531,18 +599,182 @@ class BirthdayAudioEngine {
     });
   }
 
-  /** 额外手动触发一波礼花欢呼（庆祝界面互动按钮） */
-  public async playExtraCheerBurst(): Promise<void> {
-    if (!this.sfxEnabled) return;
+  /** 配置页一键试听某款庆祝音效（精简 1.8 秒高光片段） */
+  public async previewCelebrationStyle(style: CelebrationSfxStyle): Promise<void> {
+    this.clearCelebrationTimers();
     const unlocked = await this.unlock();
-    if (!unlocked || !this.ctx) return;
+    if (!unlocked || !this.ctx || !this.sfxGain) return;
 
     const now = this.ctx.currentTime;
-    this.playPartyPopper(now, -0.45);
-    this.playPartyPopper(now + 0.14, 0.45);
-    this.playSparkleGlissando(now + 0.05);
-    this.playPartyHorn(now + 0.2, 698.46, 0.42, 0.25);
-    this.playFireworkBurst(now + 0.35, -0.3, 1.1);
+    if (style === 'fireworks-show') {
+      this.playFireworkBurst(now, -0.45, 1.05);
+      const id = window.setTimeout(() => {
+        if (this.ctx) this.playFireworkBurst(this.ctx.currentTime, 0.45, 1.18);
+      }, 420);
+      this.celebrationTimers.push(id);
+    } else if (style === 'fairy-chimes') {
+      this.playWarmPadChord(now, [53, 60, 65, 69, 72], 2.0);
+      this.playSparkleGlissando(now + 0.05);
+    } else if (style === 'carnival-cheer') {
+      this.playPartyPopper(now, -0.45);
+      this.playPartyPopper(now + 0.14, 0.45);
+      this.playPartyHorn(now + 0.2, 698.46, 0.42, 0.2);
+      this.playHappyMarimbaJingle(now + 0.12);
+    } else if (style === 'warm-applause') {
+      this.playCrowdApplauseAndCheer(now, 1.8);
+      this.playWarmPianoResolve(now + 0.08);
+    } else {
+      this.playPartyPopper(now, -0.45);
+      this.playCelebrationFanfare(now + 0.08);
+      const id = window.setTimeout(() => {
+        if (this.ctx) this.playFireworkBurst(this.ctx.currentTime, 0.35, 1.1);
+      }, 520);
+      this.celebrationTimers.push(id);
+    }
+  }
+
+  /** 配置页一键试听某款生日快乐歌乐器风格（简短演奏前 6 个音符：Hap-py Birth-day to you~） */
+  public async previewMusicStyle(style: MusicStyle): Promise<void> {
+    const unlocked = await this.unlock();
+    if (!unlocked || !this.ctx || !this.musicGain) return;
+
+    const prevStyle = this.style;
+    this.style = style;
+    const now = this.ctx.currentTime + 0.04;
+    this.musicGain.gain.cancelScheduledValues(now);
+    this.musicGain.gain.setValueAtTime(0.55, now);
+
+    const beatSec = this.getBeatDurationSec();
+    HAPPY_BIRTHDAY_SCORE.slice(0, 6).forEach((ev) => {
+      this.triggerScoreEvent(ev, now + ev.beat * beatSec, beatSec);
+    });
+    this.style = prevStyle;
+  }
+
+  /** 额外手动触发一波礼花欢呼（随当前选中的庆祝音效风格响应） */
+  public async playExtraCheerBurst(style: CelebrationSfxStyle = 'grand-party'): Promise<void> {
+    if (!this.sfxEnabled) return;
+    await this.previewCelebrationStyle(style);
+  }
+
+  private playWarmPadChord(time: number, midis: number[], dur: number): void {
+    if (!this.ctx || !this.sfxGain) return;
+    const ctx = this.ctx;
+    midis.forEach((midi, idx) => {
+      const osc = ctx.createOscillator();
+      const env = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(midiToFreq(midi), time);
+      osc.detune.value = (idx % 2 === 0 ? 1 : -1) * 4;
+
+      env.gain.setValueAtTime(0.0001, time);
+      env.gain.linearRampToValueAtTime(0.11, time + 0.45);
+      env.gain.exponentialRampToValueAtTime(0.0001, time + dur);
+
+      osc.connect(env).connect(this.sfxGain!);
+      if (this.reverbNode) {
+        const send = ctx.createGain();
+        send.gain.value = 0.6;
+        env.connect(send).connect(this.reverbNode);
+      }
+      osc.start(time);
+      osc.stop(time + dur + 0.06);
+    });
+  }
+
+  private playCrystalWindChime(time: number, variant: number): void {
+    if (!this.ctx || !this.sfxGain) return;
+    const ctx = this.ctx;
+    const sets = [
+      [84, 88, 91, 96],
+      [81, 86, 89, 93],
+      [79, 84, 88, 91],
+      [86, 89, 93, 98],
+    ];
+    const notes = sets[variant % sets.length];
+    notes.forEach((midi, i) => {
+      const t = time + i * 0.065;
+      const osc = ctx.createOscillator();
+      const env = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(midiToFreq(midi), t);
+
+      env.gain.setValueAtTime(0.0001, t);
+      env.gain.linearRampToValueAtTime(0.16, t + 0.008);
+      env.gain.exponentialRampToValueAtTime(0.0001, t + 1.1);
+
+      const dest = this.createPannedSfxDest((i - 1.5) * 0.38);
+      osc.connect(env).connect(dest);
+      if (this.reverbNode) {
+        const send = ctx.createGain();
+        send.gain.value = 0.65;
+        env.connect(send).connect(this.reverbNode);
+      }
+      osc.start(t);
+      osc.stop(t + 1.15);
+    });
+  }
+
+  private playHappyMarimbaJingle(time: number): void {
+    if (!this.ctx || !this.sfxGain) return;
+    const ctx = this.ctx;
+    const melody = [
+      { midi: 77, t: 0.0 },
+      { midi: 81, t: 0.11 },
+      { midi: 84, t: 0.22 },
+      { midi: 86, t: 0.33 },
+      { midi: 89, t: 0.45 },
+      { midi: 84, t: 0.6 },
+      { midi: 89, t: 0.74 },
+    ];
+    melody.forEach((n, idx) => {
+      const start = time + n.t;
+      const osc = ctx.createOscillator();
+      const env = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(midiToFreq(n.midi), start);
+      env.gain.setValueAtTime(0.0001, start);
+      env.gain.linearRampToValueAtTime(0.32, start + 0.008);
+      env.gain.exponentialRampToValueAtTime(0.0001, start + 0.28);
+
+      const dest = this.createPannedSfxDest(((idx % 3) - 1) * 0.4);
+      osc.connect(env).connect(dest);
+      osc.start(start);
+      osc.stop(start + 0.32);
+    });
+  }
+
+  private playWarmPianoResolve(time: number): void {
+    if (!this.ctx || !this.sfxGain) return;
+    const ctx = this.ctx;
+    // 柔美钢琴分解大九和弦 Fmaj9
+    const chord = [53, 60, 64, 65, 69, 72, 74, 77];
+    chord.forEach((midi, idx) => {
+      const start = time + idx * 0.075;
+      const osc = ctx.createOscillator();
+      const filter = ctx.createBiquadFilter();
+      const env = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(midiToFreq(midi), start);
+
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(2400, start);
+      filter.frequency.exponentialRampToValueAtTime(650, start + 1.8);
+
+      env.gain.setValueAtTime(0.0001, start);
+      env.gain.linearRampToValueAtTime(0.22, start + 0.018);
+      env.gain.exponentialRampToValueAtTime(0.0001, start + 2.2);
+
+      const dest = this.createPannedSfxDest((idx / chord.length - 0.5) * 0.8);
+      osc.connect(filter).connect(env).connect(dest);
+      if (this.reverbNode) {
+        const send = ctx.createGain();
+        send.gain.value = 0.5;
+        env.connect(send).connect(this.reverbNode);
+      }
+      osc.start(start);
+      osc.stop(start + 2.3);
+    });
   }
 
   /** 重新点亮蜡烛的柔和火苗点亮音效 */
@@ -945,7 +1177,7 @@ class BirthdayAudioEngine {
     this.stopBirthdaySong(0.05);
     this.clearCelebrationTimers();
     if (this.ctx) {
-      this.ctx.close().catch(() => {});
+      this.ctx.close().catch(() => { });
       this.ctx = null;
       this.masterGain = null;
       this.musicGain = null;

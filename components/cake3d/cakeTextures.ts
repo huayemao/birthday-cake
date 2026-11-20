@@ -8,65 +8,57 @@ function createCanvas(width: number, height: number): [HTMLCanvasElement, Canvas
   return [canvas, ctx];
 }
 
-/** 柔滑奶油微纹理凹凸贴图（横纹抹刀笔触 + 细腻气孔质感） */
-export function createButtercreamBumpTexture(): THREE.CanvasTexture {
+/** 极柔和纯净的奶油横向抹面纹理 */
+export function createSilkyFrostingBumpTexture(): THREE.CanvasTexture {
   const [canvas, ctx] = createCanvas(512, 256);
   ctx.fillStyle = '#808080';
   ctx.fillRect(0, 0, 512, 256);
 
-  // 横向精致抹面线条
-  for (let y = 0; y < 256; y += 3) {
-    const shade = 122 + Math.floor(Math.sin(y * 0.27) * 9 + (Math.random() - 0.5) * 10);
-    ctx.fillStyle = `rgb(${shade},${shade},${shade})`;
-    ctx.fillRect(0, y, 512, 2);
-  }
-  // 细腻颗粒
-  for (let i = 0; i < 3200; i++) {
-    const x = Math.random() * 512;
-    const y = Math.random() * 256;
-    const v = 115 + Math.floor(Math.random() * 26);
-    ctx.fillStyle = `rgba(${v},${v},${v},0.35)`;
-    ctx.fillRect(x, y, 2, 1.5);
+  for (let y = 0; y < 256; y++) {
+    const wave = Math.sin(y * 0.22) * 4 + Math.sin(y * 0.08) * 2.5;
+    const v = Math.round(128 + wave);
+    ctx.fillStyle = `rgb(${v},${v},${v})`;
+    ctx.fillRect(0, y, 512, 1);
   }
 
   const tex = new THREE.CanvasTexture(canvas);
   tex.wrapS = THREE.RepeatWrapping;
   tex.wrapT = THREE.RepeatWrapping;
-  tex.repeat.set(3, 1.5);
+  tex.repeat.set(2, 1);
   return tex;
 }
 
-/** 彩虹蛋糕侧面渐变水彩层纹理 */
+/** 鲜活清晰的马卡龙彩虹渐变奶油侧面贴图（专为直壁侧面 UV 0..1 映射调校） */
 export function createRainbowFrostingTexture(): THREE.CanvasTexture {
   const [canvas, ctx] = createCanvas(512, 512);
   const grad = ctx.createLinearGradient(0, 0, 0, 512);
-  grad.addColorStop(0.0, '#fffaf5');
-  grad.addColorStop(0.14, '#fda4af'); // rose
-  grad.addColorStop(0.28, '#fdba74'); // apricot
-  grad.addColorStop(0.44, '#fde68a'); // buttercup
-  grad.addColorStop(0.60, '#a7f3d0'); // mint
-  grad.addColorStop(0.76, '#93c5fd'); // sky
-  grad.addColorStop(0.92, '#c4b5fd'); // lavender
-  grad.addColorStop(1.0, '#fbcfe8');
+  grad.addColorStop(0.0, '#ff9ebb'); // 鲜莓粉
+  grad.addColorStop(0.18, '#ffba86'); // 蜜桃橘
+  grad.addColorStop(0.36, '#ffe47a'); // 奶油柠檬黄
+  grad.addColorStop(0.55, '#8ce9b5'); // 清新薄荷绿
+  grad.addColorStop(0.75, '#86c5ff'); // 晴空天蓝
+  grad.addColorStop(0.92, '#c59bff'); // 丁香紫
+  grad.addColorStop(1.0, '#f7a8d8');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 512, 512);
 
-  // 柔和奶白色半裸抹面条纹
-  for (let y = 0; y < 512; y += 5) {
-    const alpha = 0.08 + Math.random() * 0.16;
-    ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(2)})`;
-    ctx.fillRect(0, y, 512, 2 + Math.random() * 3);
+  // 柔和奶油抹面横向高光丝纹
+  for (let y = 0; y < 512; y += 10) {
+    ctx.fillStyle = 'rgba(255,255,255,0.14)';
+    ctx.fillRect(0, y, 512, 2.5);
   }
 
-  // 细小糖珠彩点
-  const sprinkleColors = ['#f43f5e', '#f59e0b', '#10b981', '#3b82f6', '#a855f7', '#ec4899'];
-  for (let i = 0; i < 140; i++) {
+  // 侧面点缀精致彩色糖针
+  const sprinkleColors = ['#f43f5e', '#fb923c', '#facc15', '#10b981', '#0ea5e9', '#a855f7'];
+  for (let i = 0; i < 85; i++) {
     ctx.save();
-    ctx.translate(Math.random() * 512, 50 + Math.random() * 420);
-    ctx.rotate(Math.random() * Math.PI);
+    const x = ((i * 73) % 490) + 11;
+    const y = 70 + ((i * 137) % 395);
+    ctx.translate(x, y);
+    ctx.rotate((i * 1.1) % Math.PI);
     ctx.fillStyle = sprinkleColors[i % sprinkleColors.length];
     ctx.beginPath();
-    ctx.roundRect(-5, -1.8, 10, 3.6, 1.8);
+    ctx.roundRect(-5.5, -2.2, 11, 4.4, 2.2);
     ctx.fill();
     ctx.restore();
   }
@@ -78,35 +70,36 @@ export function createRainbowFrostingTexture(): THREE.CanvasTexture {
   return tex;
 }
 
-/** 紫绒星空蓝莓镜面纹理 */
+/** 梦幻饱满的薰衣草蓝莓星夜侧面贴图 */
 export function createStarryVelvetTexture(): THREE.CanvasTexture {
   const [canvas, ctx] = createCanvas(512, 512);
   const grad = ctx.createLinearGradient(0, 0, 0, 512);
-  grad.addColorStop(0, '#5b21b6');
-  grad.addColorStop(0.45, '#7c3aed');
-  grad.addColorStop(0.85, '#ddd6fe');
-  grad.addColorStop(1, '#ede9fe');
+  grad.addColorStop(0.0, '#6d28d9');
+  grad.addColorStop(0.35, '#8b5cf6');
+  grad.addColorStop(0.72, '#c4b5fd');
+  grad.addColorStop(1.0, '#e9d5ff');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 512, 512);
 
-  // 柔和星云炫彩刷痕
-  for (let i = 0; i < 22; i++) {
-    const x = Math.random() * 512;
-    const y = Math.random() * 320;
-    const r = 35 + Math.random() * 75;
-    const rg = ctx.createRadialGradient(x, y, 2, x, y, r);
-    rg.addColorStop(0, i % 2 === 0 ? 'rgba(244,114,182,0.18)' : 'rgba(129,140,248,0.22)');
-    rg.addColorStop(1, 'rgba(129,140,248,0)');
+  const clouds = [
+    [110, 140, 120, 'rgba(244,114,182,0.22)'],
+    [340, 180, 140, 'rgba(129,140,248,0.26)'],
+    [230, 320, 130, 'rgba(255,255,255,0.18)'],
+    [430, 90, 95, 'rgba(216,180,254,0.24)'],
+  ] as const;
+  clouds.forEach(([x, y, r, color]) => {
+    const rg = ctx.createRadialGradient(x, y, 4, x, y, r);
+    rg.addColorStop(0, color);
+    rg.addColorStop(1, 'rgba(255,255,255,0)');
     ctx.fillStyle = rg;
     ctx.fillRect(x - r, y - r, r * 2, r * 2);
-  }
+  });
 
-  // 可食用银粉星尘
-  for (let i = 0; i < 240; i++) {
-    const x = Math.random() * 512;
-    const y = Math.random() * 480;
-    const r = 0.6 + Math.random() * 1.7;
-    ctx.fillStyle = `rgba(255,255,255,${(0.35 + Math.random() * 0.65).toFixed(2)})`;
+  for (let i = 0; i < 150; i++) {
+    const x = (i * 97) % 512;
+    const y = (i * 151) % 470;
+    const r = 0.8 + (i % 3) * 0.65;
+    ctx.fillStyle = `rgba(255,255,255,${(0.45 + (i % 5) * 0.11).toFixed(2)})`;
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.fill();
@@ -119,7 +112,7 @@ export function createStarryVelvetTexture(): THREE.CanvasTexture {
   return tex;
 }
 
-/** 精致蕾丝蛋糕纸垫（圆形径向镂空花边） */
+/** 精致纯白镂空蕾丝垫圈（贴合蛋糕底托，无多余宽边） */
 export function createLaceDoilyTexture(): THREE.CanvasTexture {
   const [canvas, ctx] = createCanvas(512, 512);
   const cx = 256;
@@ -127,63 +120,48 @@ export function createLaceDoilyTexture(): THREE.CanvasTexture {
 
   ctx.clearRect(0, 0, 512, 512);
 
-  // 中心实心柔白底
-  ctx.fillStyle = 'rgba(255, 252, 248, 0.94)';
+  ctx.fillStyle = 'rgba(255, 253, 250, 0.94)';
   ctx.beginPath();
-  ctx.arc(cx, cy, 185, 0, Math.PI * 2);
+  ctx.arc(cx, cy, 198, 0, Math.PI * 2);
   ctx.fill();
 
-  // 外圈波浪花瓣边
-  const petals = 36;
+  const petals = 40;
   for (let i = 0; i < petals; i++) {
     const angle = (i / petals) * Math.PI * 2;
-    const px = cx + Math.cos(angle) * 212;
-    const py = cy + Math.sin(angle) * 212;
-    ctx.fillStyle = 'rgba(255, 252, 248, 0.92)';
+    const px = cx + Math.cos(angle) * 218;
+    const py = cy + Math.sin(angle) * 218;
+    ctx.fillStyle = 'rgba(255, 253, 250, 0.92)';
     ctx.beginPath();
-    ctx.arc(px, py, 22, 0, Math.PI * 2);
+    ctx.arc(px, py, 18, 0, Math.PI * 2);
     ctx.fill();
   }
 
-  // 镂空蕾丝孔洞（destination-out 挖空）
   ctx.globalCompositeOperation = 'destination-out';
   for (let i = 0; i < petals; i++) {
     const angle = (i / petals) * Math.PI * 2;
-    const hx1 = cx + Math.cos(angle) * 214;
-    const hy1 = cy + Math.sin(angle) * 214;
     ctx.beginPath();
-    ctx.arc(hx1, hy1, 7.5, 0, Math.PI * 2);
-    ctx.fill();
-
-    const angle2 = angle + Math.PI / petals;
-    const hx2 = cx + Math.cos(angle2) * 195;
-    const hy2 = cy + Math.sin(angle2) * 195;
-    ctx.beginPath();
-    ctx.arc(hx2, hy2, 5.2, 0, Math.PI * 2);
+    ctx.arc(cx + Math.cos(angle) * 220, cy + Math.sin(angle) * 220, 6.2, 0, Math.PI * 2);
     ctx.fill();
   }
 
   ctx.globalCompositeOperation = 'source-over';
-  // 淡金色压纹细环
-  ctx.strokeStyle = 'rgba(245, 208, 138, 0.55)';
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.arc(cx, cy, 180, 0, Math.PI * 2);
-  ctx.stroke();
-
   const tex = new THREE.CanvasTexture(canvas);
   tex.colorSpace = THREE.SRGBColorSpace;
   return tex;
 }
 
-/** 螺旋条纹蜡烛纹理（支持多组马卡龙色系） */
-export function createCandleStripeTexture(baseColor: string, stripeColor: string, accentGold = true): THREE.CanvasTexture {
+/** 明快马卡龙螺旋条纹蜡烛贴图 */
+export function createCandleStripeTexture(
+  baseColor: string,
+  stripeColor: string,
+  accentGold = true
+): THREE.CanvasTexture {
   const [canvas, ctx] = createCanvas(256, 256);
   ctx.fillStyle = baseColor;
   ctx.fillRect(0, 0, 256, 256);
 
   ctx.strokeStyle = stripeColor;
-  ctx.lineWidth = 22;
+  ctx.lineWidth = 24;
   for (let i = -256; i < 512; i += 64) {
     ctx.beginPath();
     ctx.moveTo(i, 0);
@@ -192,7 +170,7 @@ export function createCandleStripeTexture(baseColor: string, stripeColor: string
   }
 
   if (accentGold) {
-    ctx.strokeStyle = 'rgba(253, 224, 71, 0.55)';
+    ctx.strokeStyle = 'rgba(250, 204, 21, 0.65)';
     ctx.lineWidth = 4;
     for (let i = -256 + 15; i < 512; i += 64) {
       ctx.beginPath();
@@ -210,33 +188,26 @@ export function createCandleStripeTexture(baseColor: string, stripeColor: string
   return tex;
 }
 
-/** 草莓表面籽粒凹凸与红润色泽贴图 */
+/** 熟透饱满的鲜红草莓表皮贴图（丰富鲜红，不会泛白） */
 export function createStrawberryTexture(): THREE.CanvasTexture {
   const [canvas, ctx] = createCanvas(256, 256);
   const grad = ctx.createLinearGradient(0, 0, 0, 256);
-  grad.addColorStop(0, '#be123c'); // 尖端熟透深红 (v=1)
-  grad.addColorStop(0.55, '#e11d48');
-  grad.addColorStop(0.85, '#f43f5e');
-  grad.addColorStop(1, '#fda4af'); // 靠近绿叶蒂部微浅红 (v=0)
+  grad.addColorStop(0.0, '#b91c1c'); // 熟透尖端深红宝石 (v=1)
+  grad.addColorStop(0.5, '#dc2626');
+  grad.addColorStop(0.85, '#ef4444');
+  grad.addColorStop(1.0, '#f87171'); // 蒂部鲜亮红 (v=0)
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 256, 256);
 
-  // 均匀交错排列的金黄色草莓籽
   for (let row = 1; row < 10; row++) {
-    const y = (row / 10) * 230 + 10;
+    const y = (row / 10) * 228 + 12;
     const cols = 12;
     const offset = (row % 2) * (256 / cols / 2);
     for (let col = 0; col < cols; col++) {
       const x = (col / cols) * 256 + offset;
-      // 凹陷暗影
-      ctx.fillStyle = 'rgba(80, 7, 36, 0.45)';
-      ctx.beginPath();
-      ctx.ellipse(x, y + 1, 3.2, 4.4, 0, 0, Math.PI * 2);
-      ctx.fill();
-      // 金色籽粒
       ctx.fillStyle = '#fde68a';
       ctx.beginPath();
-      ctx.ellipse(x, y, 1.9, 3.0, 0, 0, Math.PI * 2);
+      ctx.ellipse(x, y, 1.8, 2.8, 0, 0, Math.PI * 2);
       ctx.fill();
     }
   }
@@ -248,13 +219,17 @@ export function createStrawberryTexture(): THREE.CanvasTexture {
   return tex;
 }
 
-/** 柔和径向光晕贴图（烛火光晕、氛围星光、焦外光斑） */
-export function createSoftGlowTexture(innerHex = '#fffbeb', midHex = '#fbbf24', outerRgba = 'rgba(251, 146, 60, 0)'): THREE.CanvasTexture {
+/** 柔和径向光晕贴图 */
+export function createSoftGlowTexture(
+  innerHex = '#fffbeb',
+  midHex = '#fbbf24',
+  outerRgba = 'rgba(251, 146, 60, 0)'
+): THREE.CanvasTexture {
   const [canvas, ctx] = createCanvas(128, 128);
   const grad = ctx.createRadialGradient(64, 64, 2, 64, 64, 64);
   grad.addColorStop(0.0, innerHex);
-  grad.addColorStop(0.26, midHex);
-  grad.addColorStop(0.6, outerRgba.replace(/0\)$/, '0.28)'));
+  grad.addColorStop(0.28, midHex);
+  grad.addColorStop(0.62, outerRgba.replace(/0\)$/, '0.26)'));
   grad.addColorStop(1.0, outerRgba);
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 128, 128);
@@ -264,22 +239,21 @@ export function createSoftGlowTexture(innerHex = '#fffbeb', midHex = '#fbbf24', 
   return tex;
 }
 
-/** 细腻半透明烟雾团纹理（吹灭蜡烛后袅袅青烟） */
+/** 细腻半透明青烟团纹理 */
 export function createSmokePuffTexture(): THREE.CanvasTexture {
   const [canvas, ctx] = createCanvas(128, 128);
   ctx.clearRect(0, 0, 128, 128);
 
-  // 多重偏移柔光球叠加，形成自然云雾质感
   const puffs = [
-    [64, 64, 46, 0.34],
-    [52, 58, 34, 0.25],
-    [76, 60, 32, 0.22],
-    [62, 74, 34, 0.22],
+    [64, 64, 46, 0.32],
+    [52, 58, 34, 0.24],
+    [76, 60, 32, 0.2],
+    [62, 74, 34, 0.2],
   ];
   puffs.forEach(([x, y, r, a]) => {
     const g = ctx.createRadialGradient(x, y, 2, x, y, r);
-    g.addColorStop(0, `rgba(226, 232, 240, ${a})`);
-    g.addColorStop(0.55, `rgba(203, 213, 225, ${(a * 0.45).toFixed(2)})`);
+    g.addColorStop(0, `rgba(241, 245, 249, ${a})`);
+    g.addColorStop(0.55, `rgba(226, 232, 240, ${(a * 0.42).toFixed(2)})`);
     g.addColorStop(1, 'rgba(148, 163, 184, 0)');
     ctx.fillStyle = g;
     ctx.beginPath();
@@ -292,85 +266,262 @@ export function createSmokePuffTexture(): THREE.CanvasTexture {
   return tex;
 }
 
-/** 蛋糕前精致巧克力/翻糖手写铭牌贴图 */
-export function createPlaqueTexture(text: string, darkChocolate = true): THREE.CanvasTexture {
-  const [canvas, ctx] = createCanvas(512, 220);
+/** 中英文自动换行工具，保证祝福语在蛋糕卡片上排版整齐清晰 */
+function wrapCardText(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  maxWidth: number,
+  maxLines: number
+): string[] {
+  const lines: string[] = [];
+  let current = '';
 
-  // 圆角牌底色
-  const bgGrad = ctx.createLinearGradient(0, 0, 512, 220);
-  if (darkChocolate) {
-    bgGrad.addColorStop(0, '#3b1c0a');
-    bgGrad.addColorStop(0.5, '#2a1205');
-    bgGrad.addColorStop(1, '#451a03');
-  } else {
-    bgGrad.addColorStop(0, '#fff5f7');
-    bgGrad.addColorStop(1, '#ffe4e6');
+  for (const ch of Array.from(text)) {
+    const test = current + ch;
+    if (ctx.measureText(test).width > maxWidth && current.length > 0) {
+      lines.push(current);
+      current = ch;
+      if (lines.length >= maxLines) break;
+    } else {
+      current = test;
+    }
   }
 
-  ctx.fillStyle = bgGrad;
-  ctx.beginPath();
-  ctx.roundRect(12, 12, 488, 196, 36);
-  ctx.fill();
+  if (current && lines.length < maxLines) {
+    lines.push(current);
+  } else if (lines.length === maxLines && current) {
+    let last = lines[maxLines - 1];
+    while (last.length > 1 && ctx.measureText(last + '…').width > maxWidth) {
+      last = last.slice(0, -1);
+    }
+    lines[maxLines - 1] = last + '…';
+  }
 
-  // 金色双线精致边框
-  ctx.strokeStyle = darkChocolate ? '#facc15' : '#f472b6';
-  ctx.lineWidth = 6;
+  return lines;
+}
+
+import { CardStyle } from '@/types';
+
+export interface PlaqueContentOptions {
+  userName?: string;
+  customMessage?: string;
+  giverName?: string;
+  lang?: string;
+  cardStyle?: CardStyle;
+}
+
+/** 获取不同祝福卡片风格对应的立体厚边颜色（与正面边缘无缝衔接，彻底消除黑边） */
+export function getPlaqueSideColor(style: CardStyle = 'cream-rose'): number {
+  switch (style) {
+    case 'dark-gold':
+      return 0x4a2413;
+    case 'starry-violet':
+      return 0x312e6b;
+    case 'mint-fresh':
+      return 0xc6ebd9;
+    case 'cream-rose':
+    default:
+      return 0xf3d5df;
+  }
+}
+
+/**
+ * 蛋糕前哑光手写祝福卡片贴图：
+ * 1. 先全幅满铺底色（fillRect 0..width, 0..height），彻底杜绝透明边角在 WebGL 渲染成黑框的问题！
+ * 2. 支持多种风格自由搭配：奶油粉笺 / 黑巧鎏金 / 星夜紫韵 / 清新薄荷。
+ */
+export function createPlaqueTexture(options: PlaqueContentOptions): THREE.CanvasTexture {
+  const {
+    userName = '',
+    customMessage = '',
+    giverName = '',
+    lang = 'zh',
+    cardStyle = 'cream-rose',
+  } = options;
+
+  const isZh = lang === 'zh' || lang === 'zh-Hant';
+  const [canvas, ctx] = createCanvas(768, 440);
+
+  const palettes: Record<
+    Exclude<CardStyle, 'none'>,
+    {
+      bg1: string;
+      bg2: string;
+      border: string;
+      subBorder: string;
+      emblem: string;
+      emblemText: string;
+      primaryInk: string;
+      secondaryInk: string;
+      fromInk: string;
+      stars?: boolean;
+    }
+  > = {
+    'cream-rose': {
+      bg1: '#fdf6f0',
+      bg2: '#f9e5ec',
+      border: '#d97a99',
+      subBorder: 'rgba(217, 122, 153, 0.38)',
+      emblem: '#e11d48',
+      emblemText: '✦   ♥   ✦',
+      primaryInk: '#881337',
+      secondaryInk: '#9f1239',
+      fromInk: '#be185d',
+    },
+    'dark-gold': {
+      bg1: '#422011',
+      bg2: '#2d1409',
+      border: '#e5be63',
+      subBorder: 'rgba(229, 190, 99, 0.42)',
+      emblem: '#f3d47e',
+      emblemText: '✦   ♛   ✦',
+      primaryInk: '#fef3c7',
+      secondaryInk: '#fde68a',
+      fromInk: '#f3d47e',
+    },
+    'starry-violet': {
+      bg1: '#272356',
+      bg2: '#1b1840',
+      border: '#c4b5fd',
+      subBorder: 'rgba(196, 181, 253, 0.36)',
+      emblem: '#fde68a',
+      emblemText: '✧   ☾   ✧',
+      primaryInk: '#f5f3ff',
+      secondaryInk: '#ddd6fe',
+      fromInk: '#f9a8d4',
+      stars: true,
+    },
+    'mint-fresh': {
+      bg1: '#f0fdf6',
+      bg2: '#dcfce9',
+      border: '#34a87c',
+      subBorder: 'rgba(52, 168, 124, 0.36)',
+      emblem: '#059669',
+      emblemText: '❀   ✿   ❀',
+      primaryInk: '#065f46',
+      secondaryInk: '#047857',
+      fromInk: '#0f766e',
+    },
+  };
+
+  const p = palettes[cardStyle === 'none' ? 'cream-rose' : cardStyle];
+
+  // 全幅满铺背景色，彻底消除任何透明像素引起的黑边！
+  const bgGrad = ctx.createLinearGradient(0, 0, 768, 440);
+  bgGrad.addColorStop(0, p.bg1);
+  bgGrad.addColorStop(1, p.bg2);
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, 768, 440);
+
+  if (p.stars) {
+    for (let i = 0; i < 42; i++) {
+      const sx = ((i * 113) % 720) + 24;
+      const sy = ((i * 71) % 392) + 24;
+      const sr = 1.2 + (i % 3) * 0.9;
+      ctx.fillStyle = `rgba(255,255,255,${(0.25 + (i % 4) * 0.16).toFixed(2)})`;
+      ctx.beginPath();
+      ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // 典雅内嵌双线框
+  ctx.strokeStyle = p.border;
+  ctx.lineWidth = 5;
   ctx.beginPath();
-  ctx.roundRect(24, 24, 464, 172, 28);
+  ctx.roundRect(22, 22, 724, 396, 26);
   ctx.stroke();
 
-  ctx.strokeStyle = darkChocolate ? 'rgba(253, 224, 71, 0.45)' : 'rgba(244, 114, 182, 0.35)';
+  ctx.strokeStyle = p.subBorder;
   ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.roundRect(36, 36, 440, 148, 22);
+  ctx.roundRect(36, 36, 696, 368, 20);
   ctx.stroke();
 
-  // 顶部小星星装饰
-  ctx.fillStyle = darkChocolate ? '#fde047' : '#ec4899';
-  ctx.font = '24px Georgia, serif';
+  // 顶部装饰徽章
+  ctx.fillStyle = p.emblem;
+  ctx.font = '600 24px Georgia, serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('✦   ♥   ✦', 256, 68);
+  ctx.fillText(p.emblemText, 384, 78);
 
-  // 主文字（自适应字号）
-  const display = text.trim() || 'Happy Birthday';
-  const fontSize = display.length > 14 ? 36 : display.length > 9 ? 44 : 54;
-  ctx.fillStyle = darkChocolate ? '#fef08a' : '#be185d';
-  ctx.font = `italic bold ${fontSize}px Georgia, "Songti SC", "STSong", serif`;
-  ctx.fillText(display, 256, 134, 410);
+  const nameTrim = userName.trim();
+  const msgTrim = customMessage.trim();
+  const giverTrim = giverName.trim();
+
+  const titleText = nameTrim || (isZh ? '生日快乐' : 'Happy Birthday');
+  const bodyText = msgTrim || (nameTrim ? (isZh ? '祝你生日快乐，岁岁常欢愉' : 'Wishing you a Happy Birthday!') : '');
+  const fromText = giverTrim ? `From: ${giverTrim}` : '';
+
+  const hasBody = Boolean(bodyText);
+  const hasFrom = Boolean(fromText);
+
+  // 主标题
+  const titleY = hasBody && hasFrom ? 150 : hasBody || hasFrom ? 172 : 230;
+  const titleSize = titleText.length > 14 ? 46 : titleText.length > 8 ? 56 : 68;
+  ctx.fillStyle = p.primaryInk;
+  ctx.font = `700 ${titleSize}px Georgia, "Songti SC", "PingFang SC", "Microsoft YaHei", serif`;
+  ctx.textAlign = 'center';
+  ctx.fillText(titleText, 384, titleY, 620);
+
+  // 祝福语（message）
+  if (hasBody) {
+    const bodySize = bodyText.length > 22 ? 32 : 38;
+    ctx.fillStyle = p.secondaryInk;
+    ctx.font = `500 ${bodySize}px "PingFang SC", "Microsoft YaHei", Georgia, sans-serif`;
+    const lines = wrapCardText(ctx, bodyText, 600, 2);
+    const startY = hasFrom ? (lines.length > 1 ? 232 : 246) : (lines.length > 1 ? 255 : 272);
+    const lineGap = bodySize + 14;
+    lines.forEach((line, idx) => {
+      ctx.fillText(line, 384, startY + idx * lineGap);
+    });
+  }
+
+  // 赠送人落款（From）
+  if (hasFrom) {
+    ctx.strokeStyle = p.subBorder;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(180, 326);
+    ctx.lineTo(588, 326);
+    ctx.stroke();
+
+    ctx.fillStyle = p.fromInk;
+    ctx.font = `italic 600 32px Georgia, "PingFang SC", "Microsoft YaHei", serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText(fromText, 384, 362, 580);
+  }
 
   const tex = new THREE.CanvasTexture(canvas);
   tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 4;
   return tex;
 }
 
-/** 3D 数字蜡烛纹理（立体发光浮雕感数字 + 糖果点缀） */
+/** 3D 数字蜡烛牌面贴图（全幅满铺奶油底色，彻底消除透明外边距导致的黑边！） */
 export function createDigitFaceTexture(digit: string, themeIndex = 0): THREE.CanvasTexture {
   const [canvas, ctx] = createCanvas(256, 320);
   const palettes = [
-    ['#fff1f2', '#f43f5e', '#fbbf24'],
-    ['#fefce8', '#f59e0b', '#fb7185'],
-    ['#f5f3ff', '#8b5cf6', '#f472b6'],
-    ['#ecfeff', '#06b6d4', '#facc15'],
+    ['#fff5f7', '#e11d48', '#f59e0b'],
+    ['#fffbeb', '#d97706', '#f43f5e'],
+    ['#f5f3ff', '#7c3aed', '#ec4899'],
+    ['#f0f9ff', '#0284c7', '#eab308'],
   ];
   const [bg, fg, border] = palettes[themeIndex % palettes.length];
 
-  // 背景圆角糖牌
+  // 先全幅满铺背景色，绝不留任何透明黑边！
   ctx.fillStyle = bg;
-  ctx.beginPath();
-  ctx.roundRect(14, 14, 228, 292, 42);
-  ctx.fill();
+  ctx.fillRect(0, 0, 256, 320);
 
-  // 金边
+  // 内嵌柔和彩色装饰细框
   ctx.strokeStyle = border;
-  ctx.lineWidth = 14;
+  ctx.lineWidth = 10;
   ctx.beginPath();
-  ctx.roundRect(22, 22, 212, 276, 36);
+  ctx.roundRect(16, 16, 224, 288, 28);
   ctx.stroke();
 
-  // 可爱彩色糖粒点缀
   const dots = [
-    [54, 58], [202, 62], [58, 260], [198, 256], [128, 44], [128, 276],
+    [46, 52], [210, 56], [48, 268], [208, 264], [128, 38], [128, 282],
   ];
   dots.forEach(([x, y], i) => {
     ctx.fillStyle = i % 2 === 0 ? border : fg;
@@ -379,51 +530,32 @@ export function createDigitFaceTexture(digit: string, themeIndex = 0): THREE.Can
     ctx.fill();
   });
 
-  // 大号立体数字
-  ctx.fillStyle = 'rgba(0,0,0,0.12)';
-  ctx.font = '900 186px Georgia, serif';
+  ctx.fillStyle = 'rgba(0,0,0,0.08)';
+  ctx.font = '900 184px Georgia, serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText(digit, 132, 170);
+  ctx.fillText(digit, 132, 168);
 
   ctx.fillStyle = fg;
-  ctx.fillText(digit, 128, 165);
-
-  ctx.strokeStyle = '#ffffff';
-  ctx.lineWidth = 5;
-  ctx.strokeText(digit, 128, 165);
+  ctx.fillText(digit, 128, 164);
 
   const tex = new THREE.CanvasTexture(canvas);
   tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 4;
   return tex;
 }
 
-/** 优雅木纹/深色大理石圆桌纹理 */
+/** 柔和星夜底面微光投影圆盘（自然透明融入背景，无突兀边界） */
 export function createTableSurfaceTexture(): THREE.CanvasTexture {
   const [canvas, ctx] = createCanvas(512, 512);
-  const grad = ctx.createRadialGradient(256, 256, 20, 256, 256, 256);
-  grad.addColorStop(0, '#292238');
-  grad.addColorStop(0.55, '#171324');
-  grad.addColorStop(0.88, '#0b0e1c');
-  grad.addColorStop(1, '#020617');
+  ctx.clearRect(0, 0, 512, 512);
+
+  const grad = ctx.createRadialGradient(256, 256, 20, 256, 256, 250);
+  grad.addColorStop(0.0, 'rgba(30, 27, 56, 0.55)');
+  grad.addColorStop(0.5, 'rgba(15, 23, 42, 0.28)');
+  grad.addColorStop(1.0, 'rgba(2, 6, 23, 0)');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 512, 512);
-
-  // 淡雅大理石金丝脉络
-  ctx.strokeStyle = 'rgba(251, 191, 36, 0.05)';
-  ctx.lineWidth = 1.5;
-  for (let i = 0; i < 14; i++) {
-    ctx.beginPath();
-    let x = Math.random() * 512;
-    let y = Math.random() * 512;
-    ctx.moveTo(x, y);
-    for (let s = 0; s < 6; s++) {
-      x += (Math.random() - 0.5) * 90;
-      y += (Math.random() - 0.5) * 90;
-      ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-  }
 
   const tex = new THREE.CanvasTexture(canvas);
   tex.colorSpace = THREE.SRGBColorSpace;

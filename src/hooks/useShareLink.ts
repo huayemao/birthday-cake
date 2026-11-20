@@ -1,53 +1,153 @@
-import { useCallback } from "react";
+"use client";
+
+import { useCallback, useState, useRef, useEffect } from "react";
 import * as LZString from "lz-string";
 import { useAppStore } from "@/store/useAppStore";
-import { getTranslation } from "@/i18n";
 import { usePathname } from "next/navigation";
-import { Language } from "@/types";
+import { Language, languages } from "@/types";
+
+export interface SharePayload {
+  lang: Language;
+  selectedCakeId: string;
+  candleType: string;
+  candleCount: number;
+  digits: string;
+  customCakes?: Record<string, string>;
+  userName: string;
+  customMessage: string;
+  giverName: string;
+  cardStyle: string;
+  sceneTheme: string;
+  musicStyle: string;
+  celebrationSfxStyle: string;
+}
+
+/** 兼容性剪贴板复制（优先 Clipboard API，降级至隐藏 textarea + execCommand） */
+async function copyTextSafe(text: string): Promise<boolean> {
+  if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      // fallback below
+    }
+  }
+  if (typeof document !== "undefined") {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      ta.style.top = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    } catch {
+      return false;
+    }
+  }
+  return false;
+}
 
 export const useShareLink = () => {
   const pathname = usePathname();
-  const lang = pathname.split("/")[1] as Language || "en";
-  const { selectedCakeId, candleType, candleCount, digits, customCakes, userName, customMessage, giverName } = useAppStore();
-  const t = getTranslation(lang);
+  const firstSeg = pathname.split("/")[1] as Language;
+  const lang: Language = (languages as readonly string[]).includes(firstSeg) ? firstSeg : "en";
+
+  const {
+    selectedCakeId,
+    candleType,
+    candleCount,
+    digits,
+    customCakes,
+    userName,
+    customMessage,
+    giverName,
+    cardStyle,
+    sceneTheme,
+    musicStyle,
+    celebrationSfxStyle,
+  } = useAppStore();
+
+  const [shareFeedback, setShareFeedback] = useState<"idle" | "copied" | "error">("idle");
+  const feedbackTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (feedbackTimerRef.current !== null) {
+        clearTimeout(feedbackTimerRef.current);
+      }
+    };
+  }, []);
 
   const generateShareLink = useCallback(() => {
-    const shareState = {
-      lang,
-      selectedCakeId,
-      configCompleted: true,
-      candleType,
-      candleCount,
-      digits,
-      isExtinguished: false,
-      isBlowing: false,
-      blowingProgress: 0,
-      customCakes,
-      userName,
-      customMessage,
-      giverName,
-    };
+      // 仅在真正选中了自定义上传蛋糕时才携带该图片，避免无关图片撑爆分享链接长度
+      const activeCustomCakes =
+        selectedCakeId.startsWith("custom-") && customCakes[selectedCakeId]
+          ? { [selectedCakeId]: customCakes[selectedCakeId] }
+          : undefined;
 
-    const jsonState = JSON.stringify(shareState);
-    const compressedState = LZString.compressToEncodedURIComponent(jsonState);
+      const sharePayload: SharePayload = {
+        lang,
+        selectedCakeId,
+        candleType,
+        candleCount,
+        digits,
+        ...(activeCustomCakes ? { customCakes: activeCustomCakes } : {}),
+        userName,
+        customMessage,
+        giverName,
+        cardStyle: cardStyle || "cream-rose",
+        sceneTheme: sceneTheme || "fairy-lights",
+        musicStyle,
+        celebrationSfxStyle,
+      };
 
-    const url = new URL(window.location.href);
-    url.searchParams.set("config", compressedState);
-    return url.toString();
-  }, [lang, selectedCakeId, candleType, candleCount, digits, customCakes, userName, customMessage, giverName]);
+      const compressedState = LZString.compressToEncodedURIComponent(
+        JSON.stringify(sharePayload)
+      );
 
-  const copyShareLink = useCallback(async () => {
-    try {
-      const shareLink = generateShareLink();
-      await navigator.clipboard.writeText(shareLink);
-      alert(t.copyLink + " ✓");
-    } catch (err) {
-      console.error("Failed to copy link:", err);
+  // 始终指向 /[lang]?config=...，即使在 /[lang]/configure 页面点分享也能让好友直达沉浸庆生场景！
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+  return `${origin}/${lang}?config=${compressedState}`;
+}, [
+  lang,
+  selectedCakeId,
+  candleType,
+  candleCount,
+  digits,
+  customCakes,
+  userName,
+  customMessage,
+  giverName,
+  cardStyle,
+  sceneTheme,
+  musicStyle,
+  celebrationSfxStyle,
+]);
+
+const copyShareLink = useCallback(async () => {
+    const shareLink = generateShareLink();
+    const ok = await copyTextSafe(shareLink);
+
+    if (feedbackTimerRef.current !== null) {
+      clearTimeout(feedbackTimerRef.current);
     }
-  }, [generateShareLink, t.copyLink]);
+setShareFeedback(ok ? "copied" : "error");
+feedbackTimerRef.current = window.setTimeout(() => {
+  setShareFeedback("idle");
+  feedbackTimerRef.current = null;
+}, 2600);
 
-  return {
-    generateShareLink,
-    copyShareLink,
-  };
+return ok;
+  }, [generateShareLink]);
+
+return {
+  generateShareLink,
+  copyShareLink,
+  shareFeedback,
+};
 };

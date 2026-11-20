@@ -36,6 +36,22 @@ export enum CandleType {
   DIGITS = 'digits'
 }
 
+export type CardStyle = 'cream-rose' | 'dark-gold' | 'starry-violet' | 'mint-fresh' | 'none';
+
+export type SceneTheme =
+  | 'fairy-lights'
+  | 'starry-night'
+  | 'warm-candlelight'
+  | 'cherry-blossom'
+  | 'minimal-studio';
+
+export type CelebrationSfxStyle =
+  | 'grand-party'
+  | 'fireworks-show'
+  | 'fairy-chimes'
+  | 'carnival-cheer'
+  | 'warm-applause';
+
 export interface AppState {
   selectedCakeId: string;
   candleType: CandleType;
@@ -51,6 +67,9 @@ export interface AppState {
   giverName: string; // 赠送人姓名
   isBlowLocked: boolean; // 吹气锁定状态，锁定时不会被吹灭
   blowSensitivity: number; // 吹气灵敏度 (0-100)，值越高越敏感
+  cardStyle?: CardStyle; // 3D 蛋糕祝福卡片样式
+  sceneTheme?: SceneTheme; // 3D 场景环境氛围主题
+  celebrationSfxStyle?: CelebrationSfxStyle; // 吹灭后的庆祝音效风格
 }
 
 export interface Translation {
