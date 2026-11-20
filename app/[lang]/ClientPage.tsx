@@ -308,7 +308,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
 
           {/* 顶部浮动文字层（自然悬浮在全屏场景之中，不阻塞 3D 交互） */}
           <header
-            className={`pointer-events-none absolute inset-x-0 z-20 flex flex-col items-center text-center px-5 transition-all duration-1000 ${configCompleted ? "top-14 sm:top-12" : "top-16 sm:top-20"
+            className={`pointer-events-none absolute inset-x-0 z-20 flex flex-col items-center text-center px-5 transition-all duration-1000 ${configCompleted ? "top-14 sm:top-12" : "top-20"
               }`}
           >
             <h1
@@ -361,8 +361,8 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
             <div
               onMouseEnter={() => revealSceneControls()}
               className={`fixed bottom-20 right-4 sm:right-8 z-50 flex flex-col gap-2.5 p-2 rounded-full bg-slate-900/65 backdrop-blur-md border border-white/15 shadow-2xl transition-all duration-300 ${sceneControlsVisible
-                  ? "opacity-100 translate-x-0 pointer-events-auto"
-                  : "opacity-0 translate-x-4 pointer-events-none"
+                ? "opacity-100 translate-x-0 pointer-events-auto"
+                : "opacity-0 translate-x-4 pointer-events-none"
                 }`}
             >
               {/* 返回主页（标准 Home 房屋图标） */}
@@ -409,8 +409,8 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
                     setIsCalibrationOpen(true);
                   }}
                   className={`relative w-10 h-10 flex items-center justify-center rounded-full transition-all hover:scale-105 active:scale-95 ${blowCalibration
-                      ? "bg-emerald-500/85 hover:bg-emerald-400 text-white"
-                      : "bg-white/10 hover:bg-white/20 text-white"
+                    ? "bg-emerald-500/85 hover:bg-emerald-400 text-white"
+                    : "bg-white/10 hover:bg-white/20 text-white"
                     }`}
                   title={t.blowCalibrationButton || t.blowCalibrationTitle || "Calibrate Mic"}
                   aria-label={t.blowCalibrationButton || "Calibrate Mic"}
@@ -434,8 +434,8 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
                   updateState({ isBlowLocked: !isBlowLocked });
                 }}
                 className={`w-10 h-10 flex items-center justify-center rounded-full transition-all hover:scale-105 active:scale-95 ${isBlowLocked
-                    ? "bg-amber-500 hover:bg-amber-400 text-white"
-                    : "bg-white/10 hover:bg-white/20 text-white"
+                  ? "bg-amber-500 hover:bg-amber-400 text-white"
+                  : "bg-white/10 hover:bg-white/20 text-white"
                   }`}
                 title={isBlowLocked ? t.unlockBlow : t.lockBlow}
                 aria-label={isBlowLocked ? t.unlockBlow : t.lockBlow}

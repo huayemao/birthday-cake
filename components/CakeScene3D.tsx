@@ -91,7 +91,9 @@ const CakeScene3D: React.FC<CakeScene3DProps> = ({
   sceneThemeRef.current = sceneTheme;
 
   const sceneRef = useRef<THREE.Scene | null>(null);
+  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
   const controlsRef = useRef<OrbitControls | null>(null);
+  const computeIdealDistanceRef = useRef<((w: number, h: number) => number) | null>(null);
   const cakeResultRef = useRef<BuiltCakeResult | null>(null);
   const candlesCtrlRef = useRef<BuiltCandlesController | null>(null);
   const atmosphereRef = useRef<AtmosphereController | null>(null);
@@ -114,19 +116,41 @@ const CakeScene3D: React.FC<CakeScene3DProps> = ({
     });
   }, [isListeningSound]);
 
-  // 实时同步 interactive 状态
+  // 实时同步 interactive / 视角缩放与目标高度（例如从主页预览切入正式庆生场景时）
   useEffect(() => {
-    if (controlsRef.current) {
-      controlsRef.current.enabled = interactive;
-      controlsRef.current.enableZoom = interactive;
-      controlsRef.current.enableRotate = interactive;
+    const controls = controlsRef.current;
+    const camera = cameraRef.current;
+    const container = containerRef.current;
+    const computeDist = computeIdealDistanceRef.current;
+
+    if (controls) {
+      controls.enabled = interactive;
+      controls.enableZoom = interactive;
+      controls.enableRotate = interactive;
     }
-    const canvas = containerRef.current?.querySelector("canvas");
+    const canvas = container?.querySelector("canvas");
     if (canvas) {
       canvas.style.touchAction = interactive ? "none" : "pan-y";
       canvas.style.pointerEvents = interactive ? "auto" : "none";
     }
-  }, [interactive]);
+
+    if (camera && controls && container && computeDist) {
+      const w = Math.max(1, container.clientWidth || window.innerWidth);
+      const h = Math.max(1, container.clientHeight || window.innerHeight);
+      const idealDist = computeDist(w, h);
+      const targetY = 1.02 + targetYOffset;
+      controls.target.set(0, targetY, 0);
+      controls.maxDistance = Math.max(16, idealDist * 1.45);
+      const dir = camera.position.clone().sub(controls.target);
+      if (dir.lengthSq() > 0.0001) {
+        dir.normalize();
+        camera.position.copy(controls.target).add(dir.multiplyScalar(idealDist));
+      } else {
+        camera.position.set(0, 2.75 + (idealDist - 6.15) * 0.25, idealDist);
+      }
+      controls.update();
+    }
+  }, [interactive, cameraDistanceScale, targetYOffset]);
 
   // 1. 初始化 Three.js WebGLRenderer、均衡柔和影棚光、相机与动画循环
   useEffect(() => {
@@ -198,13 +222,15 @@ const CakeScene3D: React.FC<CakeScene3DProps> = ({
     scene.environment = envRT.texture;
     scene.environmentIntensity = 0.36;
 
-    const camera = new THREE.PerspectiveCamera(34, initW / initH, 0.1, 45);
+    const camera = new THREE.PerspectiveCamera(34, initW / initH, 0.1, 55);
+    cameraRef.current = camera;
 
     const computeIdealDistance = (w: number, h: number) => {
       const aspect = w / Math.max(1, h);
-      const portraitBoost = aspect < 0.95 ? Math.min(2.8, (0.95 - aspect) * 4.5) : 0;
+      const portraitBoost = aspect < 0.95 ? Math.min(3.3, (0.95 - aspect) * 5.6) : 0;
       return (6.15 + portraitBoost) * liveStateRef.current.cameraDistanceScale;
     };
+    computeIdealDistanceRef.current = computeIdealDistance;
 
     const startDist = computeIdealDistance(initW, initH);
     const baseTargetY = 1.02 + liveStateRef.current.targetYOffset;
@@ -218,7 +244,7 @@ const CakeScene3D: React.FC<CakeScene3DProps> = ({
     controls.enableZoom = liveStateRef.current.interactive;
     controls.enableRotate = liveStateRef.current.interactive;
     controls.minDistance = 4.2;
-    controls.maxDistance = 11.5;
+    controls.maxDistance = Math.max(16, startDist * 1.45);
     controls.minPolarAngle = Math.PI * 0.14;
     controls.maxPolarAngle = Math.PI * 0.48;
     controls.target.set(0, baseTargetY, 0);
@@ -299,6 +325,7 @@ const CakeScene3D: React.FC<CakeScene3DProps> = ({
         if (Math.abs(nextAspect - prevAspect) > 0.12) {
           prevAspect = nextAspect;
           const ideal = computeIdealDistance(w, h);
+          controls.maxDistance = Math.max(16, ideal * 1.45);
           const dir = camera.position.clone().sub(controls.target).normalize();
           camera.position.copy(controls.target).add(dir.multiplyScalar(ideal));
         }
@@ -377,6 +404,8 @@ const CakeScene3D: React.FC<CakeScene3DProps> = ({
       controls.removeEventListener("end", onControlEnd);
       controls.dispose();
       controlsRef.current = null;
+      cameraRef.current = null;
+      computeIdealDistanceRef.current = null;
       domEl.removeEventListener("webglcontextlost", handleContextLost);
       domEl.removeEventListener("pointerdown", onPointerDown);
       domEl.removeEventListener("pointerup", onPointerUp);
