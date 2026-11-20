@@ -248,27 +248,14 @@ const CakeScene3D: React.FC<CakeScene3DProps> = ({
     controls.minPolarAngle = Math.PI * 0.14;
     controls.maxPolarAngle = Math.PI * 0.48;
     controls.target.set(0, baseTargetY, 0);
-    controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.62;
+    controls.autoRotate = false;
     controls.update();
     controlsRef.current = controls;
 
-    let resumeRotateTimer: number | null = null;
     const onControlStart = () => {
       setHasInteracted(true);
-      controls.autoRotate = false;
-      if (resumeRotateTimer !== null) {
-        clearTimeout(resumeRotateTimer);
-        resumeRotateTimer = null;
-      }
-    };
-    const onControlEnd = () => {
-      resumeRotateTimer = window.setTimeout(() => {
-        controls.autoRotate = true;
-      }, 4200);
     };
     controls.addEventListener("start", onControlStart);
-    controls.addEventListener("end", onControlEnd);
 
     // ===== 均衡立体感甜品灯光（柔和、通透、绝不过曝） =====
     const hemiLight = new THREE.HemisphereLight(0xfff5f8, 0x3b2f4a, 0.58);
@@ -337,7 +324,6 @@ const CakeScene3D: React.FC<CakeScene3DProps> = ({
     let rafId = 0;
     let currentCandleIntensity = liveStateRef.current.isExtinguished ? 0 : 1.65;
     let currentAccentIntensity = liveStateRef.current.isExtinguished ? 2.4 : 0.25;
-    let passiveAngle = 0;
 
     const animate = () => {
       rafId = requestAnimationFrame(animate);
@@ -373,21 +359,15 @@ const CakeScene3D: React.FC<CakeScene3DProps> = ({
       atmosphereRef.current?.update(dt, elapsed, live.isExtinguished, live.soundLevel);
 
       if (!live.interactive) {
-        passiveAngle += Math.min(dt, 0.05) * 0.22;
         const dist = computeIdealDistance(
           container.clientWidth || initW,
           container.clientHeight || initH
         );
         const targetY = 1.02 + live.targetYOffset;
-        camera.position.set(
-          Math.sin(passiveAngle) * dist,
-          2.65 + (dist - 6.15) * 0.25 + Math.sin(elapsed * 0.4) * 0.07,
-          Math.cos(passiveAngle) * dist
-        );
+        camera.position.set(0, 2.75 + (dist - 6.15) * 0.25, dist);
         camera.lookAt(0, targetY, 0);
       } else {
         controls.target.y = 1.02 + live.targetYOffset;
-        controls.autoRotateSpeed = live.isExtinguished ? 1.0 : 0.6;
         controls.update();
       }
 
@@ -398,10 +378,8 @@ const CakeScene3D: React.FC<CakeScene3DProps> = ({
 
     return () => {
       cancelAnimationFrame(rafId);
-      if (resumeRotateTimer !== null) clearTimeout(resumeRotateTimer);
       resizeObserver.disconnect();
       controls.removeEventListener("start", onControlStart);
-      controls.removeEventListener("end", onControlEnd);
       controls.dispose();
       controlsRef.current = null;
       cameraRef.current = null;

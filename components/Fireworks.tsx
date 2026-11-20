@@ -22,7 +22,11 @@ interface FireworkLaunch {
   delay: number;
 }
 
-const Fireworks: React.FC<{ active: boolean; onComplete?: () => void }> = ({ active, onComplete }) => {
+const Fireworks: React.FC<{
+  active: boolean;
+  settleOnBottom?: boolean;
+  onComplete?: () => void;
+}> = ({ active, settleOnBottom = true, onComplete }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const settledParticlesRef = useRef<Particle[]>([]);
@@ -145,22 +149,33 @@ const Fireworks: React.FC<{ active: boolean; onComplete?: () => void }> = ({ act
         p.y += p.vy;
         p.rotation += p.rSpeed;
 
-        if (p.y >= canvas.height - p.size) {
-          p.y = canvas.height - p.size;
-          p.vy *= -bounce;
-          p.vx *= 0.9;
+        if (settleOnBottom) {
+          if (p.y >= canvas.height - p.size) {
+            p.y = canvas.height - p.size;
+            p.vy *= -bounce;
+            p.vx *= 0.9;
 
-          if (Math.abs(p.vy) < 1 && Math.abs(p.vx) < 0.5) {
-            p.settled = true;
-            p.vx = 0;
-            p.vy = 0;
-            p.alpha = 0.9;
-            settledParticlesRef.current.push(p);
+            if (Math.abs(p.vy) < 1 && Math.abs(p.vx) < 0.5) {
+              p.settled = true;
+              p.vx = 0;
+              p.vy = 0;
+              p.alpha = 0.9;
+              settledParticlesRef.current.push(p);
+            }
           }
-        }
 
-        if (p.y > canvas.height + 50) {
-          p.alpha = 0;
+          if (p.y > canvas.height + 50) {
+            p.alpha = 0;
+          }
+        } else {
+          // 3D 场景下，2D 空中烟花火花自然在半空渐隐消散，避免落成视口底部一条直线；
+          // 真正落地的彩屑由 Three.js 3D 物理系统铺满整个 3D 桌面平面。
+          if (p.vy > 0.6) {
+            p.alpha = Math.max(0, p.alpha - 0.016);
+          }
+          if (p.y > canvas.height * 0.86) {
+            p.alpha = Math.max(0, p.alpha - 0.05);
+          }
         }
 
         drawParticle(ctx, p);
@@ -185,7 +200,7 @@ const Fireworks: React.FC<{ active: boolean; onComplete?: () => void }> = ({ act
         cancelAnimationFrame(animationIdRef.current);
       }
     };
-  }, [active, createFirework, drawParticle, onComplete]);
+  }, [active, settleOnBottom, createFirework, drawParticle, onComplete]);
 
   const clearCanvas = useCallback(() => {
     const canvas = canvasRef.current;

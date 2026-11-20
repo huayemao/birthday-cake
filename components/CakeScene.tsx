@@ -612,8 +612,14 @@ const CakeScene: React.FC<CakeSceneProps> = ({
         )}
       </div>
 
-      {/* 全屏烟花特效（仅正式场景模式） */}
-      {isActiveStage && <Fireworks key={cheerBurstKey} active={showFireworks} />}
+      {/* 全屏烟花特效（仅正式场景模式；3D 模式下空中火花自然消散，落地面彩屑交由 3D 桌面渲染） */}
+      {isActiveStage && (
+        <Fireworks
+          key={cheerBurstKey}
+          active={showFireworks}
+          settleOnBottom={!use3D}
+        />
+      )}
     </>
   );
 };

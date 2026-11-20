@@ -17,8 +17,15 @@ interface ConfettiPiece {
   vrx: number;
   vry: number;
   vrz: number;
-  life: number;
-  maxLife: number;
+  scaleX: number;
+  scaleY: number;
+  floorY: number;
+  landedYaw: number;
+  delay: number;
+  elapsed: number;
+  settled: boolean;
+  swayPhase: number;
+  swayAmp: number;
 }
 
 interface FloatingPetal {
@@ -259,18 +266,18 @@ export function buildAtmosphereController(
     }
   }
 
-  // ===== 吹灭后的 3D 立体庆祝礼花彩带（全主题保留） =====
-  const confettiCount = isHigh ? 140 : 80;
-  const confettiGeo = new THREE.PlaneGeometry(0.11, 0.22);
+  // ===== 吹灭后的 3D 立体庆祝礼花彩带（全主题保留，最终自然铺满整个 3D 桌面平面） =====
+  const confettiCount = isHigh ? 220 : 120;
+  const confettiGeo = new THREE.PlaneGeometry(0.11, 0.19);
   const confettiMat = new THREE.MeshStandardMaterial({
-    roughness: 0.32,
-    metalness: 0.35,
+    roughness: 0.34,
+    metalness: 0.28,
     side: THREE.DoubleSide,
   });
   const confettiMesh = new THREE.InstancedMesh(confettiGeo, confettiMat, confettiCount);
   confettiMesh.visible = false;
 
-  const palette = [0xf43f5e, 0xfb7185, 0xfacc15, 0x38bdf8, 0xc084fc, 0x34d399, 0xfb923c];
+  const palette = [0xf43f5e, 0xfb7185, 0xfacc15, 0x38bdf8, 0xc084fc, 0x34d399, 0xfb923c, 0xf9a8d4];
   const colorTmp = new THREE.Color();
   const confettiPieces: ConfettiPiece[] = [];
   const dummy = new THREE.Object3D();
@@ -279,39 +286,101 @@ export function buildAtmosphereController(
     colorTmp.setHex(palette[i % palette.length]);
     confettiMesh.setColorAt(i, colorTmp);
     confettiPieces.push({
-      x: 0, y: -10, z: 0,
-      vx: 0, vy: 0, vz: 0,
-      rx: 0, ry: 0, rz: 0,
-      vrx: 0, vry: 0, vrz: 0,
-      life: 99, maxLife: 4,
+      x: 0,
+      y: -10,
+      z: 0,
+      vx: 0,
+      vy: 0,
+      vz: 0,
+      rx: 0,
+      ry: 0,
+      rz: 0,
+      vrx: 0,
+      vry: 0,
+      vrz: 0,
+      scaleX: 1,
+      scaleY: 1,
+      floorY: -0.012 + (i % 29) * 0.0006,
+      landedYaw: Math.random() * Math.PI * 2,
+      delay: 0,
+      elapsed: 0,
+      settled: false,
+      swayPhase: Math.random() * Math.PI * 2,
+      swayAmp: 0.25,
     });
   }
   if (confettiMesh.instanceColor) confettiMesh.instanceColor.needsUpdate = true;
   group.add(confettiMesh);
 
   let confettiActive = false;
+  let confettiOpacity = 1;
 
   const triggerCelebrationBurst = () => {
     confettiActive = true;
+    confettiOpacity = 1;
     confettiMesh.visible = true;
+
+    const minLandingR = 1.68;
+    const maxLandingR = 5.1;
+    const gravity = 3.2;
+
     for (let i = 0; i < confettiCount; i++) {
       const p = confettiPieces[i];
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 1.2 + Math.random() * 2.8;
-      p.x = (Math.random() - 0.5) * 0.4;
-      p.y = 1.85 + Math.random() * 0.5;
-      p.z = (Math.random() - 0.5) * 0.4;
-      p.vx = Math.cos(angle) * speed;
-      p.vy = 2.4 + Math.random() * 3.1;
-      p.vz = Math.sin(angle) * speed;
+      // 按面积均匀分布目标落点，让彩屑自然铺满蛋糕四周的整个 3D 桌面平面
+      const theta = Math.random() * Math.PI * 2;
+      const u = Math.random();
+      const targetR = Math.sqrt(
+        minLandingR * minLandingR + u * (maxLandingR * maxLandingR - minLandingR * minLandingR)
+      );
+
+      // 分批错落喷发（首批主喷发 + 后续飘落），更具立体层次
+      const wave = i < confettiCount * 0.65 ? 0 : Math.random() * 0.75;
+      const startR = Math.random() * 0.45;
+      const startAngle = Math.random() * Math.PI * 2;
+      p.x = Math.cos(startAngle) * startR;
+      p.y = 1.9 + Math.random() * 0.65;
+      p.z = Math.sin(startAngle) * startR;
+
+      const vy = 2.1 + Math.random() * 3.1;
+      // 估算自由落体滞空时间，反推水平初速度，使落点精准铺满目标平面
+      const disc = vy * vy + 2 * gravity * (p.y - p.floorY);
+      const flightTime = Math.max(0.9, (vy + Math.sqrt(disc)) / gravity);
+      // 计入空气阻尼系数（约 0.68 衰减积分）使实际落点分布均匀
+      const effectiveTime = flightTime * 0.7;
+      const targetX = Math.cos(theta) * targetR;
+      const targetZ = Math.sin(theta) * targetR;
+
+      p.vx = (targetX - p.x) / effectiveTime;
+      p.vy = vy;
+      p.vz = (targetZ - p.z) / effectiveTime;
+
       p.rx = Math.random() * Math.PI;
       p.ry = Math.random() * Math.PI;
       p.rz = Math.random() * Math.PI;
       p.vrx = (Math.random() - 0.5) * 9;
       p.vry = (Math.random() - 0.5) * 9;
       p.vrz = (Math.random() - 0.5) * 9;
-      p.life = 0;
-      p.maxLife = 4.2 + Math.random() * 2.4;
+
+      // 混合长条彩带、方形亮片与小彩屑尺寸
+      const shapeType = i % 3;
+      if (shapeType === 0) {
+        p.scaleX = 0.8 + Math.random() * 0.45;
+        p.scaleY = 1.0 + Math.random() * 0.65;
+      } else if (shapeType === 1) {
+        const s = 0.75 + Math.random() * 0.45;
+        p.scaleX = s;
+        p.scaleY = s * 0.62;
+      } else {
+        p.scaleX = 0.55 + Math.random() * 0.35;
+        p.scaleY = 0.85 + Math.random() * 0.5;
+      }
+
+      p.landedYaw = Math.random() * Math.PI * 2;
+      p.delay = wave;
+      p.elapsed = 0;
+      p.settled = false;
+      p.swayPhase = Math.random() * Math.PI * 2;
+      p.swayAmp = 0.18 + Math.random() * 0.25;
     }
   };
 
@@ -381,49 +450,73 @@ export function buildAtmosphereController(
       dustMat.opacity = isExtinguished ? 0.82 : 0.52 + soundLevel * 0.24;
     }
 
-    // 3D 礼花彩带物理轨迹
+    // 3D 礼花彩带物理轨迹：空中飘舞，落地后平贴并持久散落在整个 3D 桌面平面上
     if (confettiActive) {
-      let alive = 0;
-      for (let i = 0; i < confettiCount; i++) {
-        const p = confettiPieces[i];
-        p.life += clampedDt;
-        if (p.life >= p.maxLife) {
-          dummy.scale.setScalar(0.0001);
-          dummy.updateMatrix();
-          confettiMesh.setMatrixAt(i, dummy.matrix);
-          continue;
-        }
-        alive++;
-        p.vy -= 3.6 * clampedDt;
-        p.vx *= 0.985;
-        p.vz *= 0.985;
-        p.x += (p.vx + Math.sin(elapsed * 4 + i) * 0.35) * clampedDt;
-        p.y += p.vy * clampedDt;
-        p.z += (p.vz + Math.cos(elapsed * 3.5 + i) * 0.35) * clampedDt;
-
-        if (p.y < 0.02) {
-          p.y = 0.02;
-          p.vy = 0;
-          p.vx *= 0.8;
-          p.vz *= 0.8;
-          p.rx = Math.PI / 2;
-        } else {
-          p.rx += p.vrx * clampedDt;
-          p.ry += p.vry * clampedDt;
-          p.rz += p.vrz * clampedDt;
-        }
-
-        const fadeOut = p.life > p.maxLife - 0.8 ? (p.maxLife - p.life) / 0.8 : 1;
-        dummy.position.set(p.x, p.y, p.z);
-        dummy.rotation.set(p.rx, p.ry, p.rz);
-        dummy.scale.setScalar(Math.max(0.001, fadeOut));
-        dummy.updateMatrix();
-        confettiMesh.setMatrixAt(i, dummy.matrix);
+      if (!isExtinguished) {
+        confettiOpacity = Math.max(0, confettiOpacity - clampedDt * 2.2);
+      } else {
+        confettiOpacity = 1;
       }
-      confettiMesh.instanceMatrix.needsUpdate = true;
-      if (alive === 0) {
+
+      if (confettiOpacity <= 0.001) {
         confettiActive = false;
         confettiMesh.visible = false;
+      } else {
+        const drag = Math.pow(0.985, clampedDt * 60);
+        for (let i = 0; i < confettiCount; i++) {
+          const p = confettiPieces[i];
+          p.elapsed += clampedDt;
+
+          if (p.elapsed < p.delay) {
+            dummy.scale.setScalar(0.0001);
+            dummy.updateMatrix();
+            confettiMesh.setMatrixAt(i, dummy.matrix);
+            continue;
+          }
+
+          if (!p.settled) {
+            p.vy -= 3.2 * clampedDt;
+            p.vx *= drag;
+            p.vz *= drag;
+            p.x += (p.vx + Math.sin(elapsed * 3.8 + p.swayPhase) * p.swayAmp) * clampedDt;
+            p.y += p.vy * clampedDt;
+            p.z += (p.vz + Math.cos(elapsed * 3.2 + p.swayPhase) * p.swayAmp) * clampedDt;
+
+            if (p.y <= p.floorY) {
+              // 避免落点藏在蛋糕底座内部，顺势滑出到蛋糕四周的桌面上
+              const radialDist = Math.hypot(p.x, p.z);
+              if (radialDist < 1.66) {
+                const a = radialDist > 0.01 ? Math.atan2(p.z, p.x) : p.landedYaw;
+                const pushedR = 1.68 + (i % 7) * 0.08;
+                p.x = Math.cos(a) * pushedR;
+                p.z = Math.sin(a) * pushedR;
+              }
+              p.y = p.floorY;
+              p.vy = 0;
+              p.vx = 0;
+              p.vz = 0;
+              p.rx = Math.PI / 2;
+              p.ry = 0;
+              p.rz = p.landedYaw;
+              p.settled = true;
+            } else {
+              p.rx += p.vrx * clampedDt;
+              p.ry += p.vry * clampedDt;
+              p.rz += p.vrz * clampedDt;
+            }
+          }
+
+          dummy.position.set(p.x, p.y, p.z);
+          dummy.rotation.set(p.rx, p.ry, p.rz);
+          dummy.scale.set(
+            Math.max(0.0001, p.scaleX * confettiOpacity),
+            Math.max(0.0001, p.scaleY * confettiOpacity),
+            1
+          );
+          dummy.updateMatrix();
+          confettiMesh.setMatrixAt(i, dummy.matrix);
+        }
+        confettiMesh.instanceMatrix.needsUpdate = true;
       }
     }
   };
