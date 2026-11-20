@@ -6,18 +6,32 @@ import {
   cleanupAudioResources,
   getBlowConfigWithSensitivity,
   getRecommendedFftSize,
+  loadBlowCalibrationProfile,
+  requestRawMicStream,
   RECOMMENDED_SMOOTHING_TIME_CONSTANT,
   BlowDetectionState,
+  BlowCalibrationProfile,
 } from "@/utils/blowDetection";
 
 export const useBlowDetection = () => {
-  const { isExtinguished, configCompleted, isBlowLocked, blowSensitivity, updateState } = useAppStore();
+  const {
+    isExtinguished,
+    configCompleted,
+    isBlowLocked,
+    blowSensitivity,
+    blowCalibration,
+    isCalibratingBlow,
+    updateState,
+    hydrateBlowCalibration,
+  } = useAppStore();
+
   const audioContextRef = useRef<AudioContext | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const rafIdRef = useRef<number | null>(null);
   const blowStateRef = useRef<BlowDetectionState>(createBlowDetectionState());
   const blowSensitivityRef = useRef<number>(blowSensitivity);
+  const blowCalibrationRef = useRef<BlowCalibrationProfile | null>(blowCalibration);
   const lastUiStateRef = useRef<{ isBlowing: boolean; progress: number }>({
     isBlowing: false,
     progress: 0,
@@ -25,10 +39,22 @@ export const useBlowDetection = () => {
   const spaceKeyDownTime = useRef<number>(0);
   const spaceKeyTimer = useRef<number | null>(null);
 
-  // 实时同步灵敏度，避免拖动滑块时重建麦克风流与底噪校准
+  // 客户端首次挂载时加载本地保存的吹气采样校准配置
+  useEffect(() => {
+    const saved = loadBlowCalibrationProfile();
+    if (saved) {
+      hydrateBlowCalibration(saved);
+    }
+  }, [hydrateBlowCalibration]);
+
+  // 实时同步灵敏度与采样校准配置，无需重启麦克风流
   useEffect(() => {
     blowSensitivityRef.current = blowSensitivity;
   }, [blowSensitivity]);
+
+  useEffect(() => {
+    blowCalibrationRef.current = blowCalibration;
+  }, [blowCalibration]);
 
   const cleanup = useCallback(() => {
     if (rafIdRef.current !== null) {
@@ -69,9 +95,9 @@ export const useBlowDetection = () => {
     blowStateRef.current = createBlowDetectionState();
   }, [updateState]);
 
-  // 初始化麦克风进行吹气检测
+  // 初始化麦克风进行吹气检测（采样校准期间暂停，避免移动端双流冲突）
   useEffect(() => {
-    if (isExtinguished || !configCompleted || isBlowLocked) {
+    if (isExtinguished || !configCompleted || isBlowLocked || isCalibratingBlow) {
       cleanup();
       return;
     }
@@ -80,27 +106,7 @@ export const useBlowDetection = () => {
 
     const initMic = async () => {
       try {
-        // 关闭浏览器默认的降噪、回声消除和自动增益，避免把吹气气流当噪音滤掉，
-        // 或在安静环境下被 AGC 放大环境底噪导致误触发
-        let stream: MediaStream;
-        try {
-          stream = await navigator.mediaDevices.getUserMedia({
-            audio: {
-              echoCancellation: false,
-              noiseSuppression: false,
-              autoGainControl: false,
-            },
-          });
-        } catch (constraintErr) {
-          if (
-            constraintErr instanceof DOMException &&
-            constraintErr.name === "OverconstrainedError"
-          ) {
-            stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-          } else {
-            throw constraintErr;
-          }
-        }
+        const stream = await requestRawMicStream();
 
         if (cancelled) {
           cleanupAudioResources(null, stream);
@@ -137,7 +143,13 @@ export const useBlowDetection = () => {
           }
 
           const config = getBlowConfigWithSensitivity(blowSensitivityRef.current);
-          const result = detectBlow(analyserRef.current, config, blowStateRef.current);
+          const result = detectBlow(
+            analyserRef.current,
+            config,
+            blowStateRef.current,
+            undefined,
+            blowCalibrationRef.current
+          );
 
           if (result.isExtinguished) {
             handleExtinguish();
@@ -173,12 +185,27 @@ export const useBlowDetection = () => {
       cancelled = true;
       cleanup();
     };
-  }, [isExtinguished, configCompleted, isBlowLocked, updateState, cleanup, handleExtinguish]);
+  }, [
+    isExtinguished,
+    configCompleted,
+    isBlowLocked,
+    isCalibratingBlow,
+    updateState,
+    cleanup,
+    handleExtinguish,
+  ]);
 
   // 处理空格键长按
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (e.code === "Space" && !e.repeat && configCompleted && !isExtinguished && !isBlowLocked) {
+      if (
+        e.code === "Space" &&
+        !e.repeat &&
+        configCompleted &&
+        !isExtinguished &&
+        !isBlowLocked &&
+        !isCalibratingBlow
+      ) {
         e.preventDefault();
         if (spaceKeyTimer.current) {
           clearInterval(spaceKeyTimer.current);
@@ -200,7 +227,7 @@ export const useBlowDetection = () => {
         }, 10);
       }
     },
-    [configCompleted, isExtinguished, isBlowLocked, updateState, handleExtinguish]
+    [configCompleted, isExtinguished, isBlowLocked, isCalibratingBlow, updateState, handleExtinguish]
   );
 
   // 处理空格键释放

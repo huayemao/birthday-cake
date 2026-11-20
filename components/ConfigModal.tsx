@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import { AppState, CandleType, Translation, Language } from '../types';
 import { CAKES } from '../constants';
+import BlowCalibrationCard from './BlowCalibrationCard';
 
 interface ConfigModalProps {
   state: AppState;
@@ -398,6 +399,7 @@ const ConfigModal: React.FC<ConfigModalProps> = ({
                       {t.sensitivityHigh}
                     </span>
                   </div>
+                  <BlowCalibrationCard t={t} active={isOpen && currentStep === 4} />
                 </section>
               </li>
             </ol>

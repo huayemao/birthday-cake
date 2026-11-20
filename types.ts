@@ -135,4 +135,17 @@ export interface Translation {
   tip2?: string;
   tip3?: string;
   tip4?: string;
+  // 吹气采样校准相关字段
+  blowCalibrationTitle?: string;
+  blowCalibrationDesc?: string;
+  blowCalibrationStart?: string;
+  blowCalibrationStop?: string;
+  blowCalibrationRecalibrate?: string;
+  blowCalibrationClear?: string;
+  blowCalibrationListeningNoise?: string;
+  blowCalibrationPrompt?: string;
+  blowCalibrationSuccess?: string;
+  blowCalibrationFailed?: string;
+  blowCalibrationMicDenied?: string;
+  blowCalibrationButton?: string;
 }

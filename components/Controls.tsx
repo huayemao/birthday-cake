@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import { AppState, CandleType, Translation, Language } from '../types';
 import { CAKES } from '../constants';
+import BlowCalibrationCard from './BlowCalibrationCard';
 
 interface ControlsProps {
   state: AppState;
@@ -217,6 +218,7 @@ const Controls: React.FC<ControlsProps> = ({ state, updateState, t, lang }) => {
           />
           <span className="text-[10px] text-gray-400 dark:text-slate-500 font-black">{t.sensitivityHigh}</span>
         </div>
+        <BlowCalibrationCard t={t} />
       </section>
 
       {/* 移动端配置完成按钮 */}
