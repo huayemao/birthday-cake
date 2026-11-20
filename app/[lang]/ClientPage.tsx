@@ -7,6 +7,7 @@ import ConfigModal from "@/components/ConfigModal";
 import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
+import { PromptSoundWave } from "@/components/AmbientSoundVisualizer";
 import { FullscreenManager } from "@/src/components/FullscreenManager";
 import { ScrollManager } from "@/src/components/ScrollManager";
 import { FULLSCREEN_LABELS } from "@/faq";
@@ -246,12 +247,15 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
                     }
                   }}
                 >
-                  <span className="text-xs font-black uppercase tracking-widest cursor-pointer">
-                    {configCompleted && isBlowLocked
-                      ? t.unlockBlow + " " + t.blowPrompt
-                      : configCompleted
-                        ? t.blowPrompt
-                        : t.configCompleteToBlow}
+                  <span className="inline-flex items-center gap-2.5 text-xs font-black uppercase tracking-widest cursor-pointer">
+                    <PromptSoundWave active={configCompleted && !isExtinguished && !isBlowLocked} />
+                    <span>
+                      {configCompleted && isBlowLocked
+                        ? t.unlockBlow + " " + t.blowPrompt
+                        : configCompleted
+                          ? t.blowPrompt
+                          : t.configCompleteToBlow}
+                    </span>
                   </span>
                 </div>
               </div>

@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import { AppState, CandleType, Translation, Language } from "../types";
 import { CAKES, FlameSVG } from "../constants";
 import Fireworks from "./Fireworks";
+import { CakeSoundAura } from "./AmbientSoundVisualizer";
+import { subscribeBlowVisual } from "@/utils/soundVisualBus";
 
 interface CakeSceneProps {
   state: AppState;
@@ -13,9 +15,42 @@ interface CakeSceneProps {
 }
 
 const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState, lang }) => {
-  const { blowingProgress, configCompleted, isExtinguished, isBlowing } = state;
+  const { blowingProgress, configCompleted, isExtinguished, isBlowing, isBlowLocked } = state;
   const [showFireworks, setShowFireworks] = useState(false);
   const [showResetUI, setShowResetUI] = useState(false);
+  const candleOverlayRef = useRef<HTMLDivElement>(null);
+  const ambientGlowRef = useRef<HTMLDivElement>(null);
+  const isListeningSound = configCompleted && !isExtinguished && !isBlowLocked;
+
+  // 将实时环境声强通过 CSS 变量传递给烛火与氛围光晕，零 React 重渲染实现 60fps 律动
+  useEffect(() => {
+    const resetVisual = () => {
+      if (candleOverlayRef.current) {
+        candleOverlayRef.current.style.setProperty("--sound-tremor", "0");
+      }
+      if (ambientGlowRef.current) {
+        ambientGlowRef.current.style.transform = "translate(-50%, -50%) scale(1)";
+        ambientGlowRef.current.style.opacity = "1";
+      }
+    };
+
+    if (!isListeningSound) {
+      resetVisual();
+      return;
+    }
+
+    return subscribeBlowVisual((frame) => {
+      const level = frame.active ? frame.soundLevel : 0;
+      if (candleOverlayRef.current) {
+        candleOverlayRef.current.style.setProperty("--sound-tremor", level.toFixed(3));
+      }
+      if (ambientGlowRef.current) {
+        const scale = 1 + level * 0.14;
+        ambientGlowRef.current.style.transform = `translate(-50%, -50%) scale(${scale.toFixed(3)})`;
+        ambientGlowRef.current.style.opacity = (0.85 + level * 0.35).toFixed(3);
+      }
+    });
+  }, [isListeningSound]);
 
   useEffect(() => {
     if (isExtinguished) {
@@ -137,6 +172,9 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState, lang }) =>
         {/* Background Ambience */}
         <div className={`absolute inset-0 transition-all duration-1000 `}></div>
 
+        {/* 环境声波可视化（有任意风吹草动时呈现声波光环与律动条） */}
+        <CakeSoundAura active={isListeningSound} />
+
         {/* Visual Canvas */}
       <div className="flex items-center justify-center p-4 sm:p-8">
         <div className="relative   w-full h-full flex items-center justify-center">
@@ -208,7 +246,7 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState, lang }) =>
           </div>
 
           {/* Candle Overlay */}
-          <div className="absolute inset-0 pointer-events-none">
+          <div ref={candleOverlayRef} className="absolute inset-0 pointer-events-none">
             {candles.map((candle, index) => (
               <div
                 key={candle.id}
@@ -258,7 +296,11 @@ const CakeScene: React.FC<CakeSceneProps> = ({ state, t, updateState, lang }) =>
 
       {/* Light Glow */}
       {!state.isExtinguished && (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] h-[95%] bg-amber-200/15 blur-[180px] rounded-full animate-pulse pointer-events-none"></div>
+        <div
+          ref={ambientGlowRef}
+          className="absolute top-1/2 left-1/2 w-[95%] h-[95%] bg-amber-200/15 blur-[180px] rounded-full animate-pulse pointer-events-none will-change-transform"
+          style={{ transform: "translate(-50%, -50%) scale(1)" }}
+        ></div>
       )}
 
       {/* Restart Prompt when candles are extinguished */}

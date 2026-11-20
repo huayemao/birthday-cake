@@ -12,6 +12,7 @@ import {
   BlowDetectionState,
   BlowCalibrationProfile,
 } from "@/utils/blowDetection";
+import { emitBlowVisual, resetBlowVisual } from "@/utils/soundVisualBus";
 
 export const useBlowDetection = () => {
   const {
@@ -68,6 +69,7 @@ export const useBlowDetection = () => {
       analyserRef.current = null;
     }
     blowStateRef.current = createBlowDetectionState();
+    resetBlowVisual();
     if (lastUiStateRef.current.isBlowing || lastUiStateRef.current.progress !== 0) {
       lastUiStateRef.current = { isBlowing: false, progress: 0 };
       updateState({ isBlowing: false, blowingProgress: 0 });
@@ -93,6 +95,7 @@ export const useBlowDetection = () => {
       analyserRef.current = null;
     }
     blowStateRef.current = createBlowDetectionState();
+    resetBlowVisual();
   }, [updateState]);
 
   // 初始化麦克风进行吹气检测（采样校准期间暂停，避免移动端双流冲突）
@@ -150,6 +153,13 @@ export const useBlowDetection = () => {
             undefined,
             blowCalibrationRef.current
           );
+
+          emitBlowVisual({
+            soundLevel: result.soundLevel,
+            bands: result.soundBands,
+            isBlowing: result.isBlowing,
+            active: true,
+          });
 
           if (result.isExtinguished) {
             handleExtinguish();

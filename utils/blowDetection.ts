@@ -110,6 +110,14 @@ const PROFILE_BANDS_HZ: ReadonlyArray<readonly [number, number]> = [
   [4800, 7000],
 ];
 
+const VISUAL_BANDS_HZ: ReadonlyArray<readonly [number, number]> = [
+  [60, 250],
+  [250, 700],
+  [700, 1600],
+  [1600, 3500],
+  [3500, 7000],
+];
+
 /**
  * 根据采样率推荐 AnalyserNode 的 fftSize，保持分析窗口在 ~42-64ms，
  * 确保低频段（50-350Hz）拥有足够的频率分辨率。
@@ -186,6 +194,10 @@ export interface BlowDetectionResult {
   isBlowing: boolean;
   isExtinguished: boolean;
   progress: number;
+  /** 相对环境底噪的平滑声音强度 (0 ~ 1)，任意环境声音均可触发视觉反馈 */
+  soundLevel: number;
+  /** 5 个频段的平滑相对活跃度 (0 ~ 1)，用于驱动实时声波可视化 */
+  soundBands: [number, number, number, number, number];
   metrics?: BlowDetectionMetrics;
 }
 
@@ -197,6 +209,9 @@ export interface BlowDetectionState {
   ambientLowDb: number;
   ambientMidDb: number;
   ambientHighDb: number;
+  ambientVisualBandsDb: [number, number, number, number, number];
+  visualSoundLevel: number;
+  visualBands: [number, number, number, number, number];
   initializedAmbient: boolean;
   smoothFlatLowMid: number;
   smoothFlatMid: number;
@@ -216,6 +231,9 @@ export const createBlowDetectionState = (): BlowDetectionState => ({
   ambientLowDb: -78,
   ambientMidDb: -92,
   ambientHighDb: -96,
+  ambientVisualBandsDb: [-80, -84, -88, -92, -96],
+  visualSoundLevel: 0,
+  visualBands: [0, 0, 0, 0, 0],
   initializedAmbient: false,
   smoothFlatLowMid: 0,
   smoothFlatMid: 0,
@@ -429,12 +447,23 @@ export const detectBlowFromFrame = (
   }
 
   // 3. 启动初期的环境底噪校准期
+  const visualBandDb: [number, number, number, number, number] = [
+    computeBandStats(freqDb, binHz, VISUAL_BANDS_HZ[0][0], VISUAL_BANDS_HZ[0][1]).db,
+    computeBandStats(freqDb, binHz, VISUAL_BANDS_HZ[1][0], VISUAL_BANDS_HZ[1][1]).db,
+    computeBandStats(freqDb, binHz, VISUAL_BANDS_HZ[2][0], Math.min(VISUAL_BANDS_HZ[2][1], nyquistSafe)).db,
+    computeBandStats(freqDb, binHz, VISUAL_BANDS_HZ[3][0], Math.min(VISUAL_BANDS_HZ[3][1], nyquistSafe)).db,
+    computeBandStats(freqDb, binHz, VISUAL_BANDS_HZ[4][0], Math.min(VISUAL_BANDS_HZ[4][1], nyquistSafe)).db,
+  ];
+
   if (state.elapsedMs < config.calibrationMs) {
     if (!state.initializedAmbient) {
       state.ambientRmsDb = Math.min(rmsDb, config.maxAmbientRmsDb);
       state.ambientLowDb = Math.min(bLow.db, config.maxAmbientRmsDb - 12);
       state.ambientMidDb = Math.min(bMid.db, config.maxAmbientRmsDb - 24);
       state.ambientHighDb = Math.min(bHigh.db, config.maxAmbientRmsDb - 28);
+      for (let i = 0; i < 5; i++) {
+        state.ambientVisualBandsDb[i] = Math.min(visualBandDb[i], -34);
+      }
       state.initializedAmbient = true;
     } else {
       const a = 0.25;
@@ -442,8 +471,20 @@ export const detectBlowFromFrame = (
       state.ambientLowDb = Math.min(config.maxAmbientRmsDb - 12, state.ambientLowDb * (1 - a) + bLow.db * a);
       state.ambientMidDb = Math.min(config.maxAmbientRmsDb - 24, state.ambientMidDb * (1 - a) + bMid.db * a);
       state.ambientHighDb = Math.min(config.maxAmbientRmsDb - 28, state.ambientHighDb * (1 - a) + bHigh.db * a);
+      for (let i = 0; i < 5; i++) {
+        state.ambientVisualBandsDb[i] = Math.min(
+          -34,
+          state.ambientVisualBandsDb[i] * (1 - a) + visualBandDb[i] * a
+        );
+      }
     }
-    return { isBlowing: false, isExtinguished: false, progress: 0 };
+    return {
+      isBlowing: false,
+      isExtinguished: false,
+      progress: 0,
+      soundLevel: 0,
+      soundBands: [0, 0, 0, 0, 0],
+    };
   }
 
   // 4. 能量与多频段自适应信噪比判断
@@ -570,14 +611,17 @@ export const detectBlowFromFrame = (
   }
 
   // 8. 自适应环境底噪更新（吹气过程中冻结底噪）
+  const dtSec = dtMs / 1000;
   if (!isBlowFrame) {
-    const dtSec = dtMs / 1000;
     if (rmsDb < state.ambientRmsDb) {
       const alpha = 1 - Math.exp(-dtSec / 0.4);
       state.ambientRmsDb += (rmsDb - state.ambientRmsDb) * alpha;
       state.ambientLowDb += (bLow.db - state.ambientLowDb) * alpha;
       state.ambientMidDb += (bMid.db - state.ambientMidDb) * alpha;
       state.ambientHighDb += (bHigh.db - state.ambientHighDb) * alpha;
+      for (let i = 0; i < 5; i++) {
+        state.ambientVisualBandsDb[i] += (visualBandDb[i] - state.ambientVisualBandsDb[i]) * alpha;
+      }
     } else {
       const alpha = 1 - Math.exp(-dtSec / 2.5);
       state.ambientRmsDb = Math.min(
@@ -596,8 +640,43 @@ export const detectBlowFromFrame = (
         config.maxAmbientRmsDb - 28,
         state.ambientHighDb + (bHigh.db - state.ambientHighDb) * alpha
       );
+      for (let i = 0; i < 5; i++) {
+        state.ambientVisualBandsDb[i] = Math.min(
+          -34,
+          state.ambientVisualBandsDb[i] + (visualBandDb[i] - state.ambientVisualBandsDb[i]) * alpha
+        );
+      }
     }
   }
+
+  // 8.5 计算用于场景可视化的“风吹草动”声音活跃度（0 ~ 1）与 5 频段声波能量
+  // 任何高于环境底噪约 2dB 且绝对响度 > -62dBFS 的声音都会平滑点亮场景可视化，
+  // 即使该声音未达到吹气判据（如唱歌、说话、掌声、轻风等）
+  const attackAlpha = 1 - Math.exp(-dtSec / 0.045);
+  const releaseAlpha = 1 - Math.exp(-dtSec / 0.18);
+  const isAudible = rmsDb > -62;
+
+  let maxBandActivity = 0;
+  for (let i = 0; i < 5; i++) {
+    const bandSnr = isAudible ? visualBandDb[i] - state.ambientVisualBandsDb[i] : 0;
+    const targetBand = bandSnr > 2.2 ? Math.min(1, (bandSnr - 2.2) / 22) : 0;
+    const prev = state.visualBands[i];
+    const a = targetBand > prev ? attackAlpha : releaseAlpha;
+    const next = prev + (targetBand - prev) * a;
+    state.visualBands[i] = next < 0.005 ? 0 : next;
+    if (next > maxBandActivity) maxBandActivity = next;
+  }
+
+  const rawSnrActivity = isAudible
+    ? Math.max(snrDb - 1.8, (midSnrDb - 2.5) * 0.75, (highSnrDb - 3.0) * 0.65)
+    : 0;
+  const targetLevel = Math.max(
+    rawSnrActivity > 0 ? Math.min(1, rawSnrActivity / 20) : 0,
+    maxBandActivity * 0.85
+  );
+  const levelAlpha = targetLevel > state.visualSoundLevel ? attackAlpha : releaseAlpha;
+  state.visualSoundLevel += (targetLevel - state.visualSoundLevel) * levelAlpha;
+  if (state.visualSoundLevel < 0.005) state.visualSoundLevel = 0;
 
   // 9. 基于真实耗时（ms）的累积与平滑衰减
   if (isBlowFrame) {
@@ -617,6 +696,14 @@ export const detectBlowFromFrame = (
     isBlowing,
     isExtinguished,
     progress,
+    soundLevel: state.visualSoundLevel,
+    soundBands: [
+      state.visualBands[0],
+      state.visualBands[1],
+      state.visualBands[2],
+      state.visualBands[3],
+      state.visualBands[4],
+    ],
     metrics: {
       rmsDb,
       snrDb,
