@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { Language } from "@/types";
 import { getTranslation } from "@/i18n";
 import PageLayout from "@/components/PageLayout";
+import { buildPageMetadata } from "@/utils/seo";
 
 interface Params {
   slug: string;
@@ -13,12 +14,15 @@ interface Params {
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug, lang } = await params;
   try {
-    console.log(`@/content/${lang}/blog/${slug}.mdx`)
     const { metadata } = await import(`@/content/${lang}/blog/${slug}.mdx`);
-    return {
+    return buildPageMetadata({
+      lang,
+      subPath: `/blog/${slug}`,
       title: (metadata as { title?: string }).title || slug,
       description: (metadata as { description?: string }).description || "",
-    };
+      views: ["home", "stage", "celebrate"],
+      type: "article",
+    });
   } catch (error) {
     console.error(`Error loading blog post: ${slug}`, error);
     notFound();

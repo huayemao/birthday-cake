@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { Language } from "@/types";
 import { getTranslation } from "@/i18n";
 import PageLayout from "@/components/PageLayout";
+import { buildPageMetadata } from "@/utils/seo";
 
 interface Params {
   lang: Language;
@@ -13,16 +14,22 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { lang } = await params;
   try {
     const { metadata } = await import(`@/content/${lang}/about.mdx`);
-    return {
+    return buildPageMetadata({
+      lang,
+      subPath: "/about",
       title: (metadata as { title?: string }).title || "About",
       description: (metadata as { description?: string }).description || "",
-    };
+      views: ["about", "home", "celebrate"],
+    });
   } catch (error) {
     console.error(`Error loading about page: ${lang}`, error);
-    return {
+    return buildPageMetadata({
+      lang,
+      subPath: "/about",
       title: "About",
       description: "",
-    };
+      views: ["about", "home", "celebrate"],
+    });
   }
 }
 

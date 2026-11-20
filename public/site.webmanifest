@@ -27,9 +27,53 @@
       "purpose": "maskable"
     }
   ],
+  "screenshots": [
+    {
+      "src": "/screenshots/en/desktop/home.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "3D Electronic Birthday Cake - Home"
+    },
+    {
+      "src": "/screenshots/en/desktop/stage.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Make a Wish & Blow Out Candles"
+    },
+    {
+      "src": "/screenshots/en/desktop/celebrate.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Fireworks & Confetti Birthday Celebration"
+    },
+    {
+      "src": "/screenshots/en/desktop/configure.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Customize Your Cake, Candles & Wishes"
+    },
+    {
+      "src": "/screenshots/en/mobile/home.jpg",
+      "sizes": "780x1688",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Mobile Electronic Birthday Cake"
+    },
+    {
+      "src": "/screenshots/en/mobile/stage.jpg",
+      "sizes": "780x1688",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Mobile Blow Out Birthday Candles"
+    }
+  ],
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#FFFFFF",
-  "description": "Online birthday candle blowing with exquisite illustration style birthday cakes. Support customizable candle count and position, number shape candles, flame animation, blow microphone simulation to extinguish flames, dazzling celebration animation. Compatible with multiple devices, supports offline access and multilingual experience."
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "description": "Online birthday candle blowing with exquisite 3D and illustration style birthday cakes. Support customizable candle count and position, number shape candles, flame animation, blow microphone simulation to extinguish flames, dazzling celebration animation. Compatible with multiple devices, supports offline access and multilingual experience."
 }

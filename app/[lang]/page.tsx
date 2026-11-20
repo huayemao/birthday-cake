@@ -1,22 +1,38 @@
-import React from 'react';
-import { AppState, Language, CandleType, languages, LANGUAGE_NAMES } from '../../types';
-import { ClientPage } from './ClientPage';
-
+import React from "react";
+import type { Metadata } from "next";
+import { Language, LANGUAGE_NAMES } from "../../types";
+import { ClientPage } from "./ClientPage";
+import { buildPageMetadata, buildWebAppJsonLd } from "@/utils/seo";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     lang: Language;
-  };
+  }>;
 }
 
-// 服务器组件以支持Next.js 15的异步params访问
-const Page: React.FC<PageProps> = async ({ params }) => {
-  // 服务器组件中使用await解包params
+export const generateMetadata = async ({
+  params,
+}: PageProps): Promise<Metadata> => {
   const { lang } = await params;
+  return buildPageMetadata({
+    lang,
+    views: ["home", "stage", "celebrate", "configure"],
+  });
+};
 
-  // 动态导入客户端组件
+const Page: React.FC<PageProps> = async ({ params }) => {
+  const { lang } = await params;
+  const jsonLd = buildWebAppJsonLd(lang);
 
-  return <ClientPage initialLang={lang} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ClientPage initialLang={lang} />
+    </>
+  );
 };
 
 export const generateStaticParams = async () => {
@@ -24,7 +40,5 @@ export const generateStaticParams = async () => {
     lang,
   }));
 };
-
-
 
 export default Page;

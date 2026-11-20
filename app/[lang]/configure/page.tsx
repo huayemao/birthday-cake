@@ -1,7 +1,9 @@
 import React, { Suspense } from "react";
+import type { Metadata } from "next";
 import { Language, LANGUAGE_NAMES } from "@/types";
 import { getTranslation } from "@/i18n";
 import ConfigurePage from "@/components/ConfigurePage";
+import { buildPageMetadata } from "@/utils/seo";
 
 interface ConfigureRouteProps {
   params: Promise<{
@@ -15,13 +17,18 @@ export const generateStaticParams = async () => {
   }));
 };
 
-export const generateMetadata = async ({ params }: ConfigureRouteProps) => {
+export const generateMetadata = async ({
+  params,
+}: ConfigureRouteProps): Promise<Metadata> => {
   const { lang } = await params;
   const t = getTranslation(lang);
-  return {
+  return buildPageMetadata({
+    lang,
+    subPath: "/configure",
     title: `${t.arrangeCake} - ${t.seoTitle}`,
     description: t.description,
-  };
+    views: ["configure", "home", "stage"],
+  });
 };
 
 export default async function ConfigureRoute({ params }: ConfigureRouteProps) {

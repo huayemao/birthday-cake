@@ -1,12 +1,30 @@
 import React from "react";
-import { Language } from "../../../types";
+import type { Metadata } from "next";
+import { Language, languages } from "../../../types";
 import { getTranslation } from "@/i18n";
 import PageLayout from "../../../components/PageLayout";
+import { buildPageMetadata } from "@/utils/seo";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     lang: Language;
-  };
+  }>;
+}
+
+export async function generateStaticParams() {
+  return languages.map((lang) => ({ lang }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const t = getTranslation(lang);
+  return buildPageMetadata({
+    lang,
+    subPath: "/guide",
+    title: `${t.guideTitle || "Guide"} - ${t.seoTitle}`,
+    description: `${t.step1Content || ""} ${t.step5Content || ""}`.trim() || t.description,
+    views: ["guide", "home", "stage"],
+  });
 }
 
 const Page: React.FC<PageProps> = async ({ params }) => {

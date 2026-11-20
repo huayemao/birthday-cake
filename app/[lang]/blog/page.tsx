@@ -1,10 +1,12 @@
 import React from "react";
+import type { Metadata } from "next";
 import { readdirSync } from "fs";
 import { join } from "path";
 import Link from "next/link";
-import { Language } from "../../../types";
+import { Language, languages } from "../../../types";
 import { getTranslation } from "@/i18n";
 import PageLayout from "../../../components/PageLayout";
+import { buildPageMetadata } from "@/utils/seo";
 
 interface BlogPost {
   slug: string;
@@ -14,9 +16,25 @@ interface BlogPost {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     lang: Language;
-  };
+  }>;
+}
+
+export async function generateStaticParams() {
+  return languages.map((lang) => ({ lang }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const t = getTranslation(lang);
+  return buildPageMetadata({
+    lang,
+    subPath: "/blog",
+    title: `${t.blogTitle || "Blog"} - ${t.seoTitle}`,
+    description: t.description,
+    views: ["home", "stage", "celebrate"],
+  });
 }
 
 async function getBlogPosts(lang: Language): Promise<BlogPost[]> {
