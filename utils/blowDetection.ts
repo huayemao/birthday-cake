@@ -130,7 +130,7 @@ export const getRecommendedFftSize = (sampleRate: number): number => {
  * 默认吹气检测配置（对应默认灵敏度 60%，兼顾近场直吹与较远距离吹气）
  */
 export const DEFAULT_BLOW_CONFIG: BlowDetectionConfig = {
-  minRmsDb: -42.4,
+  minRmsDb: -36.4,
   minSnrDb: 7.2,
   requiredDurationMs: 260,
   decayMultiplier: 1.3,
@@ -799,7 +799,7 @@ export interface BlowCalibrationStepResult {
 }
 
 export const createBlowCalibrationState = (
-  targetDurationMs = 420,
+  targetDurationMs = 600,
   noiseBaselineMs = 350
 ): BlowCalibrationSessionState => ({
   elapsedMs: 0,
@@ -926,8 +926,8 @@ export const feedBlowCalibrationFrame = (
 
   // 能量门槛：支持低至 -56 dBFS 的远距离轻吹，且支持通过中高频 SNR（穿透电脑风扇低频底噪）触发
   const levelOk =
-    rmsDb >= -56 &&
-    (snrDb >= 4.0 || (midSnrDb >= 6.5 && (snrDb >= 1.2 || highSnrDb >= 5.0)));
+    rmsDb >= -44 &&
+    (snrDb >= 4.0 || (midSnrDb >= 6.8 && (snrDb >= 1.2 || highSnrDb >= 5.0)));
 
   const broadbandOk =
     bLowMid.flatness >= 0.28 &&
@@ -940,14 +940,14 @@ export const feedBlowCalibrationFrame = (
 
   // 允许两类合理吹气倾斜：
   // A) 近/中场吹气：低频高于高频（L-H >= 2.0dB）
-  // B) 远距离口唇气流（无振膜风压）：L-M 可低至 -4.0dB，但中频强于高频且低频仍高于高频（排除耳语/掌声/嘶声/白噪）
+  // B) 远距离口唇气流（无振膜风压）：L-M 可低至 -3.6dB，但中频强于高频且低频仍高于高频（排除耳语/掌声/嘶声/白噪）
   const nearTiltOk =
     lowToMidDb >= -3.0 &&
     lowToMidDb <= 26.0 &&
     lowToHighDb >= 2.0 &&
     lowToHighDb <= 33.0;
   const farTiltOk =
-    lowToMidDb >= -4.0 &&
+    lowToMidDb >= -3.6 &&
     lowToMidDb <= 26.0 &&
     lowToHighDb >= 1.5 &&
     lowToHighDb <= 33.0 &&
@@ -1100,6 +1100,6 @@ export const cleanupAudioResources = (
     mediaStream.getTracks().forEach((track) => track.stop());
   }
   if (audioContext && audioContext.state !== "closed") {
-    audioContext.close().catch(() => {});
+    audioContext.close().catch(() => { });
   }
 };
