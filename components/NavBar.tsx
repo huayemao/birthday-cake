@@ -89,7 +89,20 @@ export default function NavBar({ lang, configCompleted }: NavBarProps) {
   }
 
   return (
-    <nav className="absolute top-0 left-0 right-0 z-40 flex items-center justify-end p-3 sm:p-4 pointer-events-none">
+    <nav className="absolute top-0 left-0 right-0 z-40 flex items-center justify-between p-3 sm:p-4 pointer-events-none">
+      <Link
+        href={`/${lang}`}
+        aria-label="Home"
+        className="pointer-events-auto shrink-0 p-1 rounded-2xl shadow-xl bg-slate-900/55 backdrop-blur-md border border-white/10 hover:border-pink-400/40 hover:scale-105 transition-all flex items-center"
+      >
+        <img
+          src="/favicon.svg"
+          alt="Electronic Birthday Cake"
+          width={30}
+          height={30}
+          className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl"
+        />
+      </Link>
       <div className="pointer-events-auto shrink-0 p-1.5 rounded-2xl shadow-xl bg-slate-900/55 backdrop-blur-md border border-white/10 flex items-center gap-1 sm:gap-2">
         {NAV_ITEMS.map((item) => (
           <Link

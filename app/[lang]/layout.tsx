@@ -1,8 +1,12 @@
 import React, { ReactNode } from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Language } from "../../types";
 import { Analytics } from "@vercel/analytics/next";
 import { buildPageMetadata } from "@/utils/seo";
+
+export const viewport: Viewport = {
+  themeColor: "#070b1a",
+};
 
 interface LangLayoutProps {
   children: ReactNode;

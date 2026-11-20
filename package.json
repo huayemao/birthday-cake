@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "screenshots": "node scripts/capture-screenshots.mjs",
-    "screenshots:local": "node scripts/capture-screenshots.mjs --base-url=http://localhost:3000"
+    "screenshots:local": "node scripts/capture-screenshots.mjs --base-url=http://localhost:3000",
+    "icons:export": "node scripts/export-icons.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

@@ -28,9 +28,16 @@ export default function PageLayout({ lang, title, children, currentPath }: PageL
         <div className="p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50 flex items-center gap-2">
           <Link
             href={`/${lang}`}
-            className="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-all"
+            className="flex items-center gap-2 pl-1.5 pr-3 py-1 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-all"
           >
-            {t.backToHome || "Back to Home"}
+            <img
+              src="/favicon.svg"
+              alt={t.title}
+              width={24}
+              height={24}
+              className="w-6 h-6 rounded-lg shrink-0"
+            />
+            <span>{t.backToHome || "Back to Home"}</span>
           </Link>
           <Link
             href={`/${lang}/about`}
