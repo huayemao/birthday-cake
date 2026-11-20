@@ -5,14 +5,25 @@ import {
   saveBlowCalibrationProfile,
   clearBlowCalibrationProfile,
 } from '@/utils/blowDetection';
+import { MusicStyle } from '@/utils/birthdayAudio';
+
+export type RenderModePreference = 'auto' | '3d' | '2d';
 
 export interface AppStore extends AppState {
   blowCalibration: BlowCalibrationProfile | null;
   isCalibratingBlow: boolean;
+  renderMode: RenderModePreference;
+  musicEnabled: boolean;
+  sfxEnabled: boolean;
+  musicStyle: MusicStyle;
   updateState: (updates: Partial<AppState>) => void;
   setBlowCalibration: (profile: BlowCalibrationProfile | null) => void;
   hydrateBlowCalibration: (profile: BlowCalibrationProfile | null) => void;
   setIsCalibratingBlow: (active: boolean) => void;
+  setRenderMode: (mode: RenderModePreference) => void;
+  setMusicEnabled: (enabled: boolean) => void;
+  setSfxEnabled: (enabled: boolean) => void;
+  setMusicStyle: (style: MusicStyle) => void;
   resetState: () => void;
 }
 
@@ -37,6 +48,10 @@ export const useAppStore = create<AppStore>((set) => ({
   ...defaultState(),
   blowCalibration: null,
   isCalibratingBlow: false,
+  renderMode: 'auto',
+  musicEnabled: true,
+  sfxEnabled: true,
+  musicStyle: 'musicbox',
 
   updateState: (updates) => set((state) => ({ ...state, ...updates })),
 
@@ -53,10 +68,22 @@ export const useAppStore = create<AppStore>((set) => ({
 
   setIsCalibratingBlow: (active) => set({ isCalibratingBlow: active }),
 
+  setRenderMode: (renderMode) => set({ renderMode }),
+
+  setMusicEnabled: (musicEnabled) => set({ musicEnabled }),
+
+  setSfxEnabled: (sfxEnabled) => set({ sfxEnabled }),
+
+  setMusicStyle: (musicStyle) => set({ musicStyle }),
+
   resetState: () =>
     set((state) => ({
       ...defaultState(),
       blowCalibration: state.blowCalibration,
       isCalibratingBlow: false,
+      renderMode: state.renderMode,
+      musicEnabled: state.musicEnabled,
+      sfxEnabled: state.sfxEnabled,
+      musicStyle: state.musicStyle,
     })),
 }));

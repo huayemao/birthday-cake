@@ -16,6 +16,7 @@ import { Language } from "@/types";
 import { useRef, useEffect, useState } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import { useBlowDetection } from "@/src/hooks/useBlowDetection";
+import { useBirthdayAudio } from "@/src/hooks/useBirthdayAudio";
 import { useShareLink } from "@/src/hooks/useShareLink";
 import { useUrlConfig } from "@/src/hooks/useUrlConfig";
 
@@ -74,6 +75,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
 
   // 使用自定义hooks
   useBlowDetection();
+  const birthdayAudio = useBirthdayAudio();
   const { copyShareLink } = useShareLink();
   useUrlConfig();
 
@@ -222,7 +224,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
             className={`relative   z-10 w-full transition-all duration-1800 ease-in-out`}
           >
             {/* 蛋糕场景 - 核心内容 */}
-            <CakeScene state={state} t={t} updateState={updateState} lang={lang} />
+            <CakeScene state={state} t={t} updateState={updateState} lang={lang} audio={birthdayAudio} />
             {/* 垂直进度条 - 侧边位置 */}
 
           </div>
