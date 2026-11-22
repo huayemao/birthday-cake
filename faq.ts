@@ -19,6 +19,12 @@ export const FAQ_TITLE: Record<Language, string> = {
   it: "Domande frequenti",
   ru: "Часто задаваемые вопросы",
   vi: "Câu hỏi thường gặp",
+  hi: "अक्सर पूछे जाने वाले प्रश्न",
+  id: "Pertanyaan yang Sering Diajukan",
+  th: "คำถามที่พบบ่อย",
+  ms: "Soalan Lazim",
+  tr: "Sıkça Sorulan Sorular",
+  ur: "اکثر پوچھے جانے والے سوالات",
 };
 
 export const FAQS: Record<Language, FaqItem[]> = {
@@ -308,6 +314,138 @@ export const FAQS: Record<Language, FaqItem[]> = {
       a: "Độ nhạy mic là tham số nhận diện thổi phù hợp với từng thiết bị. Do khác biệt phần cứng mic giữa điện thoại và máy tính, chất lượng thu âm khác nhau: độ nhạy quá cao khiến tiếng ồn nhẹ làm tắt nến nhầm; quá thấp thì thổi bình thường không được nhận diện. Khuyến nghị tinh chỉnh độ nhạy theo thiết bị trước khi dùng để có hiệu quả tốt nhất.",
     },
   ],
+  hi: [
+    {
+      q: "यह ऑनलाइन मोमबत्ती बुझाने वाला टूल किस काम आता है और किन अवसरों के लिए उपयुक्त है?",
+      a: "यह एक ब्राउज़र-आधारित वर्चुअल जन्मदिन मोमबत्ती बुझाने वाला इंटरैक्टिव ऐप है—कोई डाउनलोड या इंस्टॉलेशन नहीं चाहिए। यह दो मुख्य स्थितियों में काम आता है: पहला, आमने-सामने जश्न में फोन या कंप्यूटर पर केक सजाकर असली मोमबत्ती की जगह सुरक्षित तरीके से माइक में फूंक मारकर बुझाना; दूसरा, दूर बैठे दोस्तों या परिवार को कस्टमाइज़्ड केक का लिंक भेजकर ऑनलाइन सरप्राइज़ देना।",
+    },
+    {
+      q: "असली मोमबत्तियों की तुलना में इलेक्ट्रॉनिक वर्चुअल मोमबत्तियों के क्या फायदे हैं?",
+      a: "असली मोमबत्तियों की तुलना में इसके कई फायदे हैं: 1) सुरक्षित—कोई खुली आग या जलने का खतरा नहीं, बच्चों और बुजुर्गों के लिए सुरक्षित; 2) पर्यावरण के अनुकूल—कोई धुआं या मोम की गंदगी नहीं; 3) सुविधाजनक—कहीं भी और कभी भी बिना अतिरिक्त सामान के इस्तेमाल करें; 4) मजेदार—आतिशबाज़ी और रोशनी के इफेक्ट्स के साथ शानदार माहौल बनता है।",
+    },
+    {
+      q: "सजाए हुए कस्टम केक को दोस्तों के साथ कैसे शेयर करें?",
+      a: "केक की सभी सेटिंग्स पूरी करने के बाद, स्क्रीन पर शेयर आइकन पर क्लिक करके अपना खास लिंक कॉपी करें। इस लिंक में केक स्टाइल, मोमबत्तियां, संदेश और नाम सब सुरक्षित रहते हैं—दोस्त लिंक खोलते ही सीधे मोमबत्तियां बुझा सकते हैं।",
+    },
+    {
+      q: "अगर मोमबत्तियां गलती से अपने आप बुझ जाएं, तो इससे कैसे बचें?",
+      a: "आप सीन में दिए गए लॉक बटन का उपयोग कर सकते हैं। लॉक चालू रहने पर माइक्रोफोन डिटेक्शन अस्थायी रूप से रुक जाता है ताकि आसपास के शोर से मोमबत्तियां न बुझें। जब फूंक मारने के लिए तैयार हों, तो अनलॉक कर दें।",
+    },
+    {
+      q: "माइक्रोफोन संवेदनशीलता (Sensitivity) क्या है? क्या इसे बदलना ज़रूरी है?",
+      a: "अलग-अलग फोन और कंप्यूटर के माइक की क्षमता अलग होती है। बहुत अधिक संवेदनशीलता से हल्के शोर पर भी मोमबत्ती बुझ सकती है, और बहुत कम होने पर फूंक पहचानने में दिक्कत हो सकती है। बेहतर अनुभव के लिए अपने डिवाइस के अनुसार संवेदनशीलता सेट करें या फूंक कैलिब्रेशन करें।",
+    },
+  ],
+  id: [
+    {
+      q: "Untuk apa alat tiup lilin online ini dan cocok untuk situasi apa saja?",
+      a: "Ini adalah aplikasi web interaktif untuk meniup lilin ulang tahun secara virtual tanpa perlu mengunduh apa pun. Cocok untuk dua skenario utama: penggunaan langsung di tempat sebagai pengganti lilin asli yang aman dan seru, serta kejutan jarak jauh dengan membagikan tautan kue kustom kepada teman dan keluarga.",
+    },
+    {
+      q: "Apa keunggulan lilin virtual elektronik dibandingkan lilin ulang tahun asli?",
+      a: "Keunggulannya sangat jelas: 1) Aman tanpa api terbuka sehingga aman bagi anak-anak dan lansia; 2) Ramah lingkungan tanpa asap atau tetesan lilin; 3) Praktis digunakan kapan saja dan di mana saja; 4) Menyenangkan dengan efek kembang api dan animasi perayaan yang meriah.",
+    },
+    {
+      q: "Bagaimana cara membagikan kue ulang tahun yang sudah dikustomisasi kepada teman?",
+      a: "Setelah selesai mengatur kue, klik ikon bagikan untuk menyalin tautan khusus dalam satu klik. Semua pengaturan seperti gaya kue, lilin, nama, dan pesan tersimpan dalam tautan tersebut sehingga teman bisa langsung meniup lilin saat membukanya.",
+    },
+    {
+      q: "Lilin sering padam secara tidak sengaja karena suara sekitar, bagaimana mencegahnya?",
+      a: "Gunakan fitur kunci (Lock) di tampilan kue. Saat terkunci, deteksi mikrofon dinonaktifkan sementara sehingga kebisingan tidak akan memadamkan lilin. Buka kunci kembali saat sudah siap meniup.",
+    },
+    {
+      q: "Apa arti sensitivitas mikrofon dan apakah perlu disesuaikan?",
+      a: "Sensitivitas mikrofon menyesuaikan deteksi tiupan dengan perangkat keras masing-masing ponsel atau komputer. Jika terlalu tinggi, suara kecil bisa memicu deteksi; jika terlalu rendah, tiupan normal sulit terbaca. Sesuaikan sensitivitas atau gunakan fitur kalibrasi sampel tiupan untuk hasil terbaik.",
+    },
+  ],
+  th: [
+    {
+      q: "เครื่องมือเป่าเทียนออนไลน์นี้ใช้ทำอะไร และเหมาะกับสถานการณ์แบบไหน?",
+      a: "เป็นเว็บแอปจำลองการเป่าเทียนวันเกิดแบบโต้ตอบผ่านเบราว์เซอร์ ไม่ต้องดาวน์โหลด เหมาะทั้งการใช้แทนเทียนจริงในงานปาร์ตี้อย่างปลอดภัย และการส่งลิงก์เค้กที่ตกแต่งเองให้เพื่อนหรือคนรักที่อยู่ไกลเพื่อเซอร์ไพรส์วันเกิดออนไลน์",
+    },
+    {
+      q: "เทียนวันเกิดอิเล็กทรอนิกส์มีข้อดีกว่าเทียนจริงอย่างไร?",
+      a: "1) ปลอดภัย ไม่มีเปลวไฟจริง ลดความเสี่ยงไฟไหม้ เหมาะกับเด็กและผู้สูงอายุ 2) รักษ์โลก ไม่มีควันและน้ำตาเทียน 3) สะดวก ใช้งานได้ทุกที่ทุกเวลาแม้ลืมซื้อเทียน 4) สนุกสนาน มีเอฟเฟกต์พลุและแสงไฟฉลองหลังเป่าดับ",
+    },
+    {
+      q: "จะแชร์เค้กที่ตกแต่งไว้ให้เพื่อนได้อย่างไร?",
+      a: "เมื่อตั้งค่าเค้ก เทียน และคำอวยพรเรียบร้อยแล้ว ให้กดปุ่มแชร์เพื่อคัดลอกลิงก์ ลิงก์จะเก็บการตั้งค่าทั้งหมดไว้ เพื่อนสามารถเปิดลิงก์แล้วเป่าเทียนได้ทันทีโดยไม่ต้องตั้งค่าใหม่",
+    },
+    {
+      q: "จะป้องกันไม่ให้เทียนดับเองจากเสียงรบกวนได้อย่างไร?",
+      a: "ใช้ปุ่มล็อกในหน้าเค้ก เมื่อเปิดล็อกไว้ ระบบจะหยุดรับเสียงจากไมโครโฟนชั่วคราวทำให้เทียนไม่ดับโดยไม่ได้ตั้งใจ และค่อยปลดล็อกเมื่อพร้อมเป่าจริง",
+    },
+    {
+      q: "ความไวของไมโครโฟนคืออะไร จำเป็นต้องปรับหรือไม่?",
+      a: "อุปกรณ์แต่ละรุ่นมีไมโครโฟนที่รับเสียงต่างกัน หากตั้งค่าไวเกินไปเสียงรอบข้างอาจทำให้เทียนดับ หากต่ำเกินไปอาจเป่าไม่ดับ แนะนำให้ปรับความไวหรือใช้การปรับเทียบเสียงเป่าให้เหมาะกับอุปกรณ์ของคุณ",
+    },
+  ],
+  ms: [
+    {
+      q: "Apakah kegunaan alat tiup lilin dalam talian ini dan situasi apakah yang sesuai?",
+      a: "Ini ialah aplikasi web interaktif untuk meniup lilin hari jadi maya terus daripada pelayar tanpa perlu muat turun. Ia sesuai untuk kegunaan bersemuka sebagai pengganti lilin sebenar yang selamat serta sambutan jarak jauh dengan menghantar pautan kek tersuai kepada rakan dan keluarga.",
+    },
+    {
+      q: "Apakah kelebihan lilin maya elektronik berbanding lilin hari jadi sebenar?",
+      a: "1) Selamat tanpa api terbuka; 2) Mesra alam tanpa asap atau titisan lilin; 3) Mudah digunakan di mana-mana sahaja pada bila-bila masa; 4) Menyeronokkan dengan kesan bunga api dan animasi sambutan yang meriah.",
+    },
+    {
+      q: "Bagaimanakah cara berkongsi kek hari jadi yang telah diubah suai dengan rakan?",
+      a: "Selepas melengkapkan tetapan kek, klik ikon kongsi untuk menyalin pautan eksklusif anda. Semua tetapan termasuk gaya kek, lilin, nama dan ucapan disimpan dalam pautan tersebut supaya rakan boleh terus meniup lilin.",
+    },
+    {
+      q: "Lilin terpadam secara tidak sengaja akibat bunyi bising, bagaimana hendak mengelakkannya?",
+      a: "Gunakan fungsi kunci (Lock) pada paparan kek. Apabila dikunci, pengesanan mikrofon dihentikan sementara agar bunyi persekitaran tidak memadamkan lilin. Buka kunci semula apabila sedia untuk meniup.",
+    },
+    {
+      q: "Apakah maksud kepekaan mikrofon dan adakah perlu dilaraskan?",
+      a: "Kepekaan mikrofon membantu menyesuaikan pengesanan tiupan mengikut perkakasan peranti yang berbeza. Laraskan peluncur kepekaan atau gunakan penentukuran sampel tiupan untuk ketepatan terbaik.",
+    },
+  ],
+  tr: [
+    {
+      q: "Bu online mum üfleme aracı ne işe yarar ve hangi durumlar için uygundur?",
+      a: "Tarayıcı üzerinden çalışan, indirme gerektirmeyen etkileşimli bir sanal doğum günü pastası uygulamasıdır. Hem fiziksel mum yerine güvenli bir şekilde yüz yüze kutlamalarda hem de uzaktaki sevdiklerinize özel bağlantı göndererek çevrimiçi doğum günü sürprizi yapmak için idealdir.",
+    },
+    {
+      q: "Elektronik sanal mumların gerçek mumlara göre avantajları nelerdir?",
+      a: "1) Güvenlidir: açık alev veya yanma riski yoktur; 2) Çevre dostudur: duman ve mum atığı oluşturmaz; 3) Pratiktir: her yerde ve her zaman kullanılabilir; 4) Eğlencelidir: havai fişek ve ışık efektleriyle kutlamayı daha canlı hale getirir.",
+    },
+    {
+      q: "Özelleştirdiğim pasta sahnesini arkadaşlarımla nasıl paylaşabilirim?",
+      a: "Tüm ayarları tamamladıktan sonra paylaş simgesine tıklayarak özel bağlantınızı tek tıkla kopyalayabilirsiniz. Bağlantı tüm pasta, mum ve mesaj ayarlarınızı korur; arkadaşlarınız açar açmaz mumları üfleyebilir.",
+    },
+    {
+      q: "Mumlar yanlışlıkla kendiliğinden sönüyor, bunu nasıl önleyebilirim?",
+      a: "Sahnedeki kilitleme (Lock) özelliğini kullanın. Kilitliyken mikrofon algılaması duraklatılır ve ortam gürültüsü mumları söndürmez. Üflemeye hazır olduğunuzda kilidi açmanız yeterlidir.",
+    },
+    {
+      q: "Mikrofon hassasiyeti ne anlama gelir, ayarlamalı mıyım?",
+      a: "Telefon ve bilgisayar mikrofonlarının donanımı farklıdır. Hassasiyet çok yüksekse hafif sesler yanlış tetiklemeye yol açabilir, çok düşükse normal üfleme algılanmayabilir. En iyi deneyim için hassasiyeti ayarlayın veya üfleme kalibrasyonunu kullanın.",
+    },
+  ],
+  ur: [
+    {
+      q: "یہ آن لائن موم بتی بجھانے والا ٹول کس کام آتا ہے اور کن مواقع پر استعمال کیا جا سکتا ہے؟",
+      a: "یہ براؤزر میں چلنے والی ایک انٹرایکٹو ورچوئل سالگرہ کیک ایپ ہے جسے ڈاؤن لوڈ کرنے کی ضرورت نہیں۔ اسے آمنے سامنے سالگرہ میں اصلی موم بتیوں کے محفوظ متبادل کے طور پر یا دور بیٹھے دوستوں اور رشتہ داروں کو مخصوص لنک بھیج کر آن لائن سرپرائز دینے کے لیے استعمال کیا جا سکتا ہے۔",
+    },
+    {
+      q: "اصلی موم بتیوں کے مقابلے میں الیکٹرانک ورچوئل موم بتیوں کے کیا فوائد ہیں؟",
+      a: "1) محفوظ: کھلی آگ یا جلنے کا کوئی خطرہ نہیں، بچوں اور بزرگوں کے لیے محفوظ؛ 2) ماحول دوست: نہ دھواں اور نہ موم کی گندگی؛ 3) سہولت بخش: کسی بھی وقت اور کہیں بھی دستیاب؛ 4) پرلطف: آتش بازی اور جشن کی اینیمیشنز کے ساتھ دلکش ماحول۔",
+    },
+    {
+      q: "اپنے سجائے ہوئے کیک کا منظر دوستوں کے ساتھ کیسے شیئر کروں؟",
+      a: "کیک کی تمام ترتیبات مکمل کرنے کے بعد شیئر آئیکن پر کلک کرکے اپنا خصوصی لنک کاپی کریں۔ اس لنک میں آپ کا کیک، موم بتیاں، نام اور پیغام محفوظ ہوتے ہیں تاکہ دوست کھولتے ہی موم بتیاں بجھا سکیں۔",
+    },
+    {
+      q: "اگر اردگرد کے شور سے موم بتیاں غلطی سے بجھ جائیں تو کیا کریں؟",
+      a: "آپ منظر میں موجود لاک (Lock) بٹن استعمال کر سکتے ہیں۔ لاک فعال ہونے پر مائیکروفون کی شناخت عارضی طور پر رک جاتی ہے تاکہ شور سے موم بتیاں نہ بجھیں۔ جب پھونک مارنے کے لیے تیار ہوں تو ان لاک کر دیں۔",
+    },
+    {
+      q: "مائیکروفون کی حساسیت (Sensitivity) کیا ہے اور کیا اسے ایڈجسٹ کرنا ضروری ہے؟",
+      a: "مختلف فونز اور کمپیوٹرز کے مائیکروفون مختلف انداز میں آواز پکڑتے ہیں۔ بہترین نتیجے کے لیے اپنے آلے کے مطابق حساسیت سیٹ کریں یا پھونک سیمپل کیلیبریشن فیچر استعمال کریں۔",
+    },
+  ],
 };
 
 export const FULLSCREEN_LABELS: Record<Language, { enter: string; exit: string }> = {
@@ -324,4 +462,10 @@ export const FULLSCREEN_LABELS: Record<Language, { enter: string; exit: string }
   it: { enter: "Schermo intero", exit: "Esci schermo intero" },
   ru: { enter: "Полный экран", exit: "Выйти из полноэкранного режима" },
   vi: { enter: "Toàn màn hình", exit: "Thoát toàn màn hình" },
+  hi: { enter: "फुलस्क्रीन", exit: "फुलस्क्रीन से बाहर निकलें" },
+  id: { enter: "Layar Penuh", exit: "Keluar Layar Penuh" },
+  th: { enter: "เต็มหน้าจอ", exit: "ออกจากเต็มหน้าจอ" },
+  ms: { enter: "Skrin Penuh", exit: "Keluar Skrin Penuh" },
+  tr: { enter: "Tam Ekran", exit: "Tam Ekrandan Çık" },
+  ur: { enter: "فل اسکرین", exit: "فل اسکرین بند کریں" },
 };

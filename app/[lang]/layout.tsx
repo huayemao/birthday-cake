@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
-import { Language } from "../../types";
+import { isRtlLanguage, Language } from "../../types";
 import { Analytics } from "@vercel/analytics/next";
 import { buildPageMetadata } from "@/utils/seo";
 
@@ -30,7 +30,7 @@ export const LangLayout: React.FC<LangLayoutProps> = async ({
   params,
 }) => {
   const { lang } = await params;
-  const isRTL = lang === "ar";
+  const isRTL = isRtlLanguage(lang);
 
   return (
     <html lang={lang} dir={isRTL ? "rtl" : "ltr"}>

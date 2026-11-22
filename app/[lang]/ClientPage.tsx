@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import CakeScene from "@/components/CakeScene";
 import Celebrate from "@/components/Celebrate";
 import FaqSection from "@/components/FaqSection";
+import HomeBlogSection from "@/components/HomeBlogSection";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import BlowCalibrationCard from "@/components/BlowCalibrationCard";
@@ -16,7 +17,8 @@ import { FullscreenManager } from "@/src/components/FullscreenManager";
 import { ScrollManager } from "@/src/components/ScrollManager";
 import { FULLSCREEN_LABELS } from "@/faq";
 import { getTranslation } from "@/i18n";
-import { Language } from "@/types";
+import { isRtlLanguage, Language } from "@/types";
+import type { BlogPost } from "@/utils/blog";
 import { useAppStore } from "@/store/useAppStore";
 import { useBlowDetection } from "@/src/hooks/useBlowDetection";
 import { useBirthdayAudio } from "@/src/hooks/useBirthdayAudio";
@@ -25,9 +27,13 @@ import { useUrlConfig } from "@/src/hooks/useUrlConfig";
 
 interface ClientPageProps {
   initialLang: Language;
+  latestPosts?: BlogPost[];
 }
 
-export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
+export const ClientPage: React.FC<ClientPageProps> = ({
+  initialLang,
+  latestPosts = [],
+}) => {
   const router = useRouter();
   const cheatTimerRef = useRef<number | null>(null);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -92,7 +98,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
   const { copyShareLink, shareFeedback } = useShareLink();
   useUrlConfig();
 
-  const isRTL = lang === "ar";
+  const isRTL = isRtlLanguage(lang);
 
   // 唤出场景菜单并在指定毫秒后自动隐藏
   const revealSceneControls = useCallback((durationMs = 3800) => {
@@ -623,6 +629,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({ initialLang }) => {
 
       {/* 非功能区 / SEO 文案区：下滑自然浏览，SSR 完整输出 */}
       {!configCompleted && <FaqSection lang={lang} />}
+      {!configCompleted && <HomeBlogSection lang={lang} posts={latestPosts} />}
       {!configCompleted && <Footer lang={lang} />}
     </div>
   );

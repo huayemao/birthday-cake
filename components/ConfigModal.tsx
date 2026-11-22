@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { AppState, CandleType, Translation, Language } from '../types';
+import { AppState, CandleType, Translation, Language, isRtlLanguage } from '../types';
 import { CAKES } from '../constants';
 import BlowCalibrationCard from './BlowCalibrationCard';
 
@@ -28,7 +28,7 @@ const ConfigModal: React.FC<ConfigModalProps> = ({
   onComplete,
   lang
 }) => {
-  const isRTL = lang === 'ar';
+  const isRTL = isRtlLanguage(lang);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFile = (file: File) => {

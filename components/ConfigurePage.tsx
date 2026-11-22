@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { CandleType, CardStyle, CelebrationSfxStyle, Language, SceneTheme } from "@/types";
+import { CandleType, CardStyle, CelebrationSfxStyle, isRtlLanguage, Language, SceneTheme } from "@/types";
 import { CAKES } from "@/constants";
 import { getTranslation } from "@/i18n";
 import { useAppStore } from "@/store/useAppStore";
@@ -77,7 +77,7 @@ export const ConfigurePage: React.FC<ConfigurePageProps> = ({ initialLang }) => 
   const searchParams = useSearchParams();
   const lang = initialLang;
   const t = getTranslation(lang);
-  const isRTL = lang === "ar";
+  const isRTL = isRtlLanguage(lang);
   const isZh = lang === "zh" || lang === "zh-Hant";
 
   const fileInputRef = useRef<HTMLInputElement>(null);

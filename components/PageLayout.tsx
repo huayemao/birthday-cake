@@ -1,7 +1,7 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import { Language } from "@/types";
+import { isRtlLanguage, Language } from "@/types";
 import { getTranslation } from "@/i18n";
 import Link from "next/link";
 import LanguageSelector from "./LanguageSelector";
@@ -22,10 +22,13 @@ export default function PageLayout({ lang, title, children, currentPath }: PageL
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <div
+      className="min-h-screen flex flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      dir={isRtlLanguage(lang) ? "rtl" : "ltr"}
+    >
       {/* 导航栏 */}
       <header className="px-4 py-4 flex items-center justify-between">
-        <div className="p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50 flex items-center gap-2">
+        <div className="p-1.5 rounded-2xl shadow-xl dark:bg-slate-900/50 flex items-center gap-1 sm:gap-2">
           <Link
             href={`/${lang}`}
             className="flex items-center gap-2 pl-1.5 pr-3 py-1 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-all"
@@ -41,15 +44,21 @@ export default function PageLayout({ lang, title, children, currentPath }: PageL
           </Link>
           <Link
             href={`/${lang}/about`}
-            className="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-all"
+            className="px-2.5 sm:px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-all"
           >
             {t.aboutTitle || "About"}
           </Link>
           <Link
             href={`/${lang}/guide`}
-            className="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-all"
+            className="px-2.5 sm:px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-all"
           >
             {t.guideTitle || "Guide"}
+          </Link>
+          <Link
+            href={`/${lang}/blog`}
+            className="px-2.5 sm:px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-all"
+          >
+            {t.blogTitle || "Blog"}
           </Link>
         </div>
 

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Language, LANGUAGE_NAMES } from "../../types";
 import { ClientPage } from "./ClientPage";
 import { buildPageMetadata, buildWebAppJsonLd } from "@/utils/seo";
+import { getBlogPosts } from "@/utils/blog";
 
 interface PageProps {
   params: Promise<{
@@ -23,6 +24,7 @@ export const generateMetadata = async ({
 const Page: React.FC<PageProps> = async ({ params }) => {
   const { lang } = await params;
   const jsonLd = buildWebAppJsonLd(lang);
+  const latestPosts = await getBlogPosts(lang, 5);
 
   return (
     <>
@@ -30,7 +32,7 @@ const Page: React.FC<PageProps> = async ({ params }) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ClientPage initialLang={lang} />
+      <ClientPage initialLang={lang} latestPosts={latestPosts} />
     </>
   );
 };

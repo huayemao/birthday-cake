@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { AppState, CandleType, Translation, Language } from '../types';
+import { AppState, CandleType, Translation, Language, isRtlLanguage } from '../types';
 import { CAKES } from '../constants';
 import BlowCalibrationCard from './BlowCalibrationCard';
 
@@ -13,7 +13,7 @@ interface ControlsProps {
 }
 
 const Controls: React.FC<ControlsProps> = ({ state, updateState, t, lang }) => {
-  const isRTL = lang === 'ar';
+  const isRTL = isRtlLanguage(lang);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFile = (file: File) => {

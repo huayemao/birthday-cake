@@ -1,0 +1,40 @@
+export const metadata = {
+  "title": "Optimierung der Mikrofonerkennung in der Online-Kerzen-App birthday-cake.online",
+  "description": "Schluss mit versehentlichem Ausgehen und fehlender Reaktion! Die Online-Kerzen-App (birthday-cake.online) wurde neu aufgebaut: neuer Erkennungsalgorithmus auf Basis echter Zeit-Frequenz-Merkmale beim Pusten, unempfindlich gegenüber Hintergrundlärm, plus Umgebungskalibrierung und Echtzeit-Wellenform.",
+  "keywords": "Kerzen online auspusten,birthday-cake.online,Mikrofonerkennung optimieren,Pusterkennung Algorithmus,Rauschunterdrückung,Pust-Kalibrierung,Echtzeit-Wellenform,Windows Audioverbesserungen",
+  "image": "https://huayemao.run/api/files/d247ef9715a40b1f.png",
+  "images": [
+    "https://huayemao.run/api/files/d247ef9715a40b1f.png",
+    "https://huayemao.run/api/files/fc05e31fbc6fb544.png",
+    "https://huayemao.run/api/files/64ad60dc2fb66d47.webp",
+    "https://huayemao.run/api/files/9376f8328df3534c.webp"
+  ],
+  "imageAlt": "Pust-Kalibrierung und Optimierung der Mikrofonerkennung in birthday-cake.online",
+  "author": "huayemao",
+  "date": "2026-11-22",
+  "updatedAt": "2026-11-22"
+};
+
+Vor einem Jahr habe ich die Web-App [https://www.birthday-cake.online/](https://www.birthday-cake.online/) entwickelt. Ich muss jedoch zugeben, dass die Erkennung des Auspustens lange Zeit sehr ungenau war – sie konnte das Pusten nicht zuverlässig von anderen Geräuschen trennen. Bei einer echten Geburtstagsfeier lässt sich die Umgebung kaum kontrollieren: Alle jubeln, lachen und reden durcheinander. Oft gingen die Kerzen sofort nach dem Start der Szene durch den Umgebungslärm versehentlich „aus“. Dazu kommt, dass sich Mikrofonempfindlichkeiten je nach Gerät stark unterscheiden – bei manchen Geräten reicht ein leises Geräusch, bei anderen passiert selbst bei kräftigem Pusten nichts.
+
+Zuvor hatte ich mehrere Übergangslösungen ausprobiert, etwa einen „Sperren“-Button (um die Mikrofonerkennung bis zum eigentlichen Auspusten zu pausieren) oder einen Schieberegler für die Mikrofonempfindlichkeit. Doch all das löste nicht die Ursache, sodass das Erlebnis unzuverlässig blieb.
+
+![Die Tortenszene in birthday-cake.online unterstützt das Sperren der Mikrofonerkennung gegen versehentliches Ausgehen](https://huayemao.run/api/files/64ad60dc2fb66d47.webp)
+
+In der neuesten Version ist dieses Problem endlich grundlegend gelöst. Die App erkennt jetzt präzise die akustischen Merkmale eines echten Luftstroms beim Pusten und blendet den Großteil der Umgebungsgeräusche aus. Mit einer passend eingestellten Empfindlichkeit gehen die Kerzen nicht mehr versehentlich durch Lärm aus, lassen sich aber mühelos mit einem Atemzug auspusten. Selbst in der U-Bahn oder in der belebten Mensa der Universität Yunnan funktionierte die App im Praxistest zuverlässig, sobald die Empfindlichkeit etwas reduziert wurde.
+
+![Einstellbare Mikrofonempfindlichkeit beim Gestalten der virtuellen Geburtstagstorte auf birthday-cake.online](https://huayemao.run/api/files/fc05e31fbc6fb544.png)
+
+Mein Lösungsweg klingt erstaunlich simpel, erwies sich aber als extrem wirksam: Ich habe mehrere echte Aufnahmen von Pustgeräuschen erstellt, sie einem Code Agent zur Frequenz- und Zeitbereichsanalyse gegeben und den Erkennungsalgorithmus auf dieser Datenbasis komplett neu geschrieben. Bei der ersten Version hatte ich der KI das Pustgeräusch nur in Textform beschrieben – trotz zahlreicher Anpassungen blieb die Erkennung auf verschiedenen Geräten instabil. Diesmal habe ich den Algorithmus in der Antigravity IDE mit dem neuesten Gemini-Neon-Modell neu entwickelt. Ich bin nicht sicher, ob frühere Modelle dasselbe geschafft hätten, aber eines wurde mir klar: Selbst das beste „Talent“ braucht hochwertigen Kontext und echte Rohdaten. Ohne echte Audio-Samples stößt reine Textbeschreibung schnell an ihre Grenzen.
+
+Natürlich lief auch das Debugging nicht völlig reibungslos. Beim ersten Test auf meinem Laptop reagierte die App überhaupt nicht auf mein Pusten – wohl aber auf normale Sprache. Ein kurzer Test mit dem Windows-Audiorecorder zeigte, dass das Mikrofon gar kein Pustgeräusch aufnahm: Die Windows-Funktion „Audioverbesserungen“ filterte den Luftstrom als Windgeräusch komplett heraus. Falls dir das unter Windows passiert, öffne **Einstellungen → System → Sound → Eigenschaften (Mikrofonarray) → Erweiterte Einstellungen** und schalte **Audioverbesserungen** aus.
+
+![Audioverbesserungen für das Mikrofon unter Windows deaktivieren, um die Rauschunterdrückung abzuschalten](https://huayemao.run/api/files/9376f8328df3534c.webp)
+
+Neben dem neuen Erkennungsalgorithmus bringt das Update zwei wichtige Extras mit:
+
+1. **Pust-Kalibrierung per Audio-Sample**: Während der Einrichtung kannst du eine kurze Aufnahme in deiner aktuellen Umgebung machen, damit die App Grundrauschen und dein Pustprofil dynamisch kalibriert.
+    ![Pust-Kalibrierung in birthday-cake.online](https://huayemao.run/api/files/d247ef9715a40b1f.png)
+2. **Echtzeit-Schallwellen-Visualisierung**: In der Tortenszene werden Umgebungsgeräusche jetzt live als Wellenform angezeigt. Ob Gespräche, Geburtstagslied, Applaus oder leichter Luftstrom – du siehst sofort, dass die App den Ton hört, aber gezielt nicht als Pusten wertet.
+
+Wenn du eine zuverlässige Web-App zum Online-Auspusten von Geburtstagskerzen suchst, probier [https://www.birthday-cake.online/](https://www.birthday-cake.online/) gerne aus – diesmal wird dich das Erlebnis überzeugen.

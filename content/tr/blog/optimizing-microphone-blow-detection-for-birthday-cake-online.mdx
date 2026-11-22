@@ -1,0 +1,40 @@
+export const metadata = {
+  title: "Online Mum Üfleme Uygulaması birthday-cake.online'da Mikrofon Algılamasını Optimize Etme",
+  description: "Yanlış sönmelere ve tepkisizliğe elveda! Online mum üfleme uygulaması (birthday-cake.online) yenilendi: gerçek üfleme zaman-frekans özelliklerine dayalı yeni algılama algoritması, gürültülü ortamlarda bile kararlı çalışma, ortam örnekleme kalibrasyonu ve gerçek zamanlı dalga formu geri bildirimi.",
+  keywords: "online mum üfleme,birthday-cake.online,mikrofon üfleme algılama,sanal doğum günü pastası,üfleme kalibrasyonu,Windows ses geliştirmeleri mikrofon,Web Audio",
+  image: "https://huayemao.run/api/files/d247ef9715a40b1f.png",
+  images: [
+    "https://huayemao.run/api/files/d247ef9715a40b1f.png",
+    "https://huayemao.run/api/files/fc05e31fbc6fb544.png",
+    "https://huayemao.run/api/files/64ad60dc2fb66d47.webp",
+    "https://huayemao.run/api/files/9376f8328df3534c.webp",
+  ],
+  imageAlt: "birthday-cake.online uygulamasında üfleme kalibrasyonu ve mikrofon optimizasyonu",
+  author: "huayemao",
+  date: "2026-11-22",
+  updatedAt: "2026-11-22",
+};
+
+Bir yıl önce [https://www.birthday-cake.online/](https://www.birthday-cake.online/) web uygulamasını geliştirdim. Ancak itiraf etmeliyim ki uzun süre boyunca üfleme sesini diğer seslerden ayırma konusunda yeterince hassas değildi. Gerçek bir doğum günü ortamında gürültüyü kontrol etmek zordur: kahkahalar, alkışlar ve arka plan sesleri yüzünden sahneye girer girmez mumlar yanlışlıkla sönebiliyordu. Ayrıca cihazdan cihaza değişen mikrofon hassasiyeti de deneyimi tutarsız hale getiriyordu.
+
+Daha önce "Kilitle" düğmesi ve mikrofon hassasiyeti kaydırıcısı gibi geçici çözümler denedim; fakat bunlar sorunun kökenini çözmedi.
+
+![birthday-cake.online pasta sahnesi, mumların yanlışlıkla sönmesini önlemek için mikrofon kilidini destekler](https://huayemao.run/api/files/64ad60dc2fb66d47.webp)
+
+Son sürümde bu sorun nihayet kökünden çözüldü. Uygulama artık insan üflemesinin akustik hava akışı özelliklerini hassas biçimde tanıyor ve ortam gürültüsünün büyük bölümünü filtreliyor. Gerçek testlerde—metroda ve Yunnan Üniversitesi'nin kalabalık yemekhanesinde bile—hassasiyeti hafifçe düşürmek uygulamanın sorunsuz çalışması için yeterli oldu.
+
+![birthday-cake.online sanal doğum günü pastası uygulamasında mikrofon hassasiyeti ayarı](https://huayemao.run/api/files/fc05e31fbc6fb544.png)
+
+Çözüm yöntemim kulağa basit gelse de son derece etkili oldu: birkaç gerçek üfleme ses kaydı aldım, bunları frekans ve zaman alanı özelliklerini analiz etmesi için Code Agent'a verdim ve ses tanıma algoritmasını bu gerçek verilere dayanarak baştan yazdım. İlk sürümde yapay zekaya üfleme sesini yalnızca metinle tarif etmiştim ve donanımlar arası tutarsızlık sürüyordu. Bu kez Antigravity IDE içinde en yeni Gemini Neon modeliyle yeniden yazdım; gerçek ses örnekleri ve güçlü bağlam olmadan yalnızca doğal dil açıklamasının sınırlı kaldığını bir kez daha gördüm.
+
+Hata ayıklarken önemli bir Windows ayrıntısına da rastladım: dizüstü bilgisayarımda üflediğimde hiç tepki alamazken konuşma sesi algılanıyordu. Windows Ses Kaydedicisi ile kontrol ettiğimde "Ses Geliştirmeleri" (Audio Enhancements) özelliğinin üfleme sesini rüzgar gürültüsü sanıp tamamen kestiğini fark ettim. Windows'ta benzer bir sorun yaşarsanız **Ayarlar → Sistem → Ses → Özellikler (Mikrofon Dizisi) → Gelişmiş** yolundan **Ses Geliştirmeleri** seçeneğini kapatın.
+
+![Windows'ta mikrofon ses geliştirmelerini kapatarak agresif gürültü engellemeyi devre dışı bırakma](https://huayemao.run/api/files/9376f8328df3534c.webp)
+
+Temel algoritmayı yenilemenin yanı sıra bu güncellemede iki önemli özellik daha eklendi:
+
+1. **Üfleme Örneği Kalibrasyonu**: Kurulum aşamasında mevcut ortamınızda kısa bir kayıt alarak uygulamanın arka plan gürültüsünü ve üfleme imzanızı dinamik olarak kalibre etmesini sağlayabilirsiniz.
+    ![birthday-cake.online uygulamasında üfleme örneği kalibrasyonu özelliği](https://huayemao.run/api/files/d247ef9715a40b1f.png)
+2. **Gerçek Zamanlı Ses Dalgası Görselleştirmesi**: Sahne artık ortam ses dalgalarını canlı gösteriyor. Konuşma, doğum günü şarkısı veya alkış sırasında sistemin sesi duyduğunu ama üfleme olmadığını anladığını anında görebilirsiniz.
+
+Gürültülü ortamlarda bile güvenilir çalışan bir online mum üfleme uygulaması arıyorsanız [https://www.birthday-cake.online/](https://www.birthday-cake.online/) adresini mutlaka deneyin.

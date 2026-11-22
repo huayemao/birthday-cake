@@ -1,0 +1,40 @@
+export const metadata = {
+  title: "Mengoptimalkan Pengenalan Mikrofon di Aplikasi Tiup Lilin Online birthday-cake.online",
+  description: "Ucapkan selamat tinggal pada lilin padam sendiri dan gagal mendeteksi! Aplikasi tiup lilin online (birthday-cake.online) hadir dengan perombakan total: algoritma baru berbasis fitur waktu-frekuensi tiupan nyata, tahan kebisingan latar, plus kalibrasi sampel lingkungan dan gelombang suara real-time.",
+  keywords: "tiup lilin online,birthday-cake.online,deteksi tiupan mikrofon,kue ulang tahun virtual,kalibrasi sampel tiupan,Windows audio enhancements mikrofon,Web Audio deteksi tiupan",
+  image: "https://huayemao.run/api/files/d247ef9715a40b1f.png",
+  images: [
+    "https://huayemao.run/api/files/d247ef9715a40b1f.png",
+    "https://huayemao.run/api/files/fc05e31fbc6fb544.png",
+    "https://huayemao.run/api/files/64ad60dc2fb66d47.webp",
+    "https://huayemao.run/api/files/9376f8328df3534c.webp",
+  ],
+  imageAlt: "Fitur kalibrasi sampel tiupan dan optimasi mikrofon di birthday-cake.online",
+  author: "huayemao",
+  date: "2026-11-22",
+  updatedAt: "2026-11-22",
+};
+
+Setahun yang lalu saya mengembangkan web app [https://www.birthday-cake.online/](https://www.birthday-cake.online/). Harus diakui, untuk waktu yang lama deteksi suara tiupannya kurang akurat dan tidak bisa memisahkan suara tiupan dari suara lain. Pada pesta ulang tahun sungguhan, suasana sulit dikendalikan: ada tawa, sorak-sorai, dan kebisingan latar. Sering kali begitu kue selesai diatur, lilin langsung "padam" karena keramaian sekitar. Ditambah lagi sensitivitas mikrofon berbeda jauh antar perangkat sehingga pengalaman pengguna menjadi tidak konsisten.
+
+Sebelumnya saya mencoba beberapa solusi sementara seperti tombol "Kunci" untuk menonaktifkan mikrofon sementara dan penggeser sensitivitas mikrofon. Namun semua itu belum menyentuh akar masalahnya.
+
+![Tampilan kue di birthday-cake.online mendukung fitur kunci mikrofon agar lilin tidak padam secara tidak sengaja](https://huayemao.run/api/files/64ad60dc2fb66d47.webp)
+
+Pada versi terbaru, masalah ini akhirnya teratasi secara tuntas. Kini aplikasi mampu mengenali karakteristik akustik aliran napas tiupan manusia secara akurat sambil mengabaikan sebagian besar kebisingan sekitar. Bahkan dalam pengujian langsung di kereta bawah tanah maupun kantin Universitas Yunnan yang ramai, cukup dengan sedikit menurunkan sensitivitas, aplikasi tetap berjalan stabil sesuai harapan.
+
+![Pengaturan sensitivitas mikrofon saat menyiapkan kue ulang tahun virtual di birthday-cake.online](https://huayemao.run/api/files/fc05e31fbc6fb544.png)
+
+Cara saya menyelesaikannya terdengar sederhana tetapi sangat efektif: saya merekam beberapa klip audio tiupan asli dan menyerahkannya kepada Code Agent untuk menganalisis fitur domain frekuensi dan domain waktunya, lalu menulis ulang algoritma pengenalan suara dari data tersebut. Dulu saya hanya menjelaskan ciri tiupan lewat teks kepada AI sehingga hasilnya tetap tidak stabil di berbagai perangkat keras. Kali ini saya menulis ulang di Antigravity IDE dengan model Gemini Neon terbaru—terbukti bahwa konteks dan sampel audio nyata berkualitas tinggi membuat perbedaan besar.
+
+Proses debugging juga sempat menemui kendala menarik: saat diuji di laptop pribadi, meniup sekuat apa pun tidak terdeteksi sementara suara bicara malah terbaca. Setelah mengecek dengan Perekam Suara Windows, ternyata fitur "Audio Enhancements" Windows menganggap tiupan sebagai derau angin dan menyaringnya habis. Jika mengalami hal serupa di Windows, buka **Pengaturan → Sistem → Suara → Properti (Microphone Array) → Pengaturan lanjutan** lalu matikan **Audio Enhancements**.
+
+![Menonaktifkan Audio Enhancements pada mikrofon di Windows agar suara tiupan tidak disaring](https://huayemao.run/api/files/9376f8328df3534c.webp)
+
+Selain menulis ulang algoritma inti, pembaruan ini menambahkan dua fitur penting:
+
+1. **Kalibrasi Sampel Tiupan**: pengguna dapat merekam sampel singkat di lingkungan saat ini agar aplikasi menganalisis kebisingan latar dan pola tiupan secara dinamis.
+    ![Fitur kalibrasi sampel tiupan di birthday-cake.online](https://huayemao.run/api/files/d247ef9715a40b1f.png)
+2. **Visualisasi Gelombang Suara Real-Time**: tampilan kue kini memperlihatkan gelombang suara sekitar secara langsung, sehingga pengguna bisa melihat jelas saat sistem mendengar suara namun mengenalinya bukan sebagai tiupan.
+
+Jika Anda mencari aplikasi web tiup lilin online yang andal dan tidak mengecewakan, coba [https://www.birthday-cake.online/](https://www.birthday-cake.online/) sekarang.

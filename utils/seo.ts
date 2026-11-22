@@ -35,14 +35,40 @@ export const OG_LOCALE_MAP: Record<Language, string> = {
   it: "it_IT",
   ru: "ru_RU",
   vi: "vi_VN",
+  hi: "hi_IN",
+  id: "id_ID",
+  th: "th_TH",
+  ms: "ms_MY",
+  tr: "tr_TR",
+  ur: "ur_PK",
 };
+
+/** 已生成本地截图文件的语言集合，未生成截图的新语言自动回退到 en 防止 404 */
+const SCREENSHOT_AVAILABLE_LANGS = new Set<Language>([
+  "en",
+  "zh",
+  "zh-Hant",
+  "ja",
+  "fr",
+  "ar",
+  "ko",
+  "es",
+  "pt",
+  "de",
+  "it",
+  "ru",
+  "vi",
+]);
 
 export function getScreenshotPath(
   lang: Language,
   platform: ScreenshotPlatform,
   view: ScreenshotView
 ): string {
-  return `/screenshots/${lang}/${platform}/${view}.jpg`;
+  const effectiveLang: Language = SCREENSHOT_AVAILABLE_LANGS.has(lang)
+    ? lang
+    : "en";
+  return `/screenshots/${effectiveLang}/${platform}/${view}.jpg`;
 }
 
 export function getScreenshotUrl(
@@ -118,6 +144,13 @@ export function buildAlternates(
   };
 }
 
+export interface CustomOgImage {
+  url: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+}
+
 export interface BuildPageMetadataOptions {
   lang: Language;
   subPath?: string;
@@ -127,6 +160,11 @@ export interface BuildPageMetadataOptions {
   keywords?: string;
   views?: ScreenshotView[];
   type?: "website" | "article";
+  customImages?: CustomOgImage[];
+  publishedTime?: string;
+  modifiedTime?: string;
+  authors?: string[];
+  tags?: string[];
 }
 
 export function buildPageMetadata({
@@ -138,6 +176,11 @@ export function buildPageMetadata({
   keywords,
   views = ["home", "stage", "celebrate", "configure"],
   type = "website",
+  customImages,
+  publishedTime,
+  modifiedTime,
+  authors,
+  tags,
 }: BuildPageMetadataOptions): Metadata {
   const t = getTranslation(lang);
   const resolvedTitle = title || `${t.seoTitle} - ${t.seoSubtitle1}`;
@@ -154,18 +197,58 @@ export function buildPageMetadata({
     ? `${SITE_URL}/`
     : `${SITE_URL}/${lang}${normalizedSubPath}`;
 
-  const ogImages = buildOpenGraphImages(lang, views);
+  const fallbackOgImages = buildOpenGraphImages(lang, views);
+  const formattedCustomImages = (customImages || [])
+    .filter((img) => Boolean(img.url))
+    .map((img) => ({
+      url: img.url,
+      secureUrl: img.url.startsWith("https://") ? img.url : undefined,
+      width: img.width,
+      height: img.height,
+      alt: img.alt || resolvedTitle,
+    }));
+
+  const ogImages =
+    formattedCustomImages.length > 0
+      ? [...formattedCustomImages, ...fallbackOgImages]
+      : fallbackOgImages;
   const primaryImage = ogImages[0];
   const currentOgLocale = OG_LOCALE_MAP[lang] || "en_US";
   const alternateLocales = languages
     .filter((lng) => lng !== lang)
     .map((lng) => OG_LOCALE_MAP[lng]);
 
+  const openGraphBase = {
+    url: pageUrl,
+    siteName: t.title,
+    title: resolvedTitle,
+    description: resolvedDescription,
+    locale: currentOgLocale,
+    alternateLocale: alternateLocales,
+    images: ogImages,
+  };
+
+  const openGraph: Metadata["openGraph"] =
+    type === "article"
+      ? {
+          ...openGraphBase,
+          type: "article",
+          publishedTime,
+          modifiedTime: modifiedTime || publishedTime,
+          authors,
+          tags,
+        }
+      : {
+          ...openGraphBase,
+          type: "website",
+        };
+
   return {
     metadataBase: new URL(SITE_URL),
     title: resolvedTitle,
     description: resolvedDescription,
     keywords: resolvedKeywords,
+    authors: authors?.map((name) => ({ name })),
     manifest: "/site.webmanifest",
     icons: {
       icon: [
@@ -192,16 +275,7 @@ export function buildPageMetadata({
         "max-video-preview": -1,
       },
     },
-    openGraph: {
-      type,
-      url: pageUrl,
-      siteName: t.title,
-      title: resolvedTitle,
-      description: resolvedDescription,
-      locale: currentOgLocale,
-      alternateLocale: alternateLocales,
-      images: ogImages,
-    },
+    openGraph,
     twitter: {
       card: "summary_large_image",
       title: resolvedTitle,

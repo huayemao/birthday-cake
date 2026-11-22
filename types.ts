@@ -2,9 +2,34 @@
 // Fix: Import React to provide the 'React' namespace for React.FC
 import React from 'react';
 
-export const languages = ['en', 'zh', 'zh-Hant', 'ja', 'fr', 'ar', 'ko', 'es', 'pt', 'de', 'it', 'ru', 'vi'] as const;
+export const languages = [
+  'en',
+  'zh',
+  'zh-Hant',
+  'ja',
+  'fr',
+  'ar',
+  'ko',
+  'es',
+  'pt',
+  'de',
+  'it',
+  'ru',
+  'vi',
+  'hi',
+  'id',
+  'th',
+  'ms',
+  'tr',
+  'ur',
+] as const;
 
-export type Language = 'en' | 'zh' | 'zh-Hant' | 'ja' | 'fr' | 'ar' | 'ko' | 'es' | 'pt' | 'de' | 'it' | 'ru' | 'vi';
+export type Language = (typeof languages)[number];
+
+export const RTL_LANGUAGES: readonly Language[] = ['ar', 'ur'] as const;
+
+export const isRtlLanguage = (lang: Language): boolean =>
+  RTL_LANGUAGES.includes(lang);
 
 export const LANGUAGE_NAMES: Record<Language, string> = {
   en: "English",
@@ -20,6 +45,12 @@ export const LANGUAGE_NAMES: Record<Language, string> = {
   it: "Italiano",
   ru: "Русский",
   vi: "Tiếng Việt",
+  hi: "हिन्दी",
+  id: "Bahasa Indonesia",
+  th: "ไทย",
+  ms: "Bahasa Melayu",
+  tr: "Türkçe",
+  ur: "اردو",
 };
 
 export interface CakeOption {

@@ -48,7 +48,7 @@ export default function LanguageSelector({
       </button>
 
       {isLangMenuOpen && (
-        <div className="absolute right-0 mt-1 w-40 rounded-[0.8rem] overflow-hidden shadow-xl glass-panel dark:bg-slate-900/80 z-50">
+        <div className="absolute right-0 mt-1 w-44 max-h-72 overflow-y-auto rounded-[0.8rem] shadow-xl glass-panel dark:bg-slate-900/90 z-50">
           {(Object.keys(LANGUAGE_NAMES) as Language[]).map((l) => (
             <button
               key={l}
