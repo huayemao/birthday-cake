@@ -83,35 +83,11 @@ const Page: React.FC<PageProps> = async ({ params }) => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
       />
 
-      {/* SEO 引导文案与专题概览 */}
-      <section className="mb-12 space-y-6">
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <p className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide text-pink-300 bg-pink-500/10 border border-pink-500/20">
-            {copy.introSubtitle}
-          </p>
-          <p className="text-slate-200 text-base md:text-lg leading-relaxed">
-            {copy.introParagraph1}
-          </p>
-          <p className="text-slate-400 text-sm md:text-base leading-relaxed">
-            {copy.introParagraph2}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-          {copy.topics.map((topic, index) => (
-            <div
-              key={index}
-              className="p-4 rounded-2xl bg-slate-800/25 border border-slate-700/40"
-            >
-              <h2 className="text-sm font-bold text-pink-300 mb-1.5">
-                {topic.title}
-              </h2>
-              <p className="text-xs md:text-sm text-slate-400 leading-relaxed">
-                {topic.description}
-              </p>
-            </div>
-          ))}
-        </div>
+      {/* 顶部简介文案 */}
+      <section className="mb-10">
+        <p className="text-center max-w-2xl mx-auto text-slate-300 text-base md:text-lg leading-relaxed">
+          {copy.introParagraph1}
+        </p>
       </section>
 
       {/* 博客文章列表 */}
