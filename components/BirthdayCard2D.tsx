@@ -10,6 +10,8 @@ export interface BirthdayCard2DProps {
   giverName?: string;
   cardStyle?: CardStyle;
   lang: Language;
+  compact?: boolean;
+  className?: string;
 }
 
 const STAR_DOTS = Array.from({ length: 18 }, (_, i) => ({
@@ -25,6 +27,8 @@ const BirthdayCard2D: React.FC<BirthdayCard2DProps> = ({
   giverName = "",
   cardStyle = "cream-rose",
   lang,
+  compact = false,
+  className = "",
 }) => {
   if (cardStyle === "none") {
     return null;
@@ -45,23 +49,27 @@ const BirthdayCard2D: React.FC<BirthdayCard2DProps> = ({
   // 根据字数微调标题比例，确保中英文长名都不溢出
   const titleFontSize =
     titleText.length > 14
-      ? "clamp(10px, 6.4cqw, 17px)"
+      ? "clamp(10px, 6.4cqw, 16px)"
       : titleText.length > 8
-        ? "clamp(11px, 7.6cqw, 20px)"
-        : "clamp(12px, 9.2cqw, 24px)";
+        ? "clamp(11px, 7.6cqw, 19px)"
+        : "clamp(12px, 9cqw, 22px)";
 
   const bodyFontSize =
     bodyText.length > 22
-      ? "clamp(8px, 4.4cqw, 12px)"
-      : "clamp(9px, 5.1cqw, 13.5px)";
+      ? "clamp(8px, 4.4cqw, 11.5px)"
+      : "clamp(9px, 5cqw, 13px)";
 
   return (
     <div
-      className="pointer-events-none absolute left-1/2 bottom-[9%] sm:bottom-[10%] z-20 -translate-x-1/2 w-[50%] min-w-[146px] max-w-[260px]"
+      className={`pointer-events-none absolute left-1/2 -translate-x-1/2 z-20 ${
+        compact
+          ? "w-[48%] min-w-[136px] max-w-[216px]"
+          : "w-[46%] min-w-[152px] max-w-[236px]"
+      } ${className}`}
       style={{ perspective: "620px" }}
       aria-label={`${titleText}${bodyText ? ` - ${bodyText}` : ""}${fromText ? ` (${fromText})` : ""}`}
     >
-      {/* 柔和落地投影，让卡片自然倚靠在 2D 蛋糕前底托处 */}
+      {/* 柔和落地投影，让卡片自然倚靠在 2D 蛋糕底托前缘 */}
       <div
         className="absolute -bottom-1.5 left-[8%] right-[8%] h-3 rounded-full blur-[5px]"
         style={{ background: "rgba(2, 6, 23, 0.45)" }}
@@ -69,14 +77,14 @@ const BirthdayCard2D: React.FC<BirthdayCard2DProps> = ({
 
       <div
         dir={isRTL ? "rtl" : "ltr"}
-        className="relative w-full aspect-[768/440] rounded-[10px] sm:rounded-[13px] overflow-hidden select-none shadow-[0_10px_24px_rgba(2,6,23,0.45)] transition-all duration-300"
+        className="relative w-full aspect-[768/420] rounded-[10px] sm:rounded-[13px] overflow-hidden select-none transition-all duration-300"
         style={{
           containerType: "inline-size",
           background: `linear-gradient(135deg, ${p.bg1} 0%, ${p.bg2} 100%)`,
-          transform: "rotateX(9deg)",
+          transform: "rotateX(7deg)",
           transformOrigin: "center bottom",
           boxShadow:
-            "0 10px 24px rgba(2, 6, 23, 0.42), 0 2px 0 rgba(255, 255, 255, 0.14) inset",
+            "0 10px 24px rgba(2, 6, 23, 0.44), 0 1px 0 rgba(255, 255, 255, 0.16) inset",
         }}
       >
         {/* 星夜紫韵点点星光 */}

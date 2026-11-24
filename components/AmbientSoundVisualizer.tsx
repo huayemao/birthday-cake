@@ -40,23 +40,29 @@ export const CakeSoundAura: React.FC<SoundVisualizerProps> = ({ active }) => {
   const barRefs = useRef<Array<HTMLSpanElement | null>>([]);
 
   useEffect(() => {
+    let isIdle = false;
+    let lastBlowing: boolean | null = null;
+
     const resetDom = () => {
+      if (isIdle) return;
+      isIdle = true;
       if (outerRingRef.current) {
         outerRingRef.current.style.opacity = "0";
-        outerRingRef.current.style.transform = "translate(-50%, -50%) scale(0.86)";
+        outerRingRef.current.style.transform = "translate3d(-50%, -50%, 0) scale(0.86)";
       }
       if (innerRingRef.current) {
         innerRingRef.current.style.opacity = "0";
-        innerRingRef.current.style.transform = "translate(-50%, -50%) scale(0.9)";
+        innerRingRef.current.style.transform = "translate3d(-50%, -50%, 0) scale(0.9)";
       }
       if (waveContainerRef.current) {
         waveContainerRef.current.style.opacity = "0";
       }
-      barRefs.current.forEach((bar) => {
+      for (let i = 0; i < barRefs.current.length; i++) {
+        const bar = barRefs.current[i];
         if (bar) {
           bar.style.transform = "scaleY(0.15)";
         }
-      });
+      }
     };
 
     if (!active) {
@@ -74,40 +80,54 @@ export const CakeSoundAura: React.FC<SoundVisualizerProps> = ({ active }) => {
         return;
       }
 
-      const ringColor = isBlowing
-        ? "rgba(244, 114, 182, 0.42)"
-        : "rgba(251, 191, 36, 0.34)";
-      const ringGlow = isBlowing
-        ? "0 0 36px rgba(244, 114, 182, 0.32)"
-        : "0 0 28px rgba(251, 191, 36, 0.22)";
+      isIdle = false;
 
+      // 仅在吹气/环境声状态切换时更新色彩，避免 60fps 重复触发重绘
+      if (lastBlowing !== isBlowing) {
+        lastBlowing = isBlowing;
+        if (outerRingRef.current) {
+          outerRingRef.current.style.borderColor = isBlowing
+            ? "rgba(244, 114, 182, 0.45)"
+            : "rgba(251, 191, 36, 0.36)";
+          outerRingRef.current.style.background = isBlowing
+            ? "radial-gradient(circle, transparent 60%, rgba(244, 114, 182, 0.14) 70%, transparent 76%)"
+            : "radial-gradient(circle, transparent 60%, rgba(251, 191, 36, 0.12) 70%, transparent 76%)";
+        }
+        if (innerRingRef.current) {
+          innerRingRef.current.style.borderColor = isBlowing
+            ? "rgba(251, 113, 133, 0.38)"
+            : "rgba(253, 224, 71, 0.3)";
+        }
+        const barGradient = isBlowing
+          ? "linear-gradient(to top, rgba(244, 114, 182, 0.9), rgba(251, 146, 60, 0.95))"
+          : "linear-gradient(to top, rgba(251, 191, 36, 0.65), rgba(254, 240, 138, 0.9))";
+        for (let i = 0; i < MIRROR_BAR_CONFIG.length; i++) {
+          const bar = barRefs.current[i];
+          if (bar) {
+            bar.style.background = barGradient;
+          }
+        }
+      }
+
+      // 每帧仅更新 GPU 合成层属性（transform / opacity），零重排零重绘
       if (outerRingRef.current) {
         const outerScale = 0.86 + level * 0.24;
         const outerOpacity = Math.min(0.85, level * (isBlowing ? 1.1 : 0.78));
         outerRingRef.current.style.opacity = outerOpacity.toFixed(3);
-        outerRingRef.current.style.transform = `translate(-50%, -50%) scale(${outerScale.toFixed(3)})`;
-        outerRingRef.current.style.borderColor = ringColor;
-        outerRingRef.current.style.boxShadow = ringGlow;
+        outerRingRef.current.style.transform = `translate3d(-50%, -50%, 0) scale(${outerScale.toFixed(3)})`;
       }
 
       if (innerRingRef.current) {
         const innerScale = 0.88 + level * 0.14;
         const innerOpacity = Math.min(0.65, level * (isBlowing ? 0.9 : 0.55));
         innerRingRef.current.style.opacity = innerOpacity.toFixed(3);
-        innerRingRef.current.style.transform = `translate(-50%, -50%) scale(${innerScale.toFixed(3)})`;
-        innerRingRef.current.style.borderColor = isBlowing
-          ? "rgba(251, 113, 133, 0.35)"
-          : "rgba(253, 224, 71, 0.28)";
+        innerRingRef.current.style.transform = `translate3d(-50%, -50%, 0) scale(${innerScale.toFixed(3)})`;
       }
 
       if (waveContainerRef.current) {
         const waveOpacity = Math.min(0.95, Math.max(0.18, level * 1.45));
         waveContainerRef.current.style.opacity = waveOpacity.toFixed(3);
       }
-
-      const barGradient = isBlowing
-        ? "linear-gradient(to top, rgba(244, 114, 182, 0.9), rgba(251, 146, 60, 0.95))"
-        : "linear-gradient(to top, rgba(251, 191, 36, 0.65), rgba(254, 240, 138, 0.9))";
 
       for (let i = 0; i < MIRROR_BAR_CONFIG.length; i++) {
         const bar = barRefs.current[i];
@@ -116,7 +136,6 @@ export const CakeSoundAura: React.FC<SoundVisualizerProps> = ({ active }) => {
         const bandVal = Math.max(frame.bands[bandIndex], level * 0.45);
         const scaleY = Math.min(1, 0.14 + bandVal * weight * 0.86);
         bar.style.transform = `scaleY(${scaleY.toFixed(3)})`;
-        bar.style.background = barGradient;
       }
     });
   }, [active]);
@@ -125,25 +144,27 @@ export const CakeSoundAura: React.FC<SoundVisualizerProps> = ({ active }) => {
 
   return (
     <>
-      {/* 蛋糕背后的同心声波光环（有声音时柔和扩散） */}
+      {/* 蛋糕背后的同心圆形声波光环（使用显式等宽高 + radial-gradient，避免 box-shadow/blur 造成卡顿） */}
       <div
         ref={outerRingRef}
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 left-1/2 w-[78%] h-[78%] rounded-full border transition-colors duration-200 will-change-transform"
+        className="pointer-events-none absolute top-1/2 left-1/2 w-[min(82vw,68vh)] h-[min(82vw,68vh)] rounded-full border will-change-transform"
         style={{
           opacity: 0,
-          transform: "translate(-50%, -50%) scale(0.86)",
-          borderColor: "rgba(251, 191, 36, 0.3)",
+          transform: "translate3d(-50%, -50%, 0) scale(0.86)",
+          borderColor: "rgba(251, 191, 36, 0.36)",
+          background:
+            "radial-gradient(circle, transparent 60%, rgba(251, 191, 36, 0.12) 70%, transparent 76%)",
         }}
       />
       <div
         ref={innerRingRef}
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 left-1/2 w-[62%] h-[62%] rounded-full border transition-colors duration-200 will-change-transform"
+        className="pointer-events-none absolute top-1/2 left-1/2 w-[min(64vw,52vh)] h-[min(64vw,52vh)] rounded-full border will-change-transform"
         style={{
           opacity: 0,
-          transform: "translate(-50%, -50%) scale(0.9)",
-          borderColor: "rgba(253, 224, 71, 0.24)",
+          transform: "translate3d(-50%, -50%, 0) scale(0.9)",
+          borderColor: "rgba(253, 224, 71, 0.3)",
         }}
       />
 
@@ -183,13 +204,22 @@ export const PromptSoundWave: React.FC<SoundVisualizerProps> = ({ active }) => {
   const barRefs = useRef<Array<HTMLSpanElement | null>>([]);
 
   useEffect(() => {
+    let lastColor = "";
+    let isIdle = false;
+
     const setIdle = () => {
-      barRefs.current.forEach((bar) => {
+      if (isIdle) return;
+      isIdle = true;
+      const idleColor = "rgba(148, 163, 184, 0.55)";
+      const colorChanged = lastColor !== idleColor;
+      lastColor = idleColor;
+      for (let i = 0; i < barRefs.current.length; i++) {
+        const bar = barRefs.current[i];
         if (bar) {
           bar.style.transform = "scaleY(0.24)";
-          bar.style.backgroundColor = "rgba(148, 163, 184, 0.55)";
+          if (colorChanged) bar.style.backgroundColor = idleColor;
         }
-      });
+      }
     };
 
     if (!active) {
@@ -202,19 +232,23 @@ export const PromptSoundWave: React.FC<SoundVisualizerProps> = ({ active }) => {
       const isBlowing = frame.isBlowing;
       const hasAmbientSound = level > 0.03;
 
-      const color = isBlowing
-        ? "#ec4899"
-        : hasAmbientSound
-        ? "#f59e0b"
-        : "rgba(148, 163, 184, 0.55)";
+      if (!hasAmbientSound && !isBlowing) {
+        setIdle();
+        return;
+      }
+
+      isIdle = false;
+      const color = isBlowing ? "#ec4899" : "#f59e0b";
+      const colorChanged = lastColor !== color;
+      if (colorChanged) lastColor = color;
 
       for (let i = 0; i < PROMPT_BAR_ORDER.length; i++) {
         const bar = barRefs.current[i];
         if (!bar) continue;
         const bandVal = Math.max(frame.bands[PROMPT_BAR_ORDER[i]], level * 0.5);
-        const scaleY = hasAmbientSound || isBlowing ? Math.min(1, 0.24 + bandVal * 0.76) : 0.24;
+        const scaleY = Math.min(1, 0.24 + bandVal * 0.76);
         bar.style.transform = `scaleY(${scaleY.toFixed(3)})`;
-        bar.style.backgroundColor = color;
+        if (colorChanged) bar.style.backgroundColor = color;
       }
     });
   }, [active]);

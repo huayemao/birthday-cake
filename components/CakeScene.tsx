@@ -116,35 +116,44 @@ const CakeScene: React.FC<CakeSceneProps> = ({
     setRuntime3DFailed(true);
   }, []);
 
-  // 2D 模式下实时环境声波律动
+  // 2D 模式下实时环境声波律动（仅在 2D 模式启用，静默时跳过冗余 DOM 写入）
   useEffect(() => {
+    let isIdle = false;
+
     const resetVisual = () => {
+      if (isIdle) return;
+      isIdle = true;
       if (candleOverlayRef.current) {
         candleOverlayRef.current.style.setProperty("--sound-tremor", "0");
       }
       if (ambientGlowRef.current) {
-        ambientGlowRef.current.style.transform = "translate(-50%, -50%) scale(1)";
-        ambientGlowRef.current.style.opacity = "1";
+        ambientGlowRef.current.style.transform = "translate3d(-50%, -50%, 0) scale(1)";
+        ambientGlowRef.current.style.opacity = "0.85";
       }
     };
 
-    if (!isListeningSound) {
+    if (!isListeningSound || use3D) {
       resetVisual();
       return;
     }
 
     return subscribeBlowVisual((frame) => {
       const level = frame.active ? frame.soundLevel : 0;
+      if (level <= 0.015) {
+        resetVisual();
+        return;
+      }
+      isIdle = false;
       if (candleOverlayRef.current) {
         candleOverlayRef.current.style.setProperty("--sound-tremor", level.toFixed(3));
       }
       if (ambientGlowRef.current) {
         const scale = 1 + level * 0.14;
-        ambientGlowRef.current.style.transform = `translate(-50%, -50%) scale(${scale.toFixed(3)})`;
+        ambientGlowRef.current.style.transform = `translate3d(-50%, -50%, 0) scale(${scale.toFixed(3)})`;
         ambientGlowRef.current.style.opacity = (0.85 + level * 0.35).toFixed(3);
       }
     });
-  }, [isListeningSound]);
+  }, [isListeningSound, use3D]);
 
   // 仅在正式场景模式下触发吹灭烟花与“重新点亮”按钮
   useEffect(() => {
@@ -488,16 +497,28 @@ const CakeScene: React.FC<CakeSceneProps> = ({
             </CakeScene3DBoundary>
           </div>
         ) : (
-          /* 2D 全屏沉浸式渲染（同样不局限在卡片框内，文字浮于其上） */
+          /* 2D 全屏沉浸式渲染（卡片压在蛋糕底托前缘并向下探出超过一半，既与蛋糕相连又不遮挡主体） */
           <div
             onClick={isActiveStage ? onStageTap : undefined}
-            className="relative w-full h-full flex items-center justify-center p-6 sm:p-10"
+            className={`relative w-full h-full flex items-center justify-center p-4 sm:p-8 ${
+              isConfigurePreview
+                ? "pt-10 pb-8 lg:pt-8 lg:pb-12"
+                : isHomePreview
+                  ? "pt-24 sm:pt-28 pb-32 sm:pb-36"
+                  : effectiveExtinguished
+                    ? "pt-28 sm:pt-32 pb-28 sm:pb-32"
+                    : "pt-6 pb-16 sm:pb-20"
+            }`}
           >
             <div
-              className={`relative aspect-square flex items-center justify-center ${
+              className={`relative aspect-square flex items-center justify-center shrink-0 transition-all duration-700 ${
                 isConfigurePreview
-                  ? "w-[min(78vw,34dvh,420px)] lg:w-[min(80%,56dvh,500px)]"
-                  : "w-[min(86vw,54vh,560px)]"
+                  ? "w-[min(64vw,29dvh,300px)] lg:w-[min(76%,52dvh,470px)]"
+                  : isHomePreview
+                    ? "w-[min(76vw,44vh,420px)]"
+                    : effectiveExtinguished
+                      ? "w-[min(80vw,46vh,450px)]"
+                      : "w-[min(84vw,52vh,500px)]"
               }`}
             >
               <div
@@ -551,17 +572,19 @@ const CakeScene: React.FC<CakeSceneProps> = ({
                 ))}
               </div>
 
-              {/* 2D 蛋糕前手写祝福卡片（与 3D 场景共享配色、样式及隐藏逻辑） */}
+              {/* 2D 祝福卡片：上半小部分轻搭蛋糕底托前缘，超过一半向下探出蛋糕底部 */}
               <BirthdayCard2D
                 userName={state.userName}
                 customMessage={state.customMessage}
                 giverName={state.giverName}
                 cardStyle={state.cardStyle || "cream-rose"}
                 lang={lang}
+                compact={isConfigurePreview || isHomePreview}
+                className={selectedCake.Component ? "top-[75%]" : "top-[88%]"}
               />
             </div>
 
-            {/* 2D 熄灭暗场与暖光晕 */}
+            {/* 2D 熄灭暗场与圆形暖光晕 */}
             <div
               className={`absolute inset-0 bg-slate-950/35 backdrop-blur-[1.5px] pointer-events-none transition-opacity duration-1500 ${effectiveExtinguished ? "opacity-100" : "opacity-0"
                 }`}
@@ -569,8 +592,13 @@ const CakeScene: React.FC<CakeSceneProps> = ({
             {!effectiveExtinguished && (
               <div
                 ref={ambientGlowRef}
-                className="absolute top-1/2 left-1/2 w-[75%] h-[75%] bg-amber-200/12 blur-[160px] rounded-full animate-pulse pointer-events-none will-change-transform"
-                style={{ transform: "translate(-50%, -50%) scale(1)" }}
+                className="absolute top-1/2 left-1/2 w-[min(86vw,74vh)] h-[min(86vw,74vh)] rounded-full pointer-events-none will-change-transform"
+                style={{
+                  opacity: 0.85,
+                  transform: "translate3d(-50%, -50%, 0) scale(1)",
+                  background:
+                    "radial-gradient(circle, rgba(253, 230, 138, 0.2) 0%, rgba(251, 191, 36, 0.09) 36%, rgba(251, 191, 36, 0) 70%)",
+                }}
               />
             )}
           </div>

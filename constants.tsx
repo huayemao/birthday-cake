@@ -223,7 +223,6 @@ export const FlameSVG: React.FC<{ isExtinguished: boolean; isBlowing?: boolean; 
         !isExtinguished && !isBlowing
           ? {
               transform: `rotate(calc(var(--sound-tremor, 0) * ${swayDir * 8}deg)) scaleY(calc(1 + var(--sound-tremor, 0) * 0.12))`,
-              filter: `drop-shadow(0 0 calc(var(--sound-tremor, 0) * 10px) rgba(251, 191, 36, 0.85))`,
             }
           : undefined
       }

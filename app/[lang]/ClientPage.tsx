@@ -322,37 +322,42 @@ export const ClientPage: React.FC<ClientPageProps> = ({
           {/* 庆祝五彩纸屑（仅正式场景吹灭时激活） */}
           <Celebrate active={displayExtinguished} />
 
-          {/* 顶部浮动文字层（自然悬浮在全屏场景之中，不阻塞 3D 交互） */}
-          <header
-            className={`pointer-events-none absolute inset-x-0 z-20 flex flex-col items-center text-center px-5 transition-all duration-1000 ${configCompleted ? "top-14 sm:top-12" : "top-20"
+          {/* 顶部浮动文字层：正式庆生场景在吹灭蜡烛前不显示上方文案（2D/3D 统一），仅主页与吹灭庆祝后展示 */}
+          {(!configCompleted || displayExtinguished) && (
+            <header
+              className={`pointer-events-none absolute inset-x-0 z-20 flex flex-col items-center text-center px-5 transition-all duration-1000 ${
+                displayExtinguished
+                  ? "top-14 sm:top-12 animate-fade-in-up"
+                  : "top-20"
               }`}
-          >
-            <h1
-              className={`text-3xl sm:text-5xl md:text-6xl font-serif font-black tracking-tight drop-shadow-[0_4px_24px_rgba(2,6,23,0.75)] transition-all duration-1000 ${displayExtinguished ? "text-white/95" : "text-white"
-                }`}
             >
-              {displayExtinguished
-                ? userName
-                  ? `${t.celebrate} ${userName}!`
-                  : t.celebrate
-                : userName
+              <h1
+                className={`text-3xl sm:text-5xl md:text-6xl font-serif font-black tracking-tight drop-shadow-[0_4px_24px_rgba(2,6,23,0.75)] transition-all duration-1000 ${
+                  displayExtinguished ? "text-white/95" : "text-white"
+                }`}
+              >
+                {displayExtinguished
                   ? userName
+                    ? `${t.celebrate} ${userName}!`
+                    : t.celebrate
                   : t.title}
-            </h1>
-            <p
-              className={`mt-2 text-sm sm:text-lg md:text-xl font-medium max-w-2xl drop-shadow-[0_2px_14px_rgba(2,6,23,0.8)] transition-all duration-1000 ${displayExtinguished ? "text-amber-300" : "text-slate-200/80"
+              </h1>
+              <p
+                className={`mt-2 text-sm sm:text-lg md:text-xl font-medium max-w-2xl drop-shadow-[0_2px_14px_rgba(2,6,23,0.8)] transition-all duration-1000 ${
+                  displayExtinguished ? "text-amber-300" : "text-slate-200/80"
                 }`}
-            >
-              {displayExtinguished
-                ? customMessage || "✧ 🎂 🎊 🎉 ✨ ✧"
-                : customMessage || t.subtitle}
-            </p>
-            {giverName && configCompleted && (
-              <p className="mt-1.5 text-xs sm:text-sm text-pink-200/80 font-medium drop-shadow">
-                {isZh ? `来自: ${giverName}` : `From: ${giverName}`}
+              >
+                {displayExtinguished
+                  ? customMessage || "✧ 🎂 🎊 🎉 ✨ ✧"
+                  : t.subtitle}
               </p>
-            )}
-          </header>
+              {giverName && displayExtinguished && (
+                <p className="mt-1.5 text-xs sm:text-sm text-pink-200/80 font-medium drop-shadow">
+                  {isZh ? `来自: ${giverName}` : `From: ${giverName}`}
+                </p>
+              )}
+            </header>
+          )}
 
           {/* 正式场景底部吹蜡烛提示：统一使用与“拖动 360° 欣赏蛋糕”一致的 FloatingScenePill 胶囊组件 */}
           {configCompleted && !isExtinguished && (
