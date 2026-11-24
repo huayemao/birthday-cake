@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T11:01:43.255Z",
+  "generatedAt": "2026-11-24T11:30:16.374Z",
   "baseUrl": "http://localhost:3000",
   "format": "jpg",
   "count": 228,
@@ -24,7 +24,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 79829
+      "bytes": 78242
     },
     {
       "lang": "ar",
@@ -35,7 +35,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 102619
+      "bytes": 102711
     },
     {
       "lang": "ar",
@@ -57,7 +57,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 73083
+      "bytes": 72968
     },
     {
       "lang": "ar",
@@ -68,7 +68,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 55580
+      "bytes": 52041
     },
     {
       "lang": "ar",
@@ -90,7 +90,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 116981
+      "bytes": 114765
     },
     {
       "lang": "ar",
@@ -101,7 +101,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 126010
+      "bytes": 125831
     },
     {
       "lang": "ar",
@@ -123,7 +123,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 102187
+      "bytes": 102286
     },
     {
       "lang": "ar",
@@ -134,7 +134,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 79137
+      "bytes": 71632
     },
     {
       "lang": "de",
@@ -156,7 +156,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 103896
+      "bytes": 100109
     },
     {
       "lang": "de",
@@ -167,7 +167,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 108708
+      "bytes": 108605
     },
     {
       "lang": "de",
@@ -189,7 +189,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 88416
+      "bytes": 87533
     },
     {
       "lang": "de",
@@ -200,7 +200,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 62430
+      "bytes": 53395
     },
     {
       "lang": "de",
@@ -222,7 +222,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 133353
+      "bytes": 130286
     },
     {
       "lang": "de",
@@ -233,7 +233,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 133663
+      "bytes": 133314
     },
     {
       "lang": "de",
@@ -244,7 +244,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 123712
+      "bytes": 123643
     },
     {
       "lang": "de",
@@ -255,7 +255,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 119924
+      "bytes": 119878
     },
     {
       "lang": "de",
@@ -266,7 +266,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 87511
+      "bytes": 74957
     },
     {
       "lang": "en",
@@ -288,7 +288,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 91912
+      "bytes": 85704
     },
     {
       "lang": "en",
@@ -299,7 +299,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 105099
+      "bytes": 105399
     },
     {
       "lang": "en",
@@ -321,7 +321,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 30166
+      "bytes": 80565
     },
     {
       "lang": "en",
@@ -332,7 +332,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 63065
+      "bytes": 55415
     },
     {
       "lang": "en",
@@ -354,7 +354,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 119506
+      "bytes": 120624
     },
     {
       "lang": "en",
@@ -365,7 +365,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 131269
+      "bytes": 131266
     },
     {
       "lang": "en",
@@ -387,7 +387,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 111152
+      "bytes": 111149
     },
     {
       "lang": "en",
@@ -398,7 +398,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 86222
+      "bytes": 77978
     },
     {
       "lang": "es",
@@ -420,7 +420,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 94699
+      "bytes": 86312
     },
     {
       "lang": "es",
@@ -431,7 +431,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 107113
+      "bytes": 106983
     },
     {
       "lang": "es",
@@ -453,7 +453,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 85769
+      "bytes": 86044
     },
     {
       "lang": "es",
@@ -464,7 +464,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 63267
+      "bytes": 56193
     },
     {
       "lang": "es",
@@ -486,7 +486,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 124095
+      "bytes": 127791
     },
     {
       "lang": "es",
@@ -497,7 +497,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 134789
+      "bytes": 135215
     },
     {
       "lang": "es",
@@ -519,7 +519,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 117032
+      "bytes": 117317
     },
     {
       "lang": "es",
@@ -530,7 +530,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 89829
+      "bytes": 79957
     },
     {
       "lang": "fr",
@@ -552,7 +552,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 92215
+      "bytes": 89308
     },
     {
       "lang": "fr",
@@ -563,7 +563,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 107163
+      "bytes": 107511
     },
     {
       "lang": "fr",
@@ -585,7 +585,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 88444
+      "bytes": 88578
     },
     {
       "lang": "fr",
@@ -596,7 +596,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 62269
+      "bytes": 55710
     },
     {
       "lang": "fr",
@@ -618,7 +618,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 121479
+      "bytes": 123100
     },
     {
       "lang": "fr",
@@ -629,7 +629,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 135165
+      "bytes": 135360
     },
     {
       "lang": "fr",
@@ -651,7 +651,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 121364
+      "bytes": 121535
     },
     {
       "lang": "fr",
@@ -662,7 +662,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 87446
+      "bytes": 78109
     },
     {
       "lang": "hi",
@@ -684,7 +684,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 87703
+      "bytes": 83894
     },
     {
       "lang": "hi",
@@ -695,7 +695,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 105301
+      "bytes": 105769
     },
     {
       "lang": "hi",
@@ -717,7 +717,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 78482
+      "bytes": 78799
     },
     {
       "lang": "hi",
@@ -728,7 +728,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 71525
+      "bytes": 55721
     },
     {
       "lang": "hi",
@@ -750,7 +750,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 120678
+      "bytes": 115348
     },
     {
       "lang": "hi",
@@ -761,7 +761,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 132545
+      "bytes": 132528
     },
     {
       "lang": "hi",
@@ -783,7 +783,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 109946
+      "bytes": 109512
     },
     {
       "lang": "hi",
@@ -794,7 +794,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 86935
+      "bytes": 77833
     },
     {
       "lang": "id",
@@ -816,7 +816,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 88389
+      "bytes": 86939
     },
     {
       "lang": "id",
@@ -827,7 +827,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 106025
+      "bytes": 106285
     },
     {
       "lang": "id",
@@ -849,7 +849,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 82357
+      "bytes": 82928
     },
     {
       "lang": "id",
@@ -860,7 +860,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 61253
+      "bytes": 55915
     },
     {
       "lang": "id",
@@ -882,7 +882,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 121712
+      "bytes": 123716
     },
     {
       "lang": "id",
@@ -893,7 +893,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 133193
+      "bytes": 133006
     },
     {
       "lang": "id",
@@ -904,7 +904,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 116103
+      "bytes": 115998
     },
     {
       "lang": "id",
@@ -915,7 +915,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 112395
+      "bytes": 112664
     },
     {
       "lang": "id",
@@ -926,7 +926,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 85544
+      "bytes": 77147
     },
     {
       "lang": "it",
@@ -948,7 +948,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 90572
+      "bytes": 88112
     },
     {
       "lang": "it",
@@ -959,7 +959,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 108153
+      "bytes": 107944
     },
     {
       "lang": "it",
@@ -981,7 +981,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 85447
+      "bytes": 85387
     },
     {
       "lang": "it",
@@ -992,7 +992,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 63242
+      "bytes": 55783
     },
     {
       "lang": "it",
@@ -1003,7 +1003,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 150272
+      "bytes": 150258
     },
     {
       "lang": "it",
@@ -1014,7 +1014,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 118661
+      "bytes": 122011
     },
     {
       "lang": "it",
@@ -1025,7 +1025,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 135938
+      "bytes": 136167
     },
     {
       "lang": "it",
@@ -1047,7 +1047,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 117040
+      "bytes": 117089
     },
     {
       "lang": "it",
@@ -1058,7 +1058,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 88428
+      "bytes": 78050
     },
     {
       "lang": "ja",
@@ -1080,7 +1080,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 86876
+      "bytes": 86847
     },
     {
       "lang": "ja",
@@ -1091,7 +1091,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 104521
+      "bytes": 104300
     },
     {
       "lang": "ja",
@@ -1113,7 +1113,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 73735
+      "bytes": 74092
     },
     {
       "lang": "ja",
@@ -1124,7 +1124,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 68151
+      "bytes": 59696
     },
     {
       "lang": "ja",
@@ -1146,7 +1146,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 122272
+      "bytes": 125723
     },
     {
       "lang": "ja",
@@ -1157,7 +1157,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 128659
+      "bytes": 128870
     },
     {
       "lang": "ja",
@@ -1179,7 +1179,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 105085
+      "bytes": 105614
     },
     {
       "lang": "ja",
@@ -1190,7 +1190,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 88535
+      "bytes": 78178
     },
     {
       "lang": "ko",
@@ -1212,7 +1212,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 83757
+      "bytes": 82058
     },
     {
       "lang": "ko",
@@ -1223,7 +1223,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 104104
+      "bytes": 104543
     },
     {
       "lang": "ko",
@@ -1245,7 +1245,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 72957
+      "bytes": 72893
     },
     {
       "lang": "ko",
@@ -1256,7 +1256,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 60943
+      "bytes": 58262
     },
     {
       "lang": "ko",
@@ -1278,7 +1278,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 125166
+      "bytes": 120912
     },
     {
       "lang": "ko",
@@ -1289,7 +1289,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 129183
+      "bytes": 129313
     },
     {
       "lang": "ko",
@@ -1300,7 +1300,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 121267
+      "bytes": 121213
     },
     {
       "lang": "ko",
@@ -1311,7 +1311,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 104301
+      "bytes": 104222
     },
     {
       "lang": "ko",
@@ -1322,7 +1322,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 81820
+      "bytes": 74789
     },
     {
       "lang": "ms",
@@ -1344,7 +1344,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 95793
+      "bytes": 87167
     },
     {
       "lang": "ms",
@@ -1355,7 +1355,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 106295
+      "bytes": 106602
     },
     {
       "lang": "ms",
@@ -1377,7 +1377,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 79374
+      "bytes": 79308
     },
     {
       "lang": "ms",
@@ -1388,7 +1388,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 64689
+      "bytes": 55433
     },
     {
       "lang": "ms",
@@ -1399,7 +1399,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 152988
+      "bytes": 152949
     },
     {
       "lang": "ms",
@@ -1410,7 +1410,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 129578
+      "bytes": 128246
     },
     {
       "lang": "ms",
@@ -1421,7 +1421,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 133769
+      "bytes": 133674
     },
     {
       "lang": "ms",
@@ -1443,7 +1443,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 110362
+      "bytes": 109922
     },
     {
       "lang": "ms",
@@ -1454,7 +1454,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 89322
+      "bytes": 77905
     },
     {
       "lang": "pt",
@@ -1476,7 +1476,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 91813
+      "bytes": 89377
     },
     {
       "lang": "pt",
@@ -1487,7 +1487,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 107098
+      "bytes": 106909
     },
     {
       "lang": "pt",
@@ -1509,7 +1509,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 83425
+      "bytes": 83668
     },
     {
       "lang": "pt",
@@ -1520,7 +1520,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 64754
+      "bytes": 56064
     },
     {
       "lang": "pt",
@@ -1542,7 +1542,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 124408
+      "bytes": 122776
     },
     {
       "lang": "pt",
@@ -1553,7 +1553,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 135337
+      "bytes": 135432
     },
     {
       "lang": "pt",
@@ -1575,7 +1575,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 115439
+      "bytes": 114911
     },
     {
       "lang": "pt",
@@ -1586,7 +1586,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 90712
+      "bytes": 79758
     },
     {
       "lang": "ru",
@@ -1608,7 +1608,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 91097
+      "bytes": 88054
     },
     {
       "lang": "ru",
@@ -1619,7 +1619,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 106903
+      "bytes": 106647
     },
     {
       "lang": "ru",
@@ -1641,7 +1641,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 87706
+      "bytes": 87566
     },
     {
       "lang": "ru",
@@ -1652,7 +1652,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 58894
+      "bytes": 50966
     },
     {
       "lang": "ru",
@@ -1674,7 +1674,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 123247
+      "bytes": 126260
     },
     {
       "lang": "ru",
@@ -1685,7 +1685,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 135135
+      "bytes": 135102
     },
     {
       "lang": "ru",
@@ -1707,7 +1707,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 119036
+      "bytes": 119285
     },
     {
       "lang": "ru",
@@ -1718,7 +1718,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 84920
+      "bytes": 76329
     },
     {
       "lang": "th",
@@ -1740,7 +1740,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 95363
+      "bytes": 82465
     },
     {
       "lang": "th",
@@ -1751,7 +1751,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 104277
+      "bytes": 104128
     },
     {
       "lang": "th",
@@ -1773,7 +1773,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 77810
+      "bytes": 78038
     },
     {
       "lang": "th",
@@ -1784,7 +1784,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 61700
+      "bytes": 54866
     },
     {
       "lang": "th",
@@ -1806,7 +1806,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 123820
+      "bytes": 116586
     },
     {
       "lang": "th",
@@ -1817,7 +1817,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 129539
+      "bytes": 129335
     },
     {
       "lang": "th",
@@ -1839,7 +1839,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 108245
+      "bytes": 108219
     },
     {
       "lang": "th",
@@ -1850,7 +1850,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 85669
+      "bytes": 77241
     },
     {
       "lang": "tr",
@@ -1872,7 +1872,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 86974
+      "bytes": 85627
     },
     {
       "lang": "tr",
@@ -1883,7 +1883,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 106070
+      "bytes": 106245
     },
     {
       "lang": "tr",
@@ -1905,7 +1905,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 84977
+      "bytes": 84167
     },
     {
       "lang": "tr",
@@ -1916,7 +1916,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 61324
+      "bytes": 54926
     },
     {
       "lang": "tr",
@@ -1938,7 +1938,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 118412
+      "bytes": 123513
     },
     {
       "lang": "tr",
@@ -1949,7 +1949,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 133653
+      "bytes": 133451
     },
     {
       "lang": "tr",
@@ -1971,7 +1971,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 114710
+      "bytes": 114447
     },
     {
       "lang": "tr",
@@ -1982,7 +1982,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 85269
+      "bytes": 77071
     },
     {
       "lang": "ur",
@@ -2004,7 +2004,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 83990
+      "bytes": 83216
     },
     {
       "lang": "ur",
@@ -2015,7 +2015,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 104026
+      "bytes": 104304
     },
     {
       "lang": "ur",
@@ -2037,7 +2037,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 71812
+      "bytes": 71798
     },
     {
       "lang": "ur",
@@ -2048,7 +2048,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 61709
+      "bytes": 55795
     },
     {
       "lang": "ur",
@@ -2070,7 +2070,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 117523
+      "bytes": 117505
     },
     {
       "lang": "ur",
@@ -2081,7 +2081,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 128747
+      "bytes": 128703
     },
     {
       "lang": "ur",
@@ -2103,7 +2103,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 102072
+      "bytes": 101707
     },
     {
       "lang": "ur",
@@ -2114,7 +2114,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 85569
+      "bytes": 77774
     },
     {
       "lang": "vi",
@@ -2136,7 +2136,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 91905
+      "bytes": 86532
     },
     {
       "lang": "vi",
@@ -2147,7 +2147,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 106106
+      "bytes": 105883
     },
     {
       "lang": "vi",
@@ -2169,7 +2169,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 80232
+      "bytes": 80085
     },
     {
       "lang": "vi",
@@ -2180,7 +2180,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 62291
+      "bytes": 54674
     },
     {
       "lang": "vi",
@@ -2202,7 +2202,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 97466
+      "bytes": 128379
     },
     {
       "lang": "vi",
@@ -2213,7 +2213,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 134691
+      "bytes": 132946
     },
     {
       "lang": "vi",
@@ -2235,7 +2235,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 111251
+      "bytes": 112221
     },
     {
       "lang": "vi",
@@ -2246,7 +2246,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 100530
+      "bytes": 76133
     },
     {
       "lang": "zh-Hant",
@@ -2268,7 +2268,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 85421
+      "bytes": 81557
     },
     {
       "lang": "zh-Hant",
@@ -2279,7 +2279,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 102544
+      "bytes": 102658
     },
     {
       "lang": "zh-Hant",
@@ -2301,7 +2301,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 71932
+      "bytes": 71902
     },
     {
       "lang": "zh-Hant",
@@ -2312,7 +2312,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 62180
+      "bytes": 54972
     },
     {
       "lang": "zh-Hant",
@@ -2334,7 +2334,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 121240
+      "bytes": 120641
     },
     {
       "lang": "zh-Hant",
@@ -2345,7 +2345,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 126378
+      "bytes": 126514
     },
     {
       "lang": "zh-Hant",
@@ -2367,7 +2367,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 103526
+      "bytes": 103641
     },
     {
       "lang": "zh-Hant",
@@ -2378,7 +2378,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 86583
+      "bytes": 76682
     },
     {
       "lang": "zh",
@@ -2400,7 +2400,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 89379
+      "bytes": 82067
     },
     {
       "lang": "zh",
@@ -2411,7 +2411,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 103293
+      "bytes": 103089
     },
     {
       "lang": "zh",
@@ -2433,7 +2433,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 71596
+      "bytes": 71314
     },
     {
       "lang": "zh",
@@ -2444,7 +2444,7 @@
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 61772
+      "bytes": 54769
     },
     {
       "lang": "zh",
@@ -2455,7 +2455,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 149778
+      "bytes": 149876
     },
     {
       "lang": "zh",
@@ -2466,7 +2466,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 122094
+      "bytes": 121626
     },
     {
       "lang": "zh",
@@ -2477,7 +2477,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 128631
+      "bytes": 128315
     },
     {
       "lang": "zh",
@@ -2499,7 +2499,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 103770
+      "bytes": 104071
     },
     {
       "lang": "zh",
@@ -2510,7 +2510,7 @@
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 87480
+      "bytes": 76844
     }
   ]
 }
