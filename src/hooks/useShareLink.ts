@@ -73,6 +73,8 @@ export const useShareLink = () => {
   } = useAppStore();
 
   const [shareFeedback, setShareFeedback] = useState<"idle" | "copied" | "error">("idle");
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [shareUrl, setShareUrl] = useState("");
   const feedbackTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -129,25 +131,52 @@ export const useShareLink = () => {
   celebrationSfxStyle,
 ]);
 
-const copyShareLink = useCallback(async () => {
-    const shareLink = generateShareLink();
-    const ok = await copyTextSafe(shareLink);
+  const copyShareLink = useCallback(
+    async (options?: { persistFeedback?: boolean; explicitUrl?: string }) => {
+      const targetUrl = options?.explicitUrl || generateShareLink();
+      setShareUrl(targetUrl);
+      const ok = await copyTextSafe(targetUrl);
 
+      if (feedbackTimerRef.current !== null) {
+        clearTimeout(feedbackTimerRef.current);
+        feedbackTimerRef.current = null;
+      }
+      setShareFeedback(ok ? "copied" : "error");
+      if (!options?.persistFeedback) {
+        feedbackTimerRef.current = window.setTimeout(() => {
+          setShareFeedback("idle");
+          feedbackTimerRef.current = null;
+        }, 2600);
+      }
+
+      return ok;
+    },
+    [generateShareLink]
+  );
+
+  const openShareDialog = useCallback(async () => {
+    const url = generateShareLink();
+    setShareUrl(url);
+    setShareModalOpen(true);
+    await copyShareLink({ persistFeedback: true, explicitUrl: url });
+  }, [generateShareLink, copyShareLink]);
+
+  const closeShareDialog = useCallback(() => {
+    setShareModalOpen(false);
     if (feedbackTimerRef.current !== null) {
       clearTimeout(feedbackTimerRef.current);
+      feedbackTimerRef.current = null;
     }
-setShareFeedback(ok ? "copied" : "error");
-feedbackTimerRef.current = window.setTimeout(() => {
-  setShareFeedback("idle");
-  feedbackTimerRef.current = null;
-}, 2600);
+    setShareFeedback("idle");
+  }, []);
 
-return ok;
-  }, [generateShareLink]);
-
-return {
-  generateShareLink,
-  copyShareLink,
-  shareFeedback,
-};
+  return {
+    generateShareLink,
+    copyShareLink,
+    shareFeedback,
+    shareModalOpen,
+    shareUrl,
+    openShareDialog,
+    closeShareDialog,
+  };
 };

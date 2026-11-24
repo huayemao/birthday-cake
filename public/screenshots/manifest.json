@@ -1,1724 +1,2516 @@
 {
-  "generatedAt": "2026-11-20T13:37:23.360Z",
-  "baseUrl": "https://www.birthday-cake.online",
+  "generatedAt": "2026-11-24T11:01:43.255Z",
+  "baseUrl": "http://localhost:3000",
   "format": "jpg",
-  "count": 156,
+  "count": 228,
   "screenshots": [
     {
       "lang": "ar",
       "platform": "desktop",
       "view": "about",
-      "url": "https://www.birthday-cake.online/ar/about",
+      "url": "http://localhost:3000/ar/about",
       "publicPath": "/screenshots/ar/desktop/about.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 60657
+      "bytes": 62089
     },
     {
       "lang": "ar",
       "platform": "desktop",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/ar?config=N4IgNghgdg5iBcIICcQBoQGcCmZsGMAXbAEwGEIBrbASRIRH0k0wEt8BafACwHt9ekYukbQSeACoBPAA7YGJVjFaFMI-GLxleAVyiEEARgAcGRctUMATAFYROnMgByEALbzEgETBAUmCfAkmDqDoS8rgCy2CwQMB4ggMJgngAEgJxggORggKJgCYASYIDEYIBiYIBUYIAKYAmAFGDZnoCCYAmAdGDegIxgWYDMYKmA9GCAlGAAhCLKAG7Yzm4xSWl16igkAMqEUngKKJQcMIL0GJj42FDYEtzY7gyYhCjIUhxQStwGGK4O7FMzMdds+ABGvAAe6rjYz8gQhKy8KATABmbzus0QMF+UBIHBkKGmIAAvkA",
+      "url": "http://localhost:3000/ar?config=N4IgNghgdg5iBcIICcQBoQGcCmZsGMAXbAEwGEIBrbASRIRH0k0wEt8BafACwHt9ekYukbQSeACoBPAA7YGJVjFaFMI-GLxleAVyiEEARgAcGRctUMATAFYROnMgByEALbzEgETBAUmCfAkmDqDoS8rgCy2CwQMB4ggMJgngAEgJxggORggKJgCYASYIDEYIBiYIBUYIAKYAmAFGDZnoCCYAmAdGDegIxgWYDMYKmA9GCAlGAAhCLKAG7Yzm4xSWl16igkAMqEUngKKJQcMIL0GJj42FDYEtzY7gyYhCjIUhxQStwGGK4O7FMzMdds+ABGvAAe6rjYz8gQhKy8KATABmbzus0QMF+UBIHBkKGmIAAvkA",
       "publicPath": "/screenshots/ar/desktop/celebrate.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 78218
+      "bytes": 79829
     },
     {
       "lang": "ar",
       "platform": "desktop",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/ar/configure?step=1",
+      "url": "http://localhost:3000/ar/configure?step=1",
       "publicPath": "/screenshots/ar/desktop/configure.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 102660
+      "bytes": 102619
     },
     {
       "lang": "ar",
       "platform": "desktop",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/ar/guide",
+      "url": "http://localhost:3000/ar/guide",
       "publicPath": "/screenshots/ar/desktop/guide.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 48005
+      "bytes": 49388
     },
     {
       "lang": "ar",
       "platform": "desktop",
       "view": "home",
-      "url": "https://www.birthday-cake.online/ar",
+      "url": "http://localhost:3000/ar",
       "publicPath": "/screenshots/ar/desktop/home.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 73107
+      "bytes": 73083
     },
     {
       "lang": "ar",
       "platform": "desktop",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/ar?config=N4IgNghgdg5iBcIICcQBoQGcCmZsGMAXbAEwGEIBrbASRIRH0k0wEt8BafACwHt9ekYukbQSeACoBPAA7YGJVjFaFMI-GLxleAVyiEEARgAcGRctUMATAFYROnMgByEALbzEgETBAUmCfAkmDqDoS8rgCy2CwQMB4ggMJgngAEgJxggORggKJgCYASYIDEYIBiYIBUYIAKYAmAFGDZnoCCYAmAdGDegIxgWYDMYKmA9GCAlGAAhCLKAG7Yzm4xSWl16igkAMqEUngKKJQcMIL0GJj42FDYEtzY7gwA7iiuXJq4StwGGK4O7FMzMdds+ABGvAAe6rjYz8gQhKy8KATABmbzus0QMF+UBIHBkKGmIAAvkA",
+      "url": "http://localhost:3000/ar?config=N4IgNghgdg5iBcIICcQBoQGcCmZsGMAXbAEwGEIBrbASRIRH0k0wEt8BafACwHt9ekYukbQSeACoBPAA7YGJVjFaFMI-GLxleAVyiEEARgAcGRctUMATAFYROnMgByEALbzEgETBAUmCfAkmDqDoS8rgCy2CwQMB4ggMJgngAEgJxggORggKJgCYASYIDEYIBiYIBUYIAKYAmAFGDZnoCCYAmAdGDegIxgWYDMYKmA9GCAlGAAhCLKAG7Yzm4xSWl16igkAMqEUngKKJQcMIL0GJj42FDYEtzY7gwA7iiuXJq4StwGGK4O7FMzMdds+ABGvAAe6rjYz8gQhKy8KATABmbzus0QMF+UBIHBkKGmIAAvkA",
       "publicPath": "/screenshots/ar/desktop/stage.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 54092
+      "bytes": 55580
     },
     {
       "lang": "ar",
       "platform": "mobile",
       "view": "about",
-      "url": "https://www.birthday-cake.online/ar/about",
+      "url": "http://localhost:3000/ar/about",
       "publicPath": "/screenshots/ar/mobile/about.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 124225
+      "bytes": 126905
     },
     {
       "lang": "ar",
       "platform": "mobile",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/ar?config=N4IgNghgdg5iBcIICcQBoQGcCmZsGMAXbAEwGEIBrbASRIRH0k0wEt8BafACwHt9ekYukbQSeACoBPAA7YGJVjFaFMI-GLxleAVyiEEARgAcGRctUMATAFYROnMgByEALbzEgETBAUmCfAkmDqDoS8rgCy2CwQMB4ggMJgngAEgJxggORggKJgCYASYIDEYIBiYIBUYIAKYAmAFGDZnoCCYAmAdGDegIxgWYDMYKmA9GCAlGAAhCLKAG7Yzm4xSWl16igkAMqEUngKKJQcMIL0GJj42FDYEtzY7gyYhCjIUhxQStwGGK4O7FMzMdds+ABGvAAe6rjYz8gQhKy8KATABmbzus0QMF+UBIHBkKGmIAAvkA",
+      "url": "http://localhost:3000/ar?config=N4IgNghgdg5iBcIICcQBoQGcCmZsGMAXbAEwGEIBrbASRIRH0k0wEt8BafACwHt9ekYukbQSeACoBPAA7YGJVjFaFMI-GLxleAVyiEEARgAcGRctUMATAFYROnMgByEALbzEgETBAUmCfAkmDqDoS8rgCy2CwQMB4ggMJgngAEgJxggORggKJgCYASYIDEYIBiYIBUYIAKYAmAFGDZnoCCYAmAdGDegIxgWYDMYKmA9GCAlGAAhCLKAG7Yzm4xSWl16igkAMqEUngKKJQcMIL0GJj42FDYEtzY7gyYhCjIUhxQStwGGK4O7FMzMdds+ABGvAAe6rjYz8gQhKy8KATABmbzus0QMF+UBIHBkKGmIAAvkA",
       "publicPath": "/screenshots/ar/mobile/celebrate.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 116756
+      "bytes": 116981
     },
     {
       "lang": "ar",
       "platform": "mobile",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/ar/configure?step=1",
+      "url": "http://localhost:3000/ar/configure?step=1",
       "publicPath": "/screenshots/ar/mobile/configure.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 125355
+      "bytes": 126010
     },
     {
       "lang": "ar",
       "platform": "mobile",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/ar/guide",
+      "url": "http://localhost:3000/ar/guide",
       "publicPath": "/screenshots/ar/mobile/guide.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 98940
+      "bytes": 101633
     },
     {
       "lang": "ar",
       "platform": "mobile",
       "view": "home",
-      "url": "https://www.birthday-cake.online/ar",
+      "url": "http://localhost:3000/ar",
       "publicPath": "/screenshots/ar/mobile/home.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 102738
+      "bytes": 102187
     },
     {
       "lang": "ar",
       "platform": "mobile",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/ar?config=N4IgNghgdg5iBcIICcQBoQGcCmZsGMAXbAEwGEIBrbASRIRH0k0wEt8BafACwHt9ekYukbQSeACoBPAA7YGJVjFaFMI-GLxleAVyiEEARgAcGRctUMATAFYROnMgByEALbzEgETBAUmCfAkmDqDoS8rgCy2CwQMB4ggMJgngAEgJxggORggKJgCYASYIDEYIBiYIBUYIAKYAmAFGDZnoCCYAmAdGDegIxgWYDMYKmA9GCAlGAAhCLKAG7Yzm4xSWl16igkAMqEUngKKJQcMIL0GJj42FDYEtzY7gwA7iiuXJq4StwGGK4O7FMzMdds+ABGvAAe6rjYz8gQhKy8KATABmbzus0QMF+UBIHBkKGmIAAvkA",
+      "url": "http://localhost:3000/ar?config=N4IgNghgdg5iBcIICcQBoQGcCmZsGMAXbAEwGEIBrbASRIRH0k0wEt8BafACwHt9ekYukbQSeACoBPAA7YGJVjFaFMI-GLxleAVyiEEARgAcGRctUMATAFYROnMgByEALbzEgETBAUmCfAkmDqDoS8rgCy2CwQMB4ggMJgngAEgJxggORggKJgCYASYIDEYIBiYIBUYIAKYAmAFGDZnoCCYAmAdGDegIxgWYDMYKmA9GCAlGAAhCLKAG7Yzm4xSWl16igkAMqEUngKKJQcMIL0GJj42FDYEtzY7gwA7iiuXJq4StwGGK4O7FMzMdds+ABGvAAe6rjYz8gQhKy8KATABmbzus0QMF+UBIHBkKGmIAAvkA",
       "publicPath": "/screenshots/ar/mobile/stage.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 77949
+      "bytes": 79137
     },
     {
       "lang": "de",
       "platform": "desktop",
       "view": "about",
-      "url": "https://www.birthday-cake.online/de/about",
+      "url": "http://localhost:3000/de/about",
       "publicPath": "/screenshots/de/desktop/about.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 81032
+      "bytes": 82273
     },
     {
       "lang": "de",
       "platform": "desktop",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/de?config=N4IgNghgdg5iBcIAmBTEAaEBnFYUGMAXFJAYQgGsUBJJBEfSLLAS3wFp8ALAe3x8jEMDaEjwAVAJ4AHNIiQsYLQlmH5ReUjwCuUQggCMADkwKlK+gCYArMO04ATgDkIAWzkgAEtCgQua+0IeVwBZFGYIGA8QgDeoqAACCDA8BNQWKBQEgHUAH6gsbiyAdz8HBOKUB1QoAEJhJQA3Kpd3egApHl9VTHVqgGVCSTx6JAgHCnYYATpMQpRM8S4UNsQsQnGHSXYoRS59TFd7NkHhjyPWfAAjHgAPNVwUK4cIQhYu-oAzW9ORxBgXlAkOxpOMhiAAL5AA",
+      "url": "http://localhost:3000/de?config=N4IgNghgdg5iBcIAmBTEAaEBnFYUGMAXFJAYQgGsUBJJBEfSLLAS3wFp8ALAe3x8jEMDaEjwAVAJ4AHNIiQsYLQlmH5ReUjwCuUQggCMADkwKlK+gCYArMO04ATgDkIAWzkgAEtCgQua+0IeVwBZFGYIGA8QgDeoqAACCDA8BNQWKBQEgHUAH6gsbiyAdz8HBOKUB1QoAEJhJQA3Kpd3egApHl9VTHVqgGVCSTx6JAgHCnYYATpMQpRM8S4UNsQsQnGHSXYoRS59TFd7NkHhjyPWfAAjHgAPNVwUK4cIQhYu-oAzW9ORxBgXlAkOxpOMhiAAL5AA",
       "publicPath": "/screenshots/de/desktop/celebrate.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 114603
+      "bytes": 103896
     },
     {
       "lang": "de",
       "platform": "desktop",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/de/configure?step=1",
+      "url": "http://localhost:3000/de/configure?step=1",
       "publicPath": "/screenshots/de/desktop/configure.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 107942
+      "bytes": 108708
     },
     {
       "lang": "de",
       "platform": "desktop",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/de/guide",
+      "url": "http://localhost:3000/de/guide",
       "publicPath": "/screenshots/de/desktop/guide.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 66837
+      "bytes": 68123
     },
     {
       "lang": "de",
       "platform": "desktop",
       "view": "home",
-      "url": "https://www.birthday-cake.online/de",
+      "url": "http://localhost:3000/de",
       "publicPath": "/screenshots/de/desktop/home.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 91098
+      "bytes": 88416
     },
     {
       "lang": "de",
       "platform": "desktop",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/de?config=N4IgNghgdg5iBcIAmBTEAaEBnFYUGMAXFJAYQgGsUBJJBEfSLLAS3wFp8ALAe3x8jEMDaEjwAVAJ4AHNIiQsYLQlmH5ReUjwCuUQggCMADkwKlK+gCYArMO04ATgDkIAWzkgAEtCgQua+0IeVwBZFGYIGA8QgDeoqAACCDA8BNQWKBQEgHUAH6gsbiyAdz8HBOKUB1QoAEJhJQA3Kpd3egApHl9VTHVqgGVCSTx6JAgHCnYYATpMQpRM8S4UNsRSh1dODVxFLn1MV3s2QeGPQ9Z8ACMeAA81XBRLhwhCFi7+gDMbk5HEGGeoEh2NJxkMQABfIA",
+      "url": "http://localhost:3000/de?config=N4IgNghgdg5iBcIAmBTEAaEBnFYUGMAXFJAYQgGsUBJJBEfSLLAS3wFp8ALAe3x8jEMDaEjwAVAJ4AHNIiQsYLQlmH5ReUjwCuUQggCMADkwKlK+gCYArMO04ATgDkIAWzkgAEtCgQua+0IeVwBZFGYIGA8QgDeoqAACCDA8BNQWKBQEgHUAH6gsbiyAdz8HBOKUB1QoAEJhJQA3Kpd3egApHl9VTHVqgGVCSTx6JAgHCnYYATpMQpRM8S4UNsRSh1dODVxFLn1MV3s2QeGPQ9Z8ACMeAA81XBRLhwhCFi7+gDMbk5HEGGeoEh2NJxkMQABfIA",
       "publicPath": "/screenshots/de/desktop/stage.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 61967
+      "bytes": 62430
     },
     {
       "lang": "de",
       "platform": "mobile",
       "view": "about",
-      "url": "https://www.birthday-cake.online/de/about",
+      "url": "http://localhost:3000/de/about",
       "publicPath": "/screenshots/de/mobile/about.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 152278
+      "bytes": 149369
     },
     {
       "lang": "de",
       "platform": "mobile",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/de?config=N4IgNghgdg5iBcIAmBTEAaEBnFYUGMAXFJAYQgGsUBJJBEfSLLAS3wFp8ALAe3x8jEMDaEjwAVAJ4AHNIiQsYLQlmH5ReUjwCuUQggCMADkwKlK+gCYArMO04ATgDkIAWzkgAEtCgQua+0IeVwBZFGYIGA8QgDeoqAACCDA8BNQWKBQEgHUAH6gsbiyAdz8HBOKUB1QoAEJhJQA3Kpd3egApHl9VTHVqgGVCSTx6JAgHCnYYATpMQpRM8S4UNsQsQnGHSXYoRS59TFd7NkHhjyPWfAAjHgAPNVwUK4cIQhYu-oAzW9ORxBgXlAkOxpOMhiAAL5AA",
+      "url": "http://localhost:3000/de?config=N4IgNghgdg5iBcIAmBTEAaEBnFYUGMAXFJAYQgGsUBJJBEfSLLAS3wFp8ALAe3x8jEMDaEjwAVAJ4AHNIiQsYLQlmH5ReUjwCuUQggCMADkwKlK+gCYArMO04ATgDkIAWzkgAEtCgQua+0IeVwBZFGYIGA8QgDeoqAACCDA8BNQWKBQEgHUAH6gsbiyAdz8HBOKUB1QoAEJhJQA3Kpd3egApHl9VTHVqgGVCSTx6JAgHCnYYATpMQpRM8S4UNsQsQnGHSXYoRS59TFd7NkHhjyPWfAAjHgAPNVwUK4cIQhYu-oAzW9ORxBgXlAkOxpOMhiAAL5AA",
       "publicPath": "/screenshots/de/mobile/celebrate.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 102205
+      "bytes": 133353
     },
     {
       "lang": "de",
       "platform": "mobile",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/de/configure?step=1",
+      "url": "http://localhost:3000/de/configure?step=1",
       "publicPath": "/screenshots/de/mobile/configure.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 132701
+      "bytes": 133663
     },
     {
       "lang": "de",
       "platform": "mobile",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/de/guide",
+      "url": "http://localhost:3000/de/guide",
       "publicPath": "/screenshots/de/mobile/guide.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 125056
+      "bytes": 123712
     },
     {
       "lang": "de",
       "platform": "mobile",
       "view": "home",
-      "url": "https://www.birthday-cake.online/de",
+      "url": "http://localhost:3000/de",
       "publicPath": "/screenshots/de/mobile/home.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 117037
+      "bytes": 119924
     },
     {
       "lang": "de",
       "platform": "mobile",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/de?config=N4IgNghgdg5iBcIAmBTEAaEBnFYUGMAXFJAYQgGsUBJJBEfSLLAS3wFp8ALAe3x8jEMDaEjwAVAJ4AHNIiQsYLQlmH5ReUjwCuUQggCMADkwKlK+gCYArMO04ATgDkIAWzkgAEtCgQua+0IeVwBZFGYIGA8QgDeoqAACCDA8BNQWKBQEgHUAH6gsbiyAdz8HBOKUB1QoAEJhJQA3Kpd3egApHl9VTHVqgGVCSTx6JAgHCnYYATpMQpRM8S4UNsRSh1dODVxFLn1MV3s2QeGPQ9Z8ACMeAA81XBRLhwhCFi7+gDMbk5HEGGeoEh2NJxkMQABfIA",
+      "url": "http://localhost:3000/de?config=N4IgNghgdg5iBcIAmBTEAaEBnFYUGMAXFJAYQgGsUBJJBEfSLLAS3wFp8ALAe3x8jEMDaEjwAVAJ4AHNIiQsYLQlmH5ReUjwCuUQggCMADkwKlK+gCYArMO04ATgDkIAWzkgAEtCgQua+0IeVwBZFGYIGA8QgDeoqAACCDA8BNQWKBQEgHUAH6gsbiyAdz8HBOKUB1QoAEJhJQA3Kpd3egApHl9VTHVqgGVCSTx6JAgHCnYYATpMQpRM8S4UNsRSh1dODVxFLn1MV3s2QeGPQ9Z8ACMeAA81XBRLhwhCFi7+gDMbk5HEGGeoEh2NJxkMQABfIA",
       "publicPath": "/screenshots/de/mobile/stage.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 84541
+      "bytes": 87511
     },
     {
       "lang": "en",
       "platform": "desktop",
       "view": "about",
-      "url": "https://www.birthday-cake.online/en/about",
+      "url": "http://localhost:3000/en/about",
       "publicPath": "/screenshots/en/desktop/about.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 71721
+      "bytes": 73122
     },
     {
       "lang": "en",
       "platform": "desktop",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/en?config=N4IgNghgdg5iBcICmUQBoQGcliQYwBckATAYQgGskBJYhZXGaAgWkwICcIB3AIyQ4cAnuhB5oxXABUhAByT1iASxhKCmUeKiSkpAPYBXKAQQBGABwZlq9fQBMAVlEHsHAHIQAtgsQBRT54Qmi4Eep4AskiYmBAwPiDhEEIABBBgYMlChhzJ3EqYABZRyXhhSMmcBkgAhKKqAG4CHt70ADIG4hoY4hzEAMoEQrj0eBxIXiwcetiimHgoSFJFLYjsEIJCLFAqBSYYni5KeAND8QeYR7x6AB6aOEi8XARKelB9AGbXJ8OIMFzaLFk60GIAAvkA",
+      "url": "http://localhost:3000/en?config=N4IgNghgdg5iBcICmUQBoQGcliQYwBckATAYQgGskBJYhZXGaAgWkwICcIB3AIyQ4cAnuhB5oxXABUhAByT1iASxhKCmUeKiSkpAPYBXKAQQBGABwZlq9fQBMAVlEHsHAHIQAtgsQBRT54Qmi4Eep4AskiYmBAwPiDhEEIABBBgYMlChhzJ3EqYABZRyXhhSMmcBkgAhKKqAG4CHt70ADIG4hoY4hzEAMoEQrj0eBxIXiwcetiimHgoSFJFLYjsEIJCLFAqBSYYni5KeAND8QeYR7x6AB6aOEi8XARKelB9AGbXJ8OIMFzaLFk60GIAAvkA",
       "publicPath": "/screenshots/en/desktop/celebrate.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 103686
+      "bytes": 91912
     },
     {
       "lang": "en",
       "platform": "desktop",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/en/configure?step=1",
+      "url": "http://localhost:3000/en/configure?step=1",
       "publicPath": "/screenshots/en/desktop/configure.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 104810
+      "bytes": 105099
     },
     {
       "lang": "en",
       "platform": "desktop",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/en/guide",
+      "url": "http://localhost:3000/en/guide",
       "publicPath": "/screenshots/en/desktop/guide.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 58752
+      "bytes": 60148
     },
     {
       "lang": "en",
       "platform": "desktop",
       "view": "home",
-      "url": "https://www.birthday-cake.online/en",
+      "url": "http://localhost:3000/en",
       "publicPath": "/screenshots/en/desktop/home.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 80306
+      "bytes": 30166
     },
     {
       "lang": "en",
       "platform": "desktop",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/en?config=N4IgNghgdg5iBcICmUQBoQGcliQYwBckATAYQgGskBJYhZXGaAgWkwICcIB3AIyQ4cAnuhB5oxXABUhAByT1iASxhKCmUeKiSkpAPYBXKAQQBGABwZlq9fQBMAVlEHsHAHIQAtgsQBRT54Qmi4Eep4AskiYmBAwPiDhEEIABBBgYMlChhzJ3EqYABZRyXhhSMmcBkgAhKKqAG4CHt70ADIG4hoY4hzEAMoEQrj0eBxIXiwcetiimHgoSFJFLYgAZhBKwixgKgW2GJ4uSngDQ-GHmMe8egAemjhIvFwESnpQfas3p8OIMFzaLFkEA4gxAAF8gA",
+      "url": "http://localhost:3000/en?config=N4IgNghgdg5iBcICmUQBoQGcliQYwBckATAYQgGskBJYhZXGaAgWkwICcIB3AIyQ4cAnuhB5oxXABUhAByT1iASxhKCmUeKiSkpAPYBXKAQQBGABwZlq9fQBMAVlEHsHAHIQAtgsQBRT54Qmi4Eep4AskiYmBAwPiDhEEIABBBgYMlChhzJ3EqYABZRyXhhSMmcBkgAhKKqAG4CHt70ADIG4hoY4hzEAMoEQrj0eBxIXiwcetiimHgoSFJFLYgAZhBKwixgKgW2GJ4uSngDQ-GHmMe8egAemjhIvFwESnpQfas3p8OIMFzaLFkEA4gxAAF8gA",
       "publicPath": "/screenshots/en/desktop/stage.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 61269
+      "bytes": 63065
     },
     {
       "lang": "en",
       "platform": "mobile",
       "view": "about",
-      "url": "https://www.birthday-cake.online/en/about",
+      "url": "http://localhost:3000/en/about",
       "publicPath": "/screenshots/en/mobile/about.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 142509
+      "bytes": 142711
     },
     {
       "lang": "en",
       "platform": "mobile",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/en?config=N4IgNghgdg5iBcICmUQBoQGcliQYwBckATAYQgGskBJYhZXGaAgWkwICcIB3AIyQ4cAnuhB5oxXABUhAByT1iASxhKCmUeKiSkpAPYBXKAQQBGABwZlq9fQBMAVlEHsHAHIQAtgsQBRT54Qmi4Eep4AskiYmBAwPiDhEEIABBBgYMlChhzJ3EqYABZRyXhhSMmcBkgAhKKqAG4CHt70ADIG4hoY4hzEAMoEQrj0eBxIXiwcetiimHgoSFJFLYjsEIJCLFAqBSYYni5KeAND8QeYR7x6AB6aOEi8XARKelB9AGbXJ8OIMFzaLFk60GIAAvkA",
+      "url": "http://localhost:3000/en?config=N4IgNghgdg5iBcICmUQBoQGcliQYwBckATAYQgGskBJYhZXGaAgWkwICcIB3AIyQ4cAnuhB5oxXABUhAByT1iASxhKCmUeKiSkpAPYBXKAQQBGABwZlq9fQBMAVlEHsHAHIQAtgsQBRT54Qmi4Eep4AskiYmBAwPiDhEEIABBBgYMlChhzJ3EqYABZRyXhhSMmcBkgAhKKqAG4CHt70ADIG4hoY4hzEAMoEQrj0eBxIXiwcetiimHgoSFJFLYjsEIJCLFAqBSYYni5KeAND8QeYR7x6AB6aOEi8XARKelB9AGbXJ8OIMFzaLFk60GIAAvkA",
       "publicPath": "/screenshots/en/mobile/celebrate.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 118653
+      "bytes": 119506
     },
     {
       "lang": "en",
       "platform": "mobile",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/en/configure?step=1",
+      "url": "http://localhost:3000/en/configure?step=1",
       "publicPath": "/screenshots/en/mobile/configure.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 130330
+      "bytes": 131269
     },
     {
       "lang": "en",
       "platform": "mobile",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/en/guide",
+      "url": "http://localhost:3000/en/guide",
       "publicPath": "/screenshots/en/mobile/guide.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 111991
+      "bytes": 109743
     },
     {
       "lang": "en",
       "platform": "mobile",
       "view": "home",
-      "url": "https://www.birthday-cake.online/en",
+      "url": "http://localhost:3000/en",
       "publicPath": "/screenshots/en/mobile/home.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 108295
+      "bytes": 111152
     },
     {
       "lang": "en",
       "platform": "mobile",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/en?config=N4IgNghgdg5iBcICmUQBoQGcliQYwBckATAYQgGskBJYhZXGaAgWkwICcIB3AIyQ4cAnuhB5oxXABUhAByT1iASxhKCmUeKiSkpAPYBXKAQQBGABwZlq9fQBMAVlEHsHAHIQAtgsQBRT54Qmi4Eep4AskiYmBAwPiDhEEIABBBgYMlChhzJ3EqYABZRyXhhSMmcBkgAhKKqAG4CHt70ADIG4hoY4hzEAMoEQrj0eBxIXiwcetiimHgoSFJFLYgAZhBKwixgKgW2GJ4uSngDQ-GHmMe8egAemjhIvFwESnpQfas3p8OIMFzaLFkEA4gxAAF8gA",
+      "url": "http://localhost:3000/en?config=N4IgNghgdg5iBcICmUQBoQGcliQYwBckATAYQgGskBJYhZXGaAgWkwICcIB3AIyQ4cAnuhB5oxXABUhAByT1iASxhKCmUeKiSkpAPYBXKAQQBGABwZlq9fQBMAVlEHsHAHIQAtgsQBRT54Qmi4Eep4AskiYmBAwPiDhEEIABBBgYMlChhzJ3EqYABZRyXhhSMmcBkgAhKKqAG4CHt70ADIG4hoY4hzEAMoEQrj0eBxIXiwcetiimHgoSFJFLYgAZhBKwixgKgW2GJ4uSngDQ-GHmMe8egAemjhIvFwESnpQfas3p8OIMFzaLFkEA4gxAAF8gA",
       "publicPath": "/screenshots/en/mobile/stage.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 87294
+      "bytes": 86222
     },
     {
       "lang": "es",
       "platform": "desktop",
       "view": "about",
-      "url": "https://www.birthday-cake.online/es/about",
+      "url": "http://localhost:3000/es/about",
       "publicPath": "/screenshots/es/desktop/about.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 82904
+      "bytes": 84121
     },
     {
       "lang": "es",
       "platform": "desktop",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/es?config=N4IgNghgdg5iBcICmBnEAaEKliQYwBckATAYQgGskBJYhEAJwgEsoAjAewHcBaABwgMCATwwg80YrgAqwvknrFmMZgTSYJUKUlIcArlAIIAjAA5MSlWvoAmAKxi92BgDkIAWwWIAyhwBmALcQYnhOBBzuALKoKBAwXiAAhQCKekgABNjpoe58kFDp4cQcKIVO6cSoSCUAhGIqAG5Irh4JkRBEHCGCxN4iuPR4DEgePAwlCpgoeEhQSNIAFkie9CgEggzCPFDKC0aY7k7MeH3CA4iHKMecAB4hOEhsTATMHFDefjen5yAwTFr8QQiEAAXyAA",
+      "url": "http://localhost:3000/es?config=N4IgNghgdg5iBcICmBnEAaEKliQYwBckATAYQgGskBJYhEAJwgEsoAjAewHcBaABwgMCATwwg80YrgAqwvknrFmMZgTSYJUKUlIcArlAIIAjAA5MSlWvoAmAKxi92BgDkIAWwWIAyhwBmALcQYnhOBBzuALKoKBAwXiAAhQCKekgABNjpoe58kFDp4cQcKIVO6cSoSCUAhGIqAG5Irh4JkRBEHCGCxN4iuPR4DEgePAwlCpgoeEhQSNIAFkie9CgEggzCPFDKC0aY7k7MeH3CA4iHKMecAB4hOEhsTATMHFDefjen5yAwTFr8QQiEAAXyAA",
       "publicPath": "/screenshots/es/desktop/celebrate.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 105694
+      "bytes": 94699
     },
     {
       "lang": "es",
       "platform": "desktop",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/es/configure?step=1",
+      "url": "http://localhost:3000/es/configure?step=1",
       "publicPath": "/screenshots/es/desktop/configure.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 106279
+      "bytes": 107113
     },
     {
       "lang": "es",
       "platform": "desktop",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/es/guide",
+      "url": "http://localhost:3000/es/guide",
       "publicPath": "/screenshots/es/desktop/guide.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 65710
+      "bytes": 66991
     },
     {
       "lang": "es",
       "platform": "desktop",
       "view": "home",
-      "url": "https://www.birthday-cake.online/es",
+      "url": "http://localhost:3000/es",
       "publicPath": "/screenshots/es/desktop/home.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 86968
+      "bytes": 85769
     },
     {
       "lang": "es",
       "platform": "desktop",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/es?config=N4IgNghgdg5iBcICmBnEAaEKliQYwBckATAYQgGskBJYhEAJwgEsoAjAewHcBaABwgMCATwwg80YrgAqwvknrFmMZgTSYJUKUlIcArlAIIAjAA5MSlWvoAmAKxi92BgDkIAWwWIAyhwBmALcQYnhOBBzuALKoKBAwXiAAhQCKekgABNjpoe58kFDp4cQcKIVO6cSoSCUAhGIqAG5Irh4JkRBEHCGCxN4iuPR4DEgePAwlCpgoeEhQSNIAFkie9H4sDMI8YMoL1pjuTsx4fcIDiAcoR5wAHiE4SGxMBMwcUN5+1ydnIDBMWvyCEQgAC+QA",
+      "url": "http://localhost:3000/es?config=N4IgNghgdg5iBcICmBnEAaEKliQYwBckATAYQgGskBJYhEAJwgEsoAjAewHcBaABwgMCATwwg80YrgAqwvknrFmMZgTSYJUKUlIcArlAIIAjAA5MSlWvoAmAKxi92BgDkIAWwWIAyhwBmALcQYnhOBBzuALKoKBAwXiAAhQCKekgABNjpoe58kFDp4cQcKIVO6cSoSCUAhGIqAG5Irh4JkRBEHCGCxN4iuPR4DEgePAwlCpgoeEhQSNIAFkie9H4sDMI8YMoL1pjuTsx4fcIDiAcoR5wAHiE4SGxMBMwcUN5+1ydnIDBMWvyCEQgAC+QA",
       "publicPath": "/screenshots/es/desktop/stage.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 62892
+      "bytes": 63267
     },
     {
       "lang": "es",
       "platform": "mobile",
       "view": "about",
-      "url": "https://www.birthday-cake.online/es/about",
+      "url": "http://localhost:3000/es/about",
       "publicPath": "/screenshots/es/mobile/about.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 149410
+      "bytes": 152927
     },
     {
       "lang": "es",
       "platform": "mobile",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/es?config=N4IgNghgdg5iBcICmBnEAaEKliQYwBckATAYQgGskBJYhEAJwgEsoAjAewHcBaABwgMCATwwg80YrgAqwvknrFmMZgTSYJUKUlIcArlAIIAjAA5MSlWvoAmAKxi92BgDkIAWwWIAyhwBmALcQYnhOBBzuALKoKBAwXiAAhQCKekgABNjpoe58kFDp4cQcKIVO6cSoSCUAhGIqAG5Irh4JkRBEHCGCxN4iuPR4DEgePAwlCpgoeEhQSNIAFkie9CgEggzCPFDKC0aY7k7MeH3CA4iHKMecAB4hOEhsTATMHFDefjen5yAwTFr8QQiEAAXyAA",
+      "url": "http://localhost:3000/es?config=N4IgNghgdg5iBcICmBnEAaEKliQYwBckATAYQgGskBJYhEAJwgEsoAjAewHcBaABwgMCATwwg80YrgAqwvknrFmMZgTSYJUKUlIcArlAIIAjAA5MSlWvoAmAKxi92BgDkIAWwWIAyhwBmALcQYnhOBBzuALKoKBAwXiAAhQCKekgABNjpoe58kFDp4cQcKIVO6cSoSCUAhGIqAG5Irh4JkRBEHCGCxN4iuPR4DEgePAwlCpgoeEhQSNIAFkie9CgEggzCPFDKC0aY7k7MeH3CA4iHKMecAB4hOEhsTATMHFDefjen5yAwTFr8QQiEAAXyAA",
       "publicPath": "/screenshots/es/mobile/celebrate.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 120989
+      "bytes": 124095
     },
     {
       "lang": "es",
       "platform": "mobile",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/es/configure?step=1",
+      "url": "http://localhost:3000/es/configure?step=1",
       "publicPath": "/screenshots/es/mobile/configure.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 134295
+      "bytes": 134789
     },
     {
       "lang": "es",
       "platform": "mobile",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/es/guide",
+      "url": "http://localhost:3000/es/guide",
       "publicPath": "/screenshots/es/mobile/guide.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 116328
+      "bytes": 114511
     },
     {
       "lang": "es",
       "platform": "mobile",
       "view": "home",
-      "url": "https://www.birthday-cake.online/es",
+      "url": "http://localhost:3000/es",
       "publicPath": "/screenshots/es/mobile/home.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 114609
+      "bytes": 117032
     },
     {
       "lang": "es",
       "platform": "mobile",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/es?config=N4IgNghgdg5iBcICmBnEAaEKliQYwBckATAYQgGskBJYhEAJwgEsoAjAewHcBaABwgMCATwwg80YrgAqwvknrFmMZgTSYJUKUlIcArlAIIAjAA5MSlWvoAmAKxi92BgDkIAWwWIAyhwBmALcQYnhOBBzuALKoKBAwXiAAhQCKekgABNjpoe58kFDp4cQcKIVO6cSoSCUAhGIqAG5Irh4JkRBEHCGCxN4iuPR4DEgePAwlCpgoeEhQSNIAFkie9H4sDMI8YMoL1pjuTsx4fcIDiAcoR5wAHiE4SGxMBMwcUN5+1ydnIDBMWvyCEQgAC+QA",
+      "url": "http://localhost:3000/es?config=N4IgNghgdg5iBcICmBnEAaEKliQYwBckATAYQgGskBJYhEAJwgEsoAjAewHcBaABwgMCATwwg80YrgAqwvknrFmMZgTSYJUKUlIcArlAIIAjAA5MSlWvoAmAKxi92BgDkIAWwWIAyhwBmALcQYnhOBBzuALKoKBAwXiAAhQCKekgABNjpoe58kFDp4cQcKIVO6cSoSCUAhGIqAG5Irh4JkRBEHCGCxN4iuPR4DEgePAwlCpgoeEhQSNIAFkie9H4sDMI8YMoL1pjuTsx4fcIDiAcoR5wAHiE4SGxMBMwcUN5+1ydnIDBMWvyCEQgAC+QA",
       "publicPath": "/screenshots/es/mobile/stage.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 90177
+      "bytes": 89829
     },
     {
       "lang": "fr",
       "platform": "desktop",
       "view": "about",
-      "url": "https://www.birthday-cake.online/fr/about",
+      "url": "http://localhost:3000/fr/about",
       "publicPath": "/screenshots/fr/desktop/about.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 84614
+      "bytes": 85965
     },
     {
       "lang": "fr",
       "platform": "desktop",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/fr?config=N4IgNghgdg5iBcIBmAnEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkShAO4BGOFCgCeGEAWil8AFREAHHI1IBLGCqJZxkqNJzkA9gFcoRBAEYAHJlXrNjAEwBWcUdwoAchAC2SxOQALMAMAS+03IgNvAFkcLCwIGD8QAEUjHAACSLcsuIyAN0BlQCMADwzcDJQQiDAVXFMMgEJxdXyhL19GABkQg20IFFIAZSIRfEYCFBwfdhQDXHEsAhwoHBkAnE7ELgHRdig1ALNMbzcVAhGx5NOsc-4DEu1mfh4iFQMoIaQSy-HEGB4unY8gGoxAAF8gA",
+      "url": "http://localhost:3000/fr?config=N4IgNghgdg5iBcIBmAnEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkShAO4BGOFCgCeGEAWil8AFREAHHI1IBLGCqJZxkqNJzkA9gFcoRBAEYAHJlXrNjAEwBWcUdwoAchAC2SxOQALMAMAS+03IgNvAFkcLCwIGD8QAEUjHAACSLcsuIyAN0BlQCMADwzcDJQQiDAVXFMMgEJxdXyhL19GABkQg20IFFIAZSIRfEYCFBwfdhQDXHEsAhwoHBkAnE7ELgHRdig1ALNMbzcVAhGx5NOsc-4DEu1mfh4iFQMoIaQSy-HEGB4unY8gGoxAAF8gA",
       "publicPath": "/screenshots/fr/desktop/celebrate.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 87366
+      "bytes": 92215
     },
     {
       "lang": "fr",
       "platform": "desktop",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/fr/configure?step=1",
+      "url": "http://localhost:3000/fr/configure?step=1",
       "publicPath": "/screenshots/fr/desktop/configure.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 107807
+      "bytes": 107163
     },
     {
       "lang": "fr",
       "platform": "desktop",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/fr/guide",
+      "url": "http://localhost:3000/fr/guide",
       "publicPath": "/screenshots/fr/desktop/guide.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 69081
+      "bytes": 70495
     },
     {
       "lang": "fr",
       "platform": "desktop",
       "view": "home",
-      "url": "https://www.birthday-cake.online/fr",
+      "url": "http://localhost:3000/fr",
       "publicPath": "/screenshots/fr/desktop/home.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 90416
+      "bytes": 88444
     },
     {
       "lang": "fr",
       "platform": "desktop",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/fr?config=N4IgNghgdg5iBcIBmAnEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkShAO4BGOFCgCeGEAWil8AFREAHHI1IBLGCqJZxkqNJzkA9gFcoRBAEYAHJlXrNjAEwBWcUdwoAchAC2SxOQALMAMAS+03IgNvAFkcLCwIGD8QAEUjHAACSLcsuIyAN0BlQCMADwzcDJQQiDAVXFMMgEJxdXyhL19GABkQg20IFFIAZSIRfEYCFBwfdhQDXHEsAhwoHBkAnE7EJAgVUXZamAD7TG83FQIRseSzrAv+AxLtZn4eIhUDKCGkEqvxxBgPF07HkA1GIAAvkA",
+      "url": "http://localhost:3000/fr?config=N4IgNghgdg5iBcIBmAnEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkShAO4BGOFCgCeGEAWil8AFREAHHI1IBLGCqJZxkqNJzkA9gFcoRBAEYAHJlXrNjAEwBWcUdwoAchAC2SxOQALMAMAS+03IgNvAFkcLCwIGD8QAEUjHAACSLcsuIyAN0BlQCMADwzcDJQQiDAVXFMMgEJxdXyhL19GABkQg20IFFIAZSIRfEYCFBwfdhQDXHEsAhwoHBkAnE7EJAgVUXZamAD7TG83FQIRseSzrAv+AxLtZn4eIhUDKCGkEqvxxBgPF07HkA1GIAAvkA",
       "publicPath": "/screenshots/fr/desktop/stage.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 61758
+      "bytes": 62269
     },
     {
       "lang": "fr",
       "platform": "mobile",
       "view": "about",
-      "url": "https://www.birthday-cake.online/fr/about",
+      "url": "http://localhost:3000/fr/about",
       "publicPath": "/screenshots/fr/mobile/about.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 147449
+      "bytes": 150246
     },
     {
       "lang": "fr",
       "platform": "mobile",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/fr?config=N4IgNghgdg5iBcIBmAnEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkShAO4BGOFCgCeGEAWil8AFREAHHI1IBLGCqJZxkqNJzkA9gFcoRBAEYAHJlXrNjAEwBWcUdwoAchAC2SxOQALMAMAS+03IgNvAFkcLCwIGD8QAEUjHAACSLcsuIyAN0BlQCMADwzcDJQQiDAVXFMMgEJxdXyhL19GABkQg20IFFIAZSIRfEYCFBwfdhQDXHEsAhwoHBkAnE7ELgHRdig1ALNMbzcVAhGx5NOsc-4DEu1mfh4iFQMoIaQSy-HEGB4unY8gGoxAAF8gA",
+      "url": "http://localhost:3000/fr?config=N4IgNghgdg5iBcIBmAnEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkShAO4BGOFCgCeGEAWil8AFREAHHI1IBLGCqJZxkqNJzkA9gFcoRBAEYAHJlXrNjAEwBWcUdwoAchAC2SxOQALMAMAS+03IgNvAFkcLCwIGD8QAEUjHAACSLcsuIyAN0BlQCMADwzcDJQQiDAVXFMMgEJxdXyhL19GABkQg20IFFIAZSIRfEYCFBwfdhQDXHEsAhwoHBkAnE7ELgHRdig1ALNMbzcVAhGx5NOsc-4DEu1mfh4iFQMoIaQSy-HEGB4unY8gGoxAAF8gA",
       "publicPath": "/screenshots/fr/mobile/celebrate.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 124238
+      "bytes": 121479
     },
     {
       "lang": "fr",
       "platform": "mobile",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/fr/configure?step=1",
+      "url": "http://localhost:3000/fr/configure?step=1",
       "publicPath": "/screenshots/fr/mobile/configure.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 134662
+      "bytes": 135165
     },
     {
       "lang": "fr",
       "platform": "mobile",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/fr/guide",
+      "url": "http://localhost:3000/fr/guide",
       "publicPath": "/screenshots/fr/mobile/guide.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 119070
+      "bytes": 119341
     },
     {
       "lang": "fr",
       "platform": "mobile",
       "view": "home",
-      "url": "https://www.birthday-cake.online/fr",
+      "url": "http://localhost:3000/fr",
       "publicPath": "/screenshots/fr/mobile/home.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 119284
+      "bytes": 121364
     },
     {
       "lang": "fr",
       "platform": "mobile",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/fr?config=N4IgNghgdg5iBcIBmAnEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkShAO4BGOFCgCeGEAWil8AFREAHHI1IBLGCqJZxkqNJzkA9gFcoRBAEYAHJlXrNjAEwBWcUdwoAchAC2SxOQALMAMAS+03IgNvAFkcLCwIGD8QAEUjHAACSLcsuIyAN0BlQCMADwzcDJQQiDAVXFMMgEJxdXyhL19GABkQg20IFFIAZSIRfEYCFBwfdhQDXHEsAhwoHBkAnE7EJAgVUXZamAD7TG83FQIRseSzrAv+AxLtZn4eIhUDKCGkEqvxxBgPF07HkA1GIAAvkA",
+      "url": "http://localhost:3000/fr?config=N4IgNghgdg5iBcIBmAnEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkShAO4BGOFCgCeGEAWil8AFREAHHI1IBLGCqJZxkqNJzkA9gFcoRBAEYAHJlXrNjAEwBWcUdwoAchAC2SxOQALMAMAS+03IgNvAFkcLCwIGD8QAEUjHAACSLcsuIyAN0BlQCMADwzcDJQQiDAVXFMMgEJxdXyhL19GABkQg20IFFIAZSIRfEYCFBwfdhQDXHEsAhwoHBkAnE7EJAgVUXZamAD7TG83FQIRseSzrAv+AxLtZn4eIhUDKCGkEqvxxBgPF07HkA1GIAAvkA",
       "publicPath": "/screenshots/fr/mobile/stage.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 88586
+      "bytes": 87446
+    },
+    {
+      "lang": "hi",
+      "platform": "desktop",
+      "view": "about",
+      "url": "http://localhost:3000/hi/about",
+      "publicPath": "/screenshots/hi/desktop/about.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 82190
+    },
+    {
+      "lang": "hi",
+      "platform": "desktop",
+      "view": "celebrate",
+      "url": "http://localhost:3000/hi?config=N4IgNghgdg5iBcIAWBLEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpFDBREsEqVBk5yAewCuUIggCMADkyr1mxgCYArBKO5uAOQgBbZYkCgkIAUkIB8kID0kMHabkQG3gCyOFhYEDB+IIBgkIBUkICokIACkAAEgJyQgAyQeYB0kIGA0pBZweXBeRmAQpBF+QUVAIQS6gBuwl6+jGlFgKyQ2hDcpADKRKL4jATcOD7s3Aa4ElgEOFA4skg4-YhcY2LsUGpIZpjebigEUzOp11i3AgYAHtrMArxEKAZQEwAZm97rNEDBeLp2AoxtMQABfIA",
+      "publicPath": "/screenshots/hi/desktop/celebrate.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 87703
+    },
+    {
+      "lang": "hi",
+      "platform": "desktop",
+      "view": "configure",
+      "url": "http://localhost:3000/hi/configure?step=1",
+      "publicPath": "/screenshots/hi/desktop/configure.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 105301
+    },
+    {
+      "lang": "hi",
+      "platform": "desktop",
+      "view": "guide",
+      "url": "http://localhost:3000/hi/guide",
+      "publicPath": "/screenshots/hi/desktop/guide.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 64363
+    },
+    {
+      "lang": "hi",
+      "platform": "desktop",
+      "view": "home",
+      "url": "http://localhost:3000/hi",
+      "publicPath": "/screenshots/hi/desktop/home.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 78482
+    },
+    {
+      "lang": "hi",
+      "platform": "desktop",
+      "view": "stage",
+      "url": "http://localhost:3000/hi?config=N4IgNghgdg5iBcIAWBLEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpFDBREsEqVBk5yAewCuUIggCMADkyr1mxgCYArBKO5uAOQgBbZYkCgkIAUkIB8kID0kMHabkQG3gCyOFhYEDB+IIBgkIBUkICokIACkAAEgJyQgAyQeYB0kIGA0pBZweXBeRmAQpBF+QUVAIQS6gBuwl6+jGlFgKyQ2hDcpADKRKL4jATcOD7s3Aa4ElgEOFA4skg4-YgAZhAoYuxgakj2mN5uKARTM6m3WPcCBgAe2swCvEQoBigE0OH0es0QMF4unYCjG0xAAF8gA",
+      "publicPath": "/screenshots/hi/desktop/stage.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 71525
+    },
+    {
+      "lang": "hi",
+      "platform": "mobile",
+      "view": "about",
+      "url": "http://localhost:3000/hi/about",
+      "publicPath": "/screenshots/hi/mobile/about.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 163467
+    },
+    {
+      "lang": "hi",
+      "platform": "mobile",
+      "view": "celebrate",
+      "url": "http://localhost:3000/hi?config=N4IgNghgdg5iBcIAWBLEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpFDBREsEqVBk5yAewCuUIggCMADkyr1mxgCYArBKO5uAOQgBbZYkCgkIAUkIB8kID0kMHabkQG3gCyOFhYEDB+IIBgkIBUkICokIACkAAEgJyQgAyQeYB0kIGA0pBZweXBeRmAQpBF+QUVAIQS6gBuwl6+jGlFgKyQ2hDcpADKRKL4jATcOD7s3Aa4ElgEOFA4skg4-YhcY2LsUGpIZpjebigEUzOp11i3AgYAHtrMArxEKAZQEwAZm97rNEDBeLp2AoxtMQABfIA",
+      "publicPath": "/screenshots/hi/mobile/celebrate.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 120678
+    },
+    {
+      "lang": "hi",
+      "platform": "mobile",
+      "view": "configure",
+      "url": "http://localhost:3000/hi/configure?step=1",
+      "publicPath": "/screenshots/hi/mobile/configure.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 132545
+    },
+    {
+      "lang": "hi",
+      "platform": "mobile",
+      "view": "guide",
+      "url": "http://localhost:3000/hi/guide",
+      "publicPath": "/screenshots/hi/mobile/guide.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 131931
+    },
+    {
+      "lang": "hi",
+      "platform": "mobile",
+      "view": "home",
+      "url": "http://localhost:3000/hi",
+      "publicPath": "/screenshots/hi/mobile/home.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 109946
+    },
+    {
+      "lang": "hi",
+      "platform": "mobile",
+      "view": "stage",
+      "url": "http://localhost:3000/hi?config=N4IgNghgdg5iBcIAWBLEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpFDBREsEqVBk5yAewCuUIggCMADkyr1mxgCYArBKO5uAOQgBbZYkCgkIAUkIB8kID0kMHabkQG3gCyOFhYEDB+IIBgkIBUkICokIACkAAEgJyQgAyQeYB0kIGA0pBZweXBeRmAQpBF+QUVAIQS6gBuwl6+jGlFgKyQ2hDcpADKRKL4jATcOD7s3Aa4ElgEOFA4skg4-YgAZhAoYuxgakj2mN5uKARTM6m3WPcCBgAe2swCvEQoBigE0OH0es0QMF4unYCjG0xAAF8gA",
+      "publicPath": "/screenshots/hi/mobile/stage.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 86935
+    },
+    {
+      "lang": "id",
+      "platform": "desktop",
+      "view": "about",
+      "url": "http://localhost:3000/id/about",
+      "publicPath": "/screenshots/id/desktop/about.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 83264
+    },
+    {
+      "lang": "id",
+      "platform": "desktop",
+      "view": "celebrate",
+      "url": "http://localhost:3000/id?config=N4IgNghgdg5iBcICWATEAaEBnApmHAxgC44oDCEA1jgJJqJ44zREC0WRAThAO4BGOTpwCeGEAWgp8AFWEAHHAhAokMJESxiJUKTjIB7AK5QiCAIwAOTCrUalAJgCsYw7k4A5CAFtFiAILChlquRPpeALI4WFgQML4gAMo4XvrMAAS4XoYQaQAWENxy0FlpJJyUEHyGYACEYmoAboKePkoAQoYqWgUoCUTC+EoEnDjerJz6uGJYBDhQONK5yfEcBSKsUKq5pphZWEgEfQPxewd8+gAeWox83ERI+lAJAGYXR4OIMNw6rEWc-SAAL5AA",
+      "publicPath": "/screenshots/id/desktop/celebrate.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 88389
+    },
+    {
+      "lang": "id",
+      "platform": "desktop",
+      "view": "configure",
+      "url": "http://localhost:3000/id/configure?step=1",
+      "publicPath": "/screenshots/id/desktop/configure.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 106025
+    },
+    {
+      "lang": "id",
+      "platform": "desktop",
+      "view": "guide",
+      "url": "http://localhost:3000/id/guide",
+      "publicPath": "/screenshots/id/desktop/guide.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 59543
+    },
+    {
+      "lang": "id",
+      "platform": "desktop",
+      "view": "home",
+      "url": "http://localhost:3000/id",
+      "publicPath": "/screenshots/id/desktop/home.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 82357
+    },
+    {
+      "lang": "id",
+      "platform": "desktop",
+      "view": "stage",
+      "url": "http://localhost:3000/id?config=N4IgNghgdg5iBcICWATEAaEBnApmHAxgC44oDCEA1jgJJqJ44zREC0WRAThAO4BGOTpwCeGEAWgp8AFWEAHHAhAokMJESxiJUKTjIB7AK5QiCAIwAOTCrUalAJgCsYw7k4A5CAFtFiAILChlquRPpeALI4WFgQML4gAMo4XvrMAAS4XoYQaQAWENxy0FlpJJyUEHyGYACEYmoAboKePkoAQoYqWgUoCUTC+EoEnDjerJz6uGJYBDhQONK5yfEAZhBIIqxgqrl2mFlYSAR9A-EHR3z6AB5ajHzcREj6UAkrVyeDiDDcOqxFnP0QABfIA",
+      "publicPath": "/screenshots/id/desktop/stage.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 61253
+    },
+    {
+      "lang": "id",
+      "platform": "mobile",
+      "view": "about",
+      "url": "http://localhost:3000/id/about",
+      "publicPath": "/screenshots/id/mobile/about.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 156208
+    },
+    {
+      "lang": "id",
+      "platform": "mobile",
+      "view": "celebrate",
+      "url": "http://localhost:3000/id?config=N4IgNghgdg5iBcICWATEAaEBnApmHAxgC44oDCEA1jgJJqJ44zREC0WRAThAO4BGOTpwCeGEAWgp8AFWEAHHAhAokMJESxiJUKTjIB7AK5QiCAIwAOTCrUalAJgCsYw7k4A5CAFtFiAILChlquRPpeALI4WFgQML4gAMo4XvrMAAS4XoYQaQAWENxy0FlpJJyUEHyGYACEYmoAboKePkoAQoYqWgUoCUTC+EoEnDjerJz6uGJYBDhQONK5yfEcBSKsUKq5pphZWEgEfQPxewd8+gAeWox83ERI+lAJAGYXR4OIMNw6rEWc-SAAL5AA",
+      "publicPath": "/screenshots/id/mobile/celebrate.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 121712
+    },
+    {
+      "lang": "id",
+      "platform": "mobile",
+      "view": "configure",
+      "url": "http://localhost:3000/id/configure?step=1",
+      "publicPath": "/screenshots/id/mobile/configure.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 133193
+    },
+    {
+      "lang": "id",
+      "platform": "mobile",
+      "view": "guide",
+      "url": "http://localhost:3000/id/guide",
+      "publicPath": "/screenshots/id/mobile/guide.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 116103
+    },
+    {
+      "lang": "id",
+      "platform": "mobile",
+      "view": "home",
+      "url": "http://localhost:3000/id",
+      "publicPath": "/screenshots/id/mobile/home.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 112395
+    },
+    {
+      "lang": "id",
+      "platform": "mobile",
+      "view": "stage",
+      "url": "http://localhost:3000/id?config=N4IgNghgdg5iBcICWATEAaEBnApmHAxgC44oDCEA1jgJJqJ44zREC0WRAThAO4BGOTpwCeGEAWgp8AFWEAHHAhAokMJESxiJUKTjIB7AK5QiCAIwAOTCrUalAJgCsYw7k4A5CAFtFiAILChlquRPpeALI4WFgQML4gAMo4XvrMAAS4XoYQaQAWENxy0FlpJJyUEHyGYACEYmoAboKePkoAQoYqWgUoCUTC+EoEnDjerJz6uGJYBDhQONK5yfEAZhBIIqxgqrl2mFlYSAR9A-EHR3z6AB5ajHzcREj6UAkrVyeDiDDcOqxFnP0QABfIA",
+      "publicPath": "/screenshots/id/mobile/stage.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 85544
     },
     {
       "lang": "it",
       "platform": "desktop",
       "view": "about",
-      "url": "https://www.birthday-cake.online/it/about",
+      "url": "http://localhost:3000/it/about",
       "publicPath": "/screenshots/it/desktop/about.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 85795
+      "bytes": 86975
     },
     {
       "lang": "it",
       "platform": "desktop",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/it?config=N4IgNghgdg5iBcICWAXEAaEBnApmHAxijgCYDCEA1jgJIkIh44zQoC0WKAThAO4BGOLlwCeGEAWgl8AFREAHHAxJIYqLOMlRpOMgHsArlDTwAjAA5MKtSg2IATAFZxB3FwByEALZLEAcSQDMCQITVcUPS8AWRwsLAgYXxAyAAscAAIUAxQUJHS8rL08klikEq48rDyIADcaoSQoPQBCcTV6j28kgBk9LhwoAC89TQguEgBlFBF8BgJ+7zYuPVxxLAIBnBk0nwZOMdE2KFUUtEwvVyQCKZmki6qCfj0AD00mfh5cvSgJgDNnm6zRAwHjaNjyMbTEAAXyAA",
+      "url": "http://localhost:3000/it?config=N4IgNghgdg5iBcICWAXEAaEBnApmHAxijgCYDCEA1jgJIkIh44zQoC0WKAThAO4BGOLlwCeGEAWgl8AFREAHHAxJIYqLOMlRpOMgHsArlDTwAjAA5MKtSg2IATAFZxB3FwByEALZLEAcSQDMCQITVcUPS8AWRwsLAgYXxAyAAscAAIUAxQUJHS8rL08klikEq48rDyIADcaoSQoPQBCcTV6j28kgBk9LhwoAC89TQguEgBlFBF8BgJ+7zYuPVxxLAIBnBk0nwZOMdE2KFUUtEwvVyQCKZmki6qCfj0AD00mfh5cvSgJgDNnm6zRAwHjaNjyMbTEAAXyAA",
       "publicPath": "/screenshots/it/desktop/celebrate.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 105999
+      "bytes": 90572
     },
     {
       "lang": "it",
       "platform": "desktop",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/it/configure?step=1",
+      "url": "http://localhost:3000/it/configure?step=1",
       "publicPath": "/screenshots/it/desktop/configure.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 107548
+      "bytes": 108153
     },
     {
       "lang": "it",
       "platform": "desktop",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/it/guide",
+      "url": "http://localhost:3000/it/guide",
       "publicPath": "/screenshots/it/desktop/guide.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 66561
+      "bytes": 67780
     },
     {
       "lang": "it",
       "platform": "desktop",
       "view": "home",
-      "url": "https://www.birthday-cake.online/it",
+      "url": "http://localhost:3000/it",
       "publicPath": "/screenshots/it/desktop/home.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 88506
+      "bytes": 85447
     },
     {
       "lang": "it",
       "platform": "desktop",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/it?config=N4IgNghgdg5iBcICWAXEAaEBnApmHAxijgCYDCEA1jgJIkIh44zQoC0WKAThAO4BGOLlwCeGEAWgl8AFREAHHAxJIYqLOMlRpOMgHsArlDTwAjAA5MKtSg2IATAFZxB3FwByEALZLEAcSQDMCQITVcUPS8AWRwsLAgYXxAyAAscAAIUAxQUJHS8rL08klikEq48rDyIADcaoSQoPQBCcTV6j28kgBk9LhwoAC89TQguEgBlFBF8BgJ+7zYuPVxxLAIBnBk0nwYAMwgkUTZgmBTbcS9XJAIpmaSrqoJ+PQAPTSZ+Hly9KAm9153WaIGA8bRseRjaYgAC+QA",
+      "url": "http://localhost:3000/it?config=N4IgNghgdg5iBcICWAXEAaEBnApmHAxijgCYDCEA1jgJIkIh44zQoC0WKAThAO4BGOLlwCeGEAWgl8AFREAHHAxJIYqLOMlRpOMgHsArlDTwAjAA5MKtSg2IATAFZxB3FwByEALZLEAcSQDMCQITVcUPS8AWRwsLAgYXxAyAAscAAIUAxQUJHS8rL08klikEq48rDyIADcaoSQoPQBCcTV6j28kgBk9LhwoAC89TQguEgBlFBF8BgJ+7zYuPVxxLAIBnBk0nwYAMwgkUTZgmBTbcS9XJAIpmaSrqoJ+PQAPTSZ+Hly9KAm9153WaIGA8bRseRjaYgAC+QA",
       "publicPath": "/screenshots/it/desktop/stage.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 63421
+      "bytes": 63242
     },
     {
       "lang": "it",
       "platform": "mobile",
       "view": "about",
-      "url": "https://www.birthday-cake.online/it/about",
+      "url": "http://localhost:3000/it/about",
       "publicPath": "/screenshots/it/mobile/about.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 148105
+      "bytes": 150272
     },
     {
       "lang": "it",
       "platform": "mobile",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/it?config=N4IgNghgdg5iBcICWAXEAaEBnApmHAxijgCYDCEA1jgJIkIh44zQoC0WKAThAO4BGOLlwCeGEAWgl8AFREAHHAxJIYqLOMlRpOMgHsArlDTwAjAA5MKtSg2IATAFZxB3FwByEALZLEAcSQDMCQITVcUPS8AWRwsLAgYXxAyAAscAAIUAxQUJHS8rL08klikEq48rDyIADcaoSQoPQBCcTV6j28kgBk9LhwoAC89TQguEgBlFBF8BgJ+7zYuPVxxLAIBnBk0nwZOMdE2KFUUtEwvVyQCKZmki6qCfj0AD00mfh5cvSgJgDNnm6zRAwHjaNjyMbTEAAXyAA",
+      "url": "http://localhost:3000/it?config=N4IgNghgdg5iBcICWAXEAaEBnApmHAxijgCYDCEA1jgJIkIh44zQoC0WKAThAO4BGOLlwCeGEAWgl8AFREAHHAxJIYqLOMlRpOMgHsArlDTwAjAA5MKtSg2IATAFZxB3FwByEALZLEAcSQDMCQITVcUPS8AWRwsLAgYXxAyAAscAAIUAxQUJHS8rL08klikEq48rDyIADcaoSQoPQBCcTV6j28kgBk9LhwoAC89TQguEgBlFBF8BgJ+7zYuPVxxLAIBnBk0nwZOMdE2KFUUtEwvVyQCKZmki6qCfj0AD00mfh5cvSgJgDNnm6zRAwHjaNjyMbTEAAXyAA",
       "publicPath": "/screenshots/it/mobile/celebrate.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 130177
+      "bytes": 118661
     },
     {
       "lang": "it",
       "platform": "mobile",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/it/configure?step=1",
+      "url": "http://localhost:3000/it/configure?step=1",
       "publicPath": "/screenshots/it/mobile/configure.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 135395
+      "bytes": 135938
     },
     {
       "lang": "it",
       "platform": "mobile",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/it/guide",
+      "url": "http://localhost:3000/it/guide",
       "publicPath": "/screenshots/it/mobile/guide.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 116340
+      "bytes": 116597
     },
     {
       "lang": "it",
       "platform": "mobile",
       "view": "home",
-      "url": "https://www.birthday-cake.online/it",
+      "url": "http://localhost:3000/it",
       "publicPath": "/screenshots/it/mobile/home.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 115495
+      "bytes": 117040
     },
     {
       "lang": "it",
       "platform": "mobile",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/it?config=N4IgNghgdg5iBcICWAXEAaEBnApmHAxijgCYDCEA1jgJIkIh44zQoC0WKAThAO4BGOLlwCeGEAWgl8AFREAHHAxJIYqLOMlRpOMgHsArlDTwAjAA5MKtSg2IATAFZxB3FwByEALZLEAcSQDMCQITVcUPS8AWRwsLAgYXxAyAAscAAIUAxQUJHS8rL08klikEq48rDyIADcaoSQoPQBCcTV6j28kgBk9LhwoAC89TQguEgBlFBF8BgJ+7zYuPVxxLAIBnBk0nwYAMwgkUTZgmBTbcS9XJAIpmaSrqoJ+PQAPTSZ+Hly9KAm9153WaIGA8bRseRjaYgAC+QA",
+      "url": "http://localhost:3000/it?config=N4IgNghgdg5iBcICWAXEAaEBnApmHAxijgCYDCEA1jgJIkIh44zQoC0WKAThAO4BGOLlwCeGEAWgl8AFREAHHAxJIYqLOMlRpOMgHsArlDTwAjAA5MKtSg2IATAFZxB3FwByEALZLEAcSQDMCQITVcUPS8AWRwsLAgYXxAyAAscAAIUAxQUJHS8rL08klikEq48rDyIADcaoSQoPQBCcTV6j28kgBk9LhwoAC89TQguEgBlFBF8BgJ+7zYuPVxxLAIBnBk0nwYAMwgkUTZgmBTbcS9XJAIpmaSrqoJ+PQAPTSZ+Hly9KAm9153WaIGA8bRseRjaYgAC+QA",
       "publicPath": "/screenshots/it/mobile/stage.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 87638
+      "bytes": 88428
     },
     {
       "lang": "ja",
       "platform": "desktop",
       "view": "about",
-      "url": "https://www.birthday-cake.online/ja/about",
+      "url": "http://localhost:3000/ja/about",
       "publicPath": "/screenshots/ja/desktop/about.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 68927
+      "bytes": 70409
     },
     {
       "lang": "ja",
       "platform": "desktop",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/ja?config=N4IgNghgdg5iBcIBWEQBoQGcCmZsGMAXbAEwGEIBrbASRIRF2xmkIFpNCAnCAdwCNsXLgE90IfNBJ4AKiIAO2BiQCWMFYUzjJUadjIB7AK5RCCAIwAODKvWaGAJgCs4ozi4A5CAFsliQKoMgPIMgJEM2m6EBt4AstiYmBAwfiCABL6ArqaAVgyAAHKALnqA1gzpgFEMgH4MgJoMgBEMgGIMuYCA-+LqAG5CXr4MgPMMgNcMgBMM2hBcJADKhCJ4DPhc2D5sXAY44pj42FDYMgAW2C2InL2ibFBqK2YY3m4q+IPDSceYp-wGAB7aTPw8hCoGUP0AZnfnI4gwPF0bHkvSGIAAvkA",
+      "url": "http://localhost:3000/ja?config=N4IgNghgdg5iBcIBWEQBoQGcCmZsGMAXbAEwGEIBrbASRIRF2xmkIFpNCAnCAdwCNsXLgE90IfNBJ4AKiIAO2BiQCWMFYUzjJUadjIB7AK5RCCAIwAODKvWaGAJgCs4ozi4A5CAFsliQKoMgPIMgJEM2m6EBt4AstiYmBAwfiCABL6ArqaAVgyAAHKALnqA1gzpgFEMgH4MgJoMgBEMgGIMuYCA-+LqAG5CXr4MgPMMgNcMgBMM2hBcJADKhCJ4DPhc2D5sXAY44pj42FDYMgAW2C2InL2ibFBqK2YY3m4q+IPDSceYp-wGAB7aTPw8hCoGUP0AZnfnI4gwPF0bHkvSGIAAvkA",
       "publicPath": "/screenshots/ja/desktop/celebrate.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 80755
+      "bytes": 86876
     },
     {
       "lang": "ja",
       "platform": "desktop",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/ja/configure?step=1",
+      "url": "http://localhost:3000/ja/configure?step=1",
       "publicPath": "/screenshots/ja/desktop/configure.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 103942
+      "bytes": 104521
     },
     {
       "lang": "ja",
       "platform": "desktop",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/ja/guide",
+      "url": "http://localhost:3000/ja/guide",
       "publicPath": "/screenshots/ja/desktop/guide.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 56846
+      "bytes": 58347
     },
     {
       "lang": "ja",
       "platform": "desktop",
       "view": "home",
-      "url": "https://www.birthday-cake.online/ja",
+      "url": "http://localhost:3000/ja",
       "publicPath": "/screenshots/ja/desktop/home.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 75479
+      "bytes": 73735
     },
     {
       "lang": "ja",
       "platform": "desktop",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/ja?config=N4IgNghgdg5iBcIBWEQBoQGcCmZsGMAXbAEwGEIBrbASRIRF2xmkIFpNCAnCAdwCNsXLgE90IfNBJ4AKiIAO2BiQCWMFYUzjJUadjIB7AK5RCCAIwAODKvWaGAJgCs4ozi4A5CAFsliQKoMgPIMgJEM2m6EBt4AstiYmBAwfiCABL6ArqaAVgyAAHKALnqA1gzpgFEMgH4MgJoMgBEMgGIMuYCA-+LqAG5CXr4MgPMMgNcMgBMM2hBcJADKhCJ4DPhc2D5sXAY44pj42FDYMgAW2C2I+GvCImz8YDOYkeLebir4g8NJp5jn-AYAHtpM-DyEKgZQ-QBmD5cjiBgPF0bHkvSGIAAvkA",
+      "url": "http://localhost:3000/ja?config=N4IgNghgdg5iBcIBWEQBoQGcCmZsGMAXbAEwGEIBrbASRIRF2xmkIFpNCAnCAdwCNsXLgE90IfNBJ4AKiIAO2BiQCWMFYUzjJUadjIB7AK5RCCAIwAODKvWaGAJgCs4ozi4A5CAFsliQKoMgPIMgJEM2m6EBt4AstiYmBAwfiCABL6ArqaAVgyAAHKALnqA1gzpgFEMgH4MgJoMgBEMgGIMuYCA-+LqAG5CXr4MgPMMgNcMgBMM2hBcJADKhCJ4DPhc2D5sXAY44pj42FDYMgAW2C2I+GvCImz8YDOYkeLebir4g8NJp5jn-AYAHtpM-DyEKgZQ-QBmD5cjiBgPF0bHkvSGIAAvkA",
       "publicPath": "/screenshots/ja/desktop/stage.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 67797
+      "bytes": 68151
     },
     {
       "lang": "ja",
       "platform": "mobile",
       "view": "about",
-      "url": "https://www.birthday-cake.online/ja/about",
+      "url": "http://localhost:3000/ja/about",
       "publicPath": "/screenshots/ja/mobile/about.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 131620
+      "bytes": 138240
     },
     {
       "lang": "ja",
       "platform": "mobile",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/ja?config=N4IgNghgdg5iBcIBWEQBoQGcCmZsGMAXbAEwGEIBrbASRIRF2xmkIFpNCAnCAdwCNsXLgE90IfNBJ4AKiIAO2BiQCWMFYUzjJUadjIB7AK5RCCAIwAODKvWaGAJgCs4ozi4A5CAFsliQKoMgPIMgJEM2m6EBt4AstiYmBAwfiCABL6ArqaAVgyAAHKALnqA1gzpgFEMgH4MgJoMgBEMgGIMuYCA-+LqAG5CXr4MgPMMgNcMgBMM2hBcJADKhCJ4DPhc2D5sXAY44pj42FDYMgAW2C2InL2ibFBqK2YY3m4q+IPDSceYp-wGAB7aTPw8hCoGUP0AZnfnI4gwPF0bHkvSGIAAvkA",
+      "url": "http://localhost:3000/ja?config=N4IgNghgdg5iBcIBWEQBoQGcCmZsGMAXbAEwGEIBrbASRIRF2xmkIFpNCAnCAdwCNsXLgE90IfNBJ4AKiIAO2BiQCWMFYUzjJUadjIB7AK5RCCAIwAODKvWaGAJgCs4ozi4A5CAFsliQKoMgPIMgJEM2m6EBt4AstiYmBAwfiCABL6ArqaAVgyAAHKALnqA1gzpgFEMgH4MgJoMgBEMgGIMuYCA-+LqAG5CXr4MgPMMgNcMgBMM2hBcJADKhCJ4DPhc2D5sXAY44pj42FDYMgAW2C2InL2ibFBqK2YY3m4q+IPDSceYp-wGAB7aTPw8hCoGUP0AZnfnI4gwPF0bHkvSGIAAvkA",
       "publicPath": "/screenshots/ja/mobile/celebrate.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 116948
+      "bytes": 122272
     },
     {
       "lang": "ja",
       "platform": "mobile",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/ja/configure?step=1",
+      "url": "http://localhost:3000/ja/configure?step=1",
       "publicPath": "/screenshots/ja/mobile/configure.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 128481
+      "bytes": 128659
     },
     {
       "lang": "ja",
       "platform": "mobile",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/ja/guide",
+      "url": "http://localhost:3000/ja/guide",
       "publicPath": "/screenshots/ja/mobile/guide.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 115263
+      "bytes": 114260
     },
     {
       "lang": "ja",
       "platform": "mobile",
       "view": "home",
-      "url": "https://www.birthday-cake.online/ja",
+      "url": "http://localhost:3000/ja",
       "publicPath": "/screenshots/ja/mobile/home.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 103581
+      "bytes": 105085
     },
     {
       "lang": "ja",
       "platform": "mobile",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/ja?config=N4IgNghgdg5iBcIBWEQBoQGcCmZsGMAXbAEwGEIBrbASRIRF2xmkIFpNCAnCAdwCNsXLgE90IfNBJ4AKiIAO2BiQCWMFYUzjJUadjIB7AK5RCCAIwAODKvWaGAJgCs4ozi4A5CAFsliQKoMgPIMgJEM2m6EBt4AstiYmBAwfiCABL6ArqaAVgyAAHKALnqA1gzpgFEMgH4MgJoMgBEMgGIMuYCA-+LqAG5CXr4MgPMMgNcMgBMM2hBcJADKhCJ4DPhc2D5sXAY44pj42FDYMgAW2C2I+GvCImz8YDOYkeLebir4g8NJp5jn-AYAHtpM-DyEKgZQ-QBmD5cjiBgPF0bHkvSGIAAvkA",
+      "url": "http://localhost:3000/ja?config=N4IgNghgdg5iBcIBWEQBoQGcCmZsGMAXbAEwGEIBrbASRIRF2xmkIFpNCAnCAdwCNsXLgE90IfNBJ4AKiIAO2BiQCWMFYUzjJUadjIB7AK5RCCAIwAODKvWaGAJgCs4ozi4A5CAFsliQKoMgPIMgJEM2m6EBt4AstiYmBAwfiCABL6ArqaAVgyAAHKALnqA1gzpgFEMgH4MgJoMgBEMgGIMuYCA-+LqAG5CXr4MgPMMgNcMgBMM2hBcJADKhCJ4DPhc2D5sXAY44pj42FDYMgAW2C2I+GvCImz8YDOYkeLebir4g8NJp5jn-AYAHtpM-DyEKgZQ-QBmD5cjiBgPF0bHkvSGIAAvkA",
       "publicPath": "/screenshots/ja/mobile/stage.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 86804
+      "bytes": 88535
     },
     {
       "lang": "ko",
       "platform": "desktop",
       "view": "about",
-      "url": "https://www.birthday-cake.online/ko/about",
+      "url": "http://localhost:3000/ko/about",
       "publicPath": "/screenshots/ko/desktop/about.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 66541
+      "bytes": 68142
     },
     {
       "lang": "ko",
       "platform": "desktop",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/ko?config=N4IgNghgdg5iBcIDWB7EAaEBnApmHAxgC44AmAwhEjgJKkIh44zREC0WRAThAO4BGOLlwCeGEAWil8AFREAHHA1IBLGCqJZxkqNJzkUAVyhEEARgAcmVes0MATAFZxh3FwByEALZLEgAcnAH+7tVyIULwBZHCwsCBhfEEBI1cBXnsAdVYACQA1VwAuOtMAXnsAWhsAOQcAUsYBCcXUANyFPHwYAwABJ7QguUgBlIhF8BgIuHG82LhRccSwCHCgcGQALHDrEThbRNig1adNML1cVAg6u+K2sHf4UAA9tJn4eIhUUKDaAM1O97sQYHl02eRbOkABfIA",
+      "url": "http://localhost:3000/ko?config=N4IgNghgdg5iBcIDWB7EAaEBnApmHAxgC44AmAwhEjgJKkIh44zREC0WRAThAO4BGOLlwCeGEAWil8AFREAHHA1IBLGCqJZxkqNJzkUAVyhEEARgAcmVes0MATAFZxh3FwByEALZLEgAcnAH+7tVyIULwBZHCwsCBhfEEBI1cBXnsAdVYACQA1VwAuOtMAXnsAWhsAOQcAUsYBCcXUANyFPHwYAwABJ7QguUgBlIhF8BgIuHG82LhRccSwCHCgcGQALHDrEThbRNig1adNML1cVAg6u+K2sHf4UAA9tJn4eIhUUKDaAM1O97sQYHl02eRbOkABfIA",
       "publicPath": "/screenshots/ko/desktop/celebrate.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 101447
+      "bytes": 83757
     },
     {
       "lang": "ko",
       "platform": "desktop",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/ko/configure?step=1",
+      "url": "http://localhost:3000/ko/configure?step=1",
       "publicPath": "/screenshots/ko/desktop/configure.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 103344
+      "bytes": 104104
     },
     {
       "lang": "ko",
       "platform": "desktop",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/ko/guide",
+      "url": "http://localhost:3000/ko/guide",
       "publicPath": "/screenshots/ko/desktop/guide.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 55255
+      "bytes": 56869
     },
     {
       "lang": "ko",
       "platform": "desktop",
       "view": "home",
-      "url": "https://www.birthday-cake.online/ko",
+      "url": "http://localhost:3000/ko",
       "publicPath": "/screenshots/ko/desktop/home.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 74725
+      "bytes": 72957
     },
     {
       "lang": "ko",
       "platform": "desktop",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/ko?config=N4IgNghgdg5iBcIDWB7EAaEBnApmHAxgC44AmAwhEjgJKkIh44zREC0WRAThAO4BGOLlwCeGEAWil8AFREAHHA1IBLGCqJZxkqNJzkUAVyhEEARgAcmVes0MATAFZxh3FwByEALZLEgAcnAH+7tVyIULwBZHCwsCBhfEEBI1cBXnsAdVYACQA1VwAuOtMAXnsAWhsAOQcAUsYBCcXUANyFPHwYAwABJ7QguUgBlIhF8BgIuHG82LhRccSwCHCgcGQALHDrEAlnhETZ+MGGsMPEvVxUCDq74naw9-hQAD20mfh4iFRQoNoAzc4PuxBgeXTZ5Fs6QAC+QA",
+      "url": "http://localhost:3000/ko?config=N4IgNghgdg5iBcIDWB7EAaEBnApmHAxgC44AmAwhEjgJKkIh44zREC0WRAThAO4BGOLlwCeGEAWil8AFREAHHA1IBLGCqJZxkqNJzkUAVyhEEARgAcmVes0MATAFZxh3FwByEALZLEgAcnAH+7tVyIULwBZHCwsCBhfEEBI1cBXnsAdVYACQA1VwAuOtMAXnsAWhsAOQcAUsYBCcXUANyFPHwYAwABJ7QguUgBlIhF8BgIuHG82LhRccSwCHCgcGQALHDrEAlnhETZ+MGGsMPEvVxUCDq74naw9-hQAD20mfh4iFRQoNoAzc4PuxBgeXTZ5Fs6QAC+QA",
       "publicPath": "/screenshots/ko/desktop/stage.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 62702
+      "bytes": 60943
     },
     {
       "lang": "ko",
       "platform": "mobile",
       "view": "about",
-      "url": "https://www.birthday-cake.online/ko/about",
+      "url": "http://localhost:3000/ko/about",
       "publicPath": "/screenshots/ko/mobile/about.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 131072
+      "bytes": 140510
     },
     {
       "lang": "ko",
       "platform": "mobile",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/ko?config=N4IgNghgdg5iBcIDWB7EAaEBnApmHAxgC44AmAwhEjgJKkIh44zREC0WRAThAO4BGOLlwCeGEAWil8AFREAHHA1IBLGCqJZxkqNJzkUAVyhEEARgAcmVes0MATAFZxh3FwByEALZLEgAcnAH+7tVyIULwBZHCwsCBhfEEBI1cBXnsAdVYACQA1VwAuOtMAXnsAWhsAOQcAUsYBCcXUANyFPHwYAwABJ7QguUgBlIhF8BgIuHG82LhRccSwCHCgcGQALHDrEThbRNig1adNML1cVAg6u+K2sHf4UAA9tJn4eIhUUKDaAM1O97sQYHl02eRbOkABfIA",
+      "url": "http://localhost:3000/ko?config=N4IgNghgdg5iBcIDWB7EAaEBnApmHAxgC44AmAwhEjgJKkIh44zREC0WRAThAO4BGOLlwCeGEAWil8AFREAHHA1IBLGCqJZxkqNJzkUAVyhEEARgAcmVes0MATAFZxh3FwByEALZLEgAcnAH+7tVyIULwBZHCwsCBhfEEBI1cBXnsAdVYACQA1VwAuOtMAXnsAWhsAOQcAUsYBCcXUANyFPHwYAwABJ7QguUgBlIhF8BgIuHG82LhRccSwCHCgcGQALHDrEThbRNig1adNML1cVAg6u+K2sHf4UAA9tJn4eIhUUKDaAM1O97sQYHl02eRbOkABfIA",
       "publicPath": "/screenshots/ko/mobile/celebrate.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 124870
+      "bytes": 125166
     },
     {
       "lang": "ko",
       "platform": "mobile",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/ko/configure?step=1",
+      "url": "http://localhost:3000/ko/configure?step=1",
       "publicPath": "/screenshots/ko/mobile/configure.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 128663
+      "bytes": 129183
     },
     {
       "lang": "ko",
       "platform": "mobile",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/ko/guide",
+      "url": "http://localhost:3000/ko/guide",
       "publicPath": "/screenshots/ko/mobile/guide.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 114210
+      "bytes": 121267
     },
     {
       "lang": "ko",
       "platform": "mobile",
       "view": "home",
-      "url": "https://www.birthday-cake.online/ko",
+      "url": "http://localhost:3000/ko",
       "publicPath": "/screenshots/ko/mobile/home.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 104222
+      "bytes": 104301
     },
     {
       "lang": "ko",
       "platform": "mobile",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/ko?config=N4IgNghgdg5iBcIDWB7EAaEBnApmHAxgC44AmAwhEjgJKkIh44zREC0WRAThAO4BGOLlwCeGEAWil8AFREAHHA1IBLGCqJZxkqNJzkUAVyhEEARgAcmVes0MATAFZxh3FwByEALZLEgAcnAH+7tVyIULwBZHCwsCBhfEEBI1cBXnsAdVYACQA1VwAuOtMAXnsAWhsAOQcAUsYBCcXUANyFPHwYAwABJ7QguUgBlIhF8BgIuHG82LhRccSwCHCgcGQALHDrEAlnhETZ+MGGsMPEvVxUCDq74naw9-hQAD20mfh4iFRQoNoAzc4PuxBgeXTZ5Fs6QAC+QA",
+      "url": "http://localhost:3000/ko?config=N4IgNghgdg5iBcIDWB7EAaEBnApmHAxgC44AmAwhEjgJKkIh44zREC0WRAThAO4BGOLlwCeGEAWil8AFREAHHA1IBLGCqJZxkqNJzkUAVyhEEARgAcmVes0MATAFZxh3FwByEALZLEgAcnAH+7tVyIULwBZHCwsCBhfEEBI1cBXnsAdVYACQA1VwAuOtMAXnsAWhsAOQcAUsYBCcXUANyFPHwYAwABJ7QguUgBlIhF8BgIuHG82LhRccSwCHCgcGQALHDrEAlnhETZ+MGGsMPEvVxUCDq74naw9-hQAD20mfh4iFRQoNoAzc4PuxBgeXTZ5Fs6QAC+QA",
       "publicPath": "/screenshots/ko/mobile/stage.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 81724
+      "bytes": 81820
+    },
+    {
+      "lang": "ms",
+      "platform": "desktop",
+      "view": "about",
+      "url": "http://localhost:3000/ms/about",
+      "publicPath": "/screenshots/ms/desktop/about.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 84675
+    },
+    {
+      "lang": "ms",
+      "platform": "desktop",
+      "view": "celebrate",
+      "url": "http://localhost:3000/ms?config=N4IgNghgdg5iBcIC2BnEAaEKCmZsGMAXbAEwGEIBrbASRIRF2xmkIFoVCAnCAdwCNsXLgE8MIfNBJ4AKiIAO2BiQCWMFYTSZJUadjIB7AK5RCCAIwAOTKvWaGAJgCs4ozi4A5CEiWIAgiooIhAAFuL4boQGSACy2CgoEDC+IADK2EgGLAAEOEhGENkqSPIq0PnZPlAAVhCq2dRQwYQQ0ACE4uoAbkJePgx+SCpc4RBcJKmEIngM+FzY3mxcBjjiKPjYUNgyIRkpnGOibFBqIWaY+Sgq+JPTKZfX-AYAHuFM-DyEKgZQqQBmz1uM0QMB4ujY8jGUxAAF8gA",
+      "publicPath": "/screenshots/ms/desktop/celebrate.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 95793
+    },
+    {
+      "lang": "ms",
+      "platform": "desktop",
+      "view": "configure",
+      "url": "http://localhost:3000/ms/configure?step=1",
+      "publicPath": "/screenshots/ms/desktop/configure.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 106295
+    },
+    {
+      "lang": "ms",
+      "platform": "desktop",
+      "view": "guide",
+      "url": "http://localhost:3000/ms/guide",
+      "publicPath": "/screenshots/ms/desktop/guide.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 56374
+    },
+    {
+      "lang": "ms",
+      "platform": "desktop",
+      "view": "home",
+      "url": "http://localhost:3000/ms",
+      "publicPath": "/screenshots/ms/desktop/home.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 79374
+    },
+    {
+      "lang": "ms",
+      "platform": "desktop",
+      "view": "stage",
+      "url": "http://localhost:3000/ms?config=N4IgNghgdg5iBcIC2BnEAaEKCmZsGMAXbAEwGEIBrbASRIRF2xmkIFoVCAnCAdwCNsXLgE8MIfNBJ4AKiIAO2BiQCWMFYTSZJUadjIB7AK5RCCAIwAOTKvWaGAJgCs4ozi4A5CEiWIAgiooIhAAFuL4boQGSACy2CgoEDC+IADK2EgGLAAEOEhGENkqSPIq0PnZPlAAVhCq2dRQwYQQ0ACE4uoAbkJePgx+SCpc4RBcJKmEIngM+FzY3mxcBjjiKPjYUNgyIRkpAGYQwyJsYGoh9pj5KCr4k9Mp17f8BgAe4Uz8PIQqBlCp+1e9xmiBgPF0bHkYymIAAvkA",
+      "publicPath": "/screenshots/ms/desktop/stage.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 64689
+    },
+    {
+      "lang": "ms",
+      "platform": "mobile",
+      "view": "about",
+      "url": "http://localhost:3000/ms/about",
+      "publicPath": "/screenshots/ms/mobile/about.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 152988
+    },
+    {
+      "lang": "ms",
+      "platform": "mobile",
+      "view": "celebrate",
+      "url": "http://localhost:3000/ms?config=N4IgNghgdg5iBcIC2BnEAaEKCmZsGMAXbAEwGEIBrbASRIRF2xmkIFoVCAnCAdwCNsXLgE8MIfNBJ4AKiIAO2BiQCWMFYTSZJUadjIB7AK5RCCAIwAOTKvWaGAJgCs4ozi4A5CEiWIAgiooIhAAFuL4boQGSACy2CgoEDC+IADK2EgGLAAEOEhGENkqSPIq0PnZPlAAVhCq2dRQwYQQ0ACE4uoAbkJePgx+SCpc4RBcJKmEIngM+FzY3mxcBjjiKPjYUNgyIRkpnGOibFBqIWaY+Sgq+JPTKZfX-AYAHuFM-DyEKgZQqQBmz1uM0QMB4ujY8jGUxAAF8gA",
+      "publicPath": "/screenshots/ms/mobile/celebrate.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 129578
+    },
+    {
+      "lang": "ms",
+      "platform": "mobile",
+      "view": "configure",
+      "url": "http://localhost:3000/ms/configure?step=1",
+      "publicPath": "/screenshots/ms/mobile/configure.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 133769
+    },
+    {
+      "lang": "ms",
+      "platform": "mobile",
+      "view": "guide",
+      "url": "http://localhost:3000/ms/guide",
+      "publicPath": "/screenshots/ms/mobile/guide.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 112419
+    },
+    {
+      "lang": "ms",
+      "platform": "mobile",
+      "view": "home",
+      "url": "http://localhost:3000/ms",
+      "publicPath": "/screenshots/ms/mobile/home.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 110362
+    },
+    {
+      "lang": "ms",
+      "platform": "mobile",
+      "view": "stage",
+      "url": "http://localhost:3000/ms?config=N4IgNghgdg5iBcIC2BnEAaEKCmZsGMAXbAEwGEIBrbASRIRF2xmkIFoVCAnCAdwCNsXLgE8MIfNBJ4AKiIAO2BiQCWMFYTSZJUadjIB7AK5RCCAIwAOTKvWaGAJgCs4ozi4A5CEiWIAgiooIhAAFuL4boQGSACy2CgoEDC+IADK2EgGLAAEOEhGENkqSPIq0PnZPlAAVhCq2dRQwYQQ0ACE4uoAbkJePgx+SCpc4RBcJKmEIngM+FzY3mxcBjjiKPjYUNgyIRkpAGYQwyJsYGoh9pj5KCr4k9Mp17f8BgAe4Uz8PIQqBlCp+1e9xmiBgPF0bHkYymIAAvkA",
+      "publicPath": "/screenshots/ms/mobile/stage.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 89322
     },
     {
       "lang": "pt",
       "platform": "desktop",
       "view": "about",
-      "url": "https://www.birthday-cake.online/pt/about",
+      "url": "http://localhost:3000/pt/about",
       "publicPath": "/screenshots/pt/desktop/about.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 79823
+      "bytes": 80994
     },
     {
       "lang": "pt",
       "platform": "desktop",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/pt?config=N4IgNghgdg5iBcIAOAXEAaEBnApmHAxijgCYDCEA1jgJIkIgBOEAllAEYD2A7gLRIRGKAJ4YQBaCXwAVYUhwMSLGCxRYxEqFJxlOAVyhp4ARgAcmJSrUMATAFYxe3IwByEALYLEACTw4oEBpOKJzuALI4WFgQMF4gAIp6OAAEISScWMkZybhOOZxQABbZuMmMOBBgLABeOO4AhGIqAG44rh5xAOIQ7IwseBqCJADKIvgMBOUevIwZCphYBP440oV1cVgogozCvFDKhWiY7k4sBKPC44gnWGdcAB4afr0QKCwFwwBm9xdXIDDMLT8QQiEAAXyAA",
+      "url": "http://localhost:3000/pt?config=N4IgNghgdg5iBcIAOAXEAaEBnApmHAxijgCYDCEA1jgJIkIgBOEAllAEYD2A7gLRIRGKAJ4YQBaCXwAVYUhwMSLGCxRYxEqFJxlOAVyhp4ARgAcmJSrUMATAFYxe3IwByEALYLEACTw4oEBpOKJzuALI4WFgQMF4gAIp6OAAEISScWMkZybhOOZxQABbZuMmMOBBgLABeOO4AhGIqAG44rh5xAOIQ7IwseBqCJADKIvgMBOUevIwZCphYBP440oV1cVgogozCvFDKhWiY7k4sBKPC44gnWGdcAB4afr0QKCwFwwBm9xdXIDDMLT8QQiEAAXyAA",
       "publicPath": "/screenshots/pt/desktop/celebrate.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 104256
+      "bytes": 91813
     },
     {
       "lang": "pt",
       "platform": "desktop",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/pt/configure?step=1",
+      "url": "http://localhost:3000/pt/configure?step=1",
       "publicPath": "/screenshots/pt/desktop/configure.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 106184
+      "bytes": 107098
     },
     {
       "lang": "pt",
       "platform": "desktop",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/pt/guide",
+      "url": "http://localhost:3000/pt/guide",
       "publicPath": "/screenshots/pt/desktop/guide.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 65558
+      "bytes": 66797
     },
     {
       "lang": "pt",
       "platform": "desktop",
       "view": "home",
-      "url": "https://www.birthday-cake.online/pt",
+      "url": "http://localhost:3000/pt",
       "publicPath": "/screenshots/pt/desktop/home.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 85816
+      "bytes": 83425
     },
     {
       "lang": "pt",
       "platform": "desktop",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/pt?config=N4IgNghgdg5iBcIAOAXEAaEBnApmHAxijgCYDCEA1jgJIkIgBOEAllAEYD2A7gLRIRGKAJ4YQBaCXwAVYUhwMSLGCxRYxEqFJxlOAVyhp4ARgAcmJSrUMATAFYxe3IwByEALYLEACTw4oEBpOKJzuALI4WFgQMF4gAIp6OAAEISScWMkZybhOOZxQABbZuMmMOBBgLABeOO4AhGIqAG44rh5xAOIQ7IwseBqCJADKIvgMBOUevIwZCphYBP440oV1cQBmrIzCvFUwhdaY7k4sBKPC44gnWGdcAB4afr0QKCwFwxv3F1cgMMxafiCEQgAC+QA",
+      "url": "http://localhost:3000/pt?config=N4IgNghgdg5iBcIAOAXEAaEBnApmHAxijgCYDCEA1jgJIkIgBOEAllAEYD2A7gLRIRGKAJ4YQBaCXwAVYUhwMSLGCxRYxEqFJxlOAVyhp4ARgAcmJSrUMATAFYxe3IwByEALYLEACTw4oEBpOKJzuALI4WFgQMF4gAIp6OAAEISScWMkZybhOOZxQABbZuMmMOBBgLABeOO4AhGIqAG44rh5xAOIQ7IwseBqCJADKIvgMBOUevIwZCphYBP440oV1cQBmrIzCvFUwhdaY7k4sBKPC44gnWGdcAB4afr0QKCwFwxv3F1cgMMxafiCEQgAC+QA",
       "publicPath": "/screenshots/pt/desktop/stage.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 63862
+      "bytes": 64754
     },
     {
       "lang": "pt",
       "platform": "mobile",
       "view": "about",
-      "url": "https://www.birthday-cake.online/pt/about",
+      "url": "http://localhost:3000/pt/about",
       "publicPath": "/screenshots/pt/mobile/about.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 143556
+      "bytes": 147282
     },
     {
       "lang": "pt",
       "platform": "mobile",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/pt?config=N4IgNghgdg5iBcIAOAXEAaEBnApmHAxijgCYDCEA1jgJIkIgBOEAllAEYD2A7gLRIRGKAJ4YQBaCXwAVYUhwMSLGCxRYxEqFJxlOAVyhp4ARgAcmJSrUMATAFYxe3IwByEALYLEACTw4oEBpOKJzuALI4WFgQMF4gAIp6OAAEISScWMkZybhOOZxQABbZuMmMOBBgLABeOO4AhGIqAG44rh5xAOIQ7IwseBqCJADKIvgMBOUevIwZCphYBP440oV1cVgogozCvFDKhWiY7k4sBKPC44gnWGdcAB4afr0QKCwFwwBm9xdXIDDMLT8QQiEAAXyAA",
+      "url": "http://localhost:3000/pt?config=N4IgNghgdg5iBcIAOAXEAaEBnApmHAxijgCYDCEA1jgJIkIgBOEAllAEYD2A7gLRIRGKAJ4YQBaCXwAVYUhwMSLGCxRYxEqFJxlOAVyhp4ARgAcmJSrUMATAFYxe3IwByEALYLEACTw4oEBpOKJzuALI4WFgQMF4gAIp6OAAEISScWMkZybhOOZxQABbZuMmMOBBgLABeOO4AhGIqAG44rh5xAOIQ7IwseBqCJADKIvgMBOUevIwZCphYBP440oV1cVgogozCvFDKhWiY7k4sBKPC44gnWGdcAB4afr0QKCwFwwBm9xdXIDDMLT8QQiEAAXyAA",
       "publicPath": "/screenshots/pt/mobile/celebrate.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 129139
+      "bytes": 124408
     },
     {
       "lang": "pt",
       "platform": "mobile",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/pt/configure?step=1",
+      "url": "http://localhost:3000/pt/configure?step=1",
       "publicPath": "/screenshots/pt/mobile/configure.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 134788
+      "bytes": 135337
     },
     {
       "lang": "pt",
       "platform": "mobile",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/pt/guide",
+      "url": "http://localhost:3000/pt/guide",
       "publicPath": "/screenshots/pt/mobile/guide.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 116446
+      "bytes": 119363
     },
     {
       "lang": "pt",
       "platform": "mobile",
       "view": "home",
-      "url": "https://www.birthday-cake.online/pt",
+      "url": "http://localhost:3000/pt",
       "publicPath": "/screenshots/pt/mobile/home.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 114072
+      "bytes": 115439
     },
     {
       "lang": "pt",
       "platform": "mobile",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/pt?config=N4IgNghgdg5iBcIAOAXEAaEBnApmHAxijgCYDCEA1jgJIkIgBOEAllAEYD2A7gLRIRGKAJ4YQBaCXwAVYUhwMSLGCxRYxEqFJxlOAVyhp4ARgAcmJSrUMATAFYxe3IwByEALYLEACTw4oEBpOKJzuALI4WFgQMF4gAIp6OAAEISScWMkZybhOOZxQABbZuMmMOBBgLABeOO4AhGIqAG44rh5xAOIQ7IwseBqCJADKIvgMBOUevIwZCphYBP440oV1cQBmrIzCvFUwhdaY7k4sBKPC44gnWGdcAB4afr0QKCwFwxv3F1cgMMxafiCEQgAC+QA",
+      "url": "http://localhost:3000/pt?config=N4IgNghgdg5iBcIAOAXEAaEBnApmHAxijgCYDCEA1jgJIkIgBOEAllAEYD2A7gLRIRGKAJ4YQBaCXwAVYUhwMSLGCxRYxEqFJxlOAVyhp4ARgAcmJSrUMATAFYxe3IwByEALYLEACTw4oEBpOKJzuALI4WFgQMF4gAIp6OAAEISScWMkZybhOOZxQABbZuMmMOBBgLABeOO4AhGIqAG44rh5xAOIQ7IwseBqCJADKIvgMBOUevIwZCphYBP440oV1cQBmrIzCvFUwhdaY7k4sBKPC44gnWGdcAB4afr0QKCwFwxv3F1cgMMxafiCEQgAC+QA",
       "publicPath": "/screenshots/pt/mobile/stage.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 90611
+      "bytes": 90712
     },
     {
       "lang": "ru",
       "platform": "desktop",
       "view": "about",
-      "url": "https://www.birthday-cake.online/ru/about",
+      "url": "http://localhost:3000/ru/about",
       "publicPath": "/screenshots/ru/desktop/about.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 87441
+      "bytes": 88622
     },
     {
       "lang": "ru",
       "platform": "desktop",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/ru?config=N4IgNghgdg5iBcIBOBXEAaEBnApmHAxgC44AmAwhANY4CSpCIARmCjkzkkgJ4C0MkAF44MIAtFL4AKtwAOIxKQCWMJUSyjxUSTnIB7FFCIIAjAA5My1esYAmAKyiUuJADkIAWwUhACCCBeED9ABhBNZyI9DwBZHCwsCBhvQHwQQGEQQEEQQCEQQBkQAAIUwEYQJMAWECS0lMB5ECzAJhAUwFYQLLSKwD4QQA4QLMAeEGrAcRA0wGkQAEJRVQA3TncvRkAcEEDALhAUptbNCCRSAGUibnxGLCJFnl5BpT18Y0wsAhwoHCkACxwxxC2dvigVK+OQD2clAlX17w+sL5MPQAD00eHYSAgRAOUGWADNgT8NogYJDtLxZIs1iAAL5AA",
+      "url": "http://localhost:3000/ru?config=N4IgNghgdg5iBcIBOBXEAaEBnApmHAxgC44AmAwhANY4CSpCIARmCjkzkkgJ4C0MkAF44MIAtFL4AKtwAOIxKQCWMJUSyjxUSTnIB7FFCIIAjAA5My1esYAmAKyiUuJADkIAWwUhACCCBeED9ABhBNZyI9DwBZHCwsCBhvQHwQQGEQQEEQQCEQQBkQAAIUwEYQJMAWECS0lMB5ECzAJhAUwFYQLLSKwD4QQA4QLMAeEGrAcRA0wGkQAEJRVQA3TncvRkAcEEDALhAUptbNCCRSAGUibnxGLCJFnl5BpT18Y0wsAhwoHCkACxwxxC2dvigVK+OQD2clAlX17w+sL5MPQAD00eHYSAgRAOUGWADNgT8NogYJDtLxZIs1iAAL5AA",
       "publicPath": "/screenshots/ru/desktop/celebrate.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 103616
+      "bytes": 91097
     },
     {
       "lang": "ru",
       "platform": "desktop",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/ru/configure?step=1",
+      "url": "http://localhost:3000/ru/configure?step=1",
       "publicPath": "/screenshots/ru/desktop/configure.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 105835
+      "bytes": 106903
     },
     {
       "lang": "ru",
       "platform": "desktop",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/ru/guide",
+      "url": "http://localhost:3000/ru/guide",
       "publicPath": "/screenshots/ru/desktop/guide.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 72021
+      "bytes": 73244
     },
     {
       "lang": "ru",
       "platform": "desktop",
       "view": "home",
-      "url": "https://www.birthday-cake.online/ru",
+      "url": "http://localhost:3000/ru",
       "publicPath": "/screenshots/ru/desktop/home.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 90859
+      "bytes": 87706
     },
     {
       "lang": "ru",
       "platform": "desktop",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/ru?config=N4IgNghgdg5iBcIBOBXEAaEBnApmHAxgC44AmAwhANY4CSpCIARmCjkzkkgJ4C0MkAF44MIAtFL4AKtwAOIxKQCWMJUSyjxUSTnIB7FFCIIAjAA5My1esYAmAKyiUuJADkIAWwUhACCCBeED9ABhBNZyI9DwBZHCwsCBhvQHwQQGEQQEEQQCEQQBkQAAIUwEYQJMAWECS0lMB5ECzAJhAUwFYQLLSKwD4QQA4QLMAeEGrAcRA0wGkQAEJRVQA3TncvRkAcEEDALhAUptbNCCRSAGUibnxGLCJFnl5BpT18Y0wsAhwoHCkACxwxxC2dvigVK+OQD2clAlX17w+sL5MPQAD00eHYSAgRAOUGWADNgT8NogYJDtLxZIs1iAAL5AA",
+      "url": "http://localhost:3000/ru?config=N4IgNghgdg5iBcIBOBXEAaEBnApmHAxgC44AmAwhANY4CSpCIARmCjkzkkgJ4C0MkAF44MIAtFL4AKtwAOIxKQCWMJUSyjxUSTnIB7FFCIIAjAA5My1esYAmAKyiUuJADkIAWwUhACCCBeED9ABhBNZyI9DwBZHCwsCBhvQHwQQGEQQEEQQCEQQBkQAAIUwEYQJMAWECS0lMB5ECzAJhAUwFYQLLSKwD4QQA4QLMAeEGrAcRA0wGkQAEJRVQA3TncvRkAcEEDALhAUptbNCCRSAGUibnxGLCJFnl5BpT18Y0wsAhwoHCkACxwxxC2dvigVK+OQD2clAlX17w+sL5MPQAD00eHYSAgRAOUGWADNgT8NogYJDtLxZIs1iAAL5AA",
       "publicPath": "/screenshots/ru/desktop/stage.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 58296
+      "bytes": 58894
     },
     {
       "lang": "ru",
       "platform": "mobile",
       "view": "about",
-      "url": "https://www.birthday-cake.online/ru/about",
+      "url": "http://localhost:3000/ru/about",
       "publicPath": "/screenshots/ru/mobile/about.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 160618
+      "bytes": 160900
     },
     {
       "lang": "ru",
       "platform": "mobile",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/ru?config=N4IgNghgdg5iBcIBOBXEAaEBnApmHAxgC44AmAwhANY4CSpCIARmCjkzkkgJ4C0MkAF44MIAtFL4AKtwAOIxKQCWMJUSyjxUSTnIB7FFCIIAjAA5My1esYAmAKyiUuJADkIAWwUhACCCBeED9ABhBNZyI9DwBZHCwsCBhvQHwQQGEQQEEQQCEQQBkQAAIUwEYQJMAWECS0lMB5ECzAJhAUwFYQLLSKwD4QQA4QLMAeEGrAcRA0wGkQAEJRVQA3TncvRkAcEEDALhAUptbNCCRSAGUibnxGLCJFnl5BpT18Y0wsAhwoHCkACxwxxC2dvigVK+OQD2clAlX17w+sL5MPQAD00eHYSAgRAOUGWADNgT8NogYJDtLxZIs1iAAL5AA",
+      "url": "http://localhost:3000/ru?config=N4IgNghgdg5iBcIBOBXEAaEBnApmHAxgC44AmAwhANY4CSpCIARmCjkzkkgJ4C0MkAF44MIAtFL4AKtwAOIxKQCWMJUSyjxUSTnIB7FFCIIAjAA5My1esYAmAKyiUuJADkIAWwUhACCCBeED9ABhBNZyI9DwBZHCwsCBhvQHwQQGEQQEEQQCEQQBkQAAIUwEYQJMAWECS0lMB5ECzAJhAUwFYQLLSKwD4QQA4QLMAeEGrAcRA0wGkQAEJRVQA3TncvRkAcEEDALhAUptbNCCRSAGUibnxGLCJFnl5BpT18Y0wsAhwoHCkACxwxxC2dvigVK+OQD2clAlX17w+sL5MPQAD00eHYSAgRAOUGWADNgT8NogYJDtLxZIs1iAAL5AA",
       "publicPath": "/screenshots/ru/mobile/celebrate.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 128809
+      "bytes": 123247
     },
     {
       "lang": "ru",
       "platform": "mobile",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/ru/configure?step=1",
+      "url": "http://localhost:3000/ru/configure?step=1",
       "publicPath": "/screenshots/ru/mobile/configure.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 134405
+      "bytes": 135135
     },
     {
       "lang": "ru",
       "platform": "mobile",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/ru/guide",
+      "url": "http://localhost:3000/ru/guide",
       "publicPath": "/screenshots/ru/mobile/guide.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 112187
+      "bytes": 111403
     },
     {
       "lang": "ru",
       "platform": "mobile",
       "view": "home",
-      "url": "https://www.birthday-cake.online/ru",
+      "url": "http://localhost:3000/ru",
       "publicPath": "/screenshots/ru/mobile/home.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 119697
+      "bytes": 119036
     },
     {
       "lang": "ru",
       "platform": "mobile",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/ru?config=N4IgNghgdg5iBcIBOBXEAaEBnApmHAxgC44AmAwhANY4CSpCIARmCjkzkkgJ4C0MkAF44MIAtFL4AKtwAOIxKQCWMJUSyjxUSTnIB7FFCIIAjAA5My1esYAmAKyiUuJADkIAWwUhACCCBeED9ABhBNZyI9DwBZHCwsCBhvQHwQQGEQQEEQQCEQQBkQAAIUwEYQJMAWECS0lMB5ECzAJhAUwFYQLLSKwD4QQA4QLMAeEGrAcRA0wGkQAEJRVQA3TncvRkAcEEDALhAUptbNCCRSAGUibnxGLCJFnl5BpT18Y0wsAhwoHCkACxwxxC2dvigVK+OQD2clAlX17w+sL5MPQAD00eHYSAgRAOUGWADNgT8NogYJDtLxZIs1iAAL5AA",
+      "url": "http://localhost:3000/ru?config=N4IgNghgdg5iBcIBOBXEAaEBnApmHAxgC44AmAwhANY4CSpCIARmCjkzkkgJ4C0MkAF44MIAtFL4AKtwAOIxKQCWMJUSyjxUSTnIB7FFCIIAjAA5My1esYAmAKyiUuJADkIAWwUhACCCBeED9ABhBNZyI9DwBZHCwsCBhvQHwQQGEQQEEQQCEQQBkQAAIUwEYQJMAWECS0lMB5ECzAJhAUwFYQLLSKwD4QQA4QLMAeEGrAcRA0wGkQAEJRVQA3TncvRkAcEEDALhAUptbNCCRSAGUibnxGLCJFnl5BpT18Y0wsAhwoHCkACxwxxC2dvigVK+OQD2clAlX17w+sL5MPQAD00eHYSAgRAOUGWADNgT8NogYJDtLxZIs1iAAL5AA",
       "publicPath": "/screenshots/ru/mobile/stage.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 85254
+      "bytes": 84920
+    },
+    {
+      "lang": "th",
+      "platform": "desktop",
+      "view": "about",
+      "url": "http://localhost:3000/th/about",
+      "publicPath": "/screenshots/th/desktop/about.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 72152
+    },
+    {
+      "lang": "th",
+      "platform": "desktop",
+      "view": "celebrate",
+      "url": "http://localhost:3000/th?config=N4IgNghgdg5iBcIAuALEAaEBnApmHAxkjgCYDCEA1jgJIkIh44zRIC0WSAThAO4BGOLlwCeGEAWgl8AFREAHHAxIBLGCqRZxkqNJxkA9gFcoSBAEYAHJlXrNDAEwBWcUdxcAchAC2SxIEI4QBY4QEk4QEw4QHQ4QBk4bTckA28AWRwsLAgYPxBAIDhAWjhAYThAajhgwCo4f3zAcjhARjhAcDhwwA44QEA4QGw4QGI4QAY4esAmOGbQ1oBCcXUANyEvXwZAVDgw7QguEgBlJBF8BgIuHB82LgNccSwCHCgcGRQcMcROGdE2KDUUM0xvNxUCBaWMx6xn-gMAD20mfg8JAqAxQOYAMx+r2WiBgPF0bHkM0WIAAvkA",
+      "publicPath": "/screenshots/th/desktop/celebrate.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 95363
+    },
+    {
+      "lang": "th",
+      "platform": "desktop",
+      "view": "configure",
+      "url": "http://localhost:3000/th/configure?step=1",
+      "publicPath": "/screenshots/th/desktop/configure.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 104277
+    },
+    {
+      "lang": "th",
+      "platform": "desktop",
+      "view": "guide",
+      "url": "http://localhost:3000/th/guide",
+      "publicPath": "/screenshots/th/desktop/guide.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 56173
+    },
+    {
+      "lang": "th",
+      "platform": "desktop",
+      "view": "home",
+      "url": "http://localhost:3000/th",
+      "publicPath": "/screenshots/th/desktop/home.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 77810
+    },
+    {
+      "lang": "th",
+      "platform": "desktop",
+      "view": "stage",
+      "url": "http://localhost:3000/th?config=N4IgNghgdg5iBcIAuALEAaEBnApmHAxkjgCYDCEA1jgJIkIh44zRIC0WSAThAO4BGOLlwCeGEAWgl8AFREAHHAxIBLGCqRZxkqNJxkA9gFcoSBAEYAHJlXrNDAEwBWcUdxcAchAC2SxIEI4QBY4QEk4QEw4QHQ4QBk4bTckA28AWRwsLAgYPxBAIDhAWjhAYThAajhgwCo4f3zAcjhARjhAcDhwwA44QEA4QGw4QGI4QAY4esAmOGbQ1oBCcXUANyEvXwZAVDgw7QguEgBlJBF8BgIuHB82LgNccSwCHCgcGRQcMcQAMwgVUTYwNRR7TG83FQIFpYznrFf+AwAPbRMfg8JAqAxQObnP7vZaIGA8XRseQzRYgAC+QA",
+      "publicPath": "/screenshots/th/desktop/stage.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 61700
+    },
+    {
+      "lang": "th",
+      "platform": "mobile",
+      "view": "about",
+      "url": "http://localhost:3000/th/about",
+      "publicPath": "/screenshots/th/mobile/about.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 141397
+    },
+    {
+      "lang": "th",
+      "platform": "mobile",
+      "view": "celebrate",
+      "url": "http://localhost:3000/th?config=N4IgNghgdg5iBcIAuALEAaEBnApmHAxkjgCYDCEA1jgJIkIh44zRIC0WSAThAO4BGOLlwCeGEAWgl8AFREAHHAxIBLGCqRZxkqNJxkA9gFcoSBAEYAHJlXrNDAEwBWcUdxcAchAC2SxIEI4QBY4QEk4QEw4QHQ4QBk4bTckA28AWRwsLAgYPxBAIDhAWjhAYThAajhgwCo4f3zAcjhARjhAcDhwwA44QEA4QGw4QGI4QAY4esAmOGbQ1oBCcXUANyEvXwZAVDgw7QguEgBlJBF8BgIuHB82LgNccSwCHCgcGRQcMcROGdE2KDUUM0xvNxUCBaWMx6xn-gMAD20mfg8JAqAxQOYAMx+r2WiBgPF0bHkM0WIAAvkA",
+      "publicPath": "/screenshots/th/mobile/celebrate.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 123820
+    },
+    {
+      "lang": "th",
+      "platform": "mobile",
+      "view": "configure",
+      "url": "http://localhost:3000/th/configure?step=1",
+      "publicPath": "/screenshots/th/mobile/configure.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 129539
+    },
+    {
+      "lang": "th",
+      "platform": "mobile",
+      "view": "guide",
+      "url": "http://localhost:3000/th/guide",
+      "publicPath": "/screenshots/th/mobile/guide.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 112658
+    },
+    {
+      "lang": "th",
+      "platform": "mobile",
+      "view": "home",
+      "url": "http://localhost:3000/th",
+      "publicPath": "/screenshots/th/mobile/home.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 108245
+    },
+    {
+      "lang": "th",
+      "platform": "mobile",
+      "view": "stage",
+      "url": "http://localhost:3000/th?config=N4IgNghgdg5iBcIAuALEAaEBnApmHAxkjgCYDCEA1jgJIkIh44zRIC0WSAThAO4BGOLlwCeGEAWgl8AFREAHHAxIBLGCqRZxkqNJxkA9gFcoSBAEYAHJlXrNDAEwBWcUdxcAchAC2SxIEI4QBY4QEk4QEw4QHQ4QBk4bTckA28AWRwsLAgYPxBAIDhAWjhAYThAajhgwCo4f3zAcjhARjhAcDhwwA44QEA4QGw4QGI4QAY4esAmOGbQ1oBCcXUANyEvXwZAVDgw7QguEgBlJBF8BgIuHB82LgNccSwCHCgcGRQcMcQAMwgVUTYwNRR7TG83FQIFpYznrFf+AwAPbRMfg8JAqAxQObnP7vZaIGA8XRseQzRYgAC+QA",
+      "publicPath": "/screenshots/th/mobile/stage.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 85669
+    },
+    {
+      "lang": "tr",
+      "platform": "desktop",
+      "view": "about",
+      "url": "http://localhost:3000/tr/about",
+      "publicPath": "/screenshots/tr/desktop/about.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 75716
+    },
+    {
+      "lang": "tr",
+      "platform": "desktop",
+      "view": "celebrate",
+      "url": "http://localhost:3000/tr?config=N4IgNghgdg5iBcIAuAnEAaEBnApmHAxkjgCYDCEA1jgJIkIh44zRIC0WqEA7gEY4oUATwwgC0EvgAqQgA44GJAJYwlSLKPFRJOMgHsArlCQIAjAA5My1eoYAmAKyiDuFADkIAWwWIAomCUAM00XJD1PAFkcLCwIGB8QKQAfzwACZXxKfBQlKFT4lABznEpUvTAsIwBCUVUANwEPbwYAaQEcT00IFBIAZSQhfAYCFBwvNhQ9XFEsAhwoHCkACw6Ezm7hNigVJZNMTxclAn7BhIOsI949AA9NJl4UCCQlPShewOuTocQYR+02WTdAYgAC+QA",
+      "publicPath": "/screenshots/tr/desktop/celebrate.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 86974
+    },
+    {
+      "lang": "tr",
+      "platform": "desktop",
+      "view": "configure",
+      "url": "http://localhost:3000/tr/configure?step=1",
+      "publicPath": "/screenshots/tr/desktop/configure.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 106070
+    },
+    {
+      "lang": "tr",
+      "platform": "desktop",
+      "view": "guide",
+      "url": "http://localhost:3000/tr/guide",
+      "publicPath": "/screenshots/tr/desktop/guide.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 55805
+    },
+    {
+      "lang": "tr",
+      "platform": "desktop",
+      "view": "home",
+      "url": "http://localhost:3000/tr",
+      "publicPath": "/screenshots/tr/desktop/home.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 84977
+    },
+    {
+      "lang": "tr",
+      "platform": "desktop",
+      "view": "stage",
+      "url": "http://localhost:3000/tr?config=N4IgNghgdg5iBcIAuAnEAaEBnApmHAxkjgCYDCEA1jgJIkIh44zRIC0WqEA7gEY4oUATwwgC0EvgAqQgA44GJAJYwlSLKPFRJOMgHsArlCQIAjAA5My1eoYAmAKyiDuFADkIAWwWIAomCUAM00XJD1PAFkcLCwIGB8QKQAfzwACZXxKfBQlKFT4lABznEpUvTAsIwBCUVUANwEPbwYAaQEcT00IFBIAZSQhfAYCFBwvNhQ9XFEsAhwoHCkACw6EwIglYTYAmCXbTE8XJQJ+wYTDrGPePQAPTSZeFAgkJT0oXsCb06HEGCftNiyboDEAAXyAA",
+      "publicPath": "/screenshots/tr/desktop/stage.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 61324
+    },
+    {
+      "lang": "tr",
+      "platform": "mobile",
+      "view": "about",
+      "url": "http://localhost:3000/tr/about",
+      "publicPath": "/screenshots/tr/mobile/about.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 147973
+    },
+    {
+      "lang": "tr",
+      "platform": "mobile",
+      "view": "celebrate",
+      "url": "http://localhost:3000/tr?config=N4IgNghgdg5iBcIAuAnEAaEBnApmHAxkjgCYDCEA1jgJIkIh44zRIC0WqEA7gEY4oUATwwgC0EvgAqQgA44GJAJYwlSLKPFRJOMgHsArlCQIAjAA5My1eoYAmAKyiDuFADkIAWwWIAomCUAM00XJD1PAFkcLCwIGB8QKQAfzwACZXxKfBQlKFT4lABznEpUvTAsIwBCUVUANwEPbwYAaQEcT00IFBIAZSQhfAYCFBwvNhQ9XFEsAhwoHCkACw6Ezm7hNigVJZNMTxclAn7BhIOsI949AA9NJl4UCCQlPShewOuTocQYR+02WTdAYgAC+QA",
+      "publicPath": "/screenshots/tr/mobile/celebrate.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 118412
+    },
+    {
+      "lang": "tr",
+      "platform": "mobile",
+      "view": "configure",
+      "url": "http://localhost:3000/tr/configure?step=1",
+      "publicPath": "/screenshots/tr/mobile/configure.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 133653
+    },
+    {
+      "lang": "tr",
+      "platform": "mobile",
+      "view": "guide",
+      "url": "http://localhost:3000/tr/guide",
+      "publicPath": "/screenshots/tr/mobile/guide.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 112930
+    },
+    {
+      "lang": "tr",
+      "platform": "mobile",
+      "view": "home",
+      "url": "http://localhost:3000/tr",
+      "publicPath": "/screenshots/tr/mobile/home.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 114710
+    },
+    {
+      "lang": "tr",
+      "platform": "mobile",
+      "view": "stage",
+      "url": "http://localhost:3000/tr?config=N4IgNghgdg5iBcIAuAnEAaEBnApmHAxkjgCYDCEA1jgJIkIh44zRIC0WqEA7gEY4oUATwwgC0EvgAqQgA44GJAJYwlSLKPFRJOMgHsArlCQIAjAA5My1eoYAmAKyiDuFADkIAWwWIAomCUAM00XJD1PAFkcLCwIGB8QKQAfzwACZXxKfBQlKFT4lABznEpUvTAsIwBCUVUANwEPbwYAaQEcT00IFBIAZSQhfAYCFBwvNhQ9XFEsAhwoHCkACw6EwIglYTYAmCXbTE8XJQJ+wYTDrGPePQAPTSZeFAgkJT0oXsCb06HEGCftNiyboDEAAXyAA",
+      "publicPath": "/screenshots/tr/mobile/stage.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 85269
+    },
+    {
+      "lang": "ur",
+      "platform": "desktop",
+      "view": "about",
+      "url": "http://localhost:3000/ur/about",
+      "publicPath": "/screenshots/ur/desktop/about.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 68107
+    },
+    {
+      "lang": "ur",
+      "platform": "desktop",
+      "view": "celebrate",
+      "url": "http://localhost:3000/ur?config=N4IgNghgdg5iBcICuAnEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkShAO4BGOFCgCeGEAWil8AFREAHHI1IBLGCqJZxkqNJzkA9kihEEARgAcmVes2MATAFZxSXCgByEALZLEgTjBAcjBAMjBAFjBAQbBtVyIDLwBZHCwsCBhfEEAiMEA-MAACQEqwQBmwLMAqMEBRMADirMA6MEAJMACwkIDCrIyqwEYwArCqwC6wAEJxdQA3IU8fRkBaMGLAJjAIzEkUUgBlIhF8RgIUHG92FANccSwCHCgcGQALHBHELghhEXYoNRPTTC9XFQJF5dSXrDf+AwAPbTMfg8IgqAxQeYAM3+HxWiBgPF07Hk1yWIAAvkA",
+      "publicPath": "/screenshots/ur/desktop/celebrate.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 83990
+    },
+    {
+      "lang": "ur",
+      "platform": "desktop",
+      "view": "configure",
+      "url": "http://localhost:3000/ur/configure?step=1",
+      "publicPath": "/screenshots/ur/desktop/configure.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 104026
+    },
+    {
+      "lang": "ur",
+      "platform": "desktop",
+      "view": "guide",
+      "url": "http://localhost:3000/ur/guide",
+      "publicPath": "/screenshots/ur/desktop/guide.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 52512
+    },
+    {
+      "lang": "ur",
+      "platform": "desktop",
+      "view": "home",
+      "url": "http://localhost:3000/ur",
+      "publicPath": "/screenshots/ur/desktop/home.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 71812
+    },
+    {
+      "lang": "ur",
+      "platform": "desktop",
+      "view": "stage",
+      "url": "http://localhost:3000/ur?config=N4IgNghgdg5iBcICuAnEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkShAO4BGOFCgCeGEAWil8AFREAHHI1IBLGCqJZxkqNJzkA9kihEEARgAcmVes2MATAFZxSXCgByEALZLEgTjBAcjBAMjBAFjBAQbBtVyIDLwBZHCwsCBhfEEAiMEA-MAACQEqwQBmwLMAqMEBRMADirMA6MEAJMACwkIDCrIyqwEYwArCqwC6wAEJxdQA3IU8fRkBaMGLAJjAIzEkUUgBlIhF8RgIUHG92FANccSwCHCgcGQALHBHEADMIFVF2MDUTu0wvVxUCReXU16x3-gMAB7aZj8HhEFQGKDzS4Az4rRAwHi6djyCAoJYgAC+QA",
+      "publicPath": "/screenshots/ur/desktop/stage.jpg",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "bytes": 61709
+    },
+    {
+      "lang": "ur",
+      "platform": "mobile",
+      "view": "about",
+      "url": "http://localhost:3000/ur/about",
+      "publicPath": "/screenshots/ur/mobile/about.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 121684
+    },
+    {
+      "lang": "ur",
+      "platform": "mobile",
+      "view": "celebrate",
+      "url": "http://localhost:3000/ur?config=N4IgNghgdg5iBcICuAnEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkShAO4BGOFCgCeGEAWil8AFREAHHI1IBLGCqJZxkqNJzkA9kihEEARgAcmVes2MATAFZxSXCgByEALZLEgTjBAcjBAMjBAFjBAQbBtVyIDLwBZHCwsCBhfEEAiMEA-MAACQEqwQBmwLMAqMEBRMADirMA6MEAJMACwkIDCrIyqwEYwArCqwC6wAEJxdQA3IU8fRkBaMGLAJjAIzEkUUgBlIhF8RgIUHG92FANccSwCHCgcGQALHBHELghhEXYoNRPTTC9XFQJF5dSXrDf+AwAPbTMfg8IgqAxQeYAM3+HxWiBgPF07Hk1yWIAAvkA",
+      "publicPath": "/screenshots/ur/mobile/celebrate.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 117523
+    },
+    {
+      "lang": "ur",
+      "platform": "mobile",
+      "view": "configure",
+      "url": "http://localhost:3000/ur/configure?step=1",
+      "publicPath": "/screenshots/ur/mobile/configure.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 128747
+    },
+    {
+      "lang": "ur",
+      "platform": "mobile",
+      "view": "guide",
+      "url": "http://localhost:3000/ur/guide",
+      "publicPath": "/screenshots/ur/mobile/guide.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 99899
+    },
+    {
+      "lang": "ur",
+      "platform": "mobile",
+      "view": "home",
+      "url": "http://localhost:3000/ur",
+      "publicPath": "/screenshots/ur/mobile/home.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 102072
+    },
+    {
+      "lang": "ur",
+      "platform": "mobile",
+      "view": "stage",
+      "url": "http://localhost:3000/ur?config=N4IgNghgdg5iBcICuAnEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkShAO4BGOFCgCeGEAWil8AFREAHHI1IBLGCqJZxkqNJzkA9kihEEARgAcmVes2MATAFZxSXCgByEALZLEgTjBAcjBAMjBAFjBAQbBtVyIDLwBZHCwsCBhfEEAiMEA-MAACQEqwQBmwLMAqMEBRMADirMA6MEAJMACwkIDCrIyqwEYwArCqwC6wAEJxdQA3IU8fRkBaMGLAJjAIzEkUUgBlIhF8RgIUHG92FANccSwCHCgcGQALHBHEADMIFVF2MDUTu0wvVxUCReXU16x3-gMAB7aZj8HhEFQGKDzS4Az4rRAwHi6djyCAoJYgAC+QA",
+      "publicPath": "/screenshots/ur/mobile/stage.jpg",
+      "width": 780,
+      "height": 1688,
+      "format": "jpg",
+      "bytes": 85569
     },
     {
       "lang": "vi",
       "platform": "desktop",
       "view": "about",
-      "url": "https://www.birthday-cake.online/vi/about",
+      "url": "http://localhost:3000/vi/about",
       "publicPath": "/screenshots/vi/desktop/about.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 75886
+      "bytes": 77294
     },
     {
       "lang": "vi",
       "platform": "desktop",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/vi?config=N4IgNghgdg5iBcIBuBLEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpFDBREsEqVBk5yAewCuUIggCMADkyr1mxgCYArBKO5uAOQgBbZYgAyKFAAFtpuRAbeALI4WFgQMH4g5MEAXwQABN6As3goGYCIgCiAg3hGGYANgIDbeJkEgOd4EBkCgIV4UBlEwQAHIRnBKIDjeC1tgI94BACEEupIwl6+jFFBoZhS3KQAykSi+IwE3Dg+7NwGuBJYBDhQOLLBODOIXBAiouxQasFmmN5uKARrG0kfWF8BAYAB7aZgCXhEFAGKArABmwJ+m0QMF4unYCnu6xAAF8gA",
+      "url": "http://localhost:3000/vi?config=N4IgNghgdg5iBcIBuBLEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpFDBREsEqVBk5yAewCuUIggCMADkyr1mxgCYArBKO5uAOQgBbZYgAyKFAAFtpuRAbeALI4WFgQMH4g5MEAXwQABN6As3goGYCIgCiAg3hGGYANgIDbeJkEgOd4EBkCgIV4UBlEwQAHIRnBKIDjeC1tgI94BACEEupIwl6+jFFBoZhS3KQAykSi+IwE3Dg+7NwGuBJYBDhQOLLBODOIXBAiouxQasFmmN5uKARrG0kfWF8BAYAB7aZgCXhEFAGKArABmwJ+m0QMF4unYCnu6xAAF8gA",
       "publicPath": "/screenshots/vi/desktop/celebrate.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 109118
+      "bytes": 91905
     },
     {
       "lang": "vi",
       "platform": "desktop",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/vi/configure?step=1",
+      "url": "http://localhost:3000/vi/configure?step=1",
       "publicPath": "/screenshots/vi/desktop/configure.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 105072
+      "bytes": 106106
     },
     {
       "lang": "vi",
       "platform": "desktop",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/vi/guide",
+      "url": "http://localhost:3000/vi/guide",
       "publicPath": "/screenshots/vi/desktop/guide.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 59697
+      "bytes": 61176
     },
     {
       "lang": "vi",
       "platform": "desktop",
       "view": "home",
-      "url": "https://www.birthday-cake.online/vi",
+      "url": "http://localhost:3000/vi",
       "publicPath": "/screenshots/vi/desktop/home.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 80946
+      "bytes": 80232
     },
     {
       "lang": "vi",
       "platform": "desktop",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/vi?config=N4IgNghgdg5iBcIBuBLEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpFDBREsEqVBk5yAewCuUIggCMADkyr1mxgCYArBKO5uAOQgBbZYgAyKFAAFtpuRAbeALI4WFgQMH4g5MEAXwQABN6As3goGYCIgCiAg3hGGYANgIDbeJkEgOd4EBkCgIV4UBlEwQAHIRnBKIDjeC1tgI94BACEEupIwl6+jFFBoZhS3KQAykSi+IwE3Dg+7NwGuBJYBDhQOLLBODOIAGYQKGLsYGrB9pjebigEaxtJn1hvgIDAAPbTMAS8IgoAxQFa3EG-TaIGC8XTsBQQbjrEAAXyAA",
+      "url": "http://localhost:3000/vi?config=N4IgNghgdg5iBcIBuBLEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpFDBREsEqVBk5yAewCuUIggCMADkyr1mxgCYArBKO5uAOQgBbZYgAyKFAAFtpuRAbeALI4WFgQMH4g5MEAXwQABN6As3goGYCIgCiAg3hGGYANgIDbeJkEgOd4EBkCgIV4UBlEwQAHIRnBKIDjeC1tgI94BACEEupIwl6+jFFBoZhS3KQAykSi+IwE3Dg+7NwGuBJYBDhQOLLBODOIAGYQKGLsYGrB9pjebigEaxtJn1hvgIDAAPbTMAS8IgoAxQFa3EG-TaIGC8XTsBQQbjrEAAXyAA",
       "publicPath": "/screenshots/vi/desktop/stage.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 62420
+      "bytes": 62291
     },
     {
       "lang": "vi",
       "platform": "mobile",
       "view": "about",
-      "url": "https://www.birthday-cake.online/vi/about",
+      "url": "http://localhost:3000/vi/about",
       "publicPath": "/screenshots/vi/mobile/about.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 144896
+      "bytes": 147690
     },
     {
       "lang": "vi",
       "platform": "mobile",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/vi?config=N4IgNghgdg5iBcIBuBLEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpFDBREsEqVBk5yAewCuUIggCMADkyr1mxgCYArBKO5uAOQgBbZYgAyKFAAFtpuRAbeALI4WFgQMH4g5MEAXwQABN6As3goGYCIgCiAg3hGGYANgIDbeJkEgOd4EBkCgIV4UBlEwQAHIRnBKIDjeC1tgI94BACEEupIwl6+jFFBoZhS3KQAykSi+IwE3Dg+7NwGuBJYBDhQOLLBODOIXBAiouxQasFmmN5uKARrG0kfWF8BAYAB7aZgCXhEFAGKArABmwJ+m0QMF4unYCnu6xAAF8gA",
+      "url": "http://localhost:3000/vi?config=N4IgNghgdg5iBcIBuBLEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpFDBREsEqVBk5yAewCuUIggCMADkyr1mxgCYArBKO5uAOQgBbZYgAyKFAAFtpuRAbeALI4WFgQMH4g5MEAXwQABN6As3goGYCIgCiAg3hGGYANgIDbeJkEgOd4EBkCgIV4UBlEwQAHIRnBKIDjeC1tgI94BACEEupIwl6+jFFBoZhS3KQAykSi+IwE3Dg+7NwGuBJYBDhQOLLBODOIXBAiouxQasFmmN5uKARrG0kfWF8BAYAB7aZgCXhEFAGKArABmwJ+m0QMF4unYCnu6xAAF8gA",
       "publicPath": "/screenshots/vi/mobile/celebrate.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 127864
+      "bytes": 97466
     },
     {
       "lang": "vi",
       "platform": "mobile",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/vi/configure?step=1",
+      "url": "http://localhost:3000/vi/configure?step=1",
       "publicPath": "/screenshots/vi/mobile/configure.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 132287
+      "bytes": 134691
     },
     {
       "lang": "vi",
       "platform": "mobile",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/vi/guide",
+      "url": "http://localhost:3000/vi/guide",
       "publicPath": "/screenshots/vi/mobile/guide.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 123899
+      "bytes": 126299
     },
     {
       "lang": "vi",
       "platform": "mobile",
       "view": "home",
-      "url": "https://www.birthday-cake.online/vi",
+      "url": "http://localhost:3000/vi",
       "publicPath": "/screenshots/vi/mobile/home.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 111306
+      "bytes": 111251
     },
     {
       "lang": "vi",
       "platform": "mobile",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/vi?config=N4IgNghgdg5iBcIBuBLEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpFDBREsEqVBk5yAewCuUIggCMADkyr1mxgCYArBKO5uAOQgBbZYgAyKFAAFtpuRAbeALI4WFgQMH4g5MEAXwQABN6As3goGYCIgCiAg3hGGYANgIDbeJkEgOd4EBkCgIV4UBlEwQAHIRnBKIDjeC1tgI94BACEEupIwl6+jFFBoZhS3KQAykSi+IwE3Dg+7NwGuBJYBDhQOLLBODOIAGYQKGLsYGrB9pjebigEaxtJn1hvgIDAAPbTMAS8IgoAxQFa3EG-TaIGC8XTsBQQbjrEAAXyAA",
+      "url": "http://localhost:3000/vi?config=N4IgNghgdg5iBcIBuBLEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpFDBREsEqVBk5yAewCuUIggCMADkyr1mxgCYArBKO5uAOQgBbZYgAyKFAAFtpuRAbeALI4WFgQMH4g5MEAXwQABN6As3goGYCIgCiAg3hGGYANgIDbeJkEgOd4EBkCgIV4UBlEwQAHIRnBKIDjeC1tgI94BACEEupIwl6+jFFBoZhS3KQAykSi+IwE3Dg+7NwGuBJYBDhQOLLBODOIAGYQKGLsYGrB9pjebigEaxtJn1hvgIDAAPbTMAS8IgoAxQFa3EG-TaIGC8XTsBQQbjrEAAXyAA",
       "publicPath": "/screenshots/vi/mobile/stage.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 85461
+      "bytes": 100530
     },
     {
       "lang": "zh-Hant",
       "platform": "desktop",
       "view": "about",
-      "url": "https://www.birthday-cake.online/zh-Hant/about",
+      "url": "http://localhost:3000/zh-Hant/about",
       "publicPath": "/screenshots/zh-Hant/desktop/about.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 63269
+      "bytes": 64649
     },
     {
       "lang": "zh-Hant",
       "platform": "desktop",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/zh-Hant?config=N4IgNghgdg5iBcIBeALAtACWgFxAGhAGcBTMYgY22IBMBhCAa2IElqERTiYc1DsAnCAHcARsX78AnvhDlo1MgBVJAB2LtqASxibshGXKgLitAPYBXKLngBGABwEtOvewBMAVhnmS-AHIQAW3VEQHgdQAu0g29sUwCAWWJCQggYYJBADQzAA3lAJ2sswA49QENrQEhDQBh-wBoQwGi5QDC3QF2lQHhDQEB-mR0AN3F-IPZAfjTAODMDCH5qAGVsSTJ2cn5iQLR+UxIZQnJiKGJFFGIOxD5+qTQobRRcAgDvTXJh0dSTwjORUwAPA04RQWxNUyhBgDN7i7HEGCCIxoFT9EYgAC+QA",
+      "url": "http://localhost:3000/zh-Hant?config=N4IgNghgdg5iBcIBeALAtACWgFxAGhAGcBTMYgY22IBMBhCAa2IElqERTiYc1DsAnCAHcARsX78AnvhDlo1MgBVJAB2LtqASxibshGXKgLitAPYBXKLngBGABwEtOvewBMAVhnmS-AHIQAW3VEQHgdQAu0g29sUwCAWWJCQggYYJBADQzAA3lAJ2sswA49QENrQEhDQBh-wBoQwGi5QDC3QF2lQHhDQEB-mR0AN3F-IPZAfjTAODMDCH5qAGVsSTJ2cn5iQLR+UxIZQnJiKGJFFGIOxD5+qTQobRRcAgDvTXJh0dSTwjORUwAPA04RQWxNUyhBgDN7i7HEGCCIxoFT9EYgAC+QA",
       "publicPath": "/screenshots/zh-Hant/desktop/celebrate.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 81371
+      "bytes": 85421
     },
     {
       "lang": "zh-Hant",
       "platform": "desktop",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/zh-Hant/configure?step=1",
+      "url": "http://localhost:3000/zh-Hant/configure?step=1",
       "publicPath": "/screenshots/zh-Hant/desktop/configure.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 103631
+      "bytes": 102544
     },
     {
       "lang": "zh-Hant",
       "platform": "desktop",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/zh-Hant/guide",
+      "url": "http://localhost:3000/zh-Hant/guide",
       "publicPath": "/screenshots/zh-Hant/desktop/guide.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 51745
+      "bytes": 53165
     },
     {
       "lang": "zh-Hant",
       "platform": "desktop",
       "view": "home",
-      "url": "https://www.birthday-cake.online/zh-Hant",
+      "url": "http://localhost:3000/zh-Hant",
       "publicPath": "/screenshots/zh-Hant/desktop/home.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 71403
+      "bytes": 71932
     },
     {
       "lang": "zh-Hant",
       "platform": "desktop",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/zh-Hant?config=N4IgNghgdg5iBcIBeALAtACWgFxAGhAGcBTMYgY22IBMBhCAa2IElqERTiYc1DsAnCAHcARsX78AnvhDlo1MgBVJAB2LtqASxibshGXKgLitAPYBXKLngBGABwEtOvewBMAVhnmS-AHIQAW3VEQHgdQAu0g29sUwCAWWJCQggYYJBADQzAA3lAJ2sswA49QENrQEhDQBh-wBoQwGi5QDC3QF2lQHhDQEB-mR0AN3F-IPZAfjTAODMDCH5qAGVsSTJ2cn5iQLR+UxIZQnJiKGJFFGIOxAAzCE0pNDBtFBcCAO9NcmHR1LPCC5FTAA8DThFBbE1TKEGtx6uxxAwQRGNAqfojEAAXyAA",
+      "url": "http://localhost:3000/zh-Hant?config=N4IgNghgdg5iBcIBeALAtACWgFxAGhAGcBTMYgY22IBMBhCAa2IElqERTiYc1DsAnCAHcARsX78AnvhDlo1MgBVJAB2LtqASxibshGXKgLitAPYBXKLngBGABwEtOvewBMAVhnmS-AHIQAW3VEQHgdQAu0g29sUwCAWWJCQggYYJBADQzAA3lAJ2sswA49QENrQEhDQBh-wBoQwGi5QDC3QF2lQHhDQEB-mR0AN3F-IPZAfjTAODMDCH5qAGVsSTJ2cn5iQLR+UxIZQnJiKGJFFGIOxAAzCE0pNDBtFBcCAO9NcmHR1LPCC5FTAA8DThFBbE1TKEGtx6uxxAwQRGNAqfojEAAXyAA",
       "publicPath": "/screenshots/zh-Hant/desktop/stage.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 61041
+      "bytes": 62180
     },
     {
       "lang": "zh-Hant",
       "platform": "mobile",
       "view": "about",
-      "url": "https://www.birthday-cake.online/zh-Hant/about",
+      "url": "http://localhost:3000/zh-Hant/about",
       "publicPath": "/screenshots/zh-Hant/mobile/about.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 136986
+      "bytes": 136846
     },
     {
       "lang": "zh-Hant",
       "platform": "mobile",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/zh-Hant?config=N4IgNghgdg5iBcIBeALAtACWgFxAGhAGcBTMYgY22IBMBhCAa2IElqERTiYc1DsAnCAHcARsX78AnvhDlo1MgBVJAB2LtqASxibshGXKgLitAPYBXKLngBGABwEtOvewBMAVhnmS-AHIQAW3VEQHgdQAu0g29sUwCAWWJCQggYYJBADQzAA3lAJ2sswA49QENrQEhDQBh-wBoQwGi5QDC3QF2lQHhDQEB-mR0AN3F-IPZAfjTAODMDCH5qAGVsSTJ2cn5iQLR+UxIZQnJiKGJFFGIOxD5+qTQobRRcAgDvTXJh0dSTwjORUwAPA04RQWxNUyhBgDN7i7HEGCCIxoFT9EYgAC+QA",
+      "url": "http://localhost:3000/zh-Hant?config=N4IgNghgdg5iBcIBeALAtACWgFxAGhAGcBTMYgY22IBMBhCAa2IElqERTiYc1DsAnCAHcARsX78AnvhDlo1MgBVJAB2LtqASxibshGXKgLitAPYBXKLngBGABwEtOvewBMAVhnmS-AHIQAW3VEQHgdQAu0g29sUwCAWWJCQggYYJBADQzAA3lAJ2sswA49QENrQEhDQBh-wBoQwGi5QDC3QF2lQHhDQEB-mR0AN3F-IPZAfjTAODMDCH5qAGVsSTJ2cn5iQLR+UxIZQnJiKGJFFGIOxD5+qTQobRRcAgDvTXJh0dSTwjORUwAPA04RQWxNUyhBgDN7i7HEGCCIxoFT9EYgAC+QA",
       "publicPath": "/screenshots/zh-Hant/mobile/celebrate.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 119112
+      "bytes": 121240
     },
     {
       "lang": "zh-Hant",
       "platform": "mobile",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/zh-Hant/configure?step=1",
+      "url": "http://localhost:3000/zh-Hant/configure?step=1",
       "publicPath": "/screenshots/zh-Hant/mobile/configure.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 126904
+      "bytes": 126378
     },
     {
       "lang": "zh-Hant",
       "platform": "mobile",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/zh-Hant/guide",
+      "url": "http://localhost:3000/zh-Hant/guide",
       "publicPath": "/screenshots/zh-Hant/mobile/guide.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 117138
+      "bytes": 121283
     },
     {
       "lang": "zh-Hant",
       "platform": "mobile",
       "view": "home",
-      "url": "https://www.birthday-cake.online/zh-Hant",
+      "url": "http://localhost:3000/zh-Hant",
       "publicPath": "/screenshots/zh-Hant/mobile/home.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 102151
+      "bytes": 103526
     },
     {
       "lang": "zh-Hant",
       "platform": "mobile",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/zh-Hant?config=N4IgNghgdg5iBcIBeALAtACWgFxAGhAGcBTMYgY22IBMBhCAa2IElqERTiYc1DsAnCAHcARsX78AnvhDlo1MgBVJAB2LtqASxibshGXKgLitAPYBXKLngBGABwEtOvewBMAVhnmS-AHIQAW3VEQHgdQAu0g29sUwCAWWJCQggYYJBADQzAA3lAJ2sswA49QENrQEhDQBh-wBoQwGi5QDC3QF2lQHhDQEB-mR0AN3F-IPZAfjTAODMDCH5qAGVsSTJ2cn5iQLR+UxIZQnJiKGJFFGIOxAAzCE0pNDBtFBcCAO9NcmHR1LPCC5FTAA8DThFBbE1TKEGtx6uxxAwQRGNAqfojEAAXyAA",
+      "url": "http://localhost:3000/zh-Hant?config=N4IgNghgdg5iBcIBeALAtACWgFxAGhAGcBTMYgY22IBMBhCAa2IElqERTiYc1DsAnCAHcARsX78AnvhDlo1MgBVJAB2LtqASxibshGXKgLitAPYBXKLngBGABwEtOvewBMAVhnmS-AHIQAW3VEQHgdQAu0g29sUwCAWWJCQggYYJBADQzAA3lAJ2sswA49QENrQEhDQBh-wBoQwGi5QDC3QF2lQHhDQEB-mR0AN3F-IPZAfjTAODMDCH5qAGVsSTJ2cn5iQLR+UxIZQnJiKGJFFGIOxAAzCE0pNDBtFBcCAO9NcmHR1LPCC5FTAA8DThFBbE1TKEGtx6uxxAwQRGNAqfojEAAXyAA",
       "publicPath": "/screenshots/zh-Hant/mobile/stage.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 86692
+      "bytes": 86583
     },
     {
       "lang": "zh",
       "platform": "desktop",
       "view": "about",
-      "url": "https://www.birthday-cake.online/zh/about",
+      "url": "http://localhost:3000/zh/about",
       "publicPath": "/screenshots/zh/desktop/about.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 62077
+      "bytes": 63422
     },
     {
       "lang": "zh",
       "platform": "desktop",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/zh?config=N4IgNghgdg5iBcIBeALEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpAJYxVRLBKlQZOcgHsArlCIIAjAA5MajVsYAmAKwTjubgDkIAW2WJAeB1AC7SddyJDHwBZHCwsCBh-EEB+Q0ADeUBAnTTADj1AImtASENAGH-AcDlAaLlAMLdAHYDAeENAQH+JDQA3YW8-RkB+NMA4Mx0IblIAZSJRfEYCbhxfdm5DXAksAhwoHFkUHBbELm6xdih1FHNMH3dVAn7BxIOsI4FDAA8dZgFeIlVDKF6AM2uTocQYXj12BTdAYgAC+QA",
+      "url": "http://localhost:3000/zh?config=N4IgNghgdg5iBcIBeALEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpAJYxVRLBKlQZOcgHsArlCIIAjAA5MajVsYAmAKwTjubgDkIAW2WJAeB1AC7SddyJDHwBZHCwsCBh-EEB+Q0ADeUBAnTTADj1AImtASENAGH-AcDlAaLlAMLdAHYDAeENAQH+JDQA3YW8-RkB+NMA4Mx0IblIAZSJRfEYCbhxfdm5DXAksAhwoHFkUHBbELm6xdih1FHNMH3dVAn7BxIOsI4FDAA8dZgFeIlVDKF6AM2uTocQYXj12BTdAYgAC+QA",
       "publicPath": "/screenshots/zh/desktop/celebrate.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 83266
+      "bytes": 89379
     },
     {
       "lang": "zh",
       "platform": "desktop",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/zh/configure?step=1",
+      "url": "http://localhost:3000/zh/configure?step=1",
       "publicPath": "/screenshots/zh/desktop/configure.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 103015
+      "bytes": 103293
     },
     {
       "lang": "zh",
       "platform": "desktop",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/zh/guide",
+      "url": "http://localhost:3000/zh/guide",
       "publicPath": "/screenshots/zh/desktop/guide.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 51297
+      "bytes": 52669
     },
     {
       "lang": "zh",
       "platform": "desktop",
       "view": "home",
-      "url": "https://www.birthday-cake.online/zh",
+      "url": "http://localhost:3000/zh",
       "publicPath": "/screenshots/zh/desktop/home.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 72610
+      "bytes": 71596
     },
     {
       "lang": "zh",
       "platform": "desktop",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/zh?config=N4IgNghgdg5iBcIBeALEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpAJYxVRLBKlQZOcgHsArlCIIAjAA5MajVsYAmAKwTjubgDkIAW2WJAeB1AC7SddyJDHwBZHCwsCBh-EEB+Q0ADeUBAnTTADj1AImtASENAGH-AcDlAaLlAMLdAHYDAeENAQH+JDQA3YW8-RkB+NMA4Mx0IblIAZSJRfEYCbhxfdm5DXAksAhwoHFkUHBbEADMIVTF2MHUUB0wfd1UCfsHEo6wTgUMADx1mAV4iVUMoXrXbs6HEGF49dgKboDEAAXyAA",
+      "url": "http://localhost:3000/zh?config=N4IgNghgdg5iBcIBeALEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpAJYxVRLBKlQZOcgHsArlCIIAjAA5MajVsYAmAKwTjubgDkIAW2WJAeB1AC7SddyJDHwBZHCwsCBh-EEB+Q0ADeUBAnTTADj1AImtASENAGH-AcDlAaLlAMLdAHYDAeENAQH+JDQA3YW8-RkB+NMA4Mx0IblIAZSJRfEYCbhxfdm5DXAksAhwoHFkUHBbEADMIVTF2MHUUB0wfd1UCfsHEo6wTgUMADx1mAV4iVUMoXrXbs6HEGF49dgKboDEAAXyAA",
       "publicPath": "/screenshots/zh/desktop/stage.jpg",
       "width": 1280,
       "height": 720,
       "format": "jpg",
-      "bytes": 61239
+      "bytes": 61772
     },
     {
       "lang": "zh",
       "platform": "mobile",
       "view": "about",
-      "url": "https://www.birthday-cake.online/zh/about",
+      "url": "http://localhost:3000/zh/about",
       "publicPath": "/screenshots/zh/mobile/about.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 150486
+      "bytes": 149778
     },
     {
       "lang": "zh",
       "platform": "mobile",
       "view": "celebrate",
-      "url": "https://www.birthday-cake.online/zh?config=N4IgNghgdg5iBcIBeALEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpAJYxVRLBKlQZOcgHsArlCIIAjAA5MajVsYAmAKwTjubgDkIAW2WJAeB1AC7SddyJDHwBZHCwsCBh-EEB+Q0ADeUBAnTTADj1AImtASENAGH-AcDlAaLlAMLdAHYDAeENAQH+JDQA3YW8-RkB+NMA4Mx0IblIAZSJRfEYCbhxfdm5DXAksAhwoHFkUHBbELm6xdih1FHNMH3dVAn7BxIOsI4FDAA8dZgFeIlVDKF6AM2uTocQYXj12BTdAYgAC+QA",
+      "url": "http://localhost:3000/zh?config=N4IgNghgdg5iBcIBeALEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpAJYxVRLBKlQZOcgHsArlCIIAjAA5MajVsYAmAKwTjubgDkIAW2WJAeB1AC7SddyJDHwBZHCwsCBh-EEB+Q0ADeUBAnTTADj1AImtASENAGH-AcDlAaLlAMLdAHYDAeENAQH+JDQA3YW8-RkB+NMA4Mx0IblIAZSJRfEYCbhxfdm5DXAksAhwoHFkUHBbELm6xdih1FHNMH3dVAn7BxIOsI4FDAA8dZgFeIlVDKF6AM2uTocQYXj12BTdAYgAC+QA",
       "publicPath": "/screenshots/zh/mobile/celebrate.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 121407
+      "bytes": 122094
     },
     {
       "lang": "zh",
       "platform": "mobile",
       "view": "configure",
-      "url": "https://www.birthday-cake.online/zh/configure?step=1",
+      "url": "http://localhost:3000/zh/configure?step=1",
       "publicPath": "/screenshots/zh/mobile/configure.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 127455
+      "bytes": 128631
     },
     {
       "lang": "zh",
       "platform": "mobile",
       "view": "guide",
-      "url": "https://www.birthday-cake.online/zh/guide",
+      "url": "http://localhost:3000/zh/guide",
       "publicPath": "/screenshots/zh/mobile/guide.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 120315
+      "bytes": 124230
     },
     {
       "lang": "zh",
       "platform": "mobile",
       "view": "home",
-      "url": "https://www.birthday-cake.online/zh",
+      "url": "http://localhost:3000/zh",
       "publicPath": "/screenshots/zh/mobile/home.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 101403
+      "bytes": 103770
     },
     {
       "lang": "zh",
       "platform": "mobile",
       "view": "stage",
-      "url": "https://www.birthday-cake.online/zh?config=N4IgNghgdg5iBcIBeALEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpAJYxVRLBKlQZOcgHsArlCIIAjAA5MajVsYAmAKwTjubgDkIAW2WJAeB1AC7SddyJDHwBZHCwsCBh-EEB+Q0ADeUBAnTTADj1AImtASENAGH-AcDlAaLlAMLdAHYDAeENAQH+JDQA3YW8-RkB+NMA4Mx0IblIAZSJRfEYCbhxfdm5DXAksAhwoHFkUHBbEADMIVTF2MHUUB0wfd1UCfsHEo6wTgUMADx1mAV4iVUMoXrXbs6HEGF49dgKboDEAAXyAA",
+      "url": "http://localhost:3000/zh?config=N4IgNghgdg5iBcIBeALEAaEBnApmHAxgC44AmAwhANY4CSpCIeOM0RAtFkQE4QDuAIxzduATwwgC0UvgAqogA45GpAJYxVRLBKlQZOcgHsArlCIIAjAA5MajVsYAmAKwTjubgDkIAW2WJAeB1AC7SddyJDHwBZHCwsCBh-EEB+Q0ADeUBAnTTADj1AImtASENAGH-AcDlAaLlAMLdAHYDAeENAQH+JDQA3YW8-RkB+NMA4Mx0IblIAZSJRfEYCbhxfdm5DXAksAhwoHFkUHBbEADMIVTF2MHUUB0wfd1UCfsHEo6wTgUMADx1mAV4iVUMoXrXbs6HEGF49dgKboDEAAXyAA",
       "publicPath": "/screenshots/zh/mobile/stage.jpg",
       "width": 780,
       "height": 1688,
       "format": "jpg",
-      "bytes": 87361
+      "bytes": 87480
     }
   ]
 }

@@ -301,6 +301,7 @@ function wrapCardText(
 }
 
 import { CardStyle } from '@/types';
+import { getCardPalette, resolveCardText } from '@/utils/cardTheme';
 
 export interface PlaqueContentOptions {
   userName?: string;
@@ -312,17 +313,7 @@ export interface PlaqueContentOptions {
 
 /** 获取不同祝福卡片风格对应的立体厚边颜色（与正面边缘无缝衔接，彻底消除黑边） */
 export function getPlaqueSideColor(style: CardStyle = 'cream-rose'): number {
-  switch (style) {
-    case 'dark-gold':
-      return 0x4a2413;
-    case 'starry-violet':
-      return 0x312e6b;
-    case 'mint-fresh':
-      return 0xc6ebd9;
-    case 'cream-rose':
-    default:
-      return 0xf3d5df;
-  }
+  return getCardPalette(style).sideColor;
 }
 
 /**
@@ -339,72 +330,8 @@ export function createPlaqueTexture(options: PlaqueContentOptions): THREE.Canvas
     cardStyle = 'cream-rose',
   } = options;
 
-  const isZh = lang === 'zh' || lang === 'zh-Hant';
   const [canvas, ctx] = createCanvas(768, 440);
-
-  const palettes: Record<
-    Exclude<CardStyle, 'none'>,
-    {
-      bg1: string;
-      bg2: string;
-      border: string;
-      subBorder: string;
-      emblem: string;
-      emblemText: string;
-      primaryInk: string;
-      secondaryInk: string;
-      fromInk: string;
-      stars?: boolean;
-    }
-  > = {
-    'cream-rose': {
-      bg1: '#fdf6f0',
-      bg2: '#f9e5ec',
-      border: '#d97a99',
-      subBorder: 'rgba(217, 122, 153, 0.38)',
-      emblem: '#e11d48',
-      emblemText: '✦   ♥   ✦',
-      primaryInk: '#881337',
-      secondaryInk: '#9f1239',
-      fromInk: '#be185d',
-    },
-    'dark-gold': {
-      bg1: '#422011',
-      bg2: '#2d1409',
-      border: '#e5be63',
-      subBorder: 'rgba(229, 190, 99, 0.42)',
-      emblem: '#f3d47e',
-      emblemText: '✦   ♛   ✦',
-      primaryInk: '#fef3c7',
-      secondaryInk: '#fde68a',
-      fromInk: '#f3d47e',
-    },
-    'starry-violet': {
-      bg1: '#272356',
-      bg2: '#1b1840',
-      border: '#c4b5fd',
-      subBorder: 'rgba(196, 181, 253, 0.36)',
-      emblem: '#fde68a',
-      emblemText: '✧   ☾   ✧',
-      primaryInk: '#f5f3ff',
-      secondaryInk: '#ddd6fe',
-      fromInk: '#f9a8d4',
-      stars: true,
-    },
-    'mint-fresh': {
-      bg1: '#f0fdf6',
-      bg2: '#dcfce9',
-      border: '#34a87c',
-      subBorder: 'rgba(52, 168, 124, 0.36)',
-      emblem: '#059669',
-      emblemText: '❀   ✿   ❀',
-      primaryInk: '#065f46',
-      secondaryInk: '#047857',
-      fromInk: '#0f766e',
-    },
-  };
-
-  const p = palettes[cardStyle === 'none' ? 'cream-rose' : cardStyle];
+  const p = getCardPalette(cardStyle);
 
   // 全幅满铺背景色，彻底消除任何透明像素引起的黑边！
   const bgGrad = ctx.createLinearGradient(0, 0, 768, 440);
@@ -445,13 +372,12 @@ export function createPlaqueTexture(options: PlaqueContentOptions): THREE.Canvas
   ctx.textBaseline = 'middle';
   ctx.fillText(p.emblemText, 384, 78);
 
-  const nameTrim = userName.trim();
-  const msgTrim = customMessage.trim();
-  const giverTrim = giverName.trim();
-
-  const titleText = nameTrim || (isZh ? '生日快乐' : 'Happy Birthday');
-  const bodyText = msgTrim || (nameTrim ? (isZh ? '祝你生日快乐，岁岁常欢愉' : 'Wishing you a Happy Birthday!') : '');
-  const fromText = giverTrim ? `From: ${giverTrim}` : '';
+  const { titleText, bodyText, fromText } = resolveCardText({
+    userName,
+    customMessage,
+    giverName,
+    lang,
+  });
 
   const hasBody = Boolean(bodyText);
   const hasFrom = Boolean(fromText);

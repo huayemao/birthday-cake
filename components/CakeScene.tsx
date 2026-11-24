@@ -9,6 +9,7 @@ import { CakeSoundAura } from "./AmbientSoundVisualizer";
 import { subscribeBlowVisual } from "@/utils/soundVisualBus";
 import { detectWebGLSupport, WebGLSupportInfo } from "@/utils/webglSupport";
 import { CakeScene3DBoundary } from "./CakeScene3DBoundary";
+import BirthdayCard2D from "./BirthdayCard2D";
 import { useAppStore } from "@/store/useAppStore";
 import { MusicStyle } from "@/utils/birthdayAudio";
 
@@ -492,7 +493,13 @@ const CakeScene: React.FC<CakeSceneProps> = ({
             onClick={isActiveStage ? onStageTap : undefined}
             className="relative w-full h-full flex items-center justify-center p-6 sm:p-10"
           >
-            <div className="relative w-[min(86vw,54vh,560px)] aspect-square flex items-center justify-center">
+            <div
+              className={`relative aspect-square flex items-center justify-center ${
+                isConfigurePreview
+                  ? "w-[min(78vw,34dvh,420px)] lg:w-[min(80%,56dvh,500px)]"
+                  : "w-[min(86vw,54vh,560px)]"
+              }`}
+            >
               <div
                 className={`w-full h-full transition-transform duration-1000 ${effectiveExtinguished ? "animate-breathing-glow" : ""
                   }`}
@@ -543,6 +550,15 @@ const CakeScene: React.FC<CakeSceneProps> = ({
                   </div>
                 ))}
               </div>
+
+              {/* 2D 蛋糕前手写祝福卡片（与 3D 场景共享配色、样式及隐藏逻辑） */}
+              <BirthdayCard2D
+                userName={state.userName}
+                customMessage={state.customMessage}
+                giverName={state.giverName}
+                cardStyle={state.cardStyle || "cream-rose"}
+                lang={lang}
+              />
             </div>
 
             {/* 2D 熄灭暗场与暖光晕 */}

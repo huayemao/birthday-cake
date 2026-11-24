@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import BlowCalibrationCard from "@/components/BlowCalibrationCard";
 import FloatingScenePill from "@/components/FloatingScenePill";
+import ShareModal from "@/components/ShareModal";
 import { PromptSoundWave } from "@/components/AmbientSoundVisualizer";
 import { FullscreenManager } from "@/src/components/FullscreenManager";
 import { ScrollManager } from "@/src/components/ScrollManager";
@@ -95,7 +96,14 @@ export const ClientPage: React.FC<ClientPageProps> = ({
   // 核心互动 hooks
   useBlowDetection();
   const birthdayAudio = useBirthdayAudio();
-  const { copyShareLink, shareFeedback } = useShareLink();
+  const {
+    copyShareLink,
+    shareFeedback,
+    shareModalOpen,
+    shareUrl,
+    openShareDialog,
+    closeShareDialog,
+  } = useShareLink();
   useUrlConfig();
 
   const isRTL = isRtlLanguage(lang);
@@ -179,6 +187,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({
   // 返回主页预览：重置吹灭状态，保证主页永远是清新的预览状态（不出现“重新点亮”）
   const handleBackToHome = () => {
     setIsCalibrationOpen(false);
+    closeShareDialog();
     updateState({
       configCompleted: false,
       isExtinguished: false,
@@ -189,6 +198,7 @@ export const ClientPage: React.FC<ClientPageProps> = ({
 
   const handleGoConfigure = () => {
     setIsCalibrationOpen(false);
+    closeShareDialog();
     if (document.fullscreenElement && document.exitFullscreen) {
       document.exitFullscreen().catch(() => { });
     }
@@ -464,7 +474,8 @@ export const ClientPage: React.FC<ClientPageProps> = ({
                 type="button"
                 onClick={() => {
                   revealSceneControls();
-                  copyShareLink();
+                  setIsCalibrationOpen(false);
+                  openShareDialog();
                 }}
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:brightness-110 transition-all hover:scale-105 active:scale-95 shadow-lg"
                 title={t.share}
@@ -576,25 +587,22 @@ export const ClientPage: React.FC<ClientPageProps> = ({
               </div>
             </div>
           )}
-          {/* 分享链接复制成功/失败悬浮提示（置于舞台内部，全屏模式同样清晰可见） */}
-          {shareFeedback !== "idle" && (
-            <div className="pointer-events-none fixed top-16 left-1/2 -translate-x-1/2 z-[65] animate-fade-in-up">
-              <FloatingScenePill
-                variant={shareFeedback === "copied" ? "blowing" : "locked"}
-                className="px-5 py-2"
-              >
-                <span>
-                  {shareFeedback === "copied"
-                    ? isZh
-                      ? "已复制专属分享链接，快发给好友吧 ✨"
-                      : `${t.copyLink} ✓`
-                    : isZh
-                      ? "复制失败，请手动复制浏览器地址"
-                      : "Copy failed, please copy URL manually"}
-                </span>
-              </FloatingScenePill>
-            </div>
-          )}
+          {/* 分享链接对话框（置于舞台内部，全屏模式同样清晰可见） */}
+          <ShareModal
+            isOpen={shareModalOpen}
+            shareUrl={shareUrl}
+            copyStatus={shareFeedback}
+            onCopy={() => copyShareLink({ persistFeedback: true, explicitUrl: shareUrl })}
+            onClose={closeShareDialog}
+            lang={lang}
+            t={t}
+            summary={{
+              userName,
+              giverName,
+              customMessage,
+              isCustomCake: selectedCakeId.startsWith("custom-"),
+            }}
+          />
 
           {/* 场景内快捷麦克风校准弹窗（置于舞台内部，确保全屏模式下依然可见） */}
           {isCalibrationOpen && (

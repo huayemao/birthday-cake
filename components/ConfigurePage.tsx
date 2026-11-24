@@ -13,6 +13,7 @@ import { birthdayAudio, MusicStyle } from "@/utils/birthdayAudio";
 import { useShareLink } from "@/src/hooks/useShareLink";
 import CakeScene from "./CakeScene";
 import BlowCalibrationCard from "./BlowCalibrationCard";
+import ShareModal from "./ShareModal";
 
 interface ConfigurePageProps {
   initialLang: Language;
@@ -115,7 +116,14 @@ export const ConfigurePage: React.FC<ConfigurePageProps> = ({ initialLang }) => 
     setCelebrationSfxStyle,
   } = useAppStore();
 
-  const { copyShareLink, shareFeedback } = useShareLink();
+  const {
+    copyShareLink,
+    shareFeedback,
+    shareModalOpen,
+    shareUrl,
+    openShareDialog,
+    closeShareDialog,
+  } = useShareLink();
 
   const state = {
     selectedCakeId,
@@ -263,7 +271,7 @@ export const ConfigurePage: React.FC<ConfigurePageProps> = ({ initialLang }) => 
           )}
         </div>
 
-        {/* 实时 3D / 2D 蛋糕预览组件（Name / Message / From 均已清晰渲染在 3D 蛋糕卡片上） */}
+        {/* 实时 3D / 2D 蛋糕预览组件（Name / Message / From 均已清晰渲染在 3D 与 2D 蛋糕卡片上） */}
         <div className="relative w-full h-full">
           <CakeScene
             state={state}
@@ -286,7 +294,7 @@ export const ConfigurePage: React.FC<ConfigurePageProps> = ({ initialLang }) => 
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={copyShareLink}
+                  onClick={openShareDialog}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-[11px] font-semibold text-slate-200 transition-all active:scale-95"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -296,11 +304,7 @@ export const ConfigurePage: React.FC<ConfigurePageProps> = ({ initialLang }) => 
                     <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
                     <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
                   </svg>
-                  <span>
-                    {shareFeedback === "copied"
-                      ? isZh ? "已复制链接 ✓" : "Copied ✓"
-                      : t.share}
-                  </span>
+                  <span>{t.share}</span>
                 </button>
                 <button
                   type="button"
@@ -799,6 +803,23 @@ export const ConfigurePage: React.FC<ConfigurePageProps> = ({ initialLang }) => 
               </div>
             </div>
           </section>
+
+          {/* 分享链接对话框 */}
+          <ShareModal
+            isOpen={shareModalOpen}
+            shareUrl={shareUrl}
+            copyStatus={shareFeedback}
+            onCopy={() => copyShareLink({ persistFeedback: true, explicitUrl: shareUrl })}
+            onClose={closeShareDialog}
+            lang={lang}
+            t={t}
+            summary={{
+              userName,
+              giverName,
+              customMessage,
+              isCustomCake: selectedCakeId.startsWith("custom-"),
+            }}
+          />
         </div>
         );
 };
